@@ -21,3 +21,9 @@ style : 코드 스타일 혹은 포맷 등에 관한 커밋
 refactor : 코드 리팩토링에 대한 커밋
 test : 테스트 코드 수정에 대한 커밋
 ```
+# 프로젝트 init 정리
+```
+1. 제플린 기준 1번 페이지를 제외한 다른 페이지들은 헤더가 있으므로 SubPage 컴포넌트를 공유하고 props로 구분하여 renderContent 함수에서 다른 content를 렌더링한다.
+2. SubPage 컴포넌트의 SubPageHeader와 SubPageContent는 651px 이상일 때 배경을 보여주는 역할 그 이상도 이하도 아니고 모든 내용은 SubPageResponsiveHeader,  
+   SubPageContentResponsive에 들어간다.
+```
