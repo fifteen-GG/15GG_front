@@ -39,7 +39,7 @@ export const SubPageContent = styled.div`
   background: #1e2025;
   display: flex;
   justify-content: center;
-  height: 100vh;
+  height: calc(100vh - 48px);
 `;
 
 export const SubPageContentResponse = styled.div`
