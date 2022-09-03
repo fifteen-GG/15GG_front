@@ -26,4 +26,6 @@ test : 테스트 코드 수정에 대한 커밋
 1. 제플린 기준 1번 페이지를 제외한 다른 페이지들은 헤더가 있으므로 SubPage 컴포넌트를 공유하고 props로 구분하여 renderContent 함수에서 다른 content를 렌더링한다.
 2. SubPage 컴포넌트의 SubPageHeader와 SubPageContent는 651px 이상일 때 배경을 보여주는 역할 그 이상도 이하도 아니고 모든 내용은 SubPageResponsiveHeader,  
    SubPageContentResponsive에 들어간다.
+3. 라우팅 주소나 컴포넌트 이름은 당연히 임의로 작성한 거니깐 기능에 따라 이쁘게 나누기!
+4. 디렉토리 구조도 참고해서 style, props, index 따로 정리하면서 가독성 좋게 작성하기!
 ```
