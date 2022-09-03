@@ -9,7 +9,7 @@
 7.어떻게 보다는 무엇과 왜를 설명합니다.
 ```
 
-#Git Commit Message 구조
+# Git Commit Message 구조
 ```
 feat : 새로운 기능에 대한 커밋
 fix : build 빌드 관련 파일 수정에 대한 커밋
