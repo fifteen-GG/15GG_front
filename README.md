@@ -1,46 +1,19 @@
-# Getting Started with Create React App
+# Git Commit Message 규칙
+1.제목과 본문을 빈 행으로 구분합니다.
+2.제목을 50글자 이내로 제한합니다.
+3.제목의 첫 글자는 대문자로 작성합니다.
+4.제목의 끝에는 마침표를 넣지 않습니다.
+5.제목은 명령문으로! 과거형을 사용하지 않습니다.
+6.본문의 각 행은 72글자 내로 제한합니다.
+7.어떻게 보다는 무엇과 왜를 설명합니다.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+#Git Commit Message 구조
+feat : 새로운 기능에 대한 커밋
+fix : build 빌드 관련 파일 수정에 대한 커밋
+build : 빌드 관련 파일 수정에 대한 커밋
+chore : 그 외 자잘한 수정에 대한 커밋(rlxk qusrud)
+ci : CI 관련 설정 수정에 대한 커밋
+docs : 문서 수정에 대한 커밋
+style : 코드 스타일 혹은 포맷 등에 관한 커밋
+refactor : 코드 리팩토링에 대한 커밋
+test : 테스트 코드 수정에 대한 커밋
