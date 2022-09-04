@@ -1,19 +1,11 @@
 import styled from "styled-components";
-
-const UserInfoWrapper = styled.div`
-  height: 100%;
-  background: red;
-`;
-
-const UserStatWrapper = styled.div`
-  height: 415px;
-  background: yellow;
-`;
+import * as S from "./styled";
 
 export const UserInfo = () => {
   return (
-    <UserInfoWrapper>
-      <UserStatWrapper></UserStatWrapper>
-    </UserInfoWrapper>
+    <S.UserInfoWrapper>
+      <S.UserStatWrapper>{/*동욱쓰*/}</S.UserStatWrapper>
+      <S.UserGameListWrapper>{/*정빈쓰*/}</S.UserGameListWrapper>
+    </S.UserInfoWrapper>
   );
 };
