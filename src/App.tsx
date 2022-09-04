@@ -8,7 +8,7 @@ function App() {
       <Routes>
         <Route path="" element={<Page1 />}></Route>
         <Route path="page1.5" element={<SubPage page="1.5" />}></Route>
-        <Route path="page2" element={<SubPage page="2" />}></Route>
+        <Route path="userInfo" element={<SubPage page="userInfo" />}></Route>
       </Routes>
     </BrowserRouter>
   );
