@@ -169,6 +169,7 @@ const TeamInfo = styled.div`
   height: 234px;
   margin-left: 8px;
   margin-right: 8px;
+  margin-bottom: 12px;
 `;
 const TeamInfoHeader = styled.div`
   display: flex;
@@ -208,10 +209,119 @@ const PlayerList = styled.div`
   margin-bottom: 8px;
   background-color: #27282d;
 `;
-const Player = styled.div`
+const PlayerContainer = styled.div`
   display: flex;
-  height: 20px;
-  padding: 8px;
+  height: 38px;
+  padding 0px 4px 0px 8px;
+  justify-content: space-between;
+`;
+const UserInterface = styled.div`
+  display: flex;
+  width: 122px;
+  height: 22px;
+  margin-top: 7px;
+`;
+const ItemInterface = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 117px;
+  height: 26px;
+  margin-top: 6px;
+  align-items: flex-end;
+  font-size: 10px;
+  font-weight: bold;
+  color: #fafafa;
+`;
+const ChampionImg = styled.div`
+  height: 22px;
+  width: 22px;
+  position: absolute;
+  margin-left;2px;
+  background-color:white;
+`;
+const ChampionLevel = styled.div`
+  display: flex;
+  height: 10px;
+  width: 10px;
+  background-color: rgba(30, 32, 37, 0.8);
+  border-radius: 2px;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  margin-left: 10px;
+  margin-top: 10px;
+  font-size: 6px;
+  color: #ffffff;
+`;
+const SpellWrapper = styled.div`
+  display: flex;
+  height: 22px;
+  width: 10px;
+  margin-left: 24px;
+  margin-right: 1px;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+const Spell = styled.div`
+  height: 10px;
+  width: 10px;
+  background-color: white;
+`;
+const UserInfoContaioner = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 22px;
+  width: 85px;
+  justify-content: space-between;
+`;
+const NamenTierWrapper = styled.div`
+  display: flex;
+  height: 11px;
+  align-items: center;
+`;
+const UserName = styled.div`
+  font-size: 11px;
+  color: #fafafa;
+  font-weight: bold;
+`;
+const Tear = styled.div`
+  display: flex;
+  background-color: #00bba3;
+  height: 10px;
+  width: 15px;
+  color: #ffffff;
+  font-size: 8px;
+  border-radius: 2px;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+`;
+const KDAContainer = styled.div`
+  display: flex;
+  height: 10px;
+`;
+const KDADetails = styled.div`
+  height: 10px;
+  font-size: 10px;
+  color: #fafafa;
+  font-weight: bold;
+`;
+const Space = styled.span`
+  padding-right: 2px;
+`;
+const KDA = styled.div`
+  font-size: 8px;
+  font-weight: bold;
+  color: #3595a1;
+`;
+const ItemWrapper = styled.div`
+  display: flex;
+`;
+const ItemImg = styled.div`
+  height: 15px;
+  width: 15px;
+  background-color: white;
+  margin-right: 2px;
 `;
 
 export {
@@ -238,6 +348,22 @@ export {
   UserInfoColumnWrapper,
   UserInfoColumn,
   PlayerList,
-  Player,
+  PlayerContainer,
+  UserInterface,
+  ItemInterface,
+  ChampionImg,
+  ChampionLevel,
+  SpellWrapper,
+  Spell,
+  UserInfoContaioner,
+  NamenTierWrapper,
+  UserName,
+  Tear,
+  KDAContainer,
+  KDADetails,
+  Space,
+  KDA,
+  ItemWrapper,
+  ItemImg,
   TeamNameEnum as Team,
 };

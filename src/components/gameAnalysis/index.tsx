@@ -20,9 +20,25 @@ import {
   UserInfoColumnWrapper,
   UserInfoColumn,
   PlayerList,
-  Player,
+  PlayerContainer,
   Team,
   StatValue,
+  UserInterface,
+  ItemInterface,
+  ChampionImg,
+  ChampionLevel,
+  SpellWrapper,
+  Spell,
+  UserInfoContaioner,
+  NamenTierWrapper,
+  UserName,
+  Tear,
+  KDAContainer,
+  KDADetails,
+  Space,
+  KDA,
+  ItemWrapper,
+  ItemImg,
 } from "./styled";
 import { ReactComponent as RedGoldIcon } from "./gold_red.svg";
 import { ReactComponent as RedKillIcon } from "./kills_red.svg";
@@ -75,6 +91,54 @@ const TeamStats = () => {
         </TeamGold>
       </TeamStat>
     </TeamStatsWrapper>
+  );
+};
+
+const Player = () => {
+  return (
+    <PlayerContainer>
+      <UserInterface>
+        <ChampionImg />
+        <ChampionLevel>16</ChampionLevel>
+        <SpellWrapper>
+          <Spell />
+          <Spell />
+        </SpellWrapper>
+        <UserInfoContaioner>
+          <NamenTierWrapper>
+            <UserName>정잭영</UserName>
+            <Tear>P4</Tear>
+          </NamenTierWrapper>
+          <KDAContainer>
+            <KDADetails>
+              15
+              <Space />
+              /
+              <Space />
+              6
+              <Space />
+              /
+              <Space />
+              5
+              <Space />
+            </KDADetails>
+            <KDA>KDA 3.3</KDA>
+          </KDAContainer>
+        </UserInfoContaioner>
+      </UserInterface>
+      <ItemInterface>
+        <ItemWrapper>
+          <ItemImg />
+          <ItemImg />
+          <ItemImg />
+          <ItemImg />
+          <ItemImg />
+          <ItemImg />
+          <ItemImg />
+        </ItemWrapper>
+        40,480 · 20K
+      </ItemInterface>
+    </PlayerContainer>
   );
 };
 
