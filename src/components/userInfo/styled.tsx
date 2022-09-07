@@ -140,15 +140,13 @@ export const Item = styled.div`
 `;
 
 export const UserInfoWrapper = styled.div`
-  height: 100%;
+  min-height: 100%;
 `;
 
-export const UserStatWrapper = styled.div`
-  height: 399px;
-`;
+export const UserStatWrapper = styled.div``;
 
 export const UserGameListWrapper = styled.div`
-  height: 100%;
+  min-height: 100%;
 `;
 
 //UserId 부분 스타일

@@ -161,7 +161,7 @@ const UserId = () => {
 const UserRank = () => {
   return (
     <S.UserRankWrapper>
-      <S.RankWrapper className="Solo">
+      <S.RankWrapper className='Solo'>
         <S.RankText>
           <S.RankSubTitle>솔로랭크</S.RankSubTitle>
           <S.RankName>Gold 2</S.RankName>
@@ -172,7 +172,7 @@ const UserRank = () => {
         </S.RankText>
         <S.RankImg></S.RankImg>
       </S.RankWrapper>
-      <S.RankWrapper className="Free">
+      <S.RankWrapper className='Free'>
         <S.RankText>
           <S.RankSubTitle>자유랭크</S.RankSubTitle>
           <S.RankName>Platinum 4</S.RankName>
