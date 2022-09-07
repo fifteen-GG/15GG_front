@@ -7,12 +7,7 @@ export const Page15Wrapper = styled.div`
 `;
 
 export const Page15Responsive = styled.div`
-  @media screen and (max-width: 650px) {
-    width: 100%;
-  }
-  @media screen and (min-width: 651px) {
-    width: 650px;
-  }
+  width: 328px;
 `;
 
 export const Title = styled.div`
