@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const GameAnalysisWrapper = styled.div`
   display: flex;
@@ -43,7 +43,7 @@ const AnalysisTypeInfo = styled.div<RealTimeInfoProps>`
   align-items: center;
   justify-content: center;
   border-radius: 3px;
-  background-color: ${(props) => (props.isLive ? "#e84057" : "#4d4ae2")};
+  background-color: ${(props) => (props.isLive ? '#e84057' : '#4d4ae2')};
 `;
 
 const DateInfo = styled.div`
@@ -124,7 +124,7 @@ const TeamGold = styled.div<TeamStatProps>`
   height: 40px;
   width: 40px;
   color: ${(props) =>
-    props.team === TeamNameEnum.RED ? "#e84057" : "#4d4ae2"};
+    props.team === TeamNameEnum.RED ? '#e84057' : '#4d4ae2'};
 `;
 
 const TeamLevel = styled.div<TeamStatProps>`
@@ -135,7 +135,7 @@ const TeamLevel = styled.div<TeamStatProps>`
   width: 40px;
   height: 40px;
   color: ${(props) =>
-    props.team === TeamNameEnum.RED ? "#e84057" : "#4d4ae2"};
+    props.team === TeamNameEnum.RED ? '#e84057' : '#4d4ae2'};
 `;
 
 const TeamKills = styled.div<TeamStatProps>`
@@ -146,7 +146,7 @@ const TeamKills = styled.div<TeamStatProps>`
   width: 40px;
   height: 40px;
   color: ${(props) =>
-    props.team === TeamNameEnum.RED ? "#e84057" : "#4d4ae2"};
+    props.team === TeamNameEnum.RED ? '#e84057' : '#4d4ae2'};
 `;
 
 const StatValue = styled.div`
@@ -184,7 +184,7 @@ const TeamName = styled.div<TeamStatProps>`
   border-radius: 4px 4px 0 0;
   padding: 0 8px 0 8px;
   color: ${(props) =>
-    props.team === TeamNameEnum.RED ? "#e84057" : "#5383e8"};
+    props.team === TeamNameEnum.RED ? '#e84057' : '#5383e8'};
   font-size: 12px;
   font-weight: 500;
   align-items: center;
@@ -208,8 +208,9 @@ const PlayerList = styled.div`
   height: 196px;
   margin-bottom: 8px;
   background-color: #27282d;
+  border-radius: 0px 0px 4px 4px;
 `;
-const PlayerContainer = styled.div`
+const PlayerWrapper = styled.div`
   display: flex;
   height: 38px;
   padding 0px 4px 0px 8px;
@@ -217,7 +218,6 @@ const PlayerContainer = styled.div`
 `;
 const UserInterface = styled.div`
   display: flex;
-  width: 122px;
   height: 22px;
   margin-top: 7px;
 `;
@@ -236,8 +236,8 @@ const ChampionImg = styled.div`
   height: 22px;
   width: 22px;
   position: absolute;
-  margin-left;2px;
-  background-color:white;
+  background-color: white;
+  border-radius: 2px;
 `;
 const ChampionLevel = styled.div`
   display: flex;
@@ -248,68 +248,71 @@ const ChampionLevel = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
-  margin-left: 10px;
-  margin-top: 10px;
+  margin-left: 12px;
+  margin-top: 12px;
   font-size: 6px;
   color: #ffffff;
+  border-radius: 2px;
 `;
 const SpellWrapper = styled.div`
   display: flex;
   height: 22px;
   width: 10px;
   margin-left: 24px;
-  margin-right: 1px;
+  margin-right: 3px;
   flex-direction: column;
   justify-content: space-between;
+  border-radius: 2px;
 `;
 const Spell = styled.div`
   height: 10px;
   width: 10px;
   background-color: white;
+  border-radius: 2px;
 `;
-const UserInfoContaioner = styled.div`
+const UserInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 22px;
-  width: 85px;
   justify-content: space-between;
 `;
-const NamenTierWrapper = styled.div`
+const SummonerInfo = styled.div`
   display: flex;
   height: 11px;
   align-items: center;
 `;
-const UserName = styled.div`
+const SummonerName = styled.div`
   font-size: 11px;
   color: #fafafa;
   font-weight: bold;
+  margin-right: 2px;
 `;
-const Tear = styled.div`
+const SummonerTier = styled.div`
   display: flex;
   background-color: #00bba3;
   height: 10px;
   width: 15px;
   color: #ffffff;
-  font-size: 8px;
+  font-size: 6px;
   border-radius: 2px;
   justify-content: center;
   align-items: center;
   font-weight: bold;
 `;
-const KDAContainer = styled.div`
+const KDAWrapper = styled.div`
   display: flex;
   height: 10px;
 `;
 const KDADetails = styled.div`
+  display: flex;
   height: 10px;
   font-size: 10px;
   color: #fafafa;
   font-weight: bold;
-`;
-const Space = styled.span`
-  padding-right: 2px;
+  white-space: pre;
 `;
 const KDA = styled.div`
+  display: flex;
   font-size: 8px;
   font-weight: bold;
   color: #3595a1;
@@ -322,6 +325,7 @@ const ItemImg = styled.div`
   width: 15px;
   background-color: white;
   margin-right: 2px;
+  border-radius: 2px;
 `;
 
 export {
@@ -348,20 +352,19 @@ export {
   UserInfoColumnWrapper,
   UserInfoColumn,
   PlayerList,
-  PlayerContainer,
+  PlayerWrapper,
   UserInterface,
   ItemInterface,
   ChampionImg,
   ChampionLevel,
   SpellWrapper,
   Spell,
-  UserInfoContaioner,
-  NamenTierWrapper,
-  UserName,
-  Tear,
-  KDAContainer,
+  UserInfoWrapper,
+  SummonerInfo,
+  SummonerName,
+  SummonerTier,
+  KDAWrapper,
   KDADetails,
-  Space,
   KDA,
   ItemWrapper,
   ItemImg,
