@@ -1,4 +1,4 @@
-export interface GameProps {
+export interface GameType {
   status: 'live' | 'complete' | 'incomplete';
   result: 'win' | 'lose';
   mode: 'solo' | 'free';
@@ -12,3 +12,7 @@ export interface GameProps {
   rate: number;
   ward: number;
 }
+
+export type GameInfoProps = {
+  gameInfo: GameType;
+};

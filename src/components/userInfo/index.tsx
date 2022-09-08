@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import * as S from './styled';
-import { GameProps } from './type';
+import { GameInfoProps, GameType } from './type';
 
-const gameData: GameProps[] = [
+const gameData: GameType[] = [
   {
     status: 'live',
     result: 'win',
@@ -76,7 +76,7 @@ const gameData: GameProps[] = [
   },
 ];
 
-const GameCard = (props: { gameInfo: GameProps }) => {
+const GameCard = ({ gameInfo }: GameInfoProps) => {
   const {
     status,
     result,
@@ -90,7 +90,7 @@ const GameCard = (props: { gameInfo: GameProps }) => {
     cs,
     rate,
     ward,
-  } = props.gameInfo;
+  } = gameInfo;
   return (
     <S.GameListBox>
       {status === 'live' ? (
@@ -100,7 +100,7 @@ const GameCard = (props: { gameInfo: GameProps }) => {
       ) : (
         <S.AnalysisStatus status={status}>미분석</S.AnalysisStatus>
       )}
-      <S.GameInfoBox result={props.gameInfo.result}>
+      <S.GameInfoBox result={result}>
         <S.GameMainInfo>
           <S.Result>{result === 'win' ? '승리' : '패배'}</S.Result>
           <S.Date>
@@ -155,7 +155,7 @@ const UserId = () => {
 };
 
 // interface RankProps{
-//사이드 마진이 조금 남는 현상 수정필요
+//TODO 사이드 마진이 조금 남는 현상 수정필요
 // }
 
 const UserRank = () => {
@@ -215,11 +215,10 @@ const UserGraph = () => {
 };
 
 export const UserInfo = () => {
-  // const [page, setPage] = useState<number>(1);
-  const [games, setGames] = useState<GameProps[]>([...gameData]);
+  const [games, setGames] = useState<GameType[]>([...gameData]);
   const fetchData = () => {
     setTimeout(() => {
-      const arr: GameProps[] = games.concat([...gameData]);
+      const arr: GameType[] = games.concat([...gameData]);
       setGames(arr);
     }, 1500);
   };
@@ -238,7 +237,7 @@ export const UserInfo = () => {
           hasMore={true}
           loader={<h4 style={{ color: 'white' }}>Loading...</h4>}
         >
-          {games.map((game: GameProps, index) => {
+          {games.map((game: GameType, index) => {
             return <GameCard gameInfo={game} key={index}></GameCard>;
           })}
         </InfiniteScroll>

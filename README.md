@@ -1,4 +1,5 @@
 # Git Commit Message 규칙
+
 ```
 1.제목과 본문을 빈 행으로 구분합니다.
 2.제목을 50글자 이내로 제한합니다.
@@ -10,20 +11,27 @@
 ```
 
 # Git Commit Message 구조
+
 ```
-feat : 새로운 기능에 대한 커밋
-fix : build 빌드 관련 파일 수정에 대한 커밋
-build : 빌드 관련 파일 수정에 대한 커밋
-chore : 그 외 자잘한 수정에 대한 커밋(rlxk qusrud)
-ci : CI 관련 설정 수정에 대한 커밋
-docs : 문서 수정에 대한 커밋
-style : 코드 스타일 혹은 포맷 등에 관한 커밋
-refactor : 코드 리팩토링에 대한 커밋
-test : 테스트 코드 수정에 대한 커밋
+feat: 새로운 기능 추가
+fix: 버그 수정
+docs: 문서 수정
+style: 코드 스타일 변경 (코드 포매팅, 세미콜론 누락 등)
+design: 사용자 UI 디자인 변경 (CSS 등)
+test: 테스트 코드, 리팩토링 (Test Code)
+refactor: 리팩토링 (Production Code)
+build: 빌드 파일 수정
+ci: CI 설정 파일 수정
+perf: 성능 개선
+chore: 자잘한 수정이나 빌드 업데이트
+rename: 파일 혹은 폴더명을 수정만 한 경우
+remove: 파일을 삭제만 한 경우
 ```
+
 # 프로젝트 init 정리
+
 ```
 1. 제플린 기준 1번 페이지를 제외한 다른 페이지들은 헤더가 있으므로 SubPage 컴포넌트를 공유하고 props로 구분하여 renderContent 함수에서 다른 content를 렌더링한다.
-2. SubPage 컴포넌트의 SubPageHeader와 SubPageContent는 651px 이상일 때 배경을 보여주는 역할 그 이상도 이하도 아니고 모든 내용은 SubPageResponsiveHeader,  
+2. SubPage 컴포넌트의 SubPageHeader와 SubPageContent는 651px 이상일 때 배경을 보여주는 역할 그 이상도 이하도 아니고 모든 내용은 SubPageResponsiveHeader,
    SubPageContentResponsive에 들어간다.
 ```
