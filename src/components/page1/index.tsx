@@ -26,7 +26,7 @@ export const Page1 = () => {
             </S.LiveGameTitleWrapper>
             <S.LiveGameTeamsWrapper>
               <S.LiveGameSingleTeamWrapper>
-                <S.LiveGameTeamsRow1>
+                <S.LiveGameTeamsRow>
                   <S.LiveGameSingleUser>
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
@@ -39,8 +39,8 @@ export const Page1 = () => {
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
                   </S.LiveGameSingleUser>
-                </S.LiveGameTeamsRow1>
-                <S.LiveGameTeamsRow2>
+                </S.LiveGameTeamsRow>
+                <S.LiveGameTeamsRow>
                   <S.LiveGameSingleUser>
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
@@ -49,11 +49,11 @@ export const Page1 = () => {
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
                   </S.LiveGameSingleUser>
-                </S.LiveGameTeamsRow2>
+                </S.LiveGameTeamsRow>
               </S.LiveGameSingleTeamWrapper>
               <S.LiveGameVersusWrapper>VS</S.LiveGameVersusWrapper>
               <S.LiveGameSingleTeamWrapper>
-                <S.LiveGameTeamsRow2>
+                <S.LiveGameTeamsRow>
                   <S.LiveGameSingleUser>
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
@@ -62,8 +62,8 @@ export const Page1 = () => {
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
                   </S.LiveGameSingleUser>
-                </S.LiveGameTeamsRow2>
-                <S.LiveGameTeamsRow1>
+                </S.LiveGameTeamsRow>
+                <S.LiveGameTeamsRow>
                   <S.LiveGameSingleUser>
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
@@ -76,7 +76,7 @@ export const Page1 = () => {
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
                   </S.LiveGameSingleUser>
-                </S.LiveGameTeamsRow1>
+                </S.LiveGameTeamsRow>
               </S.LiveGameSingleTeamWrapper>
               <S.LiveGameSingleTeamWrapper></S.LiveGameSingleTeamWrapper>
             </S.LiveGameTeamsWrapper>
@@ -88,7 +88,7 @@ export const Page1 = () => {
             </S.LiveGameTitleWrapper>
             <S.LiveGameTeamsWrapper>
               <S.LiveGameSingleTeamWrapper>
-                <S.LiveGameTeamsRow1>
+                <S.LiveGameTeamsRow>
                   <S.LiveGameSingleUser>
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
@@ -101,8 +101,8 @@ export const Page1 = () => {
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
                   </S.LiveGameSingleUser>
-                </S.LiveGameTeamsRow1>
-                <S.LiveGameTeamsRow2>
+                </S.LiveGameTeamsRow>
+                <S.LiveGameTeamsRow>
                   <S.LiveGameSingleUser>
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
@@ -111,11 +111,11 @@ export const Page1 = () => {
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
                   </S.LiveGameSingleUser>
-                </S.LiveGameTeamsRow2>
+                </S.LiveGameTeamsRow>
               </S.LiveGameSingleTeamWrapper>
               <S.LiveGameVersusWrapper>VS</S.LiveGameVersusWrapper>
               <S.LiveGameSingleTeamWrapper>
-                <S.LiveGameTeamsRow2>
+                <S.LiveGameTeamsRow>
                   <S.LiveGameSingleUser>
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
@@ -124,8 +124,8 @@ export const Page1 = () => {
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
                   </S.LiveGameSingleUser>
-                </S.LiveGameTeamsRow2>
-                <S.LiveGameTeamsRow1>
+                </S.LiveGameTeamsRow>
+                <S.LiveGameTeamsRow>
                   <S.LiveGameSingleUser>
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
@@ -138,7 +138,7 @@ export const Page1 = () => {
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
                   </S.LiveGameSingleUser>
-                </S.LiveGameTeamsRow1>
+                </S.LiveGameTeamsRow>
               </S.LiveGameSingleTeamWrapper>
               <S.LiveGameSingleTeamWrapper></S.LiveGameSingleTeamWrapper>
             </S.LiveGameTeamsWrapper>
@@ -150,7 +150,7 @@ export const Page1 = () => {
             </S.LiveGameTitleWrapper>
             <S.LiveGameTeamsWrapper>
               <S.LiveGameSingleTeamWrapper>
-                <S.LiveGameTeamsRow1>
+                <S.LiveGameTeamsRow>
                   <S.LiveGameSingleUser>
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
@@ -163,8 +163,8 @@ export const Page1 = () => {
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
                   </S.LiveGameSingleUser>
-                </S.LiveGameTeamsRow1>
-                <S.LiveGameTeamsRow2>
+                </S.LiveGameTeamsRow>
+                <S.LiveGameTeamsRow>
                   <S.LiveGameSingleUser>
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
@@ -173,11 +173,11 @@ export const Page1 = () => {
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
                   </S.LiveGameSingleUser>
-                </S.LiveGameTeamsRow2>
+                </S.LiveGameTeamsRow>
               </S.LiveGameSingleTeamWrapper>
               <S.LiveGameVersusWrapper>VS</S.LiveGameVersusWrapper>
               <S.LiveGameSingleTeamWrapper>
-                <S.LiveGameTeamsRow2>
+                <S.LiveGameTeamsRow>
                   <S.LiveGameSingleUser>
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
@@ -186,8 +186,8 @@ export const Page1 = () => {
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
                   </S.LiveGameSingleUser>
-                </S.LiveGameTeamsRow2>
-                <S.LiveGameTeamsRow1>
+                </S.LiveGameTeamsRow>
+                <S.LiveGameTeamsRow>
                   <S.LiveGameSingleUser>
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
@@ -200,7 +200,7 @@ export const Page1 = () => {
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
                   </S.LiveGameSingleUser>
-                </S.LiveGameTeamsRow1>
+                </S.LiveGameTeamsRow>
               </S.LiveGameSingleTeamWrapper>
               <S.LiveGameSingleTeamWrapper></S.LiveGameSingleTeamWrapper>
             </S.LiveGameTeamsWrapper>
@@ -212,7 +212,7 @@ export const Page1 = () => {
             </S.LiveGameTitleWrapper>
             <S.LiveGameTeamsWrapper>
               <S.LiveGameSingleTeamWrapper>
-                <S.LiveGameTeamsRow1>
+                <S.LiveGameTeamsRow>
                   <S.LiveGameSingleUser>
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
@@ -225,8 +225,8 @@ export const Page1 = () => {
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
                   </S.LiveGameSingleUser>
-                </S.LiveGameTeamsRow1>
-                <S.LiveGameTeamsRow2>
+                </S.LiveGameTeamsRow>
+                <S.LiveGameTeamsRow>
                   <S.LiveGameSingleUser>
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
@@ -235,11 +235,11 @@ export const Page1 = () => {
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
                   </S.LiveGameSingleUser>
-                </S.LiveGameTeamsRow2>
+                </S.LiveGameTeamsRow>
               </S.LiveGameSingleTeamWrapper>
               <S.LiveGameVersusWrapper>VS</S.LiveGameVersusWrapper>
               <S.LiveGameSingleTeamWrapper>
-                <S.LiveGameTeamsRow2>
+                <S.LiveGameTeamsRow>
                   <S.LiveGameSingleUser>
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
@@ -248,8 +248,8 @@ export const Page1 = () => {
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
                   </S.LiveGameSingleUser>
-                </S.LiveGameTeamsRow2>
-                <S.LiveGameTeamsRow1>
+                </S.LiveGameTeamsRow>
+                <S.LiveGameTeamsRow>
                   <S.LiveGameSingleUser>
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
@@ -262,7 +262,7 @@ export const Page1 = () => {
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
                   </S.LiveGameSingleUser>
-                </S.LiveGameTeamsRow1>
+                </S.LiveGameTeamsRow>
               </S.LiveGameSingleTeamWrapper>
               <S.LiveGameSingleTeamWrapper></S.LiveGameSingleTeamWrapper>
             </S.LiveGameTeamsWrapper>
@@ -274,7 +274,7 @@ export const Page1 = () => {
             </S.LiveGameTitleWrapper>
             <S.LiveGameTeamsWrapper>
               <S.LiveGameSingleTeamWrapper>
-                <S.LiveGameTeamsRow1>
+                <S.LiveGameTeamsRow>
                   <S.LiveGameSingleUser>
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
@@ -287,8 +287,8 @@ export const Page1 = () => {
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
                   </S.LiveGameSingleUser>
-                </S.LiveGameTeamsRow1>
-                <S.LiveGameTeamsRow2>
+                </S.LiveGameTeamsRow>
+                <S.LiveGameTeamsRow>
                   <S.LiveGameSingleUser>
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
@@ -297,11 +297,11 @@ export const Page1 = () => {
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
                   </S.LiveGameSingleUser>
-                </S.LiveGameTeamsRow2>
+                </S.LiveGameTeamsRow>
               </S.LiveGameSingleTeamWrapper>
               <S.LiveGameVersusWrapper>VS</S.LiveGameVersusWrapper>
               <S.LiveGameSingleTeamWrapper>
-                <S.LiveGameTeamsRow2>
+                <S.LiveGameTeamsRow>
                   <S.LiveGameSingleUser>
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
@@ -310,8 +310,8 @@ export const Page1 = () => {
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
                   </S.LiveGameSingleUser>
-                </S.LiveGameTeamsRow2>
-                <S.LiveGameTeamsRow1>
+                </S.LiveGameTeamsRow>
+                <S.LiveGameTeamsRow>
                   <S.LiveGameSingleUser>
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
@@ -324,7 +324,7 @@ export const Page1 = () => {
                     <S.LiveGameUserChampion />
                     <S.LiveGameUserName>정잭영</S.LiveGameUserName>
                   </S.LiveGameSingleUser>
-                </S.LiveGameTeamsRow1>
+                </S.LiveGameTeamsRow>
               </S.LiveGameSingleTeamWrapper>
               <S.LiveGameSingleTeamWrapper></S.LiveGameSingleTeamWrapper>
             </S.LiveGameTeamsWrapper>

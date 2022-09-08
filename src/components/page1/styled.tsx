@@ -151,15 +151,7 @@ export const LiveGameVersusWrapper = styled.div`
   font-style: italic;
 `;
 
-export const LiveGameTeamsRow1 = styled.div`
-  width: 60px;
-  height: 44px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-`;
-
-export const LiveGameTeamsRow2 = styled.div`
+export const LiveGameTeamsRow = styled.div`
   width: 60px;
   height: 44px;
   display: flex;
