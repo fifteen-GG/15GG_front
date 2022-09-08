@@ -316,6 +316,7 @@ const KDA = styled.div`
   font-size: 8px;
   font-weight: bold;
   color: #3595a1;
+  line-height: 1.8;
 `;
 const ItemWrapper = styled.div`
   display: flex;
