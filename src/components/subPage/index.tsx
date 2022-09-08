@@ -10,6 +10,7 @@ export const SubPage = ({ page }: SubPageProps) => {
   const renderContent = () => {
     if (page === PageEnum.CODE) return <Page15 />;
     else if (page === PageEnum.LIVE) return <GameAnalysis />;
+    else if (page === PageEnum.USER) return <UserInfo />;
   };
   return (
     <S.SubPageWrapper>
