@@ -2,12 +2,12 @@ import * as S from "./styled";
 import { PageEnum, SubPageProps } from "./type";
 import { AiOutlineMenu } from "react-icons/ai";
 import { Page15 } from "../page1.5";
-import { Page2 } from "../page2";
+import { GameAnalysis } from "../gameAnalysis";
 
 export const SubPage = ({ page }: SubPageProps) => {
   const renderContent = () => {
     if (page === PageEnum.CODE) return <Page15 />;
-    else if (page === PageEnum.LIVE) return <Page2 />;
+    else if (page === PageEnum.LIVE) return <GameAnalysis />;
   };
   return (
     <S.SubPageWrapper>
