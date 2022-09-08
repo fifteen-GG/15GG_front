@@ -1,25 +1,29 @@
 import * as S from './styled';
 import * as T from './type';
+import { PageEnum, SubPageProps } from './type';
 import { AiOutlineMenu } from 'react-icons/ai';
+import { Page15 } from '../page1.5';
+import { GameAnalysis } from '../gameAnalysis';
 import { UserInfo } from '../userInfo';
 
-export const SubPage = ({ page }: T.SubPageProps) => {
+export const SubPage = ({ page }: SubPageProps) => {
   const renderContent = () => {
-    if (page === 'userInfo') return <UserInfo />;
+    if (page === PageEnum.CODE) return <Page15 />;
+    else if (page === PageEnum.LIVE) return <GameAnalysis />;
   };
   return (
     <S.SubPageWrapper>
-      <S.SubPageHeader>
-        <S.SubPageResponsiveHeader>
+      <S.SubPageHeaderWrapper>
+        <S.SubPageHeader>
           <S.LogoBox>LOLex</S.LogoBox>
           <AiOutlineMenu size='24' color='white' />
-        </S.SubPageResponsiveHeader>
-      </S.SubPageHeader>
-      <S.SubPageContent>
-        <S.SubPageContentResponse>
+        </S.SubPageHeader>
+      </S.SubPageHeaderWrapper>
+      <S.SubPageContentWrapper>
+        <S.SubPageContent>
           <>{renderContent()}</>
-        </S.SubPageContentResponse>
-      </S.SubPageContent>
+        </S.SubPageContent>
+      </S.SubPageContentWrapper>
     </S.SubPageWrapper>
   );
 };

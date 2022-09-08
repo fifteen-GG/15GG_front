@@ -6,7 +6,7 @@ export const SubPageWrapper = styled.div`
   min-height: 100vh;
 `;
 
-export const SubPageHeader = styled.div`
+export const SubPageHeaderWrapper = styled.div`
   height: 48px;
   background: #27282d;
   display: flex;
@@ -16,7 +16,7 @@ export const SubPageHeader = styled.div`
   z-index: 1000;
 `;
 
-export const SubPageResponsiveHeader = styled.div`
+export const SubPageHeader = styled.div`
   @media screen and (max-width: 650px) {
     width: 100%;
   }
@@ -36,14 +36,14 @@ export const LogoBox = styled.div`
   color: white;
 `;
 
-export const SubPageContent = styled.div`
+export const SubPageContentWrapper = styled.div`
   background: #1e2025;
   display: flex;
   justify-content: center;
   min-height: calc(100vh - 48px);
 `;
 
-export const SubPageContentResponse = styled.div`
+export const SubPageContent = styled.div`
   @media screen and (max-width: 650px) {
     width: 100%;
   }
