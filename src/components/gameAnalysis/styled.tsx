@@ -3,7 +3,6 @@ import styled from 'styled-components';
 const GameAnalysisWrapper = styled.div`
   display: flex;
   width: 100%;
-  height: 100%;
   flex-direction: column;
   align-items: center;
 `;
@@ -160,7 +159,6 @@ const StatValue = styled.div`
 const TeamInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  height: 454px;
   width: 100%;
 `;
 const TeamInfo = styled.div`

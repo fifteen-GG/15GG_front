@@ -139,15 +139,11 @@ export const Item = styled.div`
   background: black;
 `;
 
-export const UserInfoWrapper = styled.div`
-  min-height: 100%;
-`;
+export const UserInfoWrapper = styled.div``;
 
 export const UserStatWrapper = styled.div``;
 
-export const UserGameListWrapper = styled.div`
-  min-height: 100%;
-`;
+export const UserGameListWrapper = styled.div``;
 
 //UserId 부분 스타일
 export const UserIdWrapper = styled.div`

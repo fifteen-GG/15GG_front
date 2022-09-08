@@ -1,5 +1,4 @@
 import * as S from './styled';
-import * as T from './type';
 import { PageEnum, SubPageProps } from './type';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { Page15 } from '../page1.5';
