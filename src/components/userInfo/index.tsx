@@ -109,19 +109,21 @@ const GameCard = ({ gameInfo }: GameInfoProps) => {
           <S.GameMode>{mode === 'solo' ? '솔로랭크' : '자유랭크'}</S.GameMode>
         </S.GameMainInfo>
         <S.GameDetailInfo>
-          <S.Profile></S.Profile>
-          <S.KDABox>
-            <S.KDAInfo>
-              {kill} / {death} / {assist}
-            </S.KDAInfo>
-            <S.KDARate>KDA {kda}</S.KDARate>
-          </S.KDABox>
-          <S.CSNWard>
-            <S.CSInfo>
-              CS {cs} ({rate})
-            </S.CSInfo>
-            <S.Ward>제어 와드 {ward}</S.Ward>
-          </S.CSNWard>
+          <div style={{ display: 'flex' }}>
+            <S.Profile></S.Profile>
+            <S.KDABox>
+              <S.KDAInfo>
+                {kill} / {death} / {assist}
+              </S.KDAInfo>
+              <S.KDARate>KDA {kda}</S.KDARate>
+            </S.KDABox>
+            <S.CSNWard>
+              <S.CSInfo>
+                CS {cs} ({rate})
+              </S.CSInfo>
+              <S.Ward>제어 와드 {ward}</S.Ward>
+            </S.CSNWard>
+          </div>
           <S.ItemBox>
             <S.ItemRow>
               <S.Item></S.Item>

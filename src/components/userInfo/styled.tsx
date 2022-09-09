@@ -75,6 +75,7 @@ export const GameDetailInfo = styled.div`
   height: 32px;
   margin-top: 6px;
   display: flex;
+  justify-content: space-between;
 `;
 
 export const Profile = styled.div`
@@ -85,10 +86,9 @@ export const Profile = styled.div`
 `;
 
 export const KDABox = styled.div`
-  width: 78px;
   height: 100%;
-  margin-left: 12px;
   color: white;
+  margin-left: 12px;
 `;
 
 export const KDAInfo = styled.div`
@@ -105,11 +105,11 @@ export const KDARate = styled.div`
 `;
 
 export const CSNWard = styled.div`
-  width: 100px;
   height: 100%;
   font-size: 8px;
   font-weight: 500;
   color: white;
+  margin-left: 22px;
 `;
 
 export const CSInfo = styled.div`
@@ -122,21 +122,32 @@ export const Ward = styled.div`
 `;
 
 export const ItemBox = styled.div`
-  width: 66px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  @media screen and (max-width: 650px) {
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  @media screen and (min-width: 651px) {
+    flex-direction: row;
+  }
 `;
 export const ItemRow = styled.div`
-  height: 15px;
   display: flex;
-  justify-content: space-between;
+  @media screen and (min-width: 651px) {
+    align-items: center;
+  }
 `;
 export const Item = styled.div`
   width: 15px;
   height: 15px;
   border-radius: 2px;
   background: black;
+  margin-left: 2px;
+  @media screen and (min-width: 651px) {
+    width: 24px;
+    height: 24px;
+    border-radius: 5px;
+  }
 `;
 
 export const UserInfoWrapper = styled.div``;
