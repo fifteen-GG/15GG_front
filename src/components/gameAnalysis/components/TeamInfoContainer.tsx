@@ -7,7 +7,7 @@ import {
   UserInfoColumnWrapper,
   UserInfoColumn,
   PlayerList,
-} from '../styled';
+} from '../styles/teamInfoContainer.s';
 import Summoner from './Summoner';
 
 const TeamInfoContainer = () => {

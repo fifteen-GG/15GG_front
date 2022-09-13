@@ -4,7 +4,7 @@ import {
   GameTypeInfo,
   AnalysisTypeInfo,
   DateInfo,
-} from '../styled';
+} from '../styles/gameInfo.s';
 
 const GameInfo = () => {
   return (
