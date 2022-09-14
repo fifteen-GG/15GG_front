@@ -17,5 +17,5 @@
     "jsx": "react-jsx",
     "typeRoots": ["./node_modules/@tyles", "@types"]
   },
-  "include": ["src"]
+  "include": ["src, @types/global/index.d.ts"]
 }
