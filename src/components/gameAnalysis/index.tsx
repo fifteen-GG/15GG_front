@@ -1,7 +1,8 @@
-import { GameAnalysisWrapper, TimeInfo, Graph, TimeLine } from './index.s';
+import { GameAnalysisWrapper, TimeInfo, Graph } from './index.s';
 import GameInfo from './components/GameInfo';
 import TeamStats from './components/TeamStats';
 import TeamInfoContainer from './components/TeamInfoContainer';
+import Timeline from './components/Timeline';
 
 export const GameAnalysis = () => {
   return (
@@ -9,7 +10,7 @@ export const GameAnalysis = () => {
       <GameInfo />
       <TimeInfo>경과시간 22:31</TimeInfo>
       <Graph />
-      <TimeLine />
+      <Timeline />
       <TeamStats />
       <TeamInfoContainer />
     </GameAnalysisWrapper>

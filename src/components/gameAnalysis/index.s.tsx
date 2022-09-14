@@ -22,12 +22,12 @@ const Graph = styled.div`
   width: 100%;
   margin: 12px 0 12px 0;
 `;
-const TimeLine = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 86px;
-  width: 100%;
-  margin-bottom: 12px;
-`;
+// const TimeLine = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   height: 86px;
+//   width: 100%;
+//   margin-bottom: 12px;
+// `;
 
-export {GameAnalysisWrapper, TimeInfo, Graph, TimeLine};
+export { GameAnalysisWrapper, TimeInfo, Graph };
