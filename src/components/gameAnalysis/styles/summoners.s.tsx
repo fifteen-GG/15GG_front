@@ -3,7 +3,7 @@ import styled from "styled-components"
 const PlayerWrapper = styled.div`
   display: flex;
   height: 38px;
-  padding 0px 4px 0px 8px;
+  padding: 0px 4px 0px 8px;
   justify-content: space-between;
 `;
 const UserInterface = styled.div`
