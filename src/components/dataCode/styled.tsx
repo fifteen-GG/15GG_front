@@ -6,7 +6,7 @@ export const Page15Wrapper = styled.div`
   justify-content: center;
 `;
 
-export const Page15Responsive = styled.div`
+export const DataCodeResponsive = styled.div`
   width: 328px;
 `;
 

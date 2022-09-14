@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Bg from '../../assets/background.png';
 import logo from '../../assets/logo.png';
 
-export const Page1Wrapper = styled.div`
+export const LandingWrapper = styled.div`
   min-height: 100vh;
   display: flex;
   justify-content: center;

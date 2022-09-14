@@ -1,14 +1,14 @@
 import * as S from './styled';
 import { useNavigate } from 'react-router-dom';
 
-export const Page1 = () => {
+export const Landing = () => {
   const navigate = useNavigate();
   const routeNewCode = () => {
     navigate('/code');
   };
 
   return (
-    <S.Page1Wrapper>
+    <S.LandingWrapper>
       <S.TitleWrapper>
         <S.Logo />
         <S.SearchBox>
@@ -331,6 +331,6 @@ export const Page1 = () => {
           </S.LiveGameWrapper>
         </S.GamesWrapper>
       </S.TitleWrapper>
-    </S.Page1Wrapper>
+    </S.LandingWrapper>
   );
 };
