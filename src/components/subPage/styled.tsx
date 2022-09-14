@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const SubPageWrapper = styled.div`
   display: flex;
@@ -13,6 +13,7 @@ export const SubPageHeaderWrapper = styled.div`
   justify-content: center;
   position: sticky;
   top: 0;
+  z-index: 1000;
 `;
 
 export const SubPageHeader = styled.div`
@@ -39,7 +40,7 @@ export const SubPageContentWrapper = styled.div`
   background: #1e2025;
   display: flex;
   justify-content: center;
-  height: calc(100vh - 48px);
+  min-height: calc(100vh - 48px);
 `;
 
 export const SubPageContent = styled.div`
