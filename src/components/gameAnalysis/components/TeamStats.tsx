@@ -6,7 +6,7 @@ import {
   TeamLevel,
   TeamKills,
   Team,
-} from '../styled';
+} from '../styles/teamStats.s';
 import { ReactComponent as RedGoldIcon } from '../svg/gold_red.svg';
 import { ReactComponent as RedKillIcon } from '../svg/kills_red.svg';
 import { ReactComponent as RedLevelIcon } from '../svg/level_red.svg';
