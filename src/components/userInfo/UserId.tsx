@@ -5,6 +5,10 @@ import {
   UserName,
   SubName,
 } from './styles/userId.s';
+import axios from 'axios';
+
+axios.get('/lol/summoner/v4/summoners/by-account/{encryptedAccountId}');
+
 export const UserId = () => {
   return (
     <UserIdWrapper>
