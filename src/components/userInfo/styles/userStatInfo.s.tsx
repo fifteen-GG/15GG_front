@@ -13,10 +13,7 @@ export const UserStatInfoWrapper = styled.div`
 `;
 export const GraphImg = styled.div`
   width: 36px;
-  height: 36px;
-  border-radius: 18px;
   margin-left: 20px;
-  background-color: #fff;
 `;
 export const UserInfoText = styled.div`
   width: 65px;

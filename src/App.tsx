@@ -7,10 +7,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='' element={<Page1 />}></Route>
-        <Route path='code' element={<SubPage page={PageEnum.CODE} />}></Route>
-        <Route path='live' element={<SubPage page={PageEnum.LIVE} />}></Route>
-        <Route path='user' element={<SubPage page={PageEnum.USER} />}></Route>
+        <Route path="" element={<Page1 />}></Route>
+        <Route path="code" element={<SubPage page={PageEnum.CODE} />}></Route>
+        <Route path="live" element={<SubPage page={PageEnum.LIVE} />}></Route>
+        <Route path="user" element={<SubPage page={PageEnum.USER} />}></Route>
       </Routes>
     </BrowserRouter>
   );
