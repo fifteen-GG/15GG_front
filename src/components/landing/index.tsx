@@ -1,4 +1,5 @@
-import * as S from './styled';
+import React from 'react';
+import * as S from './index.s';
 import { useNavigate } from 'react-router-dom';
 import { LiveGame } from './components/LiveGame';
 
@@ -20,11 +21,12 @@ export const Landing = () => {
             <S.GamesTitle>분석중인 경기</S.GamesTitle>
             <S.CodeButton onClick={routeNewCode}>코드 생성</S.CodeButton>
           </S.GamesTitleWrapper>
-          <LiveGame style={{ marginTop: 12 }} />
+          {/* todo margintop 12, bottom 64 */}
           <LiveGame />
           <LiveGame />
           <LiveGame />
-          <LiveGame style={{ marginBottom: 64 }} />
+          <LiveGame />
+          <LiveGame />
         </S.GamesWrapper>
       </S.TitleWrapper>
     </S.LandingWrapper>
