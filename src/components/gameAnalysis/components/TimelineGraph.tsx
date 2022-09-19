@@ -1,5 +1,5 @@
 import React from 'react';
-import { TimelineWrappper } from '../styles/timeline';
+import { TimelineWrappper } from '../styles/timelineGraph';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -67,25 +67,6 @@ const labels = [
   '0',
   '0',
   '0',
-  '0',
-  '0',
-  '0',
-  '0',
-  '0',
-  '0',
-  '0',
-  '0',
-  '0',
-  '0',
-  '0',
-  '0',
-  '0',
-  '0',
-  '0',
-  '0',
-  '0',
-  '0',
-  '0',
 ];
 
 const data = {
@@ -105,7 +86,7 @@ const data = {
     },
   ],
 };
-const Timeline = () => {
+const TimelineGraph = () => {
   return (
     <TimelineWrappper>
       <Line options={options} data={data} height={72} width={328} />
@@ -113,4 +94,4 @@ const Timeline = () => {
   );
 };
 
-export default Timeline;
+export default TimelineGraph;
