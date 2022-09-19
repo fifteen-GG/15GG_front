@@ -22,25 +22,24 @@ ChartJS.register(
 );
 
 const options = {
+  maintainAspectRatio: false,
   elements: {
     point: {
       radius: 0, // 점 제거
     },
   },
-  scale: {
-    ticks: { beginAtZero: true, display: false, max: 10, min: 0, stepSize: 2 }, //maxTicksLimit data 최대값의 2배
-    pointLabels: {
-      fontSize: 12, // radar 차트 fontsize
-      fontColor: '#607D8B',
-      // fontStyle: "bold",
-      // padding: 100, // x3.5에서 사용가능 지금 2.9.4인데 3위 이상에서는 ie11 작동 안함
+  scales: {
+    r: {
+      ticks: {
+        display: false,
+      },
     },
   },
-  tooltips: {
-    enabled: false, // 툴팁 제거
-    mode: 'nearest',
-    position: 'average',
-    intersect: false,
+  plugins: {
+    legend: {
+      position: 'left' as 'left',
+      // position: 'top' as 'top',
+    },
   },
 };
 
@@ -55,15 +54,8 @@ export const data = {
       borderWidth: 1,
     },
     {
-      label: '노동욱',
-      data: [5, 5, 5, 5, 5, 5],
-      backgroundColor: 'rgba(255, 255, 153, 0.2)',
-      borderColor: 'rgba(255, 255, 153, 1)',
-      borderWidth: 1,
-    },
-    {
       label: 'Average',
-      data: [3, 3, 3, 3, 3, 3],
+      data: [5, 5, 5, 5, 5, 5],
       backgroundColor: 'rgba(255, 153, 51, 0.2)',
       borderColor: 'rgba(255, 153, 51, 1)',
       borderWidth: 1,

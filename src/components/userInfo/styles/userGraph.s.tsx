@@ -13,6 +13,7 @@ export const UserGraphDraw = styled.div`
   margin: 0 auto;
   @media screen and (max-width: 360px) {
     width: 100%;
+    height: 180px;
   }
   @media screen and (min-width: 361px) {
   }

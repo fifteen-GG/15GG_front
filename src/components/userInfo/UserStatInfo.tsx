@@ -30,6 +30,9 @@ ChartJS.register(
 );
 
 const options = {
+  options: {
+    maintainAspectRatio: false,
+  },
   elements: {
     point: {
       radius: 0, // 점 제거
