@@ -1,3 +1,4 @@
+import { url } from 'inspector';
 import {
   PlayerWrapper,
   UserInterface,
@@ -24,11 +25,19 @@ const formatKDA = (data: {
   return `${data.kills}  /  ${data.deaths}  /  ${data.assists} `;
 };
 
-const Summoner = () => {
+const formatChampion = (data: { championName: string }) => {
+  return `https://opgg-static.akamaized.net/images/lol/champion/${data.championName}.png`;
+};
+
+interface summonerProps {
+  champion: string;
+}
+
+const Summoner = ({ champion }: summonerProps) => {
   return (
     <PlayerWrapper>
       <UserInterface>
-        <ChampionImg />
+        <ChampionImg src={formatChampion({ championName: `${champion}` })} />
         <ChampionLevel>16</ChampionLevel>
         <SpellWrapper>
           <Spell />

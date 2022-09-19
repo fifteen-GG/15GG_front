@@ -22,11 +22,11 @@ const TeamInfoContainer = () => {
           </UserInfoColumnWrapper>
         </TeamInfoHeader>
         <PlayerList>
-          <Summoner />
-          <Summoner />
-          <Summoner />
-          <Summoner />
-          <Summoner />
+          <Summoner champion={'Sona'} />
+          <Summoner champion={'Jax'} />
+          <Summoner champion={`Katarina`} />
+          <Summoner champion={'Blitzcrank'} />
+          <Summoner champion={'Brand'} />
         </PlayerList>
       </TeamInfo>
       <TeamInfo>
@@ -38,11 +38,11 @@ const TeamInfoContainer = () => {
           </UserInfoColumnWrapper>
         </TeamInfoHeader>
         <PlayerList>
-          <Summoner />
-          <Summoner />
-          <Summoner />
-          <Summoner />
-          <Summoner />
+          <Summoner champion={'Aphelios'} />
+          <Summoner champion={'Rumble'} />
+          <Summoner champion={'Lux'} />
+          <Summoner champion={'Draven'} />
+          <Summoner champion={'Nasus'} />
         </PlayerList>
       </TeamInfo>
     </TeamInfoWrapper>

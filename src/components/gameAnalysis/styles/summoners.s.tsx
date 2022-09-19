@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
 const PlayerWrapper = styled.div`
   display: flex;
@@ -11,7 +11,7 @@ const UserInterface = styled.div`
   height: 22px;
   margin-top: 7px;
 `;
-const ChampionImg = styled.div`
+const ChampionImg = styled.img`
   height: 22px;
   width: 22px;
   position: absolute;
