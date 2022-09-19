@@ -22,11 +22,66 @@ const TeamInfoContainer = () => {
           </UserInfoColumnWrapper>
         </TeamInfoHeader>
         <PlayerList>
-          <Summoner champion={'Sona'} />
-          <Summoner champion={'Jax'} />
-          <Summoner champion={`Katarina`} />
-          <Summoner champion={'Blitzcrank'} />
-          <Summoner champion={'Brand'} />
+          <Summoner
+            champion={'Sona'}
+            championSpell1={'Heal'}
+            championSpell2={'Flash'}
+            item1={'3133'}
+            item2={'6694'}
+            item3={'3089'}
+            item4={'3047'}
+            item5={'3086'}
+            item6={'3087'}
+            item7={'3340'}
+          />
+          <Summoner
+            champion={'Jax'}
+            championSpell1={'Dot'}
+            championSpell2={'Flash'}
+            item1={'3033'}
+            item2={'3032'}
+            item3={'3036'}
+            item4={'3035'}
+            item5={'3038'}
+            item6={'3040'}
+            item7={'3340'}
+          />
+          <Summoner
+            champion={`Katarina`}
+            championSpell1={'Smite'}
+            championSpell2={'Flash'}
+            item1={'3133'}
+            item2={'6694'}
+            item3={'3089'}
+            item4={'3047'}
+            item5={'3086'}
+            item6={'3087'}
+            item7={'3340'}
+          />
+          <Summoner
+            champion={'Blitzcrank'}
+            championSpell1={'Boost'}
+            championSpell2={'Flash'}
+            item1={'3033'}
+            item2={'3032'}
+            item3={'3036'}
+            item4={'3035'}
+            item5={'3038'}
+            item6={'3040'}
+            item7={'3340'}
+          />
+          <Summoner
+            champion={'Brand'}
+            championSpell1={'Exhaust'}
+            championSpell2={'Flash'}
+            item1={'3133'}
+            item2={'6694'}
+            item3={'3089'}
+            item4={'3047'}
+            item5={'3086'}
+            item6={'3087'}
+            item7={'3340'}
+          />
         </PlayerList>
       </TeamInfo>
       <TeamInfo>
@@ -38,11 +93,66 @@ const TeamInfoContainer = () => {
           </UserInfoColumnWrapper>
         </TeamInfoHeader>
         <PlayerList>
-          <Summoner champion={'Aphelios'} />
-          <Summoner champion={'Rumble'} />
-          <Summoner champion={'Lux'} />
-          <Summoner champion={'Draven'} />
-          <Summoner champion={'Nasus'} />
+          <Summoner
+            champion={'Aphelios'}
+            championSpell1={'Teleport'}
+            championSpell2={'Flash'}
+            item1={'3133'}
+            item2={'6694'}
+            item3={'3089'}
+            item4={'3047'}
+            item5={'3086'}
+            item6={'3087'}
+            item7={'3340'}
+          />
+          <Summoner
+            champion={'Rumble'}
+            championSpell1={'Heal'}
+            championSpell2={'Flash'}
+            item1={'3033'}
+            item2={'3032'}
+            item3={'3036'}
+            item4={'3035'}
+            item5={'3038'}
+            item6={'3040'}
+            item7={'3340'}
+          />
+          <Summoner
+            champion={'Lux'}
+            championSpell1={'Dot'}
+            championSpell2={'Flash'}
+            item1={'3133'}
+            item2={'6694'}
+            item3={'3089'}
+            item4={'3047'}
+            item5={'3086'}
+            item6={'3087'}
+            item7={'3340'}
+          />
+          <Summoner
+            champion={'Draven'}
+            championSpell1={'Heal'}
+            championSpell2={'Flash'}
+            item1={'3033'}
+            item2={'3032'}
+            item3={'3036'}
+            item4={'3035'}
+            item5={'3038'}
+            item6={'3040'}
+            item7={'3340'}
+          />
+          <Summoner
+            champion={'Nasus'}
+            championSpell1={'Heal'}
+            championSpell2={'Flash'}
+            item1={'3133'}
+            item2={'6694'}
+            item3={'3089'}
+            item4={'3047'}
+            item5={'3086'}
+            item6={'3087'}
+            item7={'3340'}
+          />
         </PlayerList>
       </TeamInfo>
     </TeamInfoWrapper>

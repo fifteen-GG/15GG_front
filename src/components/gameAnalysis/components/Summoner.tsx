@@ -28,20 +28,46 @@ const formatKDA = (data: {
 const formatChampion = (data: { championName: string }) => {
   return `https://opgg-static.akamaized.net/images/lol/champion/${data.championName}.png`;
 };
+const formatSpell = (data: { championSpell: string }) => {
+  return `https://opgg-static.akamaized.net/images/lol/spell/Summoner${data.championSpell}.png`;
+};
+const formatItem = (data: { championItem: string }) => {
+  return `https://opgg-static.akamaized.net/images/lol/item/${data.championItem}.png`;
+};
 
 interface summonerProps {
   champion: string;
+  championSpell1: string;
+  championSpell2: string;
+  item1: string;
+  item2: string;
+  item3: string;
+  item4: string;
+  item5: string;
+  item6: string;
+  item7: string;
 }
 
-const Summoner = ({ champion }: summonerProps) => {
+const Summoner = ({
+  champion,
+  championSpell1,
+  championSpell2,
+  item1,
+  item2,
+  item3,
+  item4,
+  item5,
+  item6,
+  item7,
+}: summonerProps) => {
   return (
     <PlayerWrapper>
       <UserInterface>
         <ChampionImg src={formatChampion({ championName: `${champion}` })} />
         <ChampionLevel>16</ChampionLevel>
         <SpellWrapper>
-          <Spell />
-          <Spell />
+          <Spell src={formatSpell({ championSpell: `${championSpell1}` })} />
+          <Spell src={formatSpell({ championSpell: `${championSpell2}` })} />
         </SpellWrapper>
         <UserInfoWrapper>
           <SummonerInfo>
@@ -58,13 +84,13 @@ const Summoner = ({ champion }: summonerProps) => {
       </UserInterface>
       <ItemInterface>
         <ItemWrapper>
-          <ItemImg />
-          <ItemImg />
-          <ItemImg />
-          <ItemImg />
-          <ItemImg />
-          <ItemImg />
-          <ItemImg />
+          <ItemImg src={formatItem({ championItem: `${item1}` })} />
+          <ItemImg src={formatItem({ championItem: `${item2}` })} />
+          <ItemImg src={formatItem({ championItem: `${item3}` })} />
+          <ItemImg src={formatItem({ championItem: `${item4}` })} />
+          <ItemImg src={formatItem({ championItem: `${item5}` })} />
+          <ItemImg src={formatItem({ championItem: `${item6}` })} />
+          <ItemImg src={formatItem({ championItem: `${item7}` })} />
         </ItemWrapper>
         40,480 · 20K
       </ItemInterface>

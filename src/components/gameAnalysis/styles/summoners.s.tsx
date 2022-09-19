@@ -43,7 +43,7 @@ const SpellWrapper = styled.div`
   justify-content: space-between;
   border-radius: 2px;
 `;
-const Spell = styled.div`
+const Spell = styled.img`
   height: 10px;
   width: 10px;
   background-color: white;
@@ -111,7 +111,7 @@ const ItemInterface = styled.div`
 const ItemWrapper = styled.div`
   display: flex;
 `;
-const ItemImg = styled.div`
+const ItemImg = styled.img`
   height: 15px;
   width: 15px;
   background-color: white;
