@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   LiveGameWrapper,
   LiveGameTitleWrapper,
@@ -12,9 +13,8 @@ import {
   LiveGameVersusWrapper,
 } from '../styles/livegame.s';
 
-export const LiveGame = location => {
+export const LiveGame = () => {
   return (
-    // location === 'top' ? <LiveGameWrapper style={{marginTop=12}}> : {location === 'bottom' ? <LiveGameWrapper style={{marginBottom=64}}> : <LiveGameWrapper></LiveGameWrapper>}
     <LiveGameWrapper>
       <LiveGameTitleWrapper>
         <LiveGameLabel>실시간 분석</LiveGameLabel>

@@ -1,10 +1,11 @@
+import React from 'react';
 import {
   GameInfoWrapper,
   TypeInfoWrapper,
   GameTypeInfo,
   AnalysisTypeInfo,
   DateInfo,
-} from '../styled';
+} from '../styles/gameInfo.s';
 
 const GameInfo = () => {
   return (

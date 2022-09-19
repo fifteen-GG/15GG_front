@@ -15,7 +15,7 @@ import {
   ItemInterface,
   ItemImg,
   ItemWrapper,
-} from '../styled';
+} from '../styles/summoners.s';
 const formatKDA = (data: {
   kills: number;
   deaths: number;
