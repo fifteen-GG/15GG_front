@@ -15,7 +15,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "typeRoots": ["./node_modules/@tyles", "@types"]
+    "typeRoots": ["./node_modules/@types", "@types"]
   },
-  "include": ["src"]
+  "include": ["src, @types/global/index.d.ts"]
 }
