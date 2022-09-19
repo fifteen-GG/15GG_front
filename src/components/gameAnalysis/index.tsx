@@ -1,4 +1,4 @@
-import { GameAnalysisWrapper, TimeInfo, Graph } from './index.s';
+import { GameAnalysisWrapper, TimeInfo, Graph } from './styles/index.s';
 import GameInfo from './components/GameInfo';
 import TeamStats from './components/TeamStats';
 import TeamInfoContainer from './components/TeamInfoContainer';
