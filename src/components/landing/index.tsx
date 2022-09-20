@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SearchBox } from './components/SearchBox';
 import { LiveGame } from './components/LiveGame';

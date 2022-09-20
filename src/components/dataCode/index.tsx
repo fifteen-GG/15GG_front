@@ -1,4 +1,3 @@
-import React from 'react';
 import { Header } from './components/Header';
 import { Datacode } from './components/Datacode';
 import styled from 'styled-components';
