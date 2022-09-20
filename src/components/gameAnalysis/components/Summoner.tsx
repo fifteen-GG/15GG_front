@@ -25,7 +25,7 @@ const formatKDA = (data: {
   return `${data.kills}  /  ${data.deaths}  /  ${data.assists} `;
 };
 
-const formatChampion = (data: { championName: string }) => {
+export const formatChampion = (data: { championName: string }) => {
   return `https://opgg-static.akamaized.net/images/lol/champion/${data.championName}.png`;
 };
 const formatSpell = (data: { championSpell: string }) => {
