@@ -8,12 +8,12 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import { Graph } from '../styles/index.s';
 import {
   BarWrapper,
   RateWrapper,
   WinningRate,
   GraphTitle,
+  Graph,
 } from '../styles/timelineBarGraph.s';
 
 ChartJS.register(

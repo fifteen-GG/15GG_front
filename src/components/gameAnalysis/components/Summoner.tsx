@@ -90,7 +90,10 @@ const Summoner = ({
           <ItemImg src={formatItem({ championItem: `${item4}` })} />
           <ItemImg src={formatItem({ championItem: `${item5}` })} />
           <ItemImg src={formatItem({ championItem: `${item6}` })} />
-          <ItemImg src={formatItem({ championItem: `${item7}` })} />
+          <ItemImg
+            style={{ borderRadius: '7px' }}
+            src={formatItem({ championItem: `${item7}` })}
+          />
         </ItemWrapper>
         40,480 · 20K
       </ItemInterface>

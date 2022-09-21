@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+export const Graph = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 29px;
+  width: 100%;
+  margin: 12px 0 12px 0;
+`;
 export const BarWrapper = styled.div`
   display: flex;
   flex-direction: column;

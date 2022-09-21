@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
-const GameInfoWrapper = styled.div`
+export const GameInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 54px;
 `;
 
-const TypeInfoWrapper = styled.div`
+export const TypeInfoWrapper = styled.div`
   display: flex;
   height: 18px;
   align-items: center;
@@ -15,14 +15,14 @@ const TypeInfoWrapper = styled.div`
   color: #ffffff;
 `;
 
-const GameTypeInfo = styled.div`
+export const GameTypeInfo = styled.div`
   display: flex;
   font-size: 18px;
 `;
 interface RealTimeInfoProps {
   isLive?: boolean;
 }
-const AnalysisTypeInfo = styled.div<RealTimeInfoProps>`
+export const AnalysisTypeInfo = styled.div<RealTimeInfoProps>`
   display: flex;
   height: 16px;
   width: auto;
@@ -35,7 +35,7 @@ const AnalysisTypeInfo = styled.div<RealTimeInfoProps>`
   border-radius: 3px;
   background-color: ${props => (props.isLive ? '#e84057' : '#4d4ae2')};
 `;
-const DateInfo = styled.div`
+export const DateInfo = styled.div`
   display: flex;
   height: 13px;
   margin-top: 6px;
@@ -44,11 +44,3 @@ const DateInfo = styled.div`
   font-size: 13px;
   margin-bottom: 16px;
 `;
-
-export {
-  GameInfoWrapper,
-  TypeInfoWrapper,
-  GameTypeInfo,
-  AnalysisTypeInfo,
-  DateInfo,
-};
