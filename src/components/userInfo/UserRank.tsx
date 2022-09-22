@@ -1,3 +1,6 @@
+import React from 'react';
+import { SumInfoProps } from './type';
+
 import {
   UserRankWrapper,
   RankWrapper,
@@ -10,10 +13,15 @@ import {
   RankImg,
 } from './styles/userRank.s';
 
-export const UserRank = () => {
+const formatRank = (data: { summonerRank: string }) => {
+  return `https://opgg-static.akamaized.net/images/medals_new/${data.summonerRank}.png`;
+};
+
+export const UserRank = ({ summonerInfo }: SumInfoProps) => {
+  const { solorank, freerank } = summonerInfo;
   return (
     <UserRankWrapper>
-      <RankWrapper className='Solo'>
+      <RankWrapper className="Solo">
         <RankText>
           <RankSubTitle>솔로랭크</RankSubTitle>
           <RankName>Gold 2</RankName>
@@ -22,9 +30,9 @@ export const UserRank = () => {
             <RankWinrate>52% (164승 154패)</RankWinrate>
           </RankContent>
         </RankText>
-        <RankImg></RankImg>
+        <RankImg src={formatRank({ summonerRank: `${solorank}` })} />
       </RankWrapper>
-      <RankWrapper className='Free'>
+      <RankWrapper className="Free">
         <RankText>
           <RankSubTitle>자유랭크</RankSubTitle>
           <RankName>Platinum 4</RankName>
@@ -33,7 +41,7 @@ export const UserRank = () => {
             <RankWinrate>49% (156승 165패)</RankWinrate>
           </RankContent>
         </RankText>
-        <RankImg></RankImg>
+        <RankImg src={formatRank({ summonerRank: `${freerank}` })} />
       </RankWrapper>
     </UserRankWrapper>
   );

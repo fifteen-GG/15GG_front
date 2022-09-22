@@ -1,5 +1,6 @@
 import {
   UserStatInfoWrapper,
+  GraphText,
   GraphImg,
   UserInfoText,
   UserInfoTitle,
@@ -33,6 +34,7 @@ const options = {
   options: {
     maintainAspectRatio: false,
   },
+  cutout: 14,
   elements: {
     point: {
       radius: 0, // 점 제거
@@ -43,22 +45,6 @@ const options = {
       display: false,
     },
   },
-
-  scale: {
-    ticks: { beginAtZero: true, display: false, max: 10, min: 0, stepSize: 2 }, //maxTicksLimit data 최대값의 2배
-    pointLabels: {
-      fontSize: 12, // radar 차트 fontsize
-      fontColor: '#607D8B',
-      // fontStyle: "bold",
-      // padding: 100, // x3.5에서 사용가능 지금 2.9.4인데 3위 이상에서는 ie11 작동 안함
-    },
-  },
-  tooltips: {
-    enabled: false, // 툴팁 제거
-    mode: 'nearest',
-    position: 'average',
-    intersect: false,
-  },
 };
 
 const data = {
@@ -66,8 +52,8 @@ const data = {
   datasets: [
     {
       label: 'My First Dataset',
-      data: [50, 50],
-      backgroundColor: ['rgb(54, 162, 235)', 'rgb(255, 99, 132)'],
+      data: [52, 48],
+      backgroundColor: ['#5d7fde', '#ffffff'],
       hoverOffset: 1,
       borderWidth: 0,
     },
@@ -78,6 +64,7 @@ export const UserStatInfo = () => {
   return (
     <UserStatInfoWrapper>
       <GraphImg>
+        <GraphText>52%</GraphText>
         <Doughnut data={data} options={options} />
       </GraphImg>
       <UserInfoText>

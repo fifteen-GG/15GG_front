@@ -9,7 +9,18 @@ import {
   Legend,
 } from 'chart.js';
 import { Radar } from 'react-chartjs-2';
-import { UserGraphDraw, UserGraphWrapper } from './styles/userGraph.s';
+import {
+  AverageGraphLabel,
+  UserGraphDraw,
+  UserGraphLabel,
+  UserGraphWrapper,
+  UserGraphText,
+  UserEx,
+  UserText,
+  AvgEx,
+  AvgText,
+  BackgroundCircle,
+} from './styles/userGraph.s';
 import { nodeModuleNameResolver } from 'typescript';
 
 ChartJS.register(
@@ -30,14 +41,30 @@ const options = {
   },
   scales: {
     r: {
+      angleLines: {
+        color: '#373737',
+      },
+      grid: {
+        circular: true,
+        color: '#373737',
+      },
       ticks: {
+        maxTicksLimit: 6,
         display: false,
+      },
+      pointLabels: {
+        font: {
+          size: '10px',
+          lineHeight: '10px',
+        },
+        color: '#FCFCFC',
       },
     },
   },
   plugins: {
     legend: {
-      position: 'left' as 'left',
+      display: false,
+      // position: 'left' as 'left',
       // position: 'top' as 'top',
     },
   },
@@ -49,15 +76,15 @@ export const data = {
     {
       label: '정잭영',
       data: [1, 9, 3, 5, 2, 3],
-      backgroundColor: 'rgba(255, 99, 132, 0.2)',
-      borderColor: 'rgba(255, 99, 132, 1)',
+      backgroundColor: 'rgba(59, 68, 78, 0.2)',
+      borderColor: '#318eef',
       borderWidth: 1,
     },
     {
       label: 'Average',
       data: [5, 5, 5, 5, 5, 5],
-      backgroundColor: 'rgba(255, 153, 51, 0.2)',
-      borderColor: 'rgba(255, 153, 51, 1)',
+      backgroundColor: 'rgba(60, 60, 60, 0.2)',
+      borderColor: '#999999',
       borderWidth: 1,
     },
   ],
@@ -66,8 +93,29 @@ export const data = {
 export function UserGraph() {
   return (
     <UserGraphWrapper>
+      <UserGraphText>
+        <UserGraphLabel>
+          <UserEx></UserEx>
+          <UserText>정재경</UserText>
+        </UserGraphLabel>
+        <AverageGraphLabel>
+          <AvgEx></AvgEx>
+          <AvgText>Average</AvgText>
+        </AverageGraphLabel>
+      </UserGraphText>
+      <BackgroundCircle></BackgroundCircle>
       <UserGraphDraw>
-        <Radar data={data} options={options} />
+        <Radar
+          data={data}
+          options={options}
+          style={
+            {
+              // position: 'absolute',
+              // backgroundColor: '#373737',
+              // borderRadius: '10px',
+            }
+          }
+        />
       </UserGraphDraw>
     </UserGraphWrapper>
   );

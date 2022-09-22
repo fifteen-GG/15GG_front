@@ -13,7 +13,16 @@ export const UserStatInfoWrapper = styled.div`
 `;
 export const GraphImg = styled.div`
   width: 36px;
-  margin-left: 20px;
+  margin-left: 15px;
+  position: relative;
+`;
+export const GraphText = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 8px;
+  color: #ffffff;
 `;
 export const UserInfoText = styled.div`
   width: 65px;
