@@ -6,7 +6,7 @@ export const UserIdWrapper = styled.div`
   background: #1e2025;
   display: flex;
 `;
-export const UserImg = styled.div`
+export const UserImg = styled.img`
   width: 52px;
   height: 52px;
   background: black;

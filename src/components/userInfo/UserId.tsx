@@ -1,3 +1,5 @@
+import { SumInfoProps } from './type';
+import React from 'react';
 import {
   UserIdWrapper,
   UserImg,
@@ -5,14 +7,15 @@ import {
   UserName,
   SubName,
 } from './styles/userId.s';
-import axios from 'axios';
 
-axios.get('/lol/summoner/v4/summoners/by-account/{encryptedAccountId}');
-
-export const UserId = () => {
+const formatIcon = (data: { profileIcon: string }) => {
+  return `https://opgg-static.akamaized.net/images/profile_icons/profileIcon${data.profileIcon}.jpg`;
+};
+export const UserId = ({ summonerInfo }: SumInfoProps) => {
+  const { icon } = summonerInfo;
   return (
     <UserIdWrapper>
-      <UserImg>이미지</UserImg>
+      <UserImg src={formatIcon({ profileIcon: `${icon}` })} />
       <NameWrapper>
         <UserName>정잭영</UserName>
         <SubName>142views</SubName>

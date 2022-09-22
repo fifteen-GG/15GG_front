@@ -51,9 +51,8 @@ export const RankContent = styled.div`
 `;
 export const RankLp = styled.div``;
 export const RankWinrate = styled.div``;
-export const RankImg = styled.div`
+export const RankImg = styled.img`
   width: 44px;
   height: 44px;
   border-radius: 10px;
-  background-color: #fff;
 `;

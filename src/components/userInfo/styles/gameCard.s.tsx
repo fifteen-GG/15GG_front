@@ -78,7 +78,7 @@ export const GameDetailInfo = styled.div`
   justify-content: space-between;
 `;
 
-export const Profile = styled.div`
+export const Profile = styled.img`
   width: 32px;
   height: 100%;
   border-radius: 10px;
@@ -137,7 +137,7 @@ export const ItemRow = styled.div`
     align-items: center;
   }
 `;
-export const Item = styled.div`
+export const ItemImg = styled.img`
   width: 15px;
   height: 15px;
   border-radius: 2px;
@@ -147,5 +147,8 @@ export const Item = styled.div`
     width: 24px;
     height: 24px;
     border-radius: 5px;
+  }
+  &.ward {
+    order: 2;
   }
 `;

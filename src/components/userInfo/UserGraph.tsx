@@ -8,7 +8,18 @@ import {
   Legend,
 } from 'chart.js';
 import { Radar } from 'react-chartjs-2';
-import { UserGraphDraw, UserGraphWrapper } from './styles/userGraph.s';
+import {
+  AverageGraphLabel,
+  UserGraphDraw,
+  UserGraphLabel,
+  UserGraphWrapper,
+  UserGraphText,
+  UserEx,
+  UserText,
+  AvgEx,
+  AvgText,
+  BackgroundCircle,
+} from './styles/userGraph.s';
 import { nodeModuleNameResolver } from 'typescript';
 
 ChartJS.register(
@@ -21,25 +32,40 @@ ChartJS.register(
 );
 
 const options = {
+  maintainAspectRatio: false,
   elements: {
     point: {
       radius: 0, // 점 제거
     },
   },
-  scale: {
-    ticks: { beginAtZero: true, display: false, max: 10, min: 0, stepSize: 2 }, //maxTicksLimit data 최대값의 2배
-    pointLabels: {
-      fontSize: 12, // radar 차트 fontsize
-      fontColor: '#607D8B',
-      // fontStyle: "bold",
-      // padding: 100, // x3.5에서 사용가능 지금 2.9.4인데 3위 이상에서는 ie11 작동 안함
+  scales: {
+    r: {
+      angleLines: {
+        color: '#373737',
+      },
+      grid: {
+        circular: true,
+        color: '#373737',
+      },
+      ticks: {
+        maxTicksLimit: 6,
+        display: false,
+      },
+      pointLabels: {
+        font: {
+          size: '10px',
+          lineHeight: '10px',
+        },
+        color: '#FCFCFC',
+      },
     },
   },
-  tooltips: {
-    enabled: false, // 툴팁 제거
-    mode: 'nearest',
-    position: 'average',
-    intersect: false,
+  plugins: {
+    legend: {
+      display: false,
+      // position: 'left' as 'left',
+      // position: 'top' as 'top',
+    },
   },
 };
 
@@ -49,22 +75,15 @@ export const data = {
     {
       label: '정잭영',
       data: [1, 9, 3, 5, 2, 3],
-      backgroundColor: 'rgba(255, 99, 132, 0.2)',
-      borderColor: 'rgba(255, 99, 132, 1)',
-      borderWidth: 1,
-    },
-    {
-      label: '노동욱',
-      data: [5, 5, 5, 5, 5, 5],
-      backgroundColor: 'rgba(255, 255, 153, 0.2)',
-      borderColor: 'rgba(255, 255, 153, 1)',
+      backgroundColor: 'rgba(59, 68, 78, 0.2)',
+      borderColor: '#318eef',
       borderWidth: 1,
     },
     {
       label: 'Average',
-      data: [3, 3, 3, 3, 3, 3],
-      backgroundColor: 'rgba(255, 153, 51, 0.2)',
-      borderColor: 'rgba(255, 153, 51, 1)',
+      data: [5, 5, 5, 5, 5, 5],
+      backgroundColor: 'rgba(60, 60, 60, 0.2)',
+      borderColor: '#999999',
       borderWidth: 1,
     },
   ],
@@ -73,8 +92,29 @@ export const data = {
 export function UserGraph() {
   return (
     <UserGraphWrapper>
+      <UserGraphText>
+        <UserGraphLabel>
+          <UserEx></UserEx>
+          <UserText>정재경</UserText>
+        </UserGraphLabel>
+        <AverageGraphLabel>
+          <AvgEx></AvgEx>
+          <AvgText>Average</AvgText>
+        </AverageGraphLabel>
+      </UserGraphText>
+      <BackgroundCircle></BackgroundCircle>
       <UserGraphDraw>
-        <Radar data={data} options={options} />
+        <Radar
+          data={data}
+          options={options}
+          style={
+            {
+              // position: 'absolute',
+              // backgroundColor: '#373737',
+              // borderRadius: '10px',
+            }
+          }
+        />
       </UserGraphDraw>
     </UserGraphWrapper>
   );

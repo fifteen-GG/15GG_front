@@ -1,18 +1,20 @@
 import { useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { GameType } from './type';
-import {
-  UserGameListWrapper,
-  UserInfoWrapper,
-  UserStatWrapper,
-} from './styles/index.s';
+import { GameType, SummonerType } from './type';
+import styled from 'styled-components';
 
+import React from 'react';
 //import components
 import { UserId } from './UserId';
 import { UserRank } from './UserRank';
 import { UserGraph } from './UserGraph';
 import { UserStatInfo } from './UserStatInfo';
 import { GameCard } from './GameCard';
+
+const UserInfoWrapper = styled.div``;
+const UserStatWrapper = styled.div``;
+const UserGameListWrapper = styled.div``;
+
 const gameData: GameType[] = [
   {
     status: 'live',
@@ -27,6 +29,14 @@ const gameData: GameType[] = [
     cs: 177,
     rate: 8.33,
     ward: 0,
+    champion: 'Sona',
+    item1: '3133',
+    item2: '6694',
+    item3: '3089',
+    item4: '3047',
+    item5: '3086',
+    item6: '3087',
+    item7: '3340',
   },
   {
     status: 'complete',
@@ -41,6 +51,14 @@ const gameData: GameType[] = [
     cs: 123,
     rate: 7.29,
     ward: 0,
+    champion: 'Jax',
+    item1: '3033',
+    item2: '3032',
+    item3: '3036',
+    item4: '3035',
+    item5: '3038',
+    item6: '3040',
+    item7: '3340',
   },
   {
     status: 'incomplete',
@@ -55,6 +73,14 @@ const gameData: GameType[] = [
     cs: 143,
     rate: 9.17,
     ward: 0,
+    champion: `Katarina`,
+    item1: '3133',
+    item2: '6694',
+    item3: '3089',
+    item4: '3047',
+    item5: '3086',
+    item6: '3087',
+    item7: '3340',
   },
   {
     status: 'complete',
@@ -69,6 +95,14 @@ const gameData: GameType[] = [
     cs: 183,
     rate: 8.32,
     ward: 0,
+    champion: 'Blitzcrank',
+    item1: '3033',
+    item2: '3032',
+    item3: '3036',
+    item4: '3035',
+    item5: '3038',
+    item6: '3040',
+    item7: '3340',
   },
   {
     status: 'incomplete',
@@ -83,15 +117,30 @@ const gameData: GameType[] = [
     cs: 183,
     rate: 9.89,
     ward: 0,
+    champion: 'Brand',
+    item1: '3133',
+    item2: '6694',
+    item3: '3089',
+    item4: '3047',
+    item5: '3086',
+    item6: '3087',
+    item7: '3340',
   },
 ];
-
+const sumData: SummonerType[] = [
+  {
+    icon: '4027',
+    solorank: 'gold',
+    freerank: 'platinum',
+  },
+];
 // interface RankProps{
 //TODO 사이드 마진이 조금 남는 현상 수정필요
 // }
 
 export const UserInfo = () => {
   const [games, setGames] = useState<GameType[]>([...gameData]);
+  const [profiles, setProfiless] = useState<SummonerType[]>([...sumData]);
   const fetchData = () => {
     setTimeout(() => {
       const arr: GameType[] = games.concat([...gameData]);
@@ -101,8 +150,12 @@ export const UserInfo = () => {
   return (
     <UserInfoWrapper>
       <UserStatWrapper>
-        <UserId />
-        <UserRank />
+        {profiles.map((profile: SummonerType, index) => (
+          <UserId summonerInfo={profile} key={index} />
+        ))}
+        {profiles.map((profile: SummonerType, index) => (
+          <UserRank summonerInfo={profile} key={index} />
+        ))}
         <UserStatInfo />
         <UserGraph />
       </UserStatWrapper>

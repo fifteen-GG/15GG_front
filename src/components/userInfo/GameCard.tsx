@@ -1,4 +1,6 @@
 import { GameInfoProps } from './type';
+import { url } from 'inspector';
+import React from 'react';
 import {
   GameListBox,
   GameInfoBox,
@@ -17,8 +19,15 @@ import {
   Ward,
   ItemBox,
   ItemRow,
-  Item,
-} from './styles/gameCard';
+  ItemImg,
+} from './styles/gameCard.s';
+const formatChampion = (data: { championName: string }) => {
+  return `https://opgg-static.akamaized.net/images/lol/champion/${data.championName}.png`;
+};
+const formatItem = (data: { championItem: string }) => {
+  return `https://opgg-static.akamaized.net/images/lol/item/${data.championItem}.png`;
+};
+
 export const GameCard = ({ gameInfo }: GameInfoProps) => {
   const {
     status,
@@ -33,7 +42,16 @@ export const GameCard = ({ gameInfo }: GameInfoProps) => {
     cs,
     rate,
     ward,
+    champion,
+    item1,
+    item2,
+    item3,
+    item4,
+    item5,
+    item6,
+    item7,
   } = gameInfo;
+
   return (
     <GameListBox>
       {status === 'live' ? (
@@ -53,7 +71,7 @@ export const GameCard = ({ gameInfo }: GameInfoProps) => {
         </GameMainInfo>
         <GameDetailInfo>
           <div style={{ display: 'flex' }}>
-            <Profile></Profile>
+            <Profile src={formatChampion({ championName: `${champion}` })} />
             <KDABox>
               <KDAInfo>
                 {kill} / {death} / {assist}
@@ -69,16 +87,18 @@ export const GameCard = ({ gameInfo }: GameInfoProps) => {
           </div>
           <ItemBox>
             <ItemRow>
-              <Item></Item>
-              <Item></Item>
-              <Item></Item>
-              <Item></Item>
+              <ItemImg src={formatItem({ championItem: `${item1}` })} />
+              <ItemImg src={formatItem({ championItem: `${item2}` })} />
+              <ItemImg src={formatItem({ championItem: `${item3}` })} />
+              <ItemImg
+                className="ward"
+                src={formatItem({ championItem: `${item7}` })}
+              />
             </ItemRow>
             <ItemRow>
-              <Item></Item>
-              <Item></Item>
-              <Item></Item>
-              <Item></Item>
+              <ItemImg src={formatItem({ championItem: `${item4}` })} />
+              <ItemImg src={formatItem({ championItem: `${item5}` })} />
+              <ItemImg src={formatItem({ championItem: `${item6}` })} />
             </ItemRow>
           </ItemBox>
         </GameDetailInfo>
