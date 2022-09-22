@@ -6,6 +6,7 @@ import {
   Filler,
   Tooltip,
   Legend,
+  ChartType,
 } from 'chart.js';
 import { Radar } from 'react-chartjs-2';
 import {
@@ -53,7 +54,7 @@ const options = {
       },
       pointLabels: {
         font: {
-          size: '10px',
+          size: 10,
           lineHeight: '10px',
         },
         color: '#FCFCFC',
