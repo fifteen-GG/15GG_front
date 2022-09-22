@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,8 +8,13 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
-import { faker } from '@faker-js/faker';
-import { Graph } from '../index.s';
+import {
+  BarWrapper,
+  RateWrapper,
+  WinningRate,
+  GraphTitle,
+  Graph,
+} from '../styles/timelineBarGraph.s';
 
 ChartJS.register(
   CategoryScale,
@@ -26,6 +30,7 @@ export const options = {
   maintainAspectRatio: false,
   scales: {
     x: {
+      max: 100,
       display: false,
       stacked: true,
       grid: {
@@ -33,13 +38,15 @@ export const options = {
       },
     },
     y: {
+      max: 100,
       display: false,
       stacked: true,
     },
   },
   elements: {
     bar: {
-      borderWidth: 2,
+      borderWidth: 1,
+      borderRadius: 2,
     },
   },
   responsive: true,
@@ -62,22 +69,31 @@ export const data = {
   datasets: [
     {
       label: 'Dataset 1',
-      data: [30],
-      borderColor: 'rgb(255, 99, 132)',
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      data: [80.4],
+      borderColor: '#e84057',
+      backgroundColor: '#e84057',
+      borderWidth: 0,
     },
     {
       label: 'Dataset 2',
-      data: [70],
+      data: [100],
       borderColor: 'rgb(53, 162, 235)',
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
+      backgroundColor: '#5383e8',
+      borderWidth: 0,
     },
   ],
 };
 const TimelineBarGraph = () => {
   return (
     <Graph>
-      <Bar data={data} options={options} width={100} height={20} />
+      <BarWrapper>
+        <Bar data={data} options={options} height="5px" />
+      </BarWrapper>
+      <RateWrapper>
+        <WinningRate>80.4%</WinningRate>
+        <GraphTitle>승률</GraphTitle>
+        <WinningRate>19.6%</WinningRate>
+      </RateWrapper>
     </Graph>
   );
 };

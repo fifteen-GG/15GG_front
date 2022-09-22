@@ -1,24 +1,24 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
-const PlayerWrapper = styled.div`
+export const PlayerWrapper = styled.div`
   display: flex;
   height: 38px;
   padding: 0px 4px 0px 8px;
   justify-content: space-between;
 `;
-const UserInterface = styled.div`
+export const UserInterface = styled.div`
   display: flex;
   height: 22px;
   margin-top: 7px;
 `;
-const ChampionImg = styled.div`
+export const ChampionImg = styled.img`
   height: 22px;
   width: 22px;
   position: absolute;
   background-color: white;
   border-radius: 2px;
 `;
-const ChampionLevel = styled.div`
+export const ChampionLevel = styled.div`
   display: flex;
   height: 10px;
   width: 10px;
@@ -33,7 +33,7 @@ const ChampionLevel = styled.div`
   color: #ffffff;
   border-radius: 2px;
 `;
-const SpellWrapper = styled.div`
+export const SpellWrapper = styled.div`
   display: flex;
   height: 22px;
   width: 10px;
@@ -43,30 +43,30 @@ const SpellWrapper = styled.div`
   justify-content: space-between;
   border-radius: 2px;
 `;
-const Spell = styled.div`
+export const Spell = styled.img`
   height: 10px;
   width: 10px;
   background-color: white;
   border-radius: 2px;
 `;
-const UserInfoWrapper = styled.div`
+export const UserInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 22px;
   justify-content: space-between;
 `;
-const SummonerInfo = styled.div`
+export const SummonerInfo = styled.div`
   display: flex;
   height: 11px;
   align-items: center;
 `;
-const SummonerName = styled.div`
+export const SummonerName = styled.div`
   font-size: 11px;
   color: #fafafa;
   font-weight: bold;
   margin-right: 2px;
 `;
-const SummonerTier = styled.div`
+export const SummonerTier = styled.div`
   display: flex;
   background-color: #00bba3;
   height: 10px;
@@ -78,11 +78,11 @@ const SummonerTier = styled.div`
   align-items: center;
   font-weight: bold;
 `;
-const KDAWrapper = styled.div`
+export const KDAWrapper = styled.div`
   display: flex;
   height: 10px;
 `;
-const KDADetails = styled.div`
+export const KDADetails = styled.div`
   display: flex;
   height: 10px;
   font-size: 10px;
@@ -90,14 +90,14 @@ const KDADetails = styled.div`
   font-weight: bold;
   white-space: pre;
 `;
-const KDA = styled.div`
+export const KDA = styled.div`
   display: flex;
   font-size: 8px;
   font-weight: bold;
   color: #3595a1;
   line-height: 1.8;
 `;
-const ItemInterface = styled.div`
+export const ItemInterface = styled.div`
   display: flex;
   flex-direction: column;
   width: 117px;
@@ -108,31 +108,13 @@ const ItemInterface = styled.div`
   font-weight: bold;
   color: #fafafa;
 `;
-const ItemWrapper = styled.div`
+export const ItemWrapper = styled.div`
   display: flex;
 `;
-const ItemImg = styled.div`
+export const ItemImg = styled.img`
   height: 15px;
   width: 15px;
   background-color: white;
   margin-right: 2px;
   border-radius: 2px;
 `;
-export {
-  PlayerWrapper,
-  UserInterface,
-  ChampionImg,
-  ChampionLevel,
-  SpellWrapper,
-  Spell,
-  UserInfoWrapper,
-  SummonerInfo,
-  SummonerName,
-  SummonerTier,
-  KDAWrapper,
-  KDADetails,
-  KDA,
-  ItemInterface,
-  ItemImg,
-  ItemWrapper,
-};

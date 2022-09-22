@@ -1,6 +1,6 @@
-import styled from "styled-components"
+import styled from 'styled-components';
 
-const TeamStatsWrapper = styled.div`
+export const TeamStatsWrapper = styled.div`
   display: flex;
   height: 64px;
   width: 100%;
@@ -16,7 +16,7 @@ interface TeamStatProps {
   team: TeamNameEnum;
 }
 
-const TeamStat = styled.div`
+export const TeamStat = styled.div`
   display: flex;
   width: calc(50% - 1px);
   height: 48px;
@@ -27,52 +27,41 @@ const TeamStat = styled.div`
   }
 `;
 
-const TeamGold = styled.div<TeamStatProps>`
+export const TeamGold = styled.div<TeamStatProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   height: 40px;
   width: 40px;
-  color: ${(props) =>
-    props.team === TeamNameEnum.RED ? '#e84057' : '#4d4ae2'};
+  color: ${props => (props.team === TeamNameEnum.RED ? '#e84057' : '#4d4ae2')};
 `;
 
-const TeamLevel = styled.div<TeamStatProps>`
+export const TeamLevel = styled.div<TeamStatProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   width: 40px;
   height: 40px;
-  color: ${(props) =>
-    props.team === TeamNameEnum.RED ? '#e84057' : '#4d4ae2'};
+  color: ${props => (props.team === TeamNameEnum.RED ? '#e84057' : '#4d4ae2')};
 `;
 
-const TeamKills = styled.div<TeamStatProps>`
+export const TeamKills = styled.div<TeamStatProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   width: 40px;
   height: 40px;
-  color: ${(props) =>
-    props.team === TeamNameEnum.RED ? '#e84057' : '#4d4ae2'};
+  color: ${props => (props.team === TeamNameEnum.RED ? '#e84057' : '#4d4ae2')};
 `;
 
-const StatValue = styled.div`
+export const StatValue = styled.div`
   display: flex;
   color: white;
   font-size: 12px;
   font-weight: bold;
 `;
 
-export {
-  TeamStatsWrapper,
-  TeamStat,
-  TeamGold,
-  StatValue,
-  TeamLevel,
-  TeamKills,
-  TeamNameEnum as Team,
-};
+export { TeamNameEnum as Team };
