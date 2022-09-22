@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   LiveGameWrapper,
   LiveGameTitleWrapper,
@@ -7,11 +6,9 @@ import {
   LiveGameTeamsWrapper,
   LiveGameSingleTeamWrapper,
   LiveGameTeamsRow,
-  LiveGameSingleUser,
-  LiveGameUserChampion,
-  LiveGameUserName,
   LiveGameVersusWrapper,
 } from '../styles/livegame.s';
+import { LiveUser } from './LiveUser';
 
 export const LiveGame = () => {
   return (
@@ -23,55 +20,25 @@ export const LiveGame = () => {
       <LiveGameTeamsWrapper>
         <LiveGameSingleTeamWrapper>
           <LiveGameTeamsRow>
-            <LiveGameSingleUser>
-              <LiveGameUserChampion />
-              <LiveGameUserName>정잭영</LiveGameUserName>
-            </LiveGameSingleUser>
-            <LiveGameSingleUser>
-              <LiveGameUserChampion />
-              <LiveGameUserName>정잭영</LiveGameUserName>
-            </LiveGameSingleUser>
-            <LiveGameSingleUser>
-              <LiveGameUserChampion />
-              <LiveGameUserName>정잭영</LiveGameUserName>
-            </LiveGameSingleUser>
+            <LiveUser champion="Ahri" />
+            <LiveUser champion="Jax" />
+            <LiveUser champion="Khazix" />
           </LiveGameTeamsRow>
           <LiveGameTeamsRow>
-            <LiveGameSingleUser>
-              <LiveGameUserChampion />
-              <LiveGameUserName>정잭영</LiveGameUserName>
-            </LiveGameSingleUser>
-            <LiveGameSingleUser>
-              <LiveGameUserChampion />
-              <LiveGameUserName>정잭영</LiveGameUserName>
-            </LiveGameSingleUser>
+            <LiveUser champion="Ezreal" />
+            <LiveUser champion="Yuumi" />
           </LiveGameTeamsRow>
         </LiveGameSingleTeamWrapper>
         <LiveGameVersusWrapper>VS</LiveGameVersusWrapper>
         <LiveGameSingleTeamWrapper>
           <LiveGameTeamsRow>
-            <LiveGameSingleUser>
-              <LiveGameUserChampion />
-              <LiveGameUserName>정잭영</LiveGameUserName>
-            </LiveGameSingleUser>
-            <LiveGameSingleUser>
-              <LiveGameUserChampion />
-              <LiveGameUserName>정잭영</LiveGameUserName>
-            </LiveGameSingleUser>
+            <LiveUser champion="Ahri" />
+            <LiveUser champion="Ahri" />
           </LiveGameTeamsRow>
           <LiveGameTeamsRow>
-            <LiveGameSingleUser>
-              <LiveGameUserChampion />
-              <LiveGameUserName>정잭영</LiveGameUserName>
-            </LiveGameSingleUser>
-            <LiveGameSingleUser>
-              <LiveGameUserChampion />
-              <LiveGameUserName>정잭영</LiveGameUserName>
-            </LiveGameSingleUser>
-            <LiveGameSingleUser>
-              <LiveGameUserChampion />
-              <LiveGameUserName>정잭영</LiveGameUserName>
-            </LiveGameSingleUser>
+            <LiveUser champion="Ahri" />
+            <LiveUser champion="Ahri" />
+            <LiveUser champion="Ahri" />
           </LiveGameTeamsRow>
         </LiveGameSingleTeamWrapper>
         <LiveGameSingleTeamWrapper></LiveGameSingleTeamWrapper>

@@ -7,7 +7,6 @@ import {
   UserInfoContent,
   UserInfoSubTitle,
 } from './styles/userStatInfo.s';
-import React from 'react';
 import {
   Chart as ChartJS,
   RadialLinearScale,
