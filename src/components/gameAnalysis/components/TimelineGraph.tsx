@@ -31,7 +31,19 @@ ChartJS.register(
   Legend,
 );
 
-const labels = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0'];
+const labels = [
+  '0:00',
+  '1:00',
+  '2:00',
+  '3:00',
+  '4:00',
+  '5:00',
+  '6:00',
+  '7:00',
+  '8:00',
+  '9:00',
+  '10:00',
+];
 
 const options = {
   responsive: true,
@@ -44,16 +56,24 @@ const options = {
   },
   scales: {
     x: {
-      display: false,
+      display: true,
       stacked: true,
     },
     y: {
-      display: false,
+      display: true,
       stacked: true,
+      min: -50,
+      max: 50,
+      grid: {
+        color: (context: any) => {
+          if (context.tick.value === 0) {
+            return '#ffffff';
+          } else return 'rgba(255, 255, 255, 0.0)';
+        },
+      },
     },
   },
 };
-
 export const data = {
   labels,
   datasets: [
@@ -63,7 +83,7 @@ export const data = {
         above: 'rgba(232, 64, 87, 0.4)',
         below: 'rgba(53, 162, 235, 0.5)',
       },
-      data: labels.map(() => faker.datatype.number({ min: -50, max: 50 })),
+      data: [50, 40, 30, -10, 40, -50, 10, 20, 10, 50, 50, 50, 50],
       // borderColor: createGradient(chart.ctx, chart.chartArea),
       borderColor: 'red',
       backgroundColor: 'rgba(53, 162, 235, 0.5)',
@@ -76,11 +96,15 @@ export const data = {
 
 function createGradient(ctx: CanvasRenderingContext2D, area: ChartArea) {
   const colorStart = 'rgba(53, 162, 235, 0.5)';
+  // const colorMid = '#ffffff';
   const colorEnd = 'rgba(232, 64, 87, 0.4)';
 
+  // area.bottom = -50;
+  // area.top = 50;
   const gradient = ctx.createLinearGradient(0, area.bottom, 0, area.top);
 
   gradient.addColorStop(0, colorStart);
+  // gradient.addColorStop(0.5, colorMid);
   gradient.addColorStop(1, colorEnd);
 
   return gradient;
@@ -148,7 +172,7 @@ const TimelineGraph = () => {
           ref={chartRef}
           options={options}
           data={chartData}
-          height={72}
+          height={84}
           width={328}
         />
       </TimelineWrappper>
