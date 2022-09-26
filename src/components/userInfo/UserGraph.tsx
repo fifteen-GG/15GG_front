@@ -18,7 +18,6 @@ import {
   UserText,
   AvgEx,
   AvgText,
-  BackgroundCircle,
 } from './styles/userGraph.s';
 import { nodeModuleNameResolver } from 'typescript';
 
@@ -38,11 +37,13 @@ const options = {
       radius: 0, // 점 제거
     },
   },
+  backgroundColor: 'rgba(55, 55, 55, 0.5)',
   scales: {
     r: {
       angleLines: {
         color: '#373737',
       },
+      backgroundColor: 'rgba(55, 55, 55, 0.5)',
       grid: {
         circular: true,
         color: '#373737',
@@ -53,7 +54,7 @@ const options = {
       },
       pointLabels: {
         font: {
-          size: '10px',
+          size: 10,
           lineHeight: '10px',
         },
         color: '#FCFCFC',
@@ -102,7 +103,6 @@ export function UserGraph() {
           <AvgText>Average</AvgText>
         </AverageGraphLabel>
       </UserGraphText>
-      <BackgroundCircle></BackgroundCircle>
       <UserGraphDraw>
         <Radar
           data={data}

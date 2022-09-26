@@ -13,21 +13,19 @@ export const UserGraphWrapper = styled.div`
 export const UserGraphDraw = styled.div`
   margin: 0 auto;
   padding: 13px 0;
-
   width: 160px;
   height: 160px;
 `;
-export const BackgroundCircle = styled.div`
-  width: 114px;
-  height: 114px;
-  position: absolute;
-  border: solid 1px #373737;
-  border-radius: 80px;
-  background: rgba(55, 55, 55, 0.5);
-  top: 49.5%;
-  left: 49.5%;
-  transform: translate(-50%, -50%);
-`;
+// export const BackgroundCircle = styled.div`
+//   width: 114px;
+//   height: 114px;
+//   position: absolute;
+//   border: solid 1px #373737;
+//   border-radius: 80px;
+//   top: 49.5%;
+//   left: 49.5%;
+//   transform: translate(-50%, -50%);
+// `;
 export const UserGraphText = styled.div`
   display: in-line;
   position: absolute;

@@ -1,5 +1,5 @@
 import { GameInfoProps } from './type';
-import { url } from 'inspector';
+// import { url } from 'inspector';
 import React from 'react';
 import {
   GameListBox,
@@ -18,7 +18,7 @@ import {
   CSInfo,
   Ward,
   ItemBox,
-  ItemRow,
+  // ItemRow,
   ItemImg,
 } from './styles/gameCard.s';
 const formatChampion = (data: { championName: string }) => {
@@ -86,20 +86,16 @@ export const GameCard = ({ gameInfo }: GameInfoProps) => {
             </CSNWard>
           </div>
           <ItemBox>
-            <ItemRow>
-              <ItemImg src={formatItem({ championItem: `${item1}` })} />
-              <ItemImg src={formatItem({ championItem: `${item2}` })} />
-              <ItemImg src={formatItem({ championItem: `${item3}` })} />
-              <ItemImg
-                className="ward"
-                src={formatItem({ championItem: `${item7}` })}
-              />
-            </ItemRow>
-            <ItemRow>
-              <ItemImg src={formatItem({ championItem: `${item4}` })} />
-              <ItemImg src={formatItem({ championItem: `${item5}` })} />
-              <ItemImg src={formatItem({ championItem: `${item6}` })} />
-            </ItemRow>
+            <ItemImg src={formatItem({ championItem: `${item1}` })} />
+            <ItemImg src={formatItem({ championItem: `${item2}` })} />
+            <ItemImg src={formatItem({ championItem: `${item3}` })} />
+            <ItemImg
+              className="item7"
+              src={formatItem({ championItem: `${item7}` })}
+            />
+            <ItemImg src={formatItem({ championItem: `${item4}` })} />
+            <ItemImg src={formatItem({ championItem: `${item5}` })} />
+            <ItemImg src={formatItem({ championItem: `${item6}` })} />
           </ItemBox>
         </GameDetailInfo>
       </GameInfoBox>

@@ -2,7 +2,9 @@ import styled from 'styled-components';
 
 //UserRank부분 스타일
 export const UserRankWrapper = styled.div`
-  width: 100%;
+  @media screen and (max-width: 360px) {
+    width: 328px;
+  }
   background: #1e2025;
   margin-top: 4px;
   display: flex;
@@ -19,7 +21,6 @@ export const RankWrapper = styled.div`
     width: calc(50% - 1px);
   }
   display: flex;
-  justify-content: space-around;
   &:nth-child(1) {
     border-right: 2px solid #2b2f2e;
     padding-right: 9px;
@@ -29,6 +30,7 @@ export const RankWrapper = styled.div`
   }
   padding-top: 14px;
   margin-bottom: 8px;
+  position: relative;
 `;
 
 export const RankText = styled.div`
@@ -52,7 +54,9 @@ export const RankContent = styled.div`
 export const RankLp = styled.div``;
 export const RankWinrate = styled.div``;
 export const RankImg = styled.img`
-  width: 44px;
-  height: 44px;
+  position: absolute;
+  right: 0;
+  width: 64px;
+  height: 64px;
   border-radius: 10px;
 `;

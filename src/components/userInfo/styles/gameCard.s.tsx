@@ -124,31 +124,31 @@ export const Ward = styled.div`
 export const ItemBox = styled.div`
   display: flex;
   @media screen and (max-width: 650px) {
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  @media screen and (min-width: 651px) {
-    flex-direction: row;
+    flex-wrap: wrap;
+    width: 68px;
   }
 `;
-export const ItemRow = styled.div`
-  display: flex;
-  @media screen and (min-width: 651px) {
-    align-items: center;
-  }
-`;
+// export const ItemRow = styled.div`
+//   display: flex;
+//   @media screen and (min-width: 651px) {
+//     align-items: center;
+//   }
+// `;
 export const ItemImg = styled.img`
   width: 15px;
   height: 15px;
   border-radius: 2px;
   background: black;
   margin-left: 2px;
+  &.item7 {
+    border-radius: 12px;
+  }
   @media screen and (min-width: 651px) {
     width: 24px;
     height: 24px;
     border-radius: 5px;
-  }
-  &.ward {
-    order: 2;
+    &.item7 {
+      order: 1;
+    }
   }
 `;
