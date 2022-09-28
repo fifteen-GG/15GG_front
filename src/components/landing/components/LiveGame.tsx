@@ -20,28 +20,26 @@ export const LiveGame = () => {
       <LiveGameTeamsWrapper>
         <LiveGameSingleTeamWrapper>
           <LiveGameTeamsRow>
-            <LiveUser champion="Ahri" />
-            <LiveUser champion="Jax" />
-            <LiveUser champion="Khazix" />
+            <LiveUser champion="Ahri" row="left" />
+            <LiveUser champion="Jax" row="left" />
+            <LiveUser champion="Khazix" row="left" />
           </LiveGameTeamsRow>
           <LiveGameTeamsRow>
-            <LiveUser champion="Ezreal" />
-            <LiveUser champion="Yuumi" />
+            <LiveUser champion="Ezreal" row="left" />
+            <LiveUser champion="Yuumi" row="left" />
           </LiveGameTeamsRow>
         </LiveGameSingleTeamWrapper>
-        <LiveGameVersusWrapper>VS</LiveGameVersusWrapper>
         <LiveGameSingleTeamWrapper>
           <LiveGameTeamsRow>
-            <LiveUser champion="Ahri" />
-            <LiveUser champion="Ahri" />
+            <LiveUser champion="Ahri" row="right" />
+            <LiveUser champion="Ahri" row="right" />
           </LiveGameTeamsRow>
           <LiveGameTeamsRow>
-            <LiveUser champion="Ahri" />
-            <LiveUser champion="Ahri" />
-            <LiveUser champion="Ahri" />
+            <LiveUser champion="Ahri" row="right" />
+            <LiveUser champion="Ahri" row="right" />
+            <LiveUser champion="Ahri" row="right" />
           </LiveGameTeamsRow>
         </LiveGameSingleTeamWrapper>
-        <LiveGameSingleTeamWrapper></LiveGameSingleTeamWrapper>
       </LiveGameTeamsWrapper>
     </LiveGameWrapper>
   );

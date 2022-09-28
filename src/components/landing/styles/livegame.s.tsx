@@ -1,13 +1,16 @@
 import styled from 'styled-components';
+import BackgroundImage from '../../../assets/gg_bg_314.svg';
 
 export const LiveGameWrapper = styled.div`
   width: 314px;
   height: 84px;
   border-radius: 8px;
-  background-color: #2f3037;
+  /* background-color: #2f3037; */
+  background-image: url(${BackgroundImage});
   margin-top: 8px;
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 export const LiveGameTitleWrapper = styled.div`
@@ -46,12 +49,13 @@ export const LiveGameTeamsWrapper = styled.div`
   margin-top: 8px;
   display: flex;
   flex-direction: row;
-  justify-self: center;
-  align-self: center;
+  /* justify-items: space-around; */
+  /* justify-self: center; */
+  justify-content: space-between;
 `;
 
 export const LiveGameSingleTeamWrapper = styled.div`
-  width: 122px;
+  /* width: 122px; */
   height: 44px;
   display: flex;
 `;
@@ -69,9 +73,10 @@ export const LiveGameVersusWrapper = styled.div`
 `;
 
 export const LiveGameTeamsRow = styled.div`
-  width: 60px;
+  width: 65px;
   height: 44px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
 `;
