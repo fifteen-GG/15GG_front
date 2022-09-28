@@ -60,8 +60,8 @@ const GameSlider = () => {
             {...props}
             style={{
               ...props.style,
-              height: '24px',
-              width: '12px',
+              height: '18px',
+              width: '8px',
               borderRadius: '6px',
               backgroundColor: '#d9d9d9',
               outline: 'none',
@@ -70,15 +70,7 @@ const GameSlider = () => {
               alignItems: 'center',
               boxShadow: isDragged ? '0px 0px 5px #AAA' : 'none',
             }}
-          >
-            <div
-              style={{
-                height: '16px',
-                width: '6px',
-                borderRadius: '3px',
-              }}
-            />
-          </div>
+          />
         )}
       />
     </GameSliderWrapper>

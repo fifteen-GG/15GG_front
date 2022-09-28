@@ -43,6 +43,11 @@ const labels = [
   '8:00',
   '9:00',
   '10:00',
+  '11:00',
+  '12:00',
+  '13:00',
+  '14:00',
+  '15:00',
 ];
 
 const options = {
@@ -161,18 +166,19 @@ const TimelineGraph = () => {
   }, []);
 
   return (
-    <TimelineBorderBox>
-      <TimelineWrappper>
-        <Chart
-          type="line"
-          ref={chartRef}
-          options={options}
-          data={chartData}
-          height={84}
-          width={328}
-        />
-      </TimelineWrappper>
-    </TimelineBorderBox>
+    // <TimelineBorderBox>
+
+    // </TimelineBorderBox>
+    <TimelineWrappper>
+      <Chart
+        type="line"
+        ref={chartRef}
+        options={options}
+        data={chartData}
+        // height={84}
+        width={360}
+      />
+    </TimelineWrappper>
   );
 };
 
