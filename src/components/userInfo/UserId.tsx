@@ -11,14 +11,15 @@ import {
 const formatIcon = (data: { profileIcon: string }) => {
   return `https://opgg-static.akamaized.net/images/profile_icons/profileIcon${data.profileIcon}.jpg`;
 };
+
 export const UserId = ({ summonerInfo }: SumInfoProps) => {
-  const { icon } = summonerInfo;
+  const { icon, userID, userLevel } = summonerInfo;
   return (
     <UserIdWrapper>
       <UserImg src={formatIcon({ profileIcon: `${icon}` })} />
       <NameWrapper>
-        <UserName>정잭영</UserName>
-        <SubName>142views</SubName>
+        <UserName>{userID}</UserName>
+        <SubName>LV {userLevel}</SubName>
       </NameWrapper>
     </UserIdWrapper>
   );

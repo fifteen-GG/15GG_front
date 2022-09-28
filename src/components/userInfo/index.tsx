@@ -7,7 +7,7 @@ import React from 'react';
 //import components
 import { UserId } from './UserId';
 import { UserRank } from './UserRank';
-import { UserGraph } from './UserGraph';
+import UserGraph from './UserGraph';
 import { UserStatInfo } from './UserStatInfo';
 import { GameCard } from './GameCard';
 
@@ -130,17 +130,33 @@ const gameData: GameType[] = [
 const sumData: SummonerType[] = [
   {
     icon: '4027',
+    userID: '브랜드',
+    userLevel: 363,
     solorank: 'gold',
+    solorankinfo: 'Gold 2',
+    solorankLP: 89,
     freerank: 'platinum',
+    freerankinfo: 'Platinum 2',
+    freerankLP: 0,
+    solowinrate: 52,
+    freewinrate: 49,
+    solowin: 164,
+    sololose: 154,
+    freewin: 156,
+    freelose: 165,
+    avgkda: 2.15,
+    avgkill: 8.5,
+    avgdeath: 7.2,
+    avgassist: 11.4,
+    avgposition: 'ADC',
+    positionrate: 87,
   },
 ];
-// interface RankProps{
-//TODO 사이드 마진이 조금 남는 현상 수정필요
-// }
 
 export const UserInfo = () => {
   const [games, setGames] = useState<GameType[]>([...gameData]);
   const [profiles, setProfiless] = useState<SummonerType[]>([...sumData]);
+
   const fetchData = () => {
     setTimeout(() => {
       const arr: GameType[] = games.concat([...gameData]);
@@ -156,8 +172,12 @@ export const UserInfo = () => {
         {profiles.map((profile: SummonerType, index) => (
           <UserRank summonerInfo={profile} key={index} />
         ))}
-        <UserStatInfo />
-        <UserGraph />
+        {profiles.map((profile: SummonerType, index) => (
+          <UserStatInfo summonerInfo={profile} key={index} />
+        ))}
+        {profiles.map((profile: SummonerType, index) => (
+          <UserGraph summonerInfo={profile} key={index} />
+        ))}
       </UserStatWrapper>
       <UserGameListWrapper>
         <InfiniteScroll

@@ -1,3 +1,6 @@
+import React, { useRef, useState, useEffect } from 'react';
+import type { ChartData, ChartArea, ChartType } from 'chart.js';
+
 import {
   Chart as ChartJS,
   RadialLinearScale,
@@ -7,7 +10,10 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { Radar } from 'react-chartjs-2';
+import { Chart, Radar } from 'react-chartjs-2';
+import { faker } from '@faker-js/faker';
+import { SumInfoProps } from './type';
+
 import {
   AverageGraphLabel,
   UserGraphDraw,
@@ -19,7 +25,8 @@ import {
   AvgEx,
   AvgText,
 } from './styles/userGraph.s';
-import { nodeModuleNameResolver } from 'typescript';
+
+import * as Palette from '../../assets/colorPalette';
 
 ChartJS.register(
   RadialLinearScale,
@@ -30,6 +37,8 @@ ChartJS.register(
   Legend,
 );
 
+const labels = ['Kill', 'Assist', '15min', '30min', 'Gold', 'CS'];
+
 const options = {
   maintainAspectRatio: false,
   elements: {
@@ -37,7 +46,6 @@ const options = {
       radius: 0, // 점 제거
     },
   },
-  backgroundColor: 'rgba(55, 55, 55, 0.5)',
   scales: {
     r: {
       angleLines: {
@@ -57,7 +65,7 @@ const options = {
           size: 10,
           lineHeight: '10px',
         },
-        color: '#FCFCFC',
+        color: Palette.GG_WHITE_100,
       },
     },
   },
@@ -71,18 +79,18 @@ const options = {
 };
 
 export const data = {
-  labels: ['Kill', 'Assist', '15min', '30min', 'Gold', 'Cs'],
+  labels,
   datasets: [
     {
       label: '정잭영',
-      data: [1, 9, 3, 5, 2, 3],
+      data: labels.map(() => faker.datatype.number({ min: 0, max: 10 })),
       backgroundColor: 'rgba(59, 68, 78, 0.2)',
       borderColor: '#318eef',
       borderWidth: 1,
     },
     {
       label: 'Average',
-      data: [5, 5, 5, 5, 5, 5],
+      data: labels.map(() => faker.datatype.number({ min: 0, max: 10 })),
       backgroundColor: 'rgba(60, 60, 60, 0.2)',
       borderColor: '#999999',
       borderWidth: 1,
@@ -90,13 +98,35 @@ export const data = {
   ],
 };
 
-export function UserGraph() {
+const UserGraph = ({ summonerInfo }: SumInfoProps) => {
+  const { userID } = summonerInfo;
+  const chartRef = useRef<ChartJS>(null);
+  const [chartData, setChartData] = useState<ChartData<'radar'>>({
+    datasets: [],
+  });
+
+  useEffect(() => {
+    const chart = chartRef.current;
+
+    if (!chart) {
+      return;
+    }
+    const chartData = {
+      ...data,
+      datasets: data.datasets.map(dataset => ({
+        ...dataset,
+        // label: `${userID}`,
+      })),
+    };
+    setChartData(chartData);
+  }, []);
+
   return (
     <UserGraphWrapper>
       <UserGraphText>
         <UserGraphLabel>
           <UserEx></UserEx>
-          <UserText>정재경</UserText>
+          <UserText>{userID}</UserText>
         </UserGraphLabel>
         <AverageGraphLabel>
           <AvgEx></AvgEx>
@@ -104,18 +134,10 @@ export function UserGraph() {
         </AverageGraphLabel>
       </UserGraphText>
       <UserGraphDraw>
-        <Radar
-          data={data}
-          options={options}
-          style={
-            {
-              // position: 'absolute',
-              // backgroundColor: '#373737',
-              // borderRadius: '10px',
-            }
-          }
-        />
+        <Chart type="radar" ref={chartRef} data={chartData} options={options} />
       </UserGraphDraw>
     </UserGraphWrapper>
   );
-}
+};
+
+export default UserGraph;

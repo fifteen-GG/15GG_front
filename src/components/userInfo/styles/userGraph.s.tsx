@@ -1,4 +1,3 @@
-import { Radar } from 'react-chartjs-2';
 import styled from 'styled-components';
 
 //UserGraph 스타일

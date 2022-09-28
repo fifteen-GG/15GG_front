@@ -22,9 +22,28 @@ export interface GameType {
 }
 export interface SummonerType {
   icon: string;
+  userID: string;
+  userLevel: number;
   solorank: string;
+  solorankinfo: string;
+  solorankLP: number;
   freerank: string;
+  freerankinfo: string;
+  freerankLP: number;
+  solowinrate: number;
+  freewinrate: number;
+  solowin: number;
+  sololose: number;
+  freewin: number;
+  freelose: number;
+  avgkda: number;
+  avgkill: number;
+  avgdeath: number;
+  avgassist: number;
+  avgposition: string;
+  positionrate: number;
 }
+
 export type GameInfoProps = {
   gameInfo: GameType;
 };

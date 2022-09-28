@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import * as Palette from '../../../assets/colorPalette';
 
 export const TimelineBorderBox = styled.div`
   display: flex;
@@ -8,7 +9,7 @@ export const TimelineBorderBox = styled.div`
   /* height: 180px; */
   justify-content: center;
   align-items: center;
-  background-color: #27282d;
+  background-color: ${Palette.GG_BLACK_70};
   border-radius: 10px;
   margin-bottom: 8px;
 `;
@@ -27,5 +28,5 @@ export const WinningRate = styled.div`
   display: flex;
   justify-self: left;
   font-size: 12px;
-  color: #fff;
+  color: ${Palette.GG_WHITE_100};
 `;

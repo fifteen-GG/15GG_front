@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import * as Palette from '../../../assets/colorPalette';
 
 export const GameInfoWrapper = styled.div`
   display: flex;
@@ -12,7 +13,7 @@ export const TypeInfoWrapper = styled.div`
   height: 18px;
   align-items: center;
   flex-direction: row;
-  color: #ffffff;
+  color: ${Palette.GG_WHITE_100};
 `;
 
 export const GameTypeInfo = styled.div`
@@ -27,20 +28,21 @@ export const AnalysisTypeInfo = styled.div<RealTimeInfoProps>`
   height: 16px;
   width: auto;
   padding: 0 4px 0 4px;
-  color: #ffffff;
+  color: ${Palette.GG_WHITE_100};
   margin-left: 6px;
   font-size: 10px;
   align-items: center;
   justify-content: center;
   border-radius: 3px;
-  background-color: ${props => (props.isLive ? '#e84057' : '#4d4ae2')};
+  background-color: ${props =>
+    props.isLive ? Palette.GG_RED : Palette.GG_PURPLE};
 `;
 export const DateInfo = styled.div`
   display: flex;
   height: 13px;
   margin-top: 6px;
   align-items: center;
-  color: #88898d;
+  color: ${Palette.GG_GREY_70};
   font-size: 13px;
   margin-bottom: 16px;
 `;

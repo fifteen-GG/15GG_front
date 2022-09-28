@@ -1,3 +1,5 @@
+import React, { useRef, useState, useEffect } from 'react';
+import type { ChartData, ChartArea, ChartType } from 'chart.js';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -7,7 +9,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { Bar } from 'react-chartjs-2';
+import { Chart, Bar } from 'react-chartjs-2';
 import {
   BarWrapper,
   RateWrapper,
@@ -84,10 +86,30 @@ export const data = {
   ],
 };
 const TimelineBarGraph = () => {
+  const chartRef = useRef<ChartJS>(null);
+  const [chartData, setChartData] = useState<ChartData<'line'>>({
+    datasets: [],
+  });
+
+  useEffect(() => {
+    const chart = chartRef.current;
+
+    if (!chart) {
+      return;
+    }
+    const chartData = {
+      ...data,
+      datasets: data.datasets.map(dataset => ({
+        ...dataset,
+      })),
+    };
+
+    setChartData(chartData);
+  }, []);
   return (
     <Graph>
       <BarWrapper>
-        <Bar data={data} options={options} height="5px" />
+        <Chart type="bar" data={data} options={options} height="5px" />
       </BarWrapper>
       <RateWrapper>
         <WinningRate>80.4%</WinningRate>

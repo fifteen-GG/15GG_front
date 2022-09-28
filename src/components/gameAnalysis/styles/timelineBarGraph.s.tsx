@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import * as Palette from '../../../assets/colorPalette';
 
 export const Graph = styled.div`
   display: flex;
@@ -24,7 +25,7 @@ export const RateWrapper = styled.div`
 `;
 export const WinningRate = styled.div`
   font-size: 12px;
-  color: #fff;
+  color: ${Palette.GG_WHITE_100};
 `;
 export const GraphTitle = styled.div`
   font-size: 12px;

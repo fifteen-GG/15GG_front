@@ -18,16 +18,31 @@ const formatRank = (data: { summonerRank: string }) => {
 };
 
 export const UserRank = ({ summonerInfo }: SumInfoProps) => {
-  const { solorank, freerank } = summonerInfo;
+  const {
+    solorank,
+    freerank,
+    solorankinfo,
+    solorankLP,
+    freerankinfo,
+    freerankLP,
+    solowinrate,
+    freewinrate,
+    solowin,
+    sololose,
+    freewin,
+    freelose,
+  } = summonerInfo;
   return (
     <UserRankWrapper>
       <RankWrapper className="Solo">
         <RankText>
           <RankSubTitle>솔로랭크</RankSubTitle>
-          <RankName>Gold 2</RankName>
+          <RankName>{solorankinfo}</RankName>
           <RankContent>
-            <RankLp>89LP</RankLp>
-            <RankWinrate>52% (164승 154패)</RankWinrate>
+            <RankLp>{solorankLP}LP</RankLp>
+            <RankWinrate>
+              {solowinrate}% ({solowin}승 {sololose}패)
+            </RankWinrate>
           </RankContent>
         </RankText>
         <RankImg src={formatRank({ summonerRank: `${solorank}` })} />
@@ -35,10 +50,12 @@ export const UserRank = ({ summonerInfo }: SumInfoProps) => {
       <RankWrapper className="Free">
         <RankText>
           <RankSubTitle>자유랭크</RankSubTitle>
-          <RankName>Platinum 4</RankName>
+          <RankName>{freerankinfo}</RankName>
           <RankContent>
-            <RankLp>0LP</RankLp>
-            <RankWinrate>49% (156승 165패)</RankWinrate>
+            <RankLp>{freerankLP}LP</RankLp>
+            <RankWinrate>
+              {freewinrate}% ({freewin}승 {freelose}패)
+            </RankWinrate>
           </RankContent>
         </RankText>
         <RankImg src={formatRank({ summonerRank: `${freerank}` })} />

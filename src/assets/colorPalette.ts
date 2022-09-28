@@ -15,4 +15,8 @@ export const GG_GREEN_LIVE = '#61D125';
 export const GG_PLATINUM = '#00BBA3';
 export const GG_TURQ_KDA = '#3595A1';
 
+//Graph
+export const GG_RADARBGC = '#00BBA3';
+// export const GG_TURQ_KDA = '#3595A1';
+
 // @todo: colors for rank and graphs to be added

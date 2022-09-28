@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import * as Palette from '../../../assets/colorPalette';
 
 export const PlayerWrapper = styled.div`
   display: flex;
@@ -15,7 +16,7 @@ export const ChampionImg = styled.img`
   height: 22px;
   width: 22px;
   position: absolute;
-  background-color: white;
+  background-color: ${Palette.GG_WHITE_100};
   border-radius: 2px;
 `;
 export const ChampionLevel = styled.div`
@@ -30,7 +31,7 @@ export const ChampionLevel = styled.div`
   margin-left: 12px;
   margin-top: 12px;
   font-size: 6px;
-  color: #ffffff;
+  color: ${Palette.GG_WHITE_100};
   border-radius: 2px;
 `;
 export const SpellWrapper = styled.div`
@@ -46,7 +47,7 @@ export const SpellWrapper = styled.div`
 export const Spell = styled.img`
   height: 10px;
   width: 10px;
-  background-color: white;
+  background-color: ${Palette.GG_WHITE_100};
   border-radius: 2px;
 `;
 export const UserInfoWrapper = styled.div`
@@ -62,16 +63,16 @@ export const SummonerInfo = styled.div`
 `;
 export const SummonerName = styled.div`
   font-size: 11px;
-  color: #fafafa;
+  color: ${Palette.GG_WHITE_100};
   font-weight: bold;
   margin-right: 2px;
 `;
 export const SummonerTier = styled.div`
   display: flex;
-  background-color: #00bba3;
+  background-color: '${Palette.GG_PLATINUM}';
   height: 10px;
   width: 15px;
-  color: #ffffff;
+  color: ${Palette.GG_WHITE_100};
   font-size: 6px;
   border-radius: 2px;
   justify-content: center;
@@ -86,7 +87,7 @@ export const KDADetails = styled.div`
   display: flex;
   height: 10px;
   font-size: 10px;
-  color: #fafafa;
+  color: ${Palette.GG_WHITE_100};
   font-weight: bold;
   white-space: pre;
 `;
@@ -94,7 +95,7 @@ export const KDA = styled.div`
   display: flex;
   font-size: 8px;
   font-weight: bold;
-  color: #3595a1;
+  color: ${Palette.GG_TURQ_KDA};
   line-height: 1.8;
 `;
 export const ItemInterface = styled.div`
@@ -106,7 +107,7 @@ export const ItemInterface = styled.div`
   align-items: flex-end;
   font-size: 10px;
   font-weight: bold;
-  color: #fafafa;
+  color: ${Palette.GG_WHITE_100};
 `;
 export const ItemWrapper = styled.div`
   display: flex;
@@ -114,7 +115,7 @@ export const ItemWrapper = styled.div`
 export const ItemImg = styled.img`
   height: 15px;
   width: 15px;
-  background-color: white;
+  background-color: ${Palette.GG_WHITE_100};
   margin-right: 2px;
   border-radius: 2px;
 `;

@@ -1,8 +1,9 @@
 import styled from 'styled-components';
+import * as Palette from '../../../assets/colorPalette';
 
 export const GameListBox = styled.div`
   width: 100%;
-  margin-top: 6px;
+  margin-top: 4px;
 `;
 
 export const GameInfoBox = styled.div`
@@ -21,10 +22,10 @@ export const AnalysisStatus = styled.div`
   border-radius: 3px;
   background-color: ${(props: { status: 'live' | 'complete' | 'incomplete' }) =>
     props.status === 'live'
-      ? '#61d125'
+      ? Palette.GG_GREEN_LIVE
       : props.status === 'complete'
-      ? '#4d4ae2'
-      : '#4c4c4c'};
+      ? Palette.GG_PURPLE
+      : Palette.GG_BLACK_50_UNSELECTED};
   font-size: 8px;
   display: flex;
   position: relative;
