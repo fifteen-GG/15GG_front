@@ -58,19 +58,19 @@ const options = {
     x: {
       display: true,
       stacked: true,
+      // grid: {
+      //   color: (context: any) => {
+      //     if (context.tick.value % 1 === 0) {
+      //       return '#ffffff';
+      //     } else return 'rgba(255, 255, 255, 0.0)';
+      //   },
+      // },
     },
     y: {
-      display: true,
+      display: false,
       stacked: true,
       min: -50,
       max: 50,
-      grid: {
-        color: (context: any) => {
-          if (context.tick.value === 0) {
-            return '#ffffff';
-          } else return 'rgba(255, 255, 255, 0.0)';
-        },
-      },
     },
   },
 };
@@ -94,42 +94,40 @@ export const data = {
   ],
 };
 
-function createGradient(ctx: CanvasRenderingContext2D, area: ChartArea) {
-  const colorStart = 'rgba(53, 162, 235, 0.5)';
-  // const colorMid = '#ffffff';
-  const colorEnd = 'rgba(232, 64, 87, 0.4)';
+function createGradient(
+  ctx: CanvasRenderingContext2D,
+  area: ChartArea,
+  graphType: string,
+) {
+  const graphRed = 'rgba(232, 64, 87, 0.4)';
+  const graphBlue = 'rgba(53, 162, 235, 0.5)';
+  const graphNeutral = '#61676b';
+  let gradient;
 
-  // area.bottom = -50;
-  // area.top = 50;
-  const gradient = ctx.createLinearGradient(0, area.bottom, 0, area.top);
+  area.top = 8;
+  area.bottom = 55;
 
-  gradient.addColorStop(0, colorStart);
-  // gradient.addColorStop(0.5, colorMid);
-  gradient.addColorStop(1, colorEnd);
+  const lineGradient = ctx.createLinearGradient(0, area.bottom, 0, area.top);
+  const redTeamGradient = ctx.createLinearGradient(0, area.bottom, 0, area.top);
+  const blueTeamGradient = ctx.createLinearGradient(
+    0,
+    area.bottom,
+    0,
+    area.top,
+  );
 
-  return gradient;
-}
+  lineGradient.addColorStop(0, graphBlue);
+  lineGradient.addColorStop(1, graphRed);
+  redTeamGradient.addColorStop(0, graphNeutral);
+  redTeamGradient.addColorStop(1, graphRed);
+  blueTeamGradient.addColorStop(0, graphBlue);
+  blueTeamGradient.addColorStop(1, graphNeutral);
 
-function createGradient2(ctx: CanvasRenderingContext2D, area: ChartArea) {
-  const colorStart = '#61676b';
-  const colorEnd = 'rgba(232, 64, 87, 0.4)';
-
-  const gradient = ctx.createLinearGradient(0, area.bottom, 0, area.top);
-
-  gradient.addColorStop(0, colorStart);
-  gradient.addColorStop(1, colorEnd);
-
-  return gradient;
-}
-
-function createGradient3(ctx: CanvasRenderingContext2D, area: ChartArea) {
-  const colorStart = 'rgba(53, 162, 235, 0.5)';
-  const colorEnd = '#61676b';
-
-  const gradient = ctx.createLinearGradient(0, area.bottom, 0, area.top);
-
-  gradient.addColorStop(0, colorStart);
-  gradient.addColorStop(1, colorEnd);
+  graphType === 'line'
+    ? (gradient = lineGradient)
+    : graphType === 'red'
+    ? (gradient = redTeamGradient)
+    : (gradient = blueTeamGradient);
 
   return gradient;
 }
@@ -150,13 +148,11 @@ const TimelineGraph = () => {
       ...data,
       datasets: data.datasets.map(dataset => ({
         ...dataset,
-        borderColor: createGradient(chart.ctx, chart.chartArea),
+        borderColor: createGradient(chart.ctx, chart.chartArea, 'line'),
         fill: {
           target: 'origin',
-          // above: 'rgba(232, 64, 87, 0.4)',
-          // below: 'rgba(53, 162, 235, 0.5)',
-          above: createGradient2(chart.ctx, chart.chartArea),
-          below: createGradient3(chart.ctx, chart.chartArea),
+          above: createGradient(chart.ctx, chart.chartArea, 'red'),
+          below: createGradient(chart.ctx, chart.chartArea, 'blue'),
         },
       })),
     };
