@@ -8,32 +8,37 @@ import {
 
 import { formatChampion } from '../../gameAnalysis/components/Summoner';
 
-export const LiveUser = (data: { champion: string; row: string }) => {
+export const LiveUser = (props: {
+  champion: string;
+  name: string;
+  row: string;
+  pos: string;
+}) => {
   return (
     <>
-      {data.row === 'left' ? (
+      {props.row === 'left' ? (
         <LiveGameSingleUser>
-          <LiveGameUserPosition />
+          <LiveGameUserPosition position={`${props.pos}`} />
           <LiveGameUserImageWrapper>
             <LiveGameUserChampion
-              src={formatChampion({ championName: `${data.champion}` })}
+              src={formatChampion({ championName: `${props.champion}` })}
             />
           </LiveGameUserImageWrapper>
           <LiveGameUserName style={{ marginLeft: '2px' }}>
-            정잭영
+            {props.name}
           </LiveGameUserName>
         </LiveGameSingleUser>
       ) : (
         <LiveGameSingleUser style={{ justifyContent: 'flex-end' }}>
           <LiveGameUserName style={{ marginRight: '2px' }}>
-            드레이...
+            {props.name}
           </LiveGameUserName>
           <LiveGameUserImageWrapper>
             <LiveGameUserChampion
-              src={formatChampion({ championName: `${data.champion}` })}
+              src={formatChampion({ championName: `${props.champion}` })}
             />
           </LiveGameUserImageWrapper>
-          <LiveGameUserPosition />
+          <LiveGameUserPosition position={`${props.pos}`} />
         </LiveGameSingleUser>
       )}
     </>
