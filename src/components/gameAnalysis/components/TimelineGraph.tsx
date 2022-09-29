@@ -32,22 +32,22 @@ ChartJS.register(
 );
 
 const labels = [
-  '0:00',
-  '1:00',
-  '2:00',
-  '3:00',
-  '4:00',
-  '5:00',
-  '6:00',
-  '7:00',
-  '8:00',
-  '9:00',
-  '10:00',
-  '11:00',
-  '12:00',
-  '13:00',
-  '14:00',
-  '15:00',
+  '0',
+  '1',
+  '2',
+  '3',
+  '4',
+  '5',
+  '6',
+  '7',
+  '8',
+  '9',
+  '10',
+  '11',
+  '12',
+  '13',
+  '14',
+  '15',
 ];
 
 const options = {
@@ -110,7 +110,7 @@ function createGradient(
   let gradient;
 
   area.top = 8;
-  area.bottom = 55;
+  area.bottom = 45;
 
   const lineGradient = ctx.createLinearGradient(0, area.bottom, 0, area.top);
   const redTeamGradient = ctx.createLinearGradient(0, area.bottom, 0, area.top);
@@ -167,7 +167,6 @@ const TimelineGraph = () => {
 
   return (
     // <TimelineBorderBox>
-
     // </TimelineBorderBox>
     <TimelineWrappper>
       <Chart
