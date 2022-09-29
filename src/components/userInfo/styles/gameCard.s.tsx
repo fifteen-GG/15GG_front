@@ -141,14 +141,14 @@ export const ItemImg = styled.img`
   border-radius: 2px;
   background: black;
   margin-left: 2px;
-  &.item7 {
+  &.item6 {
     border-radius: 12px;
   }
   @media screen and (min-width: 651px) {
     width: 24px;
     height: 24px;
     border-radius: 5px;
-    &.item7 {
+    &.item6 {
       order: 1;
     }
   }

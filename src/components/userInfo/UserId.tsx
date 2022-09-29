@@ -8,15 +8,13 @@ import {
   SubName,
 } from './styles/userId.s';
 
-const formatIcon = (data: { profileIcon: string }) => {
-  return `https://opgg-static.akamaized.net/images/profile_icons/profileIcon${data.profileIcon}.jpg`;
-};
+import { urlProfileIcons } from '../utility/Url';
 
 export const UserId = ({ summonerInfo }: SumInfoProps) => {
   const { icon, userID, userLevel } = summonerInfo;
   return (
     <UserIdWrapper>
-      <UserImg src={formatIcon({ profileIcon: `${icon}` })} />
+      <UserImg src={urlProfileIcons(icon)} />
       <NameWrapper>
         <UserName>{userID}</UserName>
         <SubName>LV {userLevel}</SubName>

@@ -87,7 +87,7 @@ export const data = {
 };
 const TimelineBarGraph = () => {
   const chartRef = useRef<ChartJS>(null);
-  const [chartData, setChartData] = useState<ChartData<'line'>>({
+  const [chartData, setChartData] = useState<ChartData<'bar'>>({
     datasets: [],
   });
 

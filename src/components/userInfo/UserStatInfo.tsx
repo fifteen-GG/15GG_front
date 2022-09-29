@@ -5,6 +5,7 @@ import {
   UserStatInfoWrapper,
   GraphText,
   GraphImg,
+  UserFirstInfo,
   UserInfoText,
   UserInfoTitle,
   UserInfoContent,
@@ -99,17 +100,19 @@ export const UserStatInfo = ({ summonerInfo }: SumInfoProps) => {
   }, []);
   return (
     <UserStatInfoWrapper>
-      <GraphImg>
-        <GraphText>{solowinrate}%</GraphText>
-        <Doughnut data={data} options={options} />
-      </GraphImg>
-      <UserInfoText>
-        <UserInfoTitle>승률</UserInfoTitle>
-        <UserInfoContent>{solowinrate}%</UserInfoContent>
-        <UserInfoSubTitle>
-          {solowin}승 {sololose}패
-        </UserInfoSubTitle>
-      </UserInfoText>
+      <UserFirstInfo>
+        <GraphImg>
+          <GraphText>{solowinrate}%</GraphText>
+          <Doughnut data={data} options={options} />
+        </GraphImg>
+        <UserInfoText>
+          <UserInfoTitle>승률</UserInfoTitle>
+          <UserInfoContent>{solowinrate}%</UserInfoContent>
+          <UserInfoSubTitle>
+            {solowin}승 {sololose}패
+          </UserInfoSubTitle>
+        </UserInfoText>
+      </UserFirstInfo>
       <UserInfoText>
         <UserInfoTitle>KDA</UserInfoTitle>
         <UserInfoContent>{avgkda}</UserInfoContent>

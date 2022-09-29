@@ -21,12 +21,13 @@ import {
   // ItemRow,
   ItemImg,
 } from './styles/gameCard.s';
-const formatChampion = (data: { championName: string }) => {
-  return `https://opgg-static.akamaized.net/images/lol/champion/${data.championName}.png`;
-};
-const formatItem = (data: { championItem: string }) => {
-  return `https://opgg-static.akamaized.net/images/lol/item/${data.championItem}.png`;
-};
+// const formatChampion = (data: { championName: string }) => {
+//   return `https://opgg-static.akamaized.net/images/lol/champion/${data.championName}.png`;
+// };
+// const formatItem = (data: { championItem: string }) => {
+//   return `https://opgg-static.akamaized.net/images/lol/item/${data.championItem}.png`;
+// };
+import { urlChampion, urlItem } from '../utility/Url';
 
 export const GameCard = ({ gameInfo }: GameInfoProps) => {
   const {
@@ -43,13 +44,13 @@ export const GameCard = ({ gameInfo }: GameInfoProps) => {
     rate,
     ward,
     champion,
+    item0,
     item1,
     item2,
     item3,
     item4,
     item5,
     item6,
-    item7,
   } = gameInfo;
 
   return (
@@ -71,7 +72,7 @@ export const GameCard = ({ gameInfo }: GameInfoProps) => {
         </GameMainInfo>
         <GameDetailInfo>
           <div style={{ display: 'flex' }}>
-            <Profile src={formatChampion({ championName: `${champion}` })} />
+            <Profile src={urlChampion(champion)} />
             <KDABox>
               <KDAInfo>
                 {kill} / {death} / {assist}
@@ -86,16 +87,13 @@ export const GameCard = ({ gameInfo }: GameInfoProps) => {
             </CSNWard>
           </div>
           <ItemBox>
-            <ItemImg src={formatItem({ championItem: `${item1}` })} />
-            <ItemImg src={formatItem({ championItem: `${item2}` })} />
-            <ItemImg src={formatItem({ championItem: `${item3}` })} />
-            <ItemImg
-              className="item7"
-              src={formatItem({ championItem: `${item7}` })}
-            />
-            <ItemImg src={formatItem({ championItem: `${item4}` })} />
-            <ItemImg src={formatItem({ championItem: `${item5}` })} />
-            <ItemImg src={formatItem({ championItem: `${item6}` })} />
+            <ItemImg src={urlItem(item0)} />
+            <ItemImg src={urlItem(item1)} />
+            <ItemImg src={urlItem(item2)} />
+            <ItemImg className="item6" src={urlItem(item6)} />
+            <ItemImg src={urlItem(item3)} />
+            <ItemImg src={urlItem(item4)} />
+            <ItemImg src={urlItem(item5)} />
           </ItemBox>
         </GameDetailInfo>
       </GameInfoBox>

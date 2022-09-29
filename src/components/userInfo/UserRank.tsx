@@ -13,9 +13,11 @@ import {
   RankImg,
 } from './styles/userRank.s';
 
-const formatRank = (data: { summonerRank: string }) => {
-  return `https://opgg-static.akamaized.net/images/medals_new/${data.summonerRank}.png`;
-};
+// const formatRank = (data: { summonerRank: string }) => {
+//   return `https://opgg-static.akamaized.net/images/medals_new/${data.summonerRank}.png`;
+// };
+
+import { formatRank } from '../utility/Url';
 
 export const UserRank = ({ summonerInfo }: SumInfoProps) => {
   const {
@@ -45,7 +47,7 @@ export const UserRank = ({ summonerInfo }: SumInfoProps) => {
             </RankWinrate>
           </RankContent>
         </RankText>
-        <RankImg src={formatRank({ summonerRank: `${solorank}` })} />
+        <RankImg src={formatRank(solorank)} />
       </RankWrapper>
       <RankWrapper className="Free">
         <RankText>
@@ -58,7 +60,7 @@ export const UserRank = ({ summonerInfo }: SumInfoProps) => {
             </RankWinrate>
           </RankContent>
         </RankText>
-        <RankImg src={formatRank({ summonerRank: `${freerank}` })} />
+        <RankImg src={formatRank(freerank)} />
       </RankWrapper>
     </UserRankWrapper>
   );

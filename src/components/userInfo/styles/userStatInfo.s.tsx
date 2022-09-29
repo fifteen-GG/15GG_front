@@ -12,6 +12,7 @@ export const UserStatInfoWrapper = styled.div`
   align-items: center;
 `;
 export const GraphImg = styled.div`
+  margin-top: 8px;
   width: 36px;
   margin-left: 15px;
   position: relative;
@@ -23,6 +24,9 @@ export const GraphText = styled.div`
   transform: translate(-50%, -50%);
   font-size: 8px;
   color: #ffffff;
+`;
+export const UserFirstInfo = styled.div`
+  display: flex;
 `;
 export const UserInfoText = styled.div`
   width: 65px;

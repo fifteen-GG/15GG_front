@@ -24,63 +24,63 @@ const TeamInfoContainer = () => {
         <PlayerList>
           <Summoner
             champion={'Sona'}
-            championSpell1={'Heal'}
-            championSpell2={'Flash'}
-            item1={'3133'}
-            item2={'6694'}
-            item3={'3089'}
-            item4={'3047'}
-            item5={'3086'}
-            item6={'3087'}
-            item7={'3340'}
+            championSpell1={'SummonerHeal'}
+            championSpell2={'SummonerFlash'}
+            item0={'3133'}
+            item1={'6694'}
+            item2={'3089'}
+            item3={'3047'}
+            item4={'3086'}
+            item5={'3087'}
+            item6={'3340'}
           />
           <Summoner
             champion={'Jax'}
-            championSpell1={'Dot'}
-            championSpell2={'Flash'}
-            item1={'3033'}
-            item2={'3032'}
-            item3={'3036'}
-            item4={'3035'}
-            item5={'3038'}
-            item6={'3040'}
-            item7={'3340'}
+            championSpell1={'SummonerDot'}
+            championSpell2={'SummonerFlash'}
+            item0={'3033'}
+            item1={'3032'}
+            item2={'3036'}
+            item3={'3035'}
+            item4={'3038'}
+            item5={'3040'}
+            item6={'3340'}
           />
           <Summoner
             champion={`Katarina`}
-            championSpell1={'Smite'}
-            championSpell2={'Flash'}
-            item1={'3133'}
-            item2={'6694'}
-            item3={'3089'}
-            item4={'3047'}
-            item5={'3086'}
-            item6={'3087'}
-            item7={'3340'}
+            championSpell1={'SummonerSmite'}
+            championSpell2={'SummonerFlash'}
+            item0={'3133'}
+            item1={'6694'}
+            item2={'3089'}
+            item3={'3047'}
+            item4={'3086'}
+            item5={'3087'}
+            item6={'3340'}
           />
           <Summoner
             champion={'Blitzcrank'}
-            championSpell1={'Boost'}
-            championSpell2={'Flash'}
-            item1={'3033'}
-            item2={'3032'}
-            item3={'3036'}
-            item4={'3035'}
-            item5={'3038'}
-            item6={'3040'}
-            item7={'3340'}
+            championSpell1={'SummonerBoost'}
+            championSpell2={'SummonerFlash'}
+            item0={'3033'}
+            item1={'3032'}
+            item2={'3036'}
+            item3={'3035'}
+            item4={'3038'}
+            item5={'3040'}
+            item6={'3340'}
           />
           <Summoner
             champion={'Brand'}
-            championSpell1={'Exhaust'}
-            championSpell2={'Flash'}
-            item1={'3133'}
-            item2={'6694'}
-            item3={'3089'}
-            item4={'3047'}
-            item5={'3086'}
-            item6={'3087'}
-            item7={'3340'}
+            championSpell1={'SummonerExhaust'}
+            championSpell2={'SummonerFlash'}
+            item0={'3133'}
+            item1={'6694'}
+            item2={'3089'}
+            item3={'3047'}
+            item4={'3086'}
+            item5={'3087'}
+            item6={'3340'}
           />
         </PlayerList>
       </TeamInfo>
@@ -95,63 +95,63 @@ const TeamInfoContainer = () => {
         <PlayerList>
           <Summoner
             champion={'Aphelios'}
-            championSpell1={'Teleport'}
-            championSpell2={'Flash'}
-            item1={'3133'}
-            item2={'6694'}
-            item3={'3089'}
-            item4={'3047'}
-            item5={'3086'}
-            item6={'3087'}
-            item7={'3340'}
+            championSpell1={'SummonerTeleport'}
+            championSpell2={'SummonerFlash'}
+            item0={'3033'}
+            item1={'3032'}
+            item2={'3036'}
+            item3={'3035'}
+            item4={'3038'}
+            item5={'3040'}
+            item6={'3340'}
           />
           <Summoner
             champion={'Rumble'}
-            championSpell1={'Heal'}
-            championSpell2={'Flash'}
-            item1={'3033'}
-            item2={'3032'}
-            item3={'3036'}
-            item4={'3035'}
-            item5={'3038'}
-            item6={'3040'}
-            item7={'3340'}
+            championSpell1={'SummonerHeal'}
+            championSpell2={'SummonerFlash'}
+            item0={'3133'}
+            item1={'6694'}
+            item2={'3089'}
+            item3={'3047'}
+            item4={'3086'}
+            item5={'3087'}
+            item6={'3340'}
           />
           <Summoner
             champion={'Lux'}
-            championSpell1={'Dot'}
-            championSpell2={'Flash'}
-            item1={'3133'}
-            item2={'6694'}
-            item3={'3089'}
-            item4={'3047'}
-            item5={'3086'}
-            item6={'3087'}
-            item7={'3340'}
+            championSpell1={'SummonerDot'}
+            championSpell2={'SummonerFlash'}
+            item0={'3033'}
+            item1={'3032'}
+            item2={'3036'}
+            item3={'3035'}
+            item4={'3038'}
+            item5={'3040'}
+            item6={'3340'}
           />
           <Summoner
             champion={'Draven'}
-            championSpell1={'Heal'}
-            championSpell2={'Flash'}
-            item1={'3033'}
-            item2={'3032'}
-            item3={'3036'}
-            item4={'3035'}
-            item5={'3038'}
-            item6={'3040'}
-            item7={'3340'}
+            championSpell1={'SummonerHeal'}
+            championSpell2={'SummonerFlash'}
+            item0={'3133'}
+            item1={'6694'}
+            item2={'3089'}
+            item3={'3047'}
+            item4={'3086'}
+            item5={'3087'}
+            item6={'3340'}
           />
           <Summoner
             champion={'Nasus'}
-            championSpell1={'Heal'}
-            championSpell2={'Flash'}
-            item1={'3133'}
-            item2={'6694'}
-            item3={'3089'}
-            item4={'3047'}
-            item5={'3086'}
-            item6={'3087'}
-            item7={'3340'}
+            championSpell1={'SummonerHeal'}
+            championSpell2={'SummonerFlash'}
+            item0={'3033'}
+            item1={'3032'}
+            item2={'3036'}
+            item3={'3035'}
+            item4={'3038'}
+            item5={'3040'}
+            item6={'3340'}
           />
         </PlayerList>
       </TeamInfo>
