@@ -17,7 +17,7 @@ export const TimelineWrappper = styled.div`
   display: flex;
   flex-direction: column;
   height: 86px;
-  width: calc(100% - 16px);
+  width: calc(100%);
   /* padding-left: 8px;
   padding-right: 8px; */
   margin: 12px 0 12px 0;

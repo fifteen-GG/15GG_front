@@ -1,9 +1,63 @@
-import * as S from './styled';
+// import * as S from './styled';
 import { PageEnum, SubPageProps } from './type';
-import { AiOutlineMenu } from 'react-icons/ai';
 import { DataCode } from '../dataCode';
 import { GameAnalysis } from '../gameAnalysis';
 import { UserInfo } from '../userInfo';
+
+import styled from 'styled-components';
+
+const SubPageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+`;
+
+const SubPageHeaderWrapper = styled.div`
+  height: 48px;
+  background: #27282d;
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+`;
+
+const SubPageHeader = styled.div`
+  @media screen and (max-width: 650px) {
+    width: 100%;
+  }
+  @media screen and (min-width: 651px) {
+    width: 650px;
+  }
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const LogoBox = styled.div`
+  width: 110px;
+  height: 23.6px;
+  font-size: 24px;
+  color: white;
+`;
+
+const SubPageContentWrapper = styled.div`
+  background: #1e2025;
+  display: flex;
+  justify-content: center;
+  min-height: calc(100vh - 48px);
+`;
+
+const SubPageContent = styled.div`
+  @media screen and (max-width: 650px) {
+    width: 100%;
+  }
+  @media screen and (min-width: 651px) {
+    width: 650px;
+  }
+  padding: 16px;
+`;
 
 export const SubPage = ({ page }: SubPageProps) => {
   const renderContent = () => {
@@ -12,18 +66,17 @@ export const SubPage = ({ page }: SubPageProps) => {
     else if (page === PageEnum.USER) return <UserInfo />;
   };
   return (
-    <S.SubPageWrapper>
-      <S.SubPageHeaderWrapper>
-        <S.SubPageHeader>
-          <S.LogoBox>LOLex</S.LogoBox>
-          <AiOutlineMenu size="24" color="white" />
-        </S.SubPageHeader>
-      </S.SubPageHeaderWrapper>
-      <S.SubPageContentWrapper>
-        <S.SubPageContent>
+    <SubPageWrapper>
+      <SubPageHeaderWrapper>
+        <SubPageHeader>
+          <LogoBox>15.GG</LogoBox>
+        </SubPageHeader>
+      </SubPageHeaderWrapper>
+      <SubPageContentWrapper>
+        <SubPageContent>
           <>{renderContent()}</>
-        </S.SubPageContent>
-      </S.SubPageContentWrapper>
-    </S.SubPageWrapper>
+        </SubPageContent>
+      </SubPageContentWrapper>
+    </SubPageWrapper>
   );
 };

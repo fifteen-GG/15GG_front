@@ -31,7 +31,24 @@ ChartJS.register(
   Legend,
 );
 
-const labels = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0'];
+const labels = [
+  '0',
+  '1',
+  '2',
+  '3',
+  '4',
+  '5',
+  '6',
+  '7',
+  '8',
+  '9',
+  '10',
+  '11',
+  '12',
+  '13',
+  '14',
+  '15',
+];
 
 const options = {
   responsive: true,
@@ -44,16 +61,24 @@ const options = {
   },
   scales: {
     x: {
-      display: false,
+      display: true,
       stacked: true,
+      // grid: {
+      //   color: (context: any) => {
+      //     if (context.tick.value % 1 === 0) {
+      //       return '#ffffff';
+      //     } else return 'rgba(255, 255, 255, 0.0)';
+      //   },
+      // },
     },
     y: {
       display: false,
       stacked: true,
+      min: -50,
+      max: 50,
     },
   },
 };
-
 export const data = {
   labels,
   datasets: [
@@ -63,7 +88,7 @@ export const data = {
         above: 'rgba(232, 64, 87, 0.4)',
         below: 'rgba(53, 162, 235, 0.5)',
       },
-      data: labels.map(() => faker.datatype.number({ min: -50, max: 50 })),
+      data: [50, 40, 30, -10, 40, -50, 10, 20, 10, 50, 50, 50, 50],
       // borderColor: createGradient(chart.ctx, chart.chartArea),
       borderColor: 'red',
       backgroundColor: 'rgba(53, 162, 235, 0.5)',
@@ -74,38 +99,40 @@ export const data = {
   ],
 };
 
-function createGradient(ctx: CanvasRenderingContext2D, area: ChartArea) {
-  const colorStart = 'rgba(53, 162, 235, 0.5)';
-  const colorEnd = 'rgba(232, 64, 87, 0.4)';
+function createGradient(
+  ctx: CanvasRenderingContext2D,
+  area: ChartArea,
+  graphType: string,
+) {
+  const graphRed = 'rgba(232, 64, 87, 0.4)';
+  const graphBlue = 'rgba(53, 162, 235, 0.5)';
+  const graphNeutral = '#61676b';
+  let gradient;
 
-  const gradient = ctx.createLinearGradient(0, area.bottom, 0, area.top);
+  area.top = 8;
+  area.bottom = 45;
 
-  gradient.addColorStop(0, colorStart);
-  gradient.addColorStop(1, colorEnd);
+  const lineGradient = ctx.createLinearGradient(0, area.bottom, 0, area.top);
+  const redTeamGradient = ctx.createLinearGradient(0, area.bottom, 0, area.top);
+  const blueTeamGradient = ctx.createLinearGradient(
+    0,
+    area.bottom,
+    0,
+    area.top,
+  );
 
-  return gradient;
-}
+  lineGradient.addColorStop(0, graphBlue);
+  lineGradient.addColorStop(1, graphRed);
+  redTeamGradient.addColorStop(0, graphNeutral);
+  redTeamGradient.addColorStop(1, graphRed);
+  blueTeamGradient.addColorStop(0, graphBlue);
+  blueTeamGradient.addColorStop(1, graphNeutral);
 
-function createGradient2(ctx: CanvasRenderingContext2D, area: ChartArea) {
-  const colorStart = '#61676b';
-  const colorEnd = 'rgba(232, 64, 87, 0.4)';
-
-  const gradient = ctx.createLinearGradient(0, area.bottom, 0, area.top);
-
-  gradient.addColorStop(0, colorStart);
-  gradient.addColorStop(1, colorEnd);
-
-  return gradient;
-}
-
-function createGradient3(ctx: CanvasRenderingContext2D, area: ChartArea) {
-  const colorStart = 'rgba(53, 162, 235, 0.5)';
-  const colorEnd = '#61676b';
-
-  const gradient = ctx.createLinearGradient(0, area.bottom, 0, area.top);
-
-  gradient.addColorStop(0, colorStart);
-  gradient.addColorStop(1, colorEnd);
+  graphType === 'line'
+    ? (gradient = lineGradient)
+    : graphType === 'red'
+    ? (gradient = redTeamGradient)
+    : (gradient = blueTeamGradient);
 
   return gradient;
 }
@@ -126,13 +153,11 @@ const TimelineGraph = () => {
       ...data,
       datasets: data.datasets.map(dataset => ({
         ...dataset,
-        borderColor: createGradient(chart.ctx, chart.chartArea),
+        borderColor: createGradient(chart.ctx, chart.chartArea, 'line'),
         fill: {
           target: 'origin',
-          // above: 'rgba(232, 64, 87, 0.4)',
-          // below: 'rgba(53, 162, 235, 0.5)',
-          above: createGradient2(chart.ctx, chart.chartArea),
-          below: createGradient3(chart.ctx, chart.chartArea),
+          above: createGradient(chart.ctx, chart.chartArea, 'red'),
+          below: createGradient(chart.ctx, chart.chartArea, 'blue'),
         },
       })),
     };
@@ -141,18 +166,18 @@ const TimelineGraph = () => {
   }, []);
 
   return (
-    <TimelineBorderBox>
-      <TimelineWrappper>
-        <Chart
-          type="line"
-          ref={chartRef}
-          options={options}
-          data={chartData}
-          height={72}
-          width={328}
-        />
-      </TimelineWrappper>
-    </TimelineBorderBox>
+    // <TimelineBorderBox>
+    // </TimelineBorderBox>
+    <TimelineWrappper>
+      <Chart
+        type="line"
+        ref={chartRef}
+        options={options}
+        data={chartData}
+        // height={84}
+        width={360}
+      />
+    </TimelineWrappper>
   );
 };
 

@@ -47,13 +47,13 @@ const GamesTitle = styled.div`
 `;
 
 const CodeButton = styled.div`
-  width: 67px;
-  height: 25px;
+  width: 60px;
+  height: 22px;
   background-color: #4d4ae2;
   border-radius: 8px;
   display: flex;
   color: #fff;
-  font-size: 10pt;
+  font-size: 8pt;
   font-weight: 500;
   justify-content: center;
   align-items: center;
@@ -73,7 +73,7 @@ export const Landing = () => {
         <SearchBox />
         <GamesWrapper>
           <GamesTitleWrapper>
-            <GamesTitle>분석중인 경기</GamesTitle>
+            <GamesTitle>실시간 분석 중</GamesTitle>
             <CodeButton onClick={routeNewCode}>코드 생성</CodeButton>
           </GamesTitleWrapper>
           {/* todo margintop 12, bottom 64 */}
