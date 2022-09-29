@@ -1,27 +1,24 @@
-const FULLURL = 'http://ddragon.leagueoflegends.com/cdn/12.18.1/img';
+const DDRAGON_API_ROOT = 'http://ddragon.leagueoflegends.com/cdn/12.18.1/img';
+//가변으로 버전 바꾸기 dd
 // const API_VERSION = '/api/v3';
-const OPGG = 'https://opgg-static.akamaized.net/images/medals_new/';
+const OPGG_API_ROOT = 'https://opgg-static.akamaized.net/images/medals_new/';
 
-// export const FULLURL = SERVER;
+// export const DDRAGON_API_ROOT = SERVER;
 export const urlItem = (item: string) => {
-  return FULLURL + `/item/${item}.png`;
+  return DDRAGON_API_ROOT + `/item/${item}.png`;
 };
 export const urlProfileIcons = (icon: string) => {
-  return FULLURL + `/profileicon/${icon}.png`;
+  return DDRAGON_API_ROOT + `/profileicon/${icon}.png`;
 };
 export const urlChampion = (champion: string) => {
-  return FULLURL + `/champion/${champion}.png`;
+  return DDRAGON_API_ROOT + `/champion/${champion}.png`;
 };
 export const urlSpell = (spell: string) => {
-  return FULLURL + `/spell/${spell}.png`;
+  return DDRAGON_API_ROOT + `/spell/${spell}.png`;
 };
 
-// export const Rank = FULLURL + '/champion/';
+// export const Rank = DDRAGON_API_ROOT + '/champion/';
 
 export const formatRank = (summonerRank: string) => {
-  return OPGG + `${summonerRank}.png`;
+  return OPGG_API_ROOT + `${summonerRank}.png`;
 };
-
-// const formatRank = (data: { summonerRank: string }) => {
-//   return `https://opgg-static.akamaized.net/images/medals_new/${data.summonerRank}.png`;
-// };

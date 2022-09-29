@@ -69,14 +69,14 @@ const data = {
 
 export const UserStatInfo = ({ summonerInfo }: SumInfoProps) => {
   const {
-    solowinrate,
+    solowin_rate,
     solowin,
-    sololose,
-    avgkda,
-    avgkill,
-    avgdeath,
-    avgassist,
-    avgposition,
+    sololosses,
+    kda_avg,
+    kills_avg,
+    deaths_avg,
+    assists_avg,
+    prefer_position,
     positionrate,
   } = summonerInfo;
   const chartRef = useRef<ChartJS>(null);
@@ -102,27 +102,27 @@ export const UserStatInfo = ({ summonerInfo }: SumInfoProps) => {
     <UserStatInfoWrapper>
       <UserFirstInfo>
         <GraphImg>
-          <GraphText>{solowinrate}%</GraphText>
+          <GraphText>{solowin_rate}%</GraphText>
           <Doughnut data={data} options={options} />
         </GraphImg>
         <UserInfoText>
           <UserInfoTitle>승률</UserInfoTitle>
-          <UserInfoContent>{solowinrate}%</UserInfoContent>
+          <UserInfoContent>{solowin_rate}%</UserInfoContent>
           <UserInfoSubTitle>
-            {solowin}승 {sololose}패
+            {solowin}승 {sololosses}패
           </UserInfoSubTitle>
         </UserInfoText>
       </UserFirstInfo>
       <UserInfoText>
         <UserInfoTitle>KDA</UserInfoTitle>
-        <UserInfoContent>{avgkda}</UserInfoContent>
+        <UserInfoContent>{kda_avg}</UserInfoContent>
         <UserInfoSubTitle>
-          {avgkill}/{avgdeath}/{avgassist}
+          {kills_avg}/{deaths_avg}/{assists_avg}
         </UserInfoSubTitle>
       </UserInfoText>
       <UserInfoText>
         <UserInfoTitle>선호 포지션</UserInfoTitle>
-        <UserInfoContent>{avgposition}</UserInfoContent>
+        <UserInfoContent>{prefer_position}</UserInfoContent>
         <UserInfoSubTitle>{positionrate}%</UserInfoSubTitle>
       </UserInfoText>
     </UserStatInfoWrapper>

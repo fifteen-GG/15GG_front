@@ -1,181 +1,151 @@
 import { useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { GameType, SummonerType } from './type';
+import { match_info_list, summoner_info } from './type';
 import styled from 'styled-components';
 
 import React from 'react';
 //import components
-import { UserId } from './UserId';
 import { UserRank } from './UserRank';
 import UserGraph from './UserGraph';
 import { UserStatInfo } from './UserStatInfo';
 import { GameCard } from './GameCard';
+import { UserId } from './UserId';
 
 const UserInfoWrapper = styled.div``;
 const UserStatWrapper = styled.div``;
 const UserGameListWrapper = styled.div``;
 
-const gameData: GameType[] = [
+const matchData: match_info_list[] = [
   {
     status: 'live',
     result: 'win',
-    mode: 'solo',
+    queue_mode: 'solo',
     month: '09',
     date: '06',
-    kill: 7,
-    death: 3,
-    assist: 21,
+    kills: 7,
+    deaths: 3,
+    assists: 21,
     kda: 9.33,
     cs: 177,
-    rate: 8.33,
+    cs_per_min: 8.33,
     ward: 0,
-    champion: 'Sona',
-    item0: '3133',
-    item1: '6694',
-    item2: '3089',
-    item3: '3047',
-    item4: '3086',
-    item5: '3087',
-    item6: '3340',
+    champion_name: 'Sona',
+    items: ['3133', '6694', '3089', '3340', '3047', '3086', '3087'],
   },
   {
     status: 'complete',
     result: 'lose',
-    mode: 'free',
+    queue_mode: 'flex',
     month: '09',
     date: '05',
-    kill: 2,
-    death: 8,
-    assist: 15,
+    kills: 2,
+    deaths: 8,
+    assists: 15,
     kda: 5.33,
     cs: 123,
-    rate: 7.29,
+    cs_per_min: 7.29,
     ward: 0,
-    champion: 'Jax',
-    item0: '3033',
-    item1: '3032',
-    item2: '3036',
-    item3: '3035',
-    item4: '3038',
-    item5: '3040',
-    item6: '3340',
+    champion_name: 'Jax',
+    items: ['3033', '3032', '3036', '3340', '3035', '3038', '3040'],
   },
   {
     status: 'incomplete',
     result: 'win',
-    mode: 'solo',
+    queue_mode: 'solo',
     month: '09',
     date: '04',
-    kill: 9,
-    death: 2,
-    assist: 25,
+    kills: 9,
+    deaths: 2,
+    assists: 25,
     kda: 9.88,
     cs: 143,
-    rate: 9.17,
+    cs_per_min: 9.17,
     ward: 0,
-    champion: `Katarina`,
-    item0: '3133',
-    item1: '6694',
-    item2: '3089',
-    item3: '3047',
-    item4: '3086',
-    item5: '3087',
-    item6: '3340',
+    champion_name: `Katarina`,
+    items: ['3133', '6694', '3089', '3340', '3047', '3086', '3087'],
   },
   {
     status: 'complete',
     result: 'win',
-    mode: 'solo',
+    queue_mode: 'solo',
     month: '09',
     date: '02',
-    kill: 8,
-    death: 5,
-    assist: 13,
+    kills: 8,
+    deaths: 5,
+    assists: 13,
     kda: 7.58,
     cs: 183,
-    rate: 8.32,
+    cs_per_min: 8.32,
     ward: 0,
-    champion: 'Blitzcrank',
-    item0: '3033',
-    item1: '3032',
-    item2: '3036',
-    item3: '3035',
-    item4: '3038',
-    item5: '3040',
-    item6: '3340',
+    champion_name: 'Blitzcrank',
+    items: ['3033', '3032', '3036', '3340', '3035', '3038', '3040'],
   },
   {
     status: 'incomplete',
     result: 'lose',
-    mode: 'solo',
+    queue_mode: 'solo',
     month: '08',
     date: '31',
-    kill: 12,
-    death: 0,
-    assist: 19,
+    kills: 12,
+    deaths: 0,
+    assists: 19,
     kda: 9.99,
     cs: 183,
-    rate: 9.89,
+    cs_per_min: 9.89,
     ward: 0,
-    champion: 'Brand',
-    item0: '3133',
-    item1: '6694',
-    item2: '3089',
-    item3: '3047',
-    item4: '3086',
-    item5: '3087',
-    item6: '3340',
+    champion_name: 'Brand',
+    items: ['3133', '6694', '3089', '3340', '3047', '3086', '3087'],
   },
 ];
-const sumData: SummonerType[] = [
+const sumData: summoner_info[] = [
   {
     icon: '4027',
-    userID: '브랜드',
-    userLevel: 363,
-    solorank: 'gold',
-    solorankinfo: 'Gold 2',
-    solorankLP: 89,
-    freerank: 'platinum',
-    freerankinfo: 'Platinum 2',
-    freerankLP: 0,
-    solowinrate: 52,
-    freewinrate: 49,
+    summoner_id: '브랜드',
+    level: 363,
+    solo: 'gold',
+    solotier: 'Gold 2',
+    sololp: 89,
+    flex: 'platinum',
+    flextier: 'Platinum 2',
+    flexlp: 0,
+    solowin_rate: 52,
+    flexwin_rate: 48,
     solowin: 164,
-    sololose: 154,
-    freewin: 156,
-    freelose: 165,
-    avgkda: 2.15,
-    avgkill: 8.5,
-    avgdeath: 7.2,
-    avgassist: 11.4,
-    avgposition: 'ADC',
+    sololosses: 154,
+    flexwin: 156,
+    flexlosses: 165,
+    kda_avg: 2.15,
+    kills_avg: 8.5,
+    deaths_avg: 7.2,
+    assists_avg: 11.4,
+    prefer_position: 'ADC',
     positionrate: 87,
   },
 ];
 
 export const UserInfo = () => {
-  const [games, setGames] = useState<GameType[]>([...gameData]);
-  const [profiles, setProfiless] = useState<SummonerType[]>([...sumData]);
+  const [games, setGames] = useState<match_info_list[]>([...matchData]);
+  const [profiles, setProfiless] = useState<summoner_info[]>([...sumData]);
 
   const fetchData = () => {
     setTimeout(() => {
-      const arr: GameType[] = games.concat([...gameData]);
+      const arr: match_info_list[] = games.concat([...matchData]);
       setGames(arr);
     }, 1500);
   };
   return (
     <UserInfoWrapper>
       <UserStatWrapper>
-        {profiles.map((profile: SummonerType, index) => (
+        {profiles.map((profile: summoner_info, index) => (
           <UserId summonerInfo={profile} key={index} />
         ))}
-        {profiles.map((profile: SummonerType, index) => (
+        {profiles.map((profile: summoner_info, index) => (
           <UserRank summonerInfo={profile} key={index} />
         ))}
-        {profiles.map((profile: SummonerType, index) => (
+        {profiles.map((profile: summoner_info, index) => (
           <UserStatInfo summonerInfo={profile} key={index} />
         ))}
-        {profiles.map((profile: SummonerType, index) => (
+        {profiles.map((profile: summoner_info, index) => (
           <UserGraph summonerInfo={profile} key={index} />
         ))}
       </UserStatWrapper>
@@ -186,8 +156,8 @@ export const UserInfo = () => {
           hasMore={true}
           loader={<h4 style={{ color: 'white' }}>Loading...</h4>}
         >
-          {games.map((game: GameType, index) => {
-            return <GameCard gameInfo={game} key={index}></GameCard>;
+          {games.map((game: match_info_list, index) => {
+            return <GameCard matchInfo={game} key={index}></GameCard>;
           })}
         </InfiniteScroll>
       </UserGameListWrapper>

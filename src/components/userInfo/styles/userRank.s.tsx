@@ -25,7 +25,7 @@ export const RankWrapper = styled.div`
     border-right: 2px solid #2b2f2e;
     padding-right: 9px;
   }
-  &.Free {
+  &.Flex {
     margin-left: 12px;
   }
   padding-top: 14px;
@@ -56,7 +56,14 @@ export const RankWinrate = styled.div``;
 export const RankImg = styled.img`
   position: absolute;
   right: 0;
-  width: 64px;
-  height: 64px;
+  @media screen and (max-width: 360px) {
+    width: 56px;
+    height: 56px;
+  }
+  transition: 0.5s;
+  @media screen and (min-width: 361px) {
+    width: 64px;
+    height: 64px;
+  }
   border-radius: 10px;
 `;

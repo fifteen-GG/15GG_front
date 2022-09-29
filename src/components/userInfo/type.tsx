@@ -1,52 +1,46 @@
-export interface GameType {
+export interface match_info_list {
   status: 'live' | 'complete' | 'incomplete';
   result: 'win' | 'lose';
-  mode: 'solo' | 'free';
+  queue_mode: 'solo' | 'flex';
   month: string;
   date: string;
-  kill: number;
-  death: number;
-  assist: number;
+  kills: number;
+  deaths: number;
+  assists: number;
   kda: number;
   cs: number;
-  rate: number;
+  cs_per_min: number;
   ward: number;
-  champion: string;
-  item0: string;
-  item1: string;
-  item2: string;
-  item3: string;
-  item4: string;
-  item5: string;
-  item6: string;
+  champion_name: string;
+  items: string[];
 }
-export interface SummonerType {
+export interface summoner_info {
   icon: string;
-  userID: string;
-  userLevel: number;
-  solorank: string;
-  solorankinfo: string;
-  solorankLP: number;
-  freerank: string;
-  freerankinfo: string;
-  freerankLP: number;
-  solowinrate: number;
-  freewinrate: number;
+  summoner_id: string;
+  level: number;
+  solo: string;
+  solotier: string;
+  sololp: number;
+  flex: string;
+  flextier: string;
+  flexlp: number;
+  solowin_rate: number;
+  flexwin_rate: number;
   solowin: number;
-  sololose: number;
-  freewin: number;
-  freelose: number;
-  avgkda: number;
-  avgkill: number;
-  avgdeath: number;
-  avgassist: number;
-  avgposition: string;
+  sololosses: number;
+  flexwin: number;
+  flexlosses: number;
+  kda_avg: number;
+  kills_avg: number;
+  deaths_avg: number;
+  assists_avg: number;
+  prefer_position: string;
   positionrate: number;
 }
 
-export type GameInfoProps = {
-  gameInfo: GameType;
+export type MatchInfoProps = {
+  matchInfo: match_info_list;
 };
 export type SumInfoProps = {
-  summonerInfo: SummonerType;
+  summonerInfo: summoner_info;
 };

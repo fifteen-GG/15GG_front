@@ -8,11 +8,12 @@ export const UserStatInfoWrapper = styled.div`
   background-color: #27282d;
   border-radius: 6px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 `;
 export const GraphImg = styled.div`
-  margin-top: 8px;
+  display: flex;
+  align-items: center;
   width: 36px;
   margin-left: 15px;
   position: relative;

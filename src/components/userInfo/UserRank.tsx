@@ -21,46 +21,46 @@ import { formatRank } from '../utility/Url';
 
 export const UserRank = ({ summonerInfo }: SumInfoProps) => {
   const {
-    solorank,
-    freerank,
-    solorankinfo,
-    solorankLP,
-    freerankinfo,
-    freerankLP,
-    solowinrate,
-    freewinrate,
+    solo,
+    flex,
+    solotier,
+    sololp,
+    flextier,
+    flexlp,
+    solowin_rate,
+    flexwin_rate,
     solowin,
-    sololose,
-    freewin,
-    freelose,
+    sololosses,
+    flexwin,
+    flexlosses,
   } = summonerInfo;
   return (
     <UserRankWrapper>
       <RankWrapper className="Solo">
         <RankText>
           <RankSubTitle>솔로랭크</RankSubTitle>
-          <RankName>{solorankinfo}</RankName>
+          <RankName>{solotier}</RankName>
           <RankContent>
-            <RankLp>{solorankLP}LP</RankLp>
+            <RankLp>{sololp}LP</RankLp>
             <RankWinrate>
-              {solowinrate}% ({solowin}승 {sololose}패)
+              {solowin_rate}% ({solowin}승 {sololosses}패)
             </RankWinrate>
           </RankContent>
         </RankText>
-        <RankImg src={formatRank(solorank)} />
+        <RankImg src={formatRank(solo)} />
       </RankWrapper>
-      <RankWrapper className="Free">
+      <RankWrapper className="Flex">
         <RankText>
           <RankSubTitle>자유랭크</RankSubTitle>
-          <RankName>{freerankinfo}</RankName>
+          <RankName>{flextier}</RankName>
           <RankContent>
-            <RankLp>{freerankLP}LP</RankLp>
+            <RankLp>{flexlp}LP</RankLp>
             <RankWinrate>
-              {freewinrate}% ({freewin}승 {freelose}패)
+              {flexwin_rate}% ({flexwin}승 {flexlosses}패)
             </RankWinrate>
           </RankContent>
         </RankText>
-        <RankImg src={formatRank(freerank)} />
+        <RankImg src={formatRank(flex)} />
       </RankWrapper>
     </UserRankWrapper>
   );

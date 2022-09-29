@@ -11,13 +11,13 @@ import {
 import { urlProfileIcons } from '../utility/Url';
 
 export const UserId = ({ summonerInfo }: SumInfoProps) => {
-  const { icon, userID, userLevel } = summonerInfo;
+  const { icon, summoner_id, level } = summonerInfo;
   return (
     <UserIdWrapper>
       <UserImg src={urlProfileIcons(icon)} />
       <NameWrapper>
-        <UserName>{userID}</UserName>
-        <SubName>LV {userLevel}</SubName>
+        <UserName>{summoner_id}</UserName>
+        <SubName>LV {level}</SubName>
       </NameWrapper>
     </UserIdWrapper>
   );

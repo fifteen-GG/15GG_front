@@ -3,7 +3,7 @@ import * as Palette from '../../../assets/colorPalette';
 
 export const GameListBox = styled.div`
   width: 100%;
-  margin-top: 4px;
+  // margin: -8px;
 `;
 
 export const GameInfoBox = styled.div`
@@ -78,6 +78,9 @@ export const GameDetailInfo = styled.div`
   display: flex;
   justify-content: space-between;
 `;
+export const GameCardContent = styled.div`
+  display: flex;
+`;
 
 export const Profile = styled.img`
   width: 32px;
@@ -107,7 +110,7 @@ export const KDARate = styled.div`
 
 export const CSNWard = styled.div`
   height: 100%;
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 500;
   color: white;
   margin-left: 22px;
@@ -141,14 +144,14 @@ export const ItemImg = styled.img`
   border-radius: 2px;
   background: black;
   margin-left: 2px;
-  &.item6 {
+  &.item3 {
     border-radius: 12px;
   }
   @media screen and (min-width: 651px) {
     width: 24px;
     height: 24px;
     border-radius: 5px;
-    &.item6 {
+    &.item3 {
       order: 1;
     }
   }

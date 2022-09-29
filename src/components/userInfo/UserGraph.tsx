@@ -16,6 +16,7 @@ import { SumInfoProps } from './type';
 
 import {
   AverageGraphLabel,
+  UserGraphContent,
   UserGraphDraw,
   UserGraphLabel,
   UserGraphWrapper,
@@ -99,7 +100,7 @@ export const data = {
 };
 
 const UserGraph = ({ summonerInfo }: SumInfoProps) => {
-  const { userID } = summonerInfo;
+  const { summoner_id } = summonerInfo;
   const chartRef = useRef<ChartJS>(null);
   const [chartData, setChartData] = useState<ChartData<'radar'>>({
     datasets: [],
@@ -115,7 +116,7 @@ const UserGraph = ({ summonerInfo }: SumInfoProps) => {
       ...data,
       datasets: data.datasets.map(dataset => ({
         ...dataset,
-        // label: `${userID}`,
+        // label: `${summoner_id}`,
       })),
     };
     setChartData(chartData);
@@ -123,19 +124,26 @@ const UserGraph = ({ summonerInfo }: SumInfoProps) => {
 
   return (
     <UserGraphWrapper>
-      <UserGraphText>
-        <UserGraphLabel>
-          <UserEx></UserEx>
-          <UserText>{userID}</UserText>
-        </UserGraphLabel>
-        <AverageGraphLabel>
-          <AvgEx></AvgEx>
-          <AvgText>Average</AvgText>
-        </AverageGraphLabel>
-      </UserGraphText>
-      <UserGraphDraw>
-        <Chart type="radar" ref={chartRef} data={chartData} options={options} />
-      </UserGraphDraw>
+      <UserGraphContent>
+        <UserGraphText>
+          <UserGraphLabel>
+            <UserEx></UserEx>
+            <UserText>{summoner_id}</UserText>
+          </UserGraphLabel>
+          <AverageGraphLabel>
+            <AvgEx></AvgEx>
+            <AvgText>Average</AvgText>
+          </AverageGraphLabel>
+        </UserGraphText>
+        <UserGraphDraw>
+          <Chart
+            type="radar"
+            ref={chartRef}
+            data={chartData}
+            options={options}
+          />
+        </UserGraphDraw>
+      </UserGraphContent>
     </UserGraphWrapper>
   );
 };

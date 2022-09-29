@@ -1,4 +1,3 @@
-import { url } from 'inspector';
 import {
   PlayerWrapper,
   UserInterface,
@@ -19,6 +18,8 @@ import {
 } from '../styles/summoners.s';
 
 import { urlChampion, urlSpell, urlItem } from '../../utility/Url';
+import { TeamInfo } from '../styles/teamInfoContainer.s';
+import { useState } from 'react';
 
 const formatKDA = (data: {
   kills: number;
@@ -28,31 +29,24 @@ const formatKDA = (data: {
   return `${data.kills}  /  ${data.deaths}  /  ${data.assists} `;
 };
 
-interface summonerProps {
+// export interface Team {
+//   redTeam: summonerProps[];
+//   blueTeam: summonerProps[];
+// }
+export type TeamInfoProps = {
+  teamInfo: summonerProps;
+};
+
+export interface summonerProps {
+  // team: 'red' | 'blue';
   champion: string;
   championSpell1: string;
   championSpell2: string;
-  item0: string;
-  item1: string;
-  item2: string;
-  item3: string;
-  item4: string;
-  item5: string;
-  item6: string;
+  items: string[];
 }
 
-const Summoner = ({
-  champion,
-  championSpell1,
-  championSpell2,
-  item0,
-  item1,
-  item2,
-  item3,
-  item4,
-  item5,
-  item6,
-}: summonerProps) => {
+const Summoner = ({ teamInfo }: TeamInfoProps) => {
+  const { champion, championSpell1, championSpell2, items } = teamInfo;
   return (
     <PlayerWrapper>
       <UserInterface>
@@ -77,13 +71,20 @@ const Summoner = ({
       </UserInterface>
       <ItemInterface>
         <ItemWrapper>
-          <ItemImg src={urlItem(item0)} />
-          <ItemImg src={urlItem(item1)} />
-          <ItemImg src={urlItem(item2)} />
-          <ItemImg src={urlItem(item3)} />
-          <ItemImg src={urlItem(item4)} />
-          <ItemImg src={urlItem(item5)} />
-          <ItemImg style={{ borderRadius: '7px' }} src={urlItem(item6)} />
+          {items.map((item, index) => {
+            return index !== 3 ? (
+              <ItemImg src={urlItem(item)} key={index} />
+            ) : (
+              <ItemImg className="item3" src={urlItem(items[3])} key={index} />
+            );
+          })}
+          {/* <ItemImg src={urlItem(items[0])} />
+          <ItemImg src={urlItem(items[1])} />
+          <ItemImg src={urlItem(items[2])} />
+          <ItemImg src={urlItem(items[3])} />
+          <ItemImg src={urlItem(items[4])} />
+          <ItemImg src={urlItem(items[5])} />
+          <ItemImg style={{ borderRadius: '7px' }} src={urlItem(items[6])} /> */}
         </ItemWrapper>
         40,480 · 20K
       </ItemInterface>

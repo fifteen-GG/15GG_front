@@ -118,4 +118,8 @@ export const ItemImg = styled.img`
   background-color: ${Palette.GG_WHITE_100};
   margin-right: 2px;
   border-radius: 2px;
+  &.item3 {
+    order: 1;
+    border-radius: 7px;
+  }
 `;

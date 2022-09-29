@@ -3,6 +3,7 @@ import styled from 'styled-components';
 //UserGraph 스타일
 export const UserGraphWrapper = styled.div`
   width: 100%;
+  height: 180px;
   margin-top: 8px;
   background-color: #27282d;
   border-radius: 6px;
@@ -11,9 +12,9 @@ export const UserGraphWrapper = styled.div`
 `;
 export const UserGraphDraw = styled.div`
   margin: 0 auto;
-  padding: 13px 0;
-  width: 160px;
-  height: 160px;
+  margin-top: 5px;
+  width: 170px;
+  height: 170px;
 `;
 // export const BackgroundCircle = styled.div`
 //   width: 114px;
@@ -25,8 +26,11 @@ export const UserGraphDraw = styled.div`
 //   left: 49.5%;
 //   transform: translate(-50%, -50%);
 // `;
+export const UserGraphContent = styled.div`
+  width: 360px;
+  margin: 0 auto;
+`;
 export const UserGraphText = styled.div`
-  display: in-line;
   position: absolute;
   margin-left: 14px;
   margin-top: 10px;
