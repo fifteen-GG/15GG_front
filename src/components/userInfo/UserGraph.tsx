@@ -47,6 +47,7 @@ const options = {
       radius: 0, // 점 제거
     },
   },
+  events: [],
   scales: {
     r: {
       angleLines: {

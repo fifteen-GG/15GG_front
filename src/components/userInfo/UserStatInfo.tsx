@@ -42,11 +42,7 @@ const options = {
     maintainAspectRatio: false,
   },
   cutout: 14,
-  elements: {
-    point: {
-      radius: 0, // 점 제거
-    },
-  },
+  events: [],
   plugins: {
     legend: {
       display: false,

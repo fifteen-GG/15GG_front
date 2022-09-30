@@ -36,6 +36,7 @@ const labels = ['0', '0', '0', '0', '0', '0', '0', '0', '0', '0'];
 const options = {
   responsive: true,
   maintainAspectRatio: false,
+  events: [],
   plugins: {
     legend: {
       display: false,

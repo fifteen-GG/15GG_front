@@ -30,6 +30,7 @@ ChartJS.register(
 export const options = {
   indexAxis: 'y' as const,
   maintainAspectRatio: false,
+  events: [],
   scales: {
     x: {
       max: 100,
