@@ -3,6 +3,7 @@ import TeamStats from './components/TeamStats';
 import TeamInfoContainer from './components/TeamInfoContainer';
 import TimelineGraph from './components/TimelineGraph';
 import TimelineBarGraph from './components/TimelineBarGraph';
+import GameSlider from './components/GameSlider';
 import styled from 'styled-components';
 
 const GameAnalysisWrapper = styled.div`
@@ -28,6 +29,7 @@ export const GameAnalysis = () => {
       <TimeInfo>경과시간 22:31</TimeInfo>
       <TimelineBarGraph />
       <TimelineGraph />
+      <GameSlider />
       <TeamStats />
       <TeamInfoContainer />
     </GameAnalysisWrapper>

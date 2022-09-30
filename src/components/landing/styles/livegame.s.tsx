@@ -1,13 +1,15 @@
 import styled from 'styled-components';
+import BackgroundImage from '../../../assets/gg_bg_314.svg';
 
 export const LiveGameWrapper = styled.div`
   width: 314px;
   height: 84px;
   border-radius: 8px;
-  background-color: #2f3037;
+  background-image: url(${BackgroundImage});
   margin-top: 8px;
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 export const LiveGameTitleWrapper = styled.div`
@@ -28,9 +30,10 @@ export const LiveGameLabel = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 4pt;
+  font-size: 6px;
   color: #fff;
   font-weight: 500;
+  font-size-adjust: none;
 `;
 
 export const LiveGameTitle = styled.div`
@@ -46,32 +49,22 @@ export const LiveGameTeamsWrapper = styled.div`
   margin-top: 8px;
   display: flex;
   flex-direction: row;
-  justify-self: center;
-  align-self: center;
+  /* justify-items: space-around; */
+  /* justify-self: center; */
+  justify-content: space-between;
 `;
 
 export const LiveGameSingleTeamWrapper = styled.div`
-  width: 122px;
+  /* width: 122px; */
   height: 44px;
   display: flex;
 `;
 
-export const LiveGameVersusWrapper = styled.div`
-  width: 74px;
-  background-color: #2f3037;
-  margin-left: 8px;
-  margin-right: 32px;
-  margin-top: 10px;
-  color: #fff;
-  font-size: 24px;
-  font-weight: 900;
-  font-style: italic;
-`;
-
 export const LiveGameTeamsRow = styled.div`
-  width: 60px;
+  width: 65px;
   height: 44px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
 `;
