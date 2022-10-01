@@ -1,11 +1,12 @@
 import styled from 'styled-components';
+import * as Palette from '../../../assets/colorPalette';
 
 //UserGraph 스타일
 export const UserGraphWrapper = styled.div`
   width: 100%;
   height: 180px;
   margin-top: 8px;
-  background-color: #27282d;
+  background-color: ${Palette.GG_BLACK_70};
   border-radius: 6px;
   display: flex;
   position: relative;
@@ -47,7 +48,7 @@ export const UserEx = styled.div`
 export const UserText = styled.div`
   margin-left: 4px;
   font-size: 10px;
-  color: #ffffff;
+  color: ${Palette.GG_WHITE_100};
 `;
 
 export const AverageGraphLabel = styled.div`
@@ -62,5 +63,5 @@ export const AvgEx = styled.div`
 export const AvgText = styled.div`
   margin-left: 4px;
   font-size: 10px;
-  color: #ffffff;
+  color: ${Palette.GG_WHITE_100};
 `;

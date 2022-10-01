@@ -3,7 +3,6 @@ import * as Palette from '../../../assets/colorPalette';
 
 export const GameListBox = styled.div`
   width: 100%;
-  // margin: -8px;
 `;
 
 export const GameInfoBox = styled.div`
@@ -33,7 +32,7 @@ export const AnalysisStatus = styled.div`
   margin-left: 10px;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: ${Palette.GG_WHITE_100};
   font-weight: bold;
   font-stretch: normal;
   font-style: normal;
@@ -43,7 +42,7 @@ export const AnalysisStatus = styled.div`
 
 export const GameMainInfo = styled.div`
   height: 10px;
-  color: #fff;
+  color: ${Palette.GG_WHITE_100};
   font-size: 10px;
   font-weight: bold;
   font-stretch: normal;
@@ -86,7 +85,7 @@ export const Profile = styled.img`
   width: 32px;
   height: 100%;
   border-radius: 10px;
-  background: black;
+  background: ${Palette.GG_BLACK_100};
 `;
 
 export const KDABox = styled.div`

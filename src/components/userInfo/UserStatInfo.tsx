@@ -64,17 +64,6 @@ const data = {
 };
 
 export const UserStatInfo = ({ summonerInfo }: SumInfoProps) => {
-  const {
-    solowin_rate,
-    solowin,
-    sololosses,
-    kda_avg,
-    kills_avg,
-    deaths_avg,
-    assists_avg,
-    prefer_position,
-    positionrate,
-  } = summonerInfo;
   const chartRef = useRef<ChartJS>(null);
   const [chartData, setChartData] = useState<ChartData<'doughnut'>>({
     datasets: [],
@@ -98,28 +87,29 @@ export const UserStatInfo = ({ summonerInfo }: SumInfoProps) => {
     <UserStatInfoWrapper>
       <UserFirstInfo>
         <GraphImg>
-          <GraphText>{solowin_rate}%</GraphText>
+          <GraphText>{summonerInfo.solowin_rate}%</GraphText>
           <Doughnut data={data} options={options} />
         </GraphImg>
         <UserInfoText>
           <UserInfoTitle>승률</UserInfoTitle>
-          <UserInfoContent>{solowin_rate}%</UserInfoContent>
+          <UserInfoContent>{summonerInfo.solowin_rate}%</UserInfoContent>
           <UserInfoSubTitle>
-            {solowin}승 {sololosses}패
+            {summonerInfo.solowin}승 {summonerInfo.sololosses}패
           </UserInfoSubTitle>
         </UserInfoText>
       </UserFirstInfo>
       <UserInfoText>
         <UserInfoTitle>KDA</UserInfoTitle>
-        <UserInfoContent>{kda_avg}</UserInfoContent>
+        <UserInfoContent>{summonerInfo.kda_avg}</UserInfoContent>
         <UserInfoSubTitle>
-          {kills_avg}/{deaths_avg}/{assists_avg}
+          {summonerInfo.kills_avg}/{summonerInfo.deaths_avg}/
+          {summonerInfo.assists_avg}
         </UserInfoSubTitle>
       </UserInfoText>
       <UserInfoText>
         <UserInfoTitle>선호 포지션</UserInfoTitle>
-        <UserInfoContent>{prefer_position}</UserInfoContent>
-        <UserInfoSubTitle>{positionrate}%</UserInfoSubTitle>
+        <UserInfoContent>{summonerInfo.prefer_position}</UserInfoContent>
+        <UserInfoSubTitle>{summonerInfo.positionrate}%</UserInfoSubTitle>
       </UserInfoText>
     </UserStatInfoWrapper>
   );

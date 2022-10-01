@@ -1,4 +1,4 @@
-export interface match_info_list {
+export interface MatchInfoList {
   status: 'live' | 'complete' | 'incomplete';
   result: 'win' | 'lose';
   queue_mode: 'solo' | 'flex';
@@ -14,7 +14,7 @@ export interface match_info_list {
   champion_name: string;
   items: string[];
 }
-export interface summoner_info {
+export interface SummonerInfo {
   icon: string;
   summoner_id: string;
   level: number;
@@ -39,8 +39,8 @@ export interface summoner_info {
 }
 
 export type MatchInfoProps = {
-  matchInfo: match_info_list;
+  matchInfo: MatchInfoList;
 };
 export type SumInfoProps = {
-  summonerInfo: summoner_info;
+  summonerInfo: SummonerInfo;
 };

@@ -1,11 +1,12 @@
 import styled from 'styled-components';
+import * as Palette from '../../../assets/colorPalette';
 
 //UserStatInfo부분 스타일
 export const UserStatInfoWrapper = styled.div`
   width: 100%;
   height: 56px;
   margin-top: 4px;
-  background-color: #27282d;
+  background-color: ${Palette.GG_BLACK_70};
   border-radius: 6px;
   display: flex;
   justify-content: space-between;
@@ -24,7 +25,7 @@ export const GraphText = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 8px;
-  color: #ffffff;
+  color: ${Palette.GG_WHITE_100};
 `;
 export const UserFirstInfo = styled.div`
   display: flex;
@@ -35,14 +36,14 @@ export const UserInfoText = styled.div`
 `;
 export const UserInfoTitle = styled.div`
   font-size: 10px;
-  color: #88898d;
+  color: ${Palette.GG_GREY_70};
 `;
 export const UserInfoContent = styled.div`
   font-size: 14px;
-  color: #fff;
+  color: ${Palette.GG_WHITE_100};
   font-weight: bold;
 `;
 export const UserInfoSubTitle = styled.div`
   font-size: 10px;
-  color: #fff;
+  color: ${Palette.GG_WHITE_100};
 `;

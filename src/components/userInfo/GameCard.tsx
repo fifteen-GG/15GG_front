@@ -31,64 +31,49 @@ import {
 import { urlChampion, urlItem } from '../utility/Url';
 
 export const GameCard = ({ matchInfo }: MatchInfoProps) => {
-  const {
-    status,
-    result,
-    month,
-    date,
-    queue_mode,
-    kills,
-    deaths,
-    assists,
-    kda,
-    cs,
-    cs_per_min,
-    ward,
-    champion_name,
-    items,
-  } = matchInfo;
-
   return (
     <GameListBox>
-      {status === 'live' ? (
-        <AnalysisStatus status={status}>실시간 분석</AnalysisStatus>
-      ) : status === 'complete' ? (
-        <AnalysisStatus status={status}>분석완료</AnalysisStatus>
+      {matchInfo.status === 'live' ? (
+        <AnalysisStatus status={matchInfo.status}>실시간 분석</AnalysisStatus>
+      ) : matchInfo.status === 'complete' ? (
+        <AnalysisStatus status={matchInfo.status}>분석완료</AnalysisStatus>
       ) : (
-        <AnalysisStatus status={status}>미분석</AnalysisStatus>
+        <AnalysisStatus status={matchInfo.status}>미분석</AnalysisStatus>
       )}
-      <GameInfoBox result={result}>
+      <GameInfoBox result={matchInfo.result}>
         <GameMainInfo>
-          <Result>{result === 'win' ? '승리' : '패배'}</Result>
+          <Result>{matchInfo.result === 'win' ? '승리' : '패배'}</Result>
           <Date>
-            {month}/{date}
+            {matchInfo.month}/{matchInfo.date}
           </Date>
-          <GameMode>{queue_mode === 'solo' ? '솔로랭크' : '자유랭크'}</GameMode>
+          <GameMode>
+            {matchInfo.queue_mode === 'solo' ? '솔로랭크' : '자유랭크'}
+          </GameMode>
         </GameMainInfo>
         <GameDetailInfo>
           <GameCardContent>
-            <Profile src={urlChampion(champion_name)} />
+            <Profile src={urlChampion(matchInfo.champion_name)} />
             <KDABox>
               <KDAInfo>
-                {kills} / {deaths} / {assists}
+                {matchInfo.kills} / {matchInfo.deaths} / {matchInfo.assists}
               </KDAInfo>
-              <KDARate>KDA {kda}</KDARate>
+              <KDARate>KDA {matchInfo.kda}</KDARate>
             </KDABox>
             <CSNWard>
               <CSInfo>
-                CS {cs} ({cs_per_min})
+                CS {matchInfo.cs} ({matchInfo.cs_per_min})
               </CSInfo>
-              <Ward>제어 와드 {ward}</Ward>
+              <Ward>제어 와드 {matchInfo.ward}</Ward>
             </CSNWard>
           </GameCardContent>
           <ItemBox>
-            {items.map((item, index) => {
+            {matchInfo.items.map((item, index) => {
               return index !== 3 ? (
                 <ItemImg src={urlItem(item)} key={index} />
               ) : (
                 <ItemImg
                   className="item3"
-                  src={urlItem(items[3])}
+                  src={urlItem(matchInfo.items[3])}
                   key={index}
                 />
               );

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { match_info_list, summoner_info } from './type';
+import { MatchInfoList, SummonerInfo } from './type';
 import styled from 'styled-components';
 
 import React from 'react';
@@ -15,7 +15,7 @@ const UserInfoWrapper = styled.div``;
 const UserStatWrapper = styled.div``;
 const UserGameListWrapper = styled.div``;
 
-const matchData: match_info_list[] = [
+const matchData: MatchInfoList[] = [
   {
     status: 'live',
     result: 'win',
@@ -30,7 +30,7 @@ const matchData: match_info_list[] = [
     cs_per_min: 8.33,
     ward: 0,
     champion_name: 'Sona',
-    items: ['3133', '6694', '3089', '3340', '3047', '3086', '3087'],
+    items: ['3133', '6694', '3089', '3340', '3047', '3086', '3083'],
   },
   {
     status: 'complete',
@@ -46,7 +46,7 @@ const matchData: match_info_list[] = [
     cs_per_min: 7.29,
     ward: 0,
     champion_name: 'Jax',
-    items: ['3033', '3032', '3036', '3340', '3035', '3038', '3040'],
+    items: ['3033', '3031', '3036', '3340', '3035', '3068', '3040'],
   },
   {
     status: 'incomplete',
@@ -62,7 +62,7 @@ const matchData: match_info_list[] = [
     cs_per_min: 9.17,
     ward: 0,
     champion_name: `Katarina`,
-    items: ['3133', '6694', '3089', '3340', '3047', '3086', '3087'],
+    items: ['3133', '6694', '3089', '3340', '3047', '3086', '3083'],
   },
   {
     status: 'complete',
@@ -78,7 +78,7 @@ const matchData: match_info_list[] = [
     cs_per_min: 8.32,
     ward: 0,
     champion_name: 'Blitzcrank',
-    items: ['3033', '3032', '3036', '3340', '3035', '3038', '3040'],
+    items: ['3033', '3031', '3036', '3340', '3035', '3068', '3040'],
   },
   {
     status: 'incomplete',
@@ -94,10 +94,10 @@ const matchData: match_info_list[] = [
     cs_per_min: 9.89,
     ward: 0,
     champion_name: 'Brand',
-    items: ['3133', '6694', '3089', '3340', '3047', '3086', '3087'],
+    items: ['3133', '6694', '3089', '3340', '3047', '3086', '3083'],
   },
 ];
-const sumData: summoner_info[] = [
+const sumData: SummonerInfo[] = [
   {
     icon: '4027',
     summoner_id: '브랜드',
@@ -124,28 +124,28 @@ const sumData: summoner_info[] = [
 ];
 
 export const UserInfo = () => {
-  const [games, setGames] = useState<match_info_list[]>([...matchData]);
-  const [profiles, setProfiless] = useState<summoner_info[]>([...sumData]);
+  const [games, setGames] = useState<MatchInfoList[]>([...matchData]);
+  const [profiles, setProfiless] = useState<SummonerInfo[]>([...sumData]);
 
   const fetchData = () => {
     setTimeout(() => {
-      const arr: match_info_list[] = games.concat([...matchData]);
+      const arr: MatchInfoList[] = games.concat([...matchData]);
       setGames(arr);
     }, 1500);
   };
   return (
     <UserInfoWrapper>
       <UserStatWrapper>
-        {profiles.map((profile: summoner_info, index) => (
+        {profiles.map((profile: SummonerInfo, index) => (
           <UserId summonerInfo={profile} key={index} />
         ))}
-        {profiles.map((profile: summoner_info, index) => (
+        {profiles.map((profile: SummonerInfo, index) => (
           <UserRank summonerInfo={profile} key={index} />
         ))}
-        {profiles.map((profile: summoner_info, index) => (
+        {profiles.map((profile: SummonerInfo, index) => (
           <UserStatInfo summonerInfo={profile} key={index} />
         ))}
-        {profiles.map((profile: summoner_info, index) => (
+        {profiles.map((profile: SummonerInfo, index) => (
           <UserGraph summonerInfo={profile} key={index} />
         ))}
       </UserStatWrapper>
@@ -156,7 +156,7 @@ export const UserInfo = () => {
           hasMore={true}
           loader={<h4 style={{ color: 'white' }}>Loading...</h4>}
         >
-          {games.map((game: match_info_list, index) => {
+          {games.map((game: MatchInfoList, index) => {
             return <GameCard matchInfo={game} key={index}></GameCard>;
           })}
         </InfiniteScroll>

@@ -1,11 +1,12 @@
 import styled from 'styled-components';
+import * as Palette from '../../../assets/colorPalette';
 
 //UserRank부분 스타일
 export const UserRankWrapper = styled.div`
   @media screen and (max-width: 360px) {
     width: 328px;
   }
-  background: #1e2025;
+  background: ${Palette.GG_BLACK_100};
   margin-top: 4px;
   display: flex;
   padding: 0px 2px 0 2px;
@@ -22,7 +23,7 @@ export const RankWrapper = styled.div`
   }
   display: flex;
   &:nth-child(1) {
-    border-right: 2px solid #2b2f2e;
+    border-right: 2px solid ${Palette.GG_BLACK_70};
     padding-right: 9px;
   }
   &.Flex {
@@ -38,18 +39,18 @@ export const RankText = styled.div`
 `;
 export const RankSubTitle = styled.div`
   font-size: 12px;
-  color: #88898d;
+  color: ${Palette.GG_GREY_70};
 `;
 export const RankName = styled.div`
   font-weight: bold;
   font-size: 16px;
-  color: #fff;
+  color: ${Palette.GG_WHITE_100};
 `;
 export const RankContent = styled.div`
   font-size: 12px;
   margin: 10px 0px 8px 0;
   box-sizing: border-box;
-  color: #fff;
+  color: ${Palette.GG_WHITE_100};
 `;
 export const RankLp = styled.div``;
 export const RankWinrate = styled.div``;
