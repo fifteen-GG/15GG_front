@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { SearchBox } from './components/SearchBox';
 import { LiveGame } from './components/LiveGame';
 import styled from 'styled-components';
-import Bg from '../../assets/background.png';
+import Bg from '../../assets/background2.png';
 import logo from '../../assets/logo.png';
 
 const LandingWrapper = styled.div`
@@ -11,6 +11,7 @@ const LandingWrapper = styled.div`
   justify-content: center;
   background-position: center;
   background-image: url(${Bg});
+  background-size: cover;
 `;
 
 const TitleWrapper = styled.div`

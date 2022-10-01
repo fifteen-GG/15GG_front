@@ -45,7 +45,7 @@ export const LiveGame = () => {
   return (
     <LiveGameWrapper>
       <LiveGameTitleWrapper>
-        <LiveGameLabel>실시간 분석</LiveGameLabel>
+        <LiveGameLabel />
         <LiveGameTitle>
           {game.gameDate} · {game.gameType}
         </LiveGameTitle>

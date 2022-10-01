@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import BackgroundImage from '../../../assets/gg_bg_314.svg';
+import LiveGameLabelImage from '../../../assets/gg_label_live.svg';
 
 export const LiveGameWrapper = styled.div`
   width: 314px;
@@ -25,15 +26,7 @@ export const LiveGameLabel = styled.div`
   width: 50px;
   height: 14px;
   margin-left: 8px;
-  border-radius: 4px;
-  background-color: #61d125;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 6px;
-  color: #fff;
-  font-weight: 500;
-  font-size-adjust: none;
+  background-image: url(${LiveGameLabelImage});
 `;
 
 export const LiveGameTitle = styled.div`
