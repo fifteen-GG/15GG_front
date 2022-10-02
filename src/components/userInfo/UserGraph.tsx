@@ -9,7 +9,6 @@ import {
   Filler,
   Tooltip,
   Legend,
-  ChartType,
 } from 'chart.js';
 import { Chart, Radar } from 'react-chartjs-2';
 import { faker } from '@faker-js/faker';
