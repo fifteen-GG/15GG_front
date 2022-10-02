@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useTimer } from 'use-timer';
 import {
   DataCodeWrapper,
   SingleDataCodeWrapper,
@@ -11,9 +12,14 @@ import {
 
 export const Datacode = () => {
   const [code, setCode] = useState([0, 0, 0, 0, 0, 0]);
-  const [expireTime, setExpireTime] = useState(0);
+  const [codeExpired, setCodeExpired] = useState(0);
   const [refresh, setRefresh] = useState(0);
-  let currentTime = new Date().getTime();
+  //useTimer library
+  const { time, start, reset, status } = useTimer({
+    initialTime: 5 * 60,
+    endTime: 0,
+    timerType: 'DECREMENTAL',
+  });
 
   const getNewCode = async () => {
     try {
@@ -29,7 +35,16 @@ export const Datacode = () => {
 
   useEffect(() => {
     getNewCode();
-  }, [refresh]);
+    reset();
+    start();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [codeExpired, refresh]);
+
+  useEffect(() => {
+    if (status === 'STOPPED' && time === 0) {
+      setCodeExpired(data => data + 1);
+    }
+  }, [status, time]);
 
   return (
     <>
@@ -43,7 +58,13 @@ export const Datacode = () => {
         })}
       </DataCodeWrapper>
       <Footer>
-        <FooterContent>남은시간 2:21 · </FooterContent>
+        <FooterContent>
+          남은시간 {Math.trunc(time / 60)}:
+          {Math.trunc(time % 60) < 10
+            ? '0' + Math.trunc(time % 60)
+            : Math.trunc(time % 60)}
+          {' ·'}
+        </FooterContent>
         <RefreshButton onClick={() => setRefresh(data => data + 1)}>
           재생성
         </RefreshButton>
