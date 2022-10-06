@@ -3,7 +3,7 @@ import { SearchBox } from './components/SearchBox';
 import { LiveGame } from './components/LiveGame';
 import styled from 'styled-components';
 import Bg from '../../assets/background2.png';
-import logo from '../../assets/logo.png';
+import logo from '../../assets/gg_logo_temp.svg';
 
 const LandingWrapper = styled.div`
   min-height: 100vh;
@@ -21,13 +21,14 @@ const TitleWrapper = styled.div`
   align-items: center;
 `;
 
-const Logo = styled.div`
+const Logo = styled.img`
   margin-top: 180px;
   width: 150px;
-  height: 33px;
+  height: 45px;
   background-position: center;
-  background-image: url(${logo});
+  object-fit: contain;
 `;
+//로고는 임시
 
 const GamesWrapper = styled.div`
   width: 314px;
@@ -70,7 +71,7 @@ export const Landing = () => {
   return (
     <LandingWrapper>
       <TitleWrapper>
-        <Logo />
+        <Logo src={logo} />
         <SearchBox />
         <GamesWrapper>
           <GamesTitleWrapper>

@@ -3,12 +3,15 @@ import * as Palette from '../../../assets/colorPalette';
 
 export const GameListBox = styled.div`
   width: 100%;
+  @media screen and (max-width: 360px) {
+    width: 328px;
+  }
 `;
 
 export const GameInfoBox = styled.div`
   height: 46px;
-  background: ${(props: { result: string }) =>
-    props.result === 'win' ? '#4b5f71' : '#634749'};
+  background: ${(props: { win: boolean }) =>
+    props.win ? '#4b5f71' : '#634749'};
   border-radius: 10px;
   padding: 10px 10px 8px 14px;
 `;
@@ -18,7 +21,7 @@ export const AnalysisStatus = styled.div`
     props.status === 'live' ? '50px' : '40px'};
   height: 14px;
   padding: 3px 5px;
-  border-radius: 3px;
+  border-radius: 5px;
   background-color: ${(props: { status: 'live' | 'complete' | 'incomplete' }) =>
     props.status === 'live'
       ? Palette.GG_GREEN_LIVE
@@ -59,7 +62,6 @@ export const Result = styled.div`
 `;
 
 export const Date = styled.div`
-  width: 28px;
   height: 100%;
   margin-left: 8px;
 `;
@@ -87,11 +89,41 @@ export const Profile = styled.img`
   border-radius: 10px;
   background: ${Palette.GG_BLACK_100};
 `;
+export const SpellBox = styled.div`
+  display: flex;
+  height: 32px;
+  width: 15px;
+  margin-left: 2px;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 2px;
+`;
+export const Spell = styled.img`
+  width: 15px;
+  height: 15px;
 
+  border-radius: 2px;
+  background: ${Palette.GG_BLACK_100};
+`;
+export const RuneBox = styled.div`
+  display: flex;
+  height: 32px;
+  width: 15px;
+  margin-left: 2px;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 10px;
+`;
+export const Rune = styled.img`
+  width: 15px;
+  height: 15px;
+  border-radius: 10px;
+  background: ${Palette.GG_BLACK_100};
+`;
 export const KDABox = styled.div`
   height: 100%;
   color: white;
-  margin-left: 12px;
+  margin-left: 4px;
 `;
 
 export const KDAInfo = styled.div`

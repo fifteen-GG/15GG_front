@@ -21,12 +21,12 @@ import { urlChampion, urlSpell, urlItem } from '../../utility/Url';
 import { TeamInfo } from '../styles/teamInfoContainer.s';
 import { useState } from 'react';
 
-const formatKDA = (data: {
+const formatKDA = (props: {
   kills: number;
   deaths: number;
   assists: number;
 }) => {
-  return `${data.kills}  /  ${data.deaths}  /  ${data.assists} `;
+  return `${props.kills}  /  ${props.deaths}  /  ${props.assists} `;
 };
 
 // export interface Team {
@@ -46,15 +46,14 @@ export interface summonerProps {
 }
 
 const Summoner = ({ teamInfo }: TeamInfoProps) => {
-  const { champion, championSpell1, championSpell2, items } = teamInfo;
   return (
     <PlayerWrapper>
       <UserInterface>
-        <ChampionImg src={urlChampion(champion)} />
+        <ChampionImg src={urlChampion(teamInfo.champion)} />
         <ChampionLevel>16</ChampionLevel>
         <SpellWrapper>
-          <Spell src={urlSpell(championSpell1)} />
-          <Spell src={urlSpell(championSpell2)} />
+          <Spell src={urlSpell(teamInfo.championSpell1)} />
+          <Spell src={urlSpell(teamInfo.championSpell2)} />
         </SpellWrapper>
         <UserInfoWrapper>
           <SummonerInfo>
@@ -71,20 +70,17 @@ const Summoner = ({ teamInfo }: TeamInfoProps) => {
       </UserInterface>
       <ItemInterface>
         <ItemWrapper>
-          {items.map((item, index) => {
+          {teamInfo.items.map((item, index) => {
             return index !== 3 ? (
               <ItemImg src={urlItem(item)} key={index} />
             ) : (
-              <ItemImg className="item3" src={urlItem(items[3])} key={index} />
+              <ItemImg
+                className="item3"
+                src={urlItem(teamInfo.items[3])}
+                key={index}
+              />
             );
           })}
-          {/* <ItemImg src={urlItem(items[0])} />
-          <ItemImg src={urlItem(items[1])} />
-          <ItemImg src={urlItem(items[2])} />
-          <ItemImg src={urlItem(items[3])} />
-          <ItemImg src={urlItem(items[4])} />
-          <ItemImg src={urlItem(items[5])} />
-          <ItemImg style={{ borderRadius: '7px' }} src={urlItem(items[6])} /> */}
         </ItemWrapper>
         40,480 · 20K
       </ItemInterface>

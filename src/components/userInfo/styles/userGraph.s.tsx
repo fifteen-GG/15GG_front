@@ -4,6 +4,9 @@ import * as Palette from '../../../assets/colorPalette';
 //UserGraph 스타일
 export const UserGraphWrapper = styled.div`
   width: 100%;
+  @media screen and (max-width: 360px) {
+    width: 328px;
+  }
   height: 180px;
   margin-top: 8px;
   background-color: ${Palette.GG_BLACK_70};
@@ -28,7 +31,7 @@ export const UserGraphDraw = styled.div`
 //   transform: translate(-50%, -50%);
 // `;
 export const UserGraphContent = styled.div`
-  width: 360px;
+  width: 328px;
   margin: 0 auto;
 `;
 export const UserGraphText = styled.div`

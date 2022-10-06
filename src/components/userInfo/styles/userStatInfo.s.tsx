@@ -4,12 +4,15 @@ import * as Palette from '../../../assets/colorPalette';
 //UserStatInfo부분 스타일
 export const UserStatInfoWrapper = styled.div`
   width: 100%;
+  @media screen and (max-width: 360px) {
+    width: 328px;
+  }
   height: 56px;
   margin-top: 4px;
   background-color: ${Palette.GG_BLACK_70};
   border-radius: 6px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 `;
 export const GraphImg = styled.div`

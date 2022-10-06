@@ -9,7 +9,6 @@ import {
   Filler,
   Tooltip,
   Legend,
-  ChartType,
 } from 'chart.js';
 import { Chart, Radar } from 'react-chartjs-2';
 import { faker } from '@faker-js/faker';
@@ -102,7 +101,6 @@ export const data = {
 };
 
 const UserGraph = ({ summonerInfo }: SumInfoProps) => {
-  const { summoner_id } = summonerInfo;
   const chartRef = useRef<ChartJS>(null);
   const [chartData, setChartData] = useState<ChartData<'radar'>>({
     datasets: [],
@@ -130,7 +128,7 @@ const UserGraph = ({ summonerInfo }: SumInfoProps) => {
         <UserGraphText>
           <UserGraphLabel>
             <UserEx></UserEx>
-            <UserText>{summoner_id}</UserText>
+            <UserText>{summonerInfo.name}</UserText>
           </UserGraphLabel>
           <AverageGraphLabel>
             <AvgEx></AvgEx>

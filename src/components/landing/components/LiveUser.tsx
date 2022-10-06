@@ -19,9 +19,7 @@ export const LiveUser = (props: {
         <LiveGameSingleUser>
           <LiveGameUserPosition position={`${props.pos}`} />
           <LiveGameUserImageWrapper>
-            <LiveGameUserChampion
-              src={urlChampion(data.champion)}
-            />
+            <LiveGameUserChampion src={urlChampion(props.champion)} />
           </LiveGameUserImageWrapper>
           <LiveGameUserName style={{ marginLeft: '2px' }}>
             {props.name}
@@ -33,9 +31,7 @@ export const LiveUser = (props: {
             {props.name}
           </LiveGameUserName>
           <LiveGameUserImageWrapper>
-            <LiveGameUserChampion
-              src={urlChampion(data.champion)}
-            />
+            <LiveGameUserChampion src={urlChampion(props.champion)} />
           </LiveGameUserImageWrapper>
           <LiveGameUserPosition position={`${props.pos}`} />
         </LiveGameSingleUser>

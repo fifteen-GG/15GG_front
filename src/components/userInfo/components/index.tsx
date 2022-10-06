@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { MatchInfoList, SummonerInfo } from './type';
 import styled from 'styled-components';
-
-import React from 'react';
+import axios from 'axios';
 //import components
 import { UserRank } from './UserRank';
 import UserGraph from './UserGraph';
@@ -18,120 +19,169 @@ const UserGameListWrapper = styled.div``;
 const matchData: MatchInfoList[] = [
   {
     status: 'live',
-    result: 'win',
-    queue_mode: 'solo',
-    month: '09',
-    date: '06',
+    win: true,
+    queue_mode: '5v5 Ranked Solo games',
+    created_at: '2022-07-19',
     kills: 7,
     deaths: 3,
     assists: 21,
     kda: 9.33,
     cs: 177,
     cs_per_min: 8.33,
-    ward: 0,
+    vision_wards_bought_in_game: 0,
     champion_name: 'Sona',
     items: ['3133', '6694', '3089', '3340', '3047', '3086', '3083'],
   },
   {
     status: 'complete',
-    result: 'lose',
-    queue_mode: 'flex',
-    month: '09',
-    date: '05',
+    win: false,
+    queue_mode: '5v5 Ranked Flex games',
+    created_at: '2022-07-19',
     kills: 2,
     deaths: 8,
     assists: 15,
     kda: 5.33,
     cs: 123,
     cs_per_min: 7.29,
-    ward: 0,
+    vision_wards_bought_in_game: 0,
     champion_name: 'Jax',
     items: ['3033', '3031', '3036', '3340', '3035', '3068', '3040'],
   },
   {
     status: 'incomplete',
-    result: 'win',
-    queue_mode: 'solo',
-    month: '09',
-    date: '04',
+    win: true,
+    queue_mode: '5v5 Ranked Solo games',
+    created_at: '2022-07-19',
     kills: 9,
     deaths: 2,
     assists: 25,
     kda: 9.88,
     cs: 143,
     cs_per_min: 9.17,
-    ward: 0,
+    vision_wards_bought_in_game: 0,
     champion_name: `Katarina`,
     items: ['3133', '6694', '3089', '3340', '3047', '3086', '3083'],
   },
   {
     status: 'complete',
-    result: 'win',
-    queue_mode: 'solo',
-    month: '09',
-    date: '02',
+    win: true,
+    queue_mode: '5v5 Ranked Solo games',
+    created_at: '2022-07-19',
     kills: 8,
     deaths: 5,
     assists: 13,
     kda: 7.58,
     cs: 183,
     cs_per_min: 8.32,
-    ward: 0,
+    vision_wards_bought_in_game: 0,
     champion_name: 'Blitzcrank',
     items: ['3033', '3031', '3036', '3340', '3035', '3068', '3040'],
   },
   {
     status: 'incomplete',
-    result: 'lose',
-    queue_mode: 'solo',
-    month: '08',
-    date: '31',
+    win: false,
+    created_at: '2022-07-19',
+    queue_mode: '5v5 Ranked Solo games',
+    champion_name: 'Brand',
     kills: 12,
     deaths: 0,
     assists: 19,
     kda: 9.99,
     cs: 183,
     cs_per_min: 9.89,
-    ward: 0,
-    champion_name: 'Brand',
+    vision_wards_bought_in_game: 0,
     items: ['3133', '6694', '3089', '3340', '3047', '3086', '3083'],
   },
 ];
 const sumData: SummonerInfo[] = [
   {
-    icon: '4027',
-    summoner_id: '브랜드',
+    name: '브랜드',
     level: 363,
-    solo: 'gold',
-    solotier: 'Gold 2',
-    sololp: 89,
-    flex: 'platinum',
-    flextier: 'Platinum 2',
-    flexlp: 0,
-    solowin_rate: 52,
-    flexwin_rate: 48,
-    solowin: 164,
-    sololosses: 154,
-    flexwin: 156,
-    flexlosses: 165,
+    profileIconId: '4027',
+    solo: {
+      tier: 'GRANDMASTER',
+      rank: 'II',
+      lp: 89,
+      win_rate: 52,
+      win: 164,
+      losses: 154,
+    },
+    flex: {
+      tier: 'PLATINUM',
+      rank: 'II',
+      lp: 0,
+      win_rate: 48,
+      win: 156,
+      losses: 165,
+    },
     kda_avg: 2.15,
     kills_avg: 8.5,
     deaths_avg: 7.2,
     assists_avg: 11.4,
-    prefer_position: 'ADC',
-    positionrate: 87,
+    prefer_position: {
+      ADC: 87,
+    },
   },
 ];
 
 export const UserInfo = () => {
   const [games, setGames] = useState<MatchInfoList[]>([...matchData]);
-  const [profiles, setProfiless] = useState<SummonerInfo[]>([...sumData]);
+  const [profiles, setProfiless] = useState<SummonerInfo[]>([]);
+  const [page, setPage] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const { state } = useLocation();
+  console.log(state);
+  const getData = async () => {
+    try {
+      const value = await axios.get(
+        `${process.env.REACT_APP_GG_API_ROOT}riot/user/${state}`,
+      );
+      console.log(value.data);
+      if (value.status === 200) {
+        setProfiless([value.data]);
+      }
+    } catch (e) {
+      console.log(e); //이해필요
+    }
+  };
+  useEffect(() => {
+    getData();
+  }, []);
+  console.log(state);
+  // const getMatch = async () => {
+  //   try {
+  //     const match0 = await axios.get(
+  //       `${process.env.REACT_APP_GG_API_ROOT}riot/match/${state}?page=${page}`,
+  //     );
+  //     console.log(match0.data);
+  //     if (match0.status === 200) {
+  //       setGames([match0.data]);
+  //       setPage(page + 1);
+  //     }
+  //   } catch (e) {
+  //     console.log(e); //이해필요
+  //   }
+  // };
+  // useEffect(() => {
+  //   getMatch();
+  // }, []);
+  const fetchData = async () => {
+    try {
+      const match = await axios.get(
+        `${process.env.REACT_APP_GG_API_ROOT}riot/match/${state}?page=${page}`,
+      );
 
-  const fetchData = () => {
-    setTimeout(() => {
-      const arr: MatchInfoList[] = games.concat([...matchData]);
-      setGames(arr);
-    }, 1500);
+      setTimeout(() => {
+        console.log(match.data);
+        if (match.status === 200) {
+          const arr: MatchInfoList[] = games.concat([...match.data]);
+          setGames(arr);
+          setPage(page + 1);
+        }
+      }, 1500);
+    } catch (e) {
+      console.log(e); //이해필요
+    }
   };
   return (
     <UserInfoWrapper>

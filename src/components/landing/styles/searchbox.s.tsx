@@ -1,27 +1,37 @@
 import styled from 'styled-components';
+import * as Palette from '../../../assets/colorPalette';
+import searchBox from '../../../assets/gg_searchbox_bg.svg';
+import serarchButton from '../../../assets/gg_searchbox_button.svg';
 
 export const SearchBoxWrapper = styled.div`
   margin-top: 32px;
   width: 314px;
-  height: 42px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px 0 rgba(255, 255, 255, 0.25);
+  height: 38px;
+  background-image: url(${searchBox});
+  border-radius: 18px;
+  box-shadow: 0 2px 4px 0 rgba(54, 54, 59, 0.25);
   display: flex;
   flex-direction: row;
   justify-content: left;
+  align-items: center;
 `;
 
-export const SearchRegion = styled.div`
-  width: 42px;
-  height: 42px;
-  background-color: #726f6f;
-  color: #fff;
-  font-size: 14px;
-  font-weight: 600;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+export const SearchField = styled.input`
+  width: 200px;
+  height: 24px;
+  margin-left: 48px;
+  border: none;
+  outline-style: none;
+  font-size: 12px;
+  font-weight: 400;
+  color: ${Palette.GG_WHITE_100};
+  background-color: transparent;
+`;
+
+export const SearchButton = styled.div`
+  width: 28px;
+  height: 38px;
+  margin-left: 22px;
+  cursor: pointer;
+  background-image: url(${serarchButton});
 `;
