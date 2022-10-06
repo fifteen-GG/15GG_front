@@ -39,17 +39,36 @@ export const SpellWrapper = styled.div`
   height: 22px;
   width: 10px;
   margin-left: 24px;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 2px;
+`;
+
+export const PerksWrapper = styled.div`
+  display: flex;
+  height: 22px;
+  width: 10px;
+  margin-left: 2px;
   margin-right: 3px;
   flex-direction: column;
   justify-content: space-between;
   border-radius: 2px;
 `;
+
 export const Spell = styled.img`
   height: 10px;
   width: 10px;
   background-color: ${Palette.GG_WHITE_100};
   border-radius: 2px;
 `;
+
+export const Perk = styled.img`
+  height: 10px;
+  width: 10px;
+  /* background-color: ${Palette.GG_WHITE_100}; */
+  border-radius: 2px;
+`;
+
 export const UserInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
