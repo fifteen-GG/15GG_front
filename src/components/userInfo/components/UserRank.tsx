@@ -21,19 +21,19 @@ const UserRank = (props: SumInfoProps) => {
     return name;
   };
   const rankNumber = (s: string) => {
-    const romanToNum = (s: any) => {
+    const romanToNum = (s: string) => {
       const romeNum = {
         I: 1,
         V: 5,
       };
       let number = 0;
       const romeArray = s.split('');
-      const numArray = romeArray.map((rome: any) => rome in romeNum);
+      const numArray = romeArray.map((rome: string) => rome in romeNum);
       for (let i = 0; i < numArray.length; i++) {
         if (numArray[i] < numArray[i + 1]) {
-          number -= numArray[i];
+          number -= numArray[i] as unknown as number;
         } else {
-          number += numArray[i];
+          number += numArray[i] as unknown as number;
         }
       }
       return number;
