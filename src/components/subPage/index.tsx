@@ -2,7 +2,7 @@
 import { PageEnum, SubPageProps } from './type';
 import { DataCode } from '../dataCode';
 import { GameAnalysis } from '../gameAnalysis';
-import { UserInfo } from '../userInfo';
+import { UserInfo } from '../userInfo/components';
 
 import styled from 'styled-components';
 

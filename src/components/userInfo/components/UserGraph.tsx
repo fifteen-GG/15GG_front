@@ -12,7 +12,7 @@ import {
 } from 'chart.js';
 import { Chart, Radar } from 'react-chartjs-2';
 import { faker } from '@faker-js/faker';
-import { SumInfoProps } from './type';
+import { SumInfoProps } from '../../type';
 
 import {
   AverageGraphLabel,
@@ -25,9 +25,9 @@ import {
   UserText,
   AvgEx,
   AvgText,
-} from './styles/userGraph.s';
+} from '../styles/userGraph.s';
 
-import * as Palette from '../../assets/colorPalette';
+import * as Palette from '../../../assets/colorPalette';
 
 ChartJS.register(
   RadialLinearScale,

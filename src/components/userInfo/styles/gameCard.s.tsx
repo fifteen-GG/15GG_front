@@ -105,7 +105,7 @@ export const Spell = styled.img`
   border-radius: 2px;
   background: ${Palette.GG_BLACK_100};
 `;
-export const RuneBox = styled.div`
+export const PerkBox = styled.div`
   display: flex;
   height: 32px;
   width: 15px;
@@ -114,7 +114,7 @@ export const RuneBox = styled.div`
   justify-content: space-between;
   border-radius: 10px;
 `;
-export const Rune = styled.img`
+export const Perk = styled.img`
   width: 15px;
   height: 15px;
   border-radius: 10px;
@@ -175,15 +175,34 @@ export const ItemImg = styled.img`
   border-radius: 2px;
   background: black;
   margin-left: 2px;
+  &.item0 {
+    order: 0;
+  }
+  &.item1 {
+    order: 1;
+  }
+  &.item2 {
+    order: 2;
+  }
   &.item3 {
+    order: 4;
+  }
+  &.item4 {
+    order: 5;
+  }
+  &.item5 {
+    order: 6;
+  }
+  &.item6 {
     border-radius: 12px;
+    order: 3;
   }
   @media screen and (min-width: 651px) {
     width: 24px;
     height: 24px;
     border-radius: 5px;
-    &.item3 {
-      order: 1;
+    &.item6 {
+      order: 7;
     }
   }
 `;

@@ -10,7 +10,7 @@ import {
   UserInfoTitle,
   UserInfoContent,
   UserInfoSubTitle,
-} from './styles/userStatInfo.s';
+} from '../styles/userStatInfo.s';
 import { faker } from '@faker-js/faker';
 import {
   Chart as ChartJS,
@@ -21,10 +21,10 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import * as Palette from '../../assets/colorPalette';
+import * as Palette from '../../../assets/colorPalette';
 import { Chart, Doughnut } from 'react-chartjs-2';
 import { ArcElement } from 'chart.js';
-import { SumInfoProps } from './type';
+import { SumInfoProps } from '../../type';
 // Chart.register(ArcElement);
 
 ChartJS.register(
@@ -127,3 +127,4 @@ export const UserStatInfo = ({ summonerInfo }: SumInfoProps) => {
     </UserStatInfoWrapper>
   );
 };
+export default UserStatInfo;

@@ -1,4 +1,4 @@
-import { SumInfoProps } from './type';
+import { SumInfoProps } from '../../type';
 import React from 'react';
 import {
   UserIdWrapper,
@@ -6,11 +6,11 @@ import {
   NameWrapper,
   UserName,
   SubName,
-} from './styles/userId.s';
+} from '../styles/userId.s';
 
-import { urlProfileIcons } from '../utility/Url';
+import { urlProfileIcons } from '../../utility/Url';
 
-export const UserId = ({ summonerInfo }: SumInfoProps) => {
+const UserId = ({ summonerInfo }: SumInfoProps) => {
   const { profileIconId, name, level } = summonerInfo;
   return (
     <UserIdWrapper>
@@ -22,3 +22,4 @@ export const UserId = ({ summonerInfo }: SumInfoProps) => {
     </UserIdWrapper>
   );
 };
+export default UserId;

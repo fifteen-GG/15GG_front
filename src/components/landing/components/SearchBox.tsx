@@ -10,11 +10,11 @@ export const SearchBox = () => {
   //router
   const navigate = useNavigate();
   const routeUserInfo = () => {
-    navigate(`/user?${searchValue}`, { state: searchValue });
+    navigate(`/user?user=${searchValue}`);
   };
   const [searchValue, setSearchValue] = useState('');
 
-  const handleSearchValue = (e: any) => {
+  const handleSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
   return (

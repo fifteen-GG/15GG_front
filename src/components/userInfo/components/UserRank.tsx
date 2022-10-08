@@ -1,5 +1,5 @@
 import React from 'react';
-import { SumInfoProps } from './type';
+import { SumInfoProps } from '../../type';
 
 import {
   UserRankWrapper,
@@ -19,8 +19,8 @@ import {
 
 import { formatRank } from '../../utility/Url';
 
-export const UserRank = ({ summonerInfo }: SumInfoProps) => {
-  function romanToNum(s: any) {
+const UserRank = ({ summonerInfo }: SumInfoProps) => {
+  const romanToNum = (s: any) => {
     const romeNum = {
       I: 1,
       V: 5,
@@ -37,7 +37,7 @@ export const UserRank = ({ summonerInfo }: SumInfoProps) => {
     }
 
     return result;
-  }
+  };
   // const rank = ['MASTER', 'GRANDMASTER', 'CHALLENGER'];
   // {ranks.map((index:any)=>{
   //   {ranks[index] === summonerInfo.flex.tier ? return setValidation(true) : setValidation(false)}
@@ -104,6 +104,7 @@ export const UserRank = ({ summonerInfo }: SumInfoProps) => {
     </UserRankWrapper>
   );
 };
+export default UserRank;
 // {matchInfo.items.map((item, index) => {
 //   return index !== 3 ? (
 //     <ItemImg src={urlItem(item)} key={index} />

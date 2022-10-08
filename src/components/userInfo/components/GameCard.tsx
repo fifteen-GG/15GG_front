@@ -1,4 +1,4 @@
-import { MatchInfoProps } from './type';
+import { MatchInfoProps } from '../../type';
 // import { url } from 'inspector';
 import React from 'react';
 import {
@@ -14,8 +14,8 @@ import {
   Profile,
   SpellBox,
   Spell,
-  RuneBox,
-  Rune,
+  PerkBox,
+  Perk,
   KDABox,
   KDAInfo,
   KDARate,
@@ -32,9 +32,15 @@ import {
 // const formatItem = (data: { championItem: string }) => {
 //   return `https://opgg-static.akamaized.net/images/lol/item/${data.championItem}.png`;
 // };
-import { urlChampion, urlItem } from '../../utility/Url';
+import {
+  urlChampion,
+  urlItem,
+  urlSpell,
+  formatPerks,
+  formatPerkStyles,
+} from '../../utility/Url';
 
-export const GameCard = ({ matchInfo }: MatchInfoProps) => {
+const GameCard = ({ matchInfo }: MatchInfoProps) => {
   return (
     <GameListBox>
       {matchInfo?.status === 'live' ? (
@@ -58,29 +64,13 @@ export const GameCard = ({ matchInfo }: MatchInfoProps) => {
           <GameCardContent>
             <Profile src={urlChampion(matchInfo?.champion_name)} />
             <SpellBox>
-              <Spell
-                src={
-                  'https://opgg-static.akamaized.net/images/lol/spell/SummonerDot.png?image=q_auto,f_webp,w_36&v=1664954332121'
-                }
-              />
-              <Spell
-                src={
-                  'https://opgg-static.akamaized.net/images/lol/spell/SummonerFlash.png?image=q_auto,f_webp,w_36&v=1664954332121'
-                }
-              />
+              <Spell src={urlSpell('SummonerDot')} />
+              <Spell src={urlSpell('SummonerFlash')} />
             </SpellBox>
-            <RuneBox>
-              <Rune
-                src={
-                  'https://opgg-static.akamaized.net/images/lol/perk/8229.png?image=q_auto,f_webp,w_36&v=1664954332121'
-                }
-              />
-              <Rune
-                src={
-                  'https://opgg-static.akamaized.net/images/lol/perkStyle/8400.png?image=q_auto,f_webp,w_36&v=1664954332121'
-                }
-              />
-            </RuneBox>
+            <PerkBox>
+              <Perk src={formatPerks('8229')} />
+              <Perk src={formatPerkStyles('8400')} />
+            </PerkBox>
             <KDABox>
               <KDAInfo>
                 {matchInfo?.kills} / {matchInfo?.deaths} / {matchInfo?.assists}
@@ -96,12 +86,10 @@ export const GameCard = ({ matchInfo }: MatchInfoProps) => {
           </GameCardContent>
           <ItemBox>
             {matchInfo?.items.map((item, index) => {
-              return index !== 3 ? (
-                <ItemImg src={urlItem(item)} key={index} />
-              ) : (
+              return (
                 <ItemImg
-                  className="item3"
-                  src={urlItem(matchInfo?.items[3])}
+                  className={'item' + index}
+                  src={urlItem(item)}
                   key={index}
                 />
               );
@@ -112,3 +100,4 @@ export const GameCard = ({ matchInfo }: MatchInfoProps) => {
     </GameListBox>
   );
 };
+export default GameCard;
