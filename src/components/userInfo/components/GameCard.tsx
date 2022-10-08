@@ -40,29 +40,35 @@ import {
   formatPerkStyles,
 } from '../../utility/Url';
 
-const GameCard = ({ matchInfo }: MatchInfoProps) => {
+const GameCard = (props: MatchInfoProps) => {
   return (
     <GameListBox>
-      {matchInfo?.status === 'live' ? (
-        <AnalysisStatus status={matchInfo?.status}>실시간 분석</AnalysisStatus>
-      ) : matchInfo?.status === 'complete' ? (
-        <AnalysisStatus status={matchInfo?.status}>분석완료</AnalysisStatus>
+      {props.matchInfo.status === 'live' ? (
+        <AnalysisStatus status={props.matchInfo.status}>
+          실시간 분석
+        </AnalysisStatus>
+      ) : props.matchInfo.status === 'complete' ? (
+        <AnalysisStatus status={props.matchInfo.status}>
+          분석완료
+        </AnalysisStatus>
       ) : (
-        <AnalysisStatus status={matchInfo?.status}>미분석</AnalysisStatus>
+        <AnalysisStatus status={props.matchInfo.status}>미분석</AnalysisStatus>
       )}
-      <GameInfoBox win={matchInfo?.win}>
+      <GameInfoBox win={props.matchInfo.win}>
         <GameMainInfo>
-          <Result>{matchInfo?.win ? '승리' : '패배'}</Result>
-          <Date>{matchInfo?.created_at.replaceAll('-', '/').slice(2)}</Date>
+          <Result>{props.matchInfo.win ? '승리' : '패배'}</Result>
+          <Date>
+            {props.matchInfo.created_at.replaceAll('-', '/').slice(2)}
+          </Date>
           <GameMode>
-            {matchInfo?.queue_mode === '5v5 Ranked Solo games'
+            {props.matchInfo.queue_mode === '5v5 Ranked Solo games'
               ? '솔로랭크'
               : '자유랭크'}
           </GameMode>
         </GameMainInfo>
         <GameDetailInfo>
           <GameCardContent>
-            <Profile src={urlChampion(matchInfo?.champion_name)} />
+            <Profile src={urlChampion(props.matchInfo.champion_name)} />
             <SpellBox>
               <Spell src={urlSpell('SummonerDot')} />
               <Spell src={urlSpell('SummonerFlash')} />
@@ -73,19 +79,22 @@ const GameCard = ({ matchInfo }: MatchInfoProps) => {
             </PerkBox>
             <KDABox>
               <KDAInfo>
-                {matchInfo?.kills} / {matchInfo?.deaths} / {matchInfo?.assists}
+                {props.matchInfo.kills} / {props.matchInfo.deaths} /{' '}
+                {props.matchInfo.assists}
               </KDAInfo>
-              <KDARate>KDA {matchInfo?.kda}</KDARate>
+              <KDARate>KDA {props.matchInfo.kda}</KDARate>
             </KDABox>
             <CSNWard>
               <CSInfo>
-                CS {matchInfo?.cs} ({matchInfo?.cs_per_min})
+                CS {props.matchInfo.cs} ({props.matchInfo.cs_per_min})
               </CSInfo>
-              <Ward>제어 와드 {matchInfo?.vision_wards_bought_in_game}</Ward>
+              <Ward>
+                제어 와드 {props.matchInfo.vision_wards_bought_in_game}
+              </Ward>
             </CSNWard>
           </GameCardContent>
           <ItemBox>
-            {matchInfo?.items.map((item, index) => {
+            {props.matchInfo.items.map((item, index) => {
               return (
                 <ItemImg
                   className={'item' + index}

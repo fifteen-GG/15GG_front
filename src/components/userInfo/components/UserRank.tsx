@@ -19,7 +19,7 @@ import {
 
 import { formatRank } from '../../utility/Url';
 
-const UserRank = ({ summonerInfo }: SumInfoProps) => {
+const UserRank = (props: SumInfoProps) => {
   const romanToNum = (s: any) => {
     const romeNum = {
       I: 1,
@@ -48,69 +48,60 @@ const UserRank = ({ summonerInfo }: SumInfoProps) => {
       <RankWrapper className="Solo">
         <RankText>
           <RankSubTitle>솔로랭크</RankSubTitle>
-          {summonerInfo.solo.tier === 'MASTER' ||
-          summonerInfo.solo.tier === 'GRANDMASTER' ||
-          summonerInfo.solo.tier === 'CHALLENGER' ? (
+          {props.summonerInfo.solo.tier === 'MASTER' ||
+          props.summonerInfo.solo.tier === 'GRANDMASTER' ||
+          props.summonerInfo.solo.tier === 'CHALLENGER' ? (
             <RankName>
-              {summonerInfo.solo.tier.charAt(0) +
-                summonerInfo.solo.tier.slice(1).toLowerCase()}
+              {props.summonerInfo.solo.tier.charAt(0) +
+                props.summonerInfo.solo.tier.slice(1).toLowerCase()}
             </RankName>
           ) : (
             <RankName>
-              {summonerInfo.solo.tier.charAt(0) +
-                summonerInfo.solo.tier.slice(1).toLowerCase() +
+              {props.summonerInfo.solo.tier.charAt(0) +
+                props.summonerInfo.solo.tier.slice(1).toLowerCase() +
                 ' ' +
-                romanToNum(summonerInfo.solo.rank)}
+                romanToNum(props.summonerInfo.solo.rank)}
             </RankName>
           )}
           <RankContent>
-            <RankLp>{summonerInfo.solo.lp}LP</RankLp>
+            <RankLp>{props.summonerInfo.solo.lp}LP</RankLp>
             <RankWinrate>
-              {summonerInfo.solo.win_rate}% ({summonerInfo.solo.win}승{' '}
-              {summonerInfo.solo.losses}패)
+              {props.summonerInfo.solo.win_rate}% ({props.summonerInfo.solo.win}
+              승 {props.summonerInfo.solo.losses}패)
             </RankWinrate>
           </RankContent>
         </RankText>
-        <RankImg src={formatRank(summonerInfo.solo.tier.toLowerCase())} />
+        <RankImg src={formatRank(props.summonerInfo.solo.tier.toLowerCase())} />
       </RankWrapper>
       <RankWrapper className="Flex">
         <RankText>
           <RankSubTitle>자유랭크</RankSubTitle>
-          {summonerInfo.flex.tier === 'MASTER' ||
-          summonerInfo.flex.tier === 'GRANDMASTER' ||
-          summonerInfo.flex.tier === 'CHALLENGER' ? (
+          {props.summonerInfo.flex.tier === 'MASTER' ||
+          props.summonerInfo.flex.tier === 'GRANDMASTER' ||
+          props.summonerInfo.flex.tier === 'CHALLENGER' ? (
             <RankName>
-              {summonerInfo.flex.tier.charAt(0) +
-                summonerInfo.flex.tier.slice(1).toLowerCase()}
+              {props.summonerInfo.flex.tier.charAt(0) +
+                props.summonerInfo.flex.tier.slice(1).toLowerCase()}
             </RankName>
           ) : (
             <RankName>
-              {summonerInfo.flex.tier.charAt(0) +
-                summonerInfo.flex.tier.slice(1).toLowerCase() +
+              {props.summonerInfo.flex.tier.charAt(0) +
+                props.summonerInfo.flex.tier.slice(1).toLowerCase() +
                 ' ' +
-                romanToNum(summonerInfo.flex.rank)}
+                romanToNum(props.summonerInfo.flex.rank)}
             </RankName>
           )}
           <RankContent>
-            <RankLp>{summonerInfo.flex.lp}LP</RankLp>
+            <RankLp>{props.summonerInfo.flex.lp}LP</RankLp>
             <RankWinrate>
-              {summonerInfo.flex.win_rate}% ({summonerInfo.flex.win}승{' '}
-              {summonerInfo.flex.losses}패)
+              {props.summonerInfo.flex.win_rate}% ({props.summonerInfo.flex.win}
+              승 {props.summonerInfo.flex.losses}패)
             </RankWinrate>
           </RankContent>
         </RankText>
-        <RankImg src={formatRank(summonerInfo.flex.tier.toLowerCase())} />
+        <RankImg src={formatRank(props.summonerInfo.flex.tier.toLowerCase())} />
       </RankWrapper>
     </UserRankWrapper>
   );
 };
 export default UserRank;
-// {matchInfo.items.map((item, index) => {
-//   return index !== 3 ? (
-//     <ItemImg src={urlItem(item)} key={index} />
-//   ) : (
-//     <ItemImg
-//       className="item3"
-//       src={urlItem(matchInfo.items[3])}
-//       key={index}
-//     />

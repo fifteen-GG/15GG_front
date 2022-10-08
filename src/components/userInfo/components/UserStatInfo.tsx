@@ -64,7 +64,7 @@ const data = {
   ],
 };
 
-export const UserStatInfo = ({ summonerInfo }: SumInfoProps) => {
+export const UserStatInfo = (props: SumInfoProps) => {
   const chartRef = useRef<ChartJS>(null);
   const [chartData, setChartData] = useState<ChartData<'doughnut'>>({
     datasets: [],
@@ -79,8 +79,11 @@ export const UserStatInfo = ({ summonerInfo }: SumInfoProps) => {
       ...data, //
       datasets: data.datasets.map(dataset => ({
         ...dataset,
-        label: summonerInfo.name,
-        data: [summonerInfo.solo.win_rate, 100 - summonerInfo.solo.win_rate],
+        label: props.summonerInfo.name,
+        data: [
+          props.summonerInfo.solo.win_rate,
+          100 - props.summonerInfo.solo.win_rate,
+        ],
       })),
     };
     setChartData(chartData);
@@ -90,7 +93,7 @@ export const UserStatInfo = ({ summonerInfo }: SumInfoProps) => {
     <UserStatInfoWrapper>
       <UserFirstInfo>
         <GraphImg>
-          <GraphText>{summonerInfo.solo.win_rate}%</GraphText>
+          <GraphText>{props.summonerInfo.solo.win_rate}%</GraphText>
           <Chart
             ref={chartRef}
             type="doughnut"
@@ -100,28 +103,28 @@ export const UserStatInfo = ({ summonerInfo }: SumInfoProps) => {
         </GraphImg>
         <UserInfoText>
           <UserInfoTitle>승률</UserInfoTitle>
-          <UserInfoContent>{summonerInfo.solo.win_rate}%</UserInfoContent>
+          <UserInfoContent>{props.summonerInfo.solo.win_rate}%</UserInfoContent>
           <UserInfoSubTitle>
-            {summonerInfo.solo.win}승 {summonerInfo.solo.losses}패
+            {props.summonerInfo.solo.win}승 {props.summonerInfo.solo.losses}패
           </UserInfoSubTitle>
         </UserInfoText>
       </UserFirstInfo>
       <UserInfoText>
         <UserInfoTitle>KDA</UserInfoTitle>
-        <UserInfoContent>{summonerInfo.kda_avg}</UserInfoContent>
+        <UserInfoContent>{props.summonerInfo.kda_avg}</UserInfoContent>
         <UserInfoSubTitle>
-          {summonerInfo.kills_avg}/{summonerInfo.deaths_avg}/
-          {summonerInfo.assists_avg}
+          {props.summonerInfo.kills_avg}/{props.summonerInfo.deaths_avg}/
+          {props.summonerInfo.assists_avg}
         </UserInfoSubTitle>
       </UserInfoText>
       <UserInfoText>
         <UserInfoTitle>선호 포지션</UserInfoTitle>
 
         <UserInfoContent>
-          {Object.keys(summonerInfo.prefer_position)}
+          {Object.keys(props.summonerInfo.prefer_position)}
         </UserInfoContent>
         <UserInfoSubTitle>
-          {Object.values(summonerInfo.prefer_position)}%
+          {Object.values(props.summonerInfo.prefer_position)}%
         </UserInfoSubTitle>
       </UserInfoText>
     </UserStatInfoWrapper>

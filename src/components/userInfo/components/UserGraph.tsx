@@ -100,7 +100,7 @@ export const data = {
   ],
 };
 
-const UserGraph = ({ summonerInfo }: SumInfoProps) => {
+const UserGraph = (props: SumInfoProps) => {
   const chartRef = useRef<ChartJS>(null);
   const [chartData, setChartData] = useState<ChartData<'radar'>>({
     datasets: [],
@@ -128,7 +128,7 @@ const UserGraph = ({ summonerInfo }: SumInfoProps) => {
         <UserGraphText>
           <UserGraphLabel>
             <UserEx></UserEx>
-            <UserText>{summonerInfo.name}</UserText>
+            <UserText>{props.summonerInfo.name}</UserText>
           </UserGraphLabel>
           <AverageGraphLabel>
             <AvgEx></AvgEx>
