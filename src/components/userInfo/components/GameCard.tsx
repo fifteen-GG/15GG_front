@@ -41,19 +41,18 @@ import {
 } from '../../utility/Url';
 
 const GameCard = (props: MatchInfoProps) => {
+  const analysisStatus = (s: string) => {
+    let result = '';
+    if (s === 'live') result = '실시간 분석';
+    else if (s === 'complete') result = '분석완료';
+    else result = '미분석';
+    return result;
+  };
   return (
     <GameListBox>
-      {props.matchInfo.status === 'live' ? (
-        <AnalysisStatus status={props.matchInfo.status}>
-          실시간 분석
-        </AnalysisStatus>
-      ) : props.matchInfo.status === 'complete' ? (
-        <AnalysisStatus status={props.matchInfo.status}>
-          분석완료
-        </AnalysisStatus>
-      ) : (
-        <AnalysisStatus status={props.matchInfo.status}>미분석</AnalysisStatus>
-      )}
+      <AnalysisStatus status={props.matchInfo.status}>
+        {analysisStatus(props.matchInfo.status)}
+      </AnalysisStatus>
       <GameInfoBox win={props.matchInfo.win}>
         <GameMainInfo>
           <Result>{props.matchInfo.win ? '승리' : '패배'}</Result>

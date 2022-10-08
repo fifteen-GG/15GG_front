@@ -13,10 +13,6 @@ import {
   RankImg,
 } from '../styles/userRank.s';
 
-// const formatRank = (data: { summonerRank: string }) => {
-//   return `https://opgg-static.akamaized.net/images/medals_new/${data.summonerRank}.png`;
-// };
-
 import { formatRank } from '../../utility/Url';
 
 const UserRank = (props: SumInfoProps) => {
@@ -38,31 +34,26 @@ const UserRank = (props: SumInfoProps) => {
 
     return result;
   };
-  // const rank = ['MASTER', 'GRANDMASTER', 'CHALLENGER'];
-  // {ranks.map((index:any)=>{
-  //   {ranks[index] === summonerInfo.flex.tier ? return setValidation(true) : setValidation(false)}
-  // })};
-  //인라인으로 표현하기
+  const rankName = (s: string) => {
+    let result = '';
+    if (s === 'MASTER' || s === 'GRANDMASTER' || s === 'CHALLENGER')
+      result =
+        props.summonerInfo.solo.tier.charAt(0) +
+        props.summonerInfo.solo.tier.slice(1).toLowerCase();
+    else
+      result =
+        props.summonerInfo.solo.tier.charAt(0) +
+        props.summonerInfo.solo.tier.slice(1).toLowerCase() +
+        ' ' +
+        romanToNum(props.summonerInfo.solo.rank);
+    return result;
+  };
   return (
     <UserRankWrapper>
       <RankWrapper className="Solo">
         <RankText>
           <RankSubTitle>솔로랭크</RankSubTitle>
-          {props.summonerInfo.solo.tier === 'MASTER' ||
-          props.summonerInfo.solo.tier === 'GRANDMASTER' ||
-          props.summonerInfo.solo.tier === 'CHALLENGER' ? (
-            <RankName>
-              {props.summonerInfo.solo.tier.charAt(0) +
-                props.summonerInfo.solo.tier.slice(1).toLowerCase()}
-            </RankName>
-          ) : (
-            <RankName>
-              {props.summonerInfo.solo.tier.charAt(0) +
-                props.summonerInfo.solo.tier.slice(1).toLowerCase() +
-                ' ' +
-                romanToNum(props.summonerInfo.solo.rank)}
-            </RankName>
-          )}
+          <RankName>{rankName(props.summonerInfo.solo.tier)}</RankName>
           <RankContent>
             <RankLp>{props.summonerInfo.solo.lp}LP</RankLp>
             <RankWinrate>
@@ -76,21 +67,7 @@ const UserRank = (props: SumInfoProps) => {
       <RankWrapper className="Flex">
         <RankText>
           <RankSubTitle>자유랭크</RankSubTitle>
-          {props.summonerInfo.flex.tier === 'MASTER' ||
-          props.summonerInfo.flex.tier === 'GRANDMASTER' ||
-          props.summonerInfo.flex.tier === 'CHALLENGER' ? (
-            <RankName>
-              {props.summonerInfo.flex.tier.charAt(0) +
-                props.summonerInfo.flex.tier.slice(1).toLowerCase()}
-            </RankName>
-          ) : (
-            <RankName>
-              {props.summonerInfo.flex.tier.charAt(0) +
-                props.summonerInfo.flex.tier.slice(1).toLowerCase() +
-                ' ' +
-                romanToNum(props.summonerInfo.flex.rank)}
-            </RankName>
-          )}
+          <RankName>{rankName(props.summonerInfo.flex.tier)}</RankName>
           <RankContent>
             <RankLp>{props.summonerInfo.flex.lp}LP</RankLp>
             <RankWinrate>
