@@ -128,7 +128,8 @@ export const UserInfo = () => {
   const [profiles, setProfiless] = useState<SummonerInfo[]>([]);
   const [page, setPage] = useState(0);
   const [loading, setLoading] = useState(false);
-  const { state } = useLocation();
+  const params = new URLSearchParams(window.location.search);
+  let state = params.get('user');
   console.log(state);
   const getData = async () => {
     try {
