@@ -11,6 +11,7 @@ import GameCard from './components/GameCard';
 import UserId from './components/UserId';
 import PreferChampion from './components/PreferChampion';
 import Loading from './components/Loading';
+import ErrorPage from './components/ErrorPage';
 
 const UserInfoWrapper = styled.div``;
 const UserStatWrapper = styled.div``;
@@ -21,6 +22,7 @@ export const UserInfo = () => {
   const [profiles, setProfiless] = useState<SummonerInfo[]>([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [httpStatusCode, setHttpStatusCode] = useState();
   const params = new URLSearchParams(window.location.search);
   let state = params.get('user');
   console.log(state);
@@ -41,8 +43,11 @@ export const UserInfo = () => {
         setProfiless([value.data]);
       }
       setLoading(false); // api 호출 완료 됐을 때 false로 변경하려 로딩화면 숨김처리
-    } catch (e) {
+    } catch (e: any) {
       console.log(e); //이해필요
+      setHttpStatusCode(e.response.status);
+      console.log(e.response.status);
+      //이해필요
     }
   };
   console.log(state);
@@ -60,6 +65,7 @@ export const UserInfo = () => {
       console.log(e); //이해필요
     }
   };
+  if (httpStatusCode === 404) return <ErrorPage />;
   return (
     <UserInfoWrapper>
       {loading ? <Loading /> : null}
@@ -85,7 +91,11 @@ export const UserInfo = () => {
           hasMore={true}
           loader={
             <h4
-              style={{ color: 'white', textAlign: 'center', fontSize: '14px' }}
+              style={{
+                color: 'white',
+                textAlign: 'center',
+                fontSize: '14px',
+              }}
             >
               데이터 불러오는 중...
             </h4>
