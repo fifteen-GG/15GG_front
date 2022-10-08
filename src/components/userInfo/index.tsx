@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { MatchInfoList, SummonerInfo } from '../../type';
+import { MatchInfoList, SummonerInfo } from '../type';
 import styled from 'styled-components';
 import axios from 'axios';
 //import components
-import UserRank from './UserRank';
-import UserGraph from './UserGraph';
-import UserStatInfo from './UserStatInfo';
-import GameCard from './GameCard';
-import UserId from './UserId';
+import UserRank from './components/UserRank';
+import UserGraph from './components/UserGraph';
+import UserStatInfo from './components/UserStatInfo';
+import GameCard from './components/GameCard';
+import UserId from './components/UserId';
 
 const UserInfoWrapper = styled.div``;
 const UserStatWrapper = styled.div``;
