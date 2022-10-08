@@ -9,6 +9,7 @@ import UserGraph from './components/UserGraph';
 import UserStatInfo from './components/UserStatInfo';
 import GameCard from './components/GameCard';
 import UserId from './components/UserId';
+import PreferChampion from './components/PreferChampion';
 import Loading from './components/Loading';
 
 const UserInfoWrapper = styled.div``;
@@ -75,6 +76,7 @@ export const UserInfo = () => {
         {profiles.map((profile: SummonerInfo, index) => (
           <UserGraph summonerInfo={profile} key={index} />
         ))}
+        {loading ? null : <PreferChampion />}
       </UserStatWrapper>
       <UserGameListWrapper>
         <InfiniteScroll
