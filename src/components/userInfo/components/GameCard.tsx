@@ -69,12 +69,12 @@ const GameCard = (props: MatchInfoProps) => {
           <GameCardContent>
             <Profile src={urlChampion(props.matchInfo.champion_name)} />
             <SpellBox>
-              <Spell src={urlSpell('SummonerDot')} />
-              <Spell src={urlSpell('SummonerFlash')} />
+              <Spell src={urlSpell(props.matchInfo.spells.spell1)} />
+              <Spell src={urlSpell(props.matchInfo.spells.spell2)} />
             </SpellBox>
             <PerkBox>
-              <Perk src={formatPerks('8229')} />
-              <Perk src={formatPerkStyles('8400')} />
+              <Perk src={formatPerks(props.matchInfo.perks.perk)} />
+              <Perk src={formatPerkStyles(props.matchInfo.perks.perkStyle)} />
             </PerkBox>
             <KDABox>
               <KDAInfo>

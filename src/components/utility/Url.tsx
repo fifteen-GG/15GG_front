@@ -23,10 +23,10 @@ export const formatRank = (summonerRank: string) => {
   return OPGG_API_ROOT + `/medals_new/${summonerRank}.png`;
 };
 
-export const formatPerks = (perk: string) => {
+export const formatPerks = (perk: number) => {
   return OPGG_API_ROOT + `/lol/perk/${perk}.png`; //8008
 };
 
-export const formatPerkStyles = (perkStyle: string) => {
+export const formatPerkStyles = (perkStyle: number) => {
   return OPGG_API_ROOT + `/lol/perkStyle/${perkStyle}.png`; //8100
 };

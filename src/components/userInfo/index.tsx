@@ -30,6 +30,14 @@ const matchData: MatchInfoList[] = [
     vision_wards_bought_in_game: 0,
     champion_name: 'Sona',
     items: ['3133', '6694', '3089', '3340', '3047', '3086', '3083'],
+    spells: {
+      spell1: 'SummonerHeal',
+      spell2: 'SummonerFlash',
+    },
+    perks: {
+      perk: 8005,
+      perkStyle: 8300,
+    },
   },
   {
     status: 'complete',
@@ -45,6 +53,14 @@ const matchData: MatchInfoList[] = [
     vision_wards_bought_in_game: 0,
     champion_name: 'Jax',
     items: ['3033', '3031', '3036', '3340', '3035', '3068', '3040'],
+    spells: {
+      spell1: 'SummonerHeal',
+      spell2: 'SummonerFlash',
+    },
+    perks: {
+      perk: 8005,
+      perkStyle: 8300,
+    },
   },
   {
     status: 'incomplete',
@@ -60,6 +76,14 @@ const matchData: MatchInfoList[] = [
     vision_wards_bought_in_game: 0,
     champion_name: `Katarina`,
     items: ['3133', '6694', '3089', '3340', '3047', '3086', '3083'],
+    spells: {
+      spell1: 'SummonerHeal',
+      spell2: 'SummonerFlash',
+    },
+    perks: {
+      perk: 8005,
+      perkStyle: 8300,
+    },
   },
   {
     status: 'complete',
@@ -75,6 +99,14 @@ const matchData: MatchInfoList[] = [
     vision_wards_bought_in_game: 0,
     champion_name: 'Blitzcrank',
     items: ['3033', '3031', '3036', '3340', '3035', '3068', '3040'],
+    spells: {
+      spell1: 'SummonerHeal',
+      spell2: 'SummonerFlash',
+    },
+    perks: {
+      perk: 8005,
+      perkStyle: 8300,
+    },
   },
   {
     status: 'incomplete',
@@ -90,38 +122,46 @@ const matchData: MatchInfoList[] = [
     cs_per_min: 9.89,
     vision_wards_bought_in_game: 0,
     items: ['3133', '6694', '3089', '3340', '3047', '3086', '3083'],
-  },
-];
-const sumData: SummonerInfo[] = [
-  {
-    name: '브랜드',
-    level: 363,
-    profileIconId: '4027',
-    solo: {
-      tier: 'GRANDMASTER',
-      rank: 'II',
-      lp: 89,
-      win_rate: 52,
-      win: 164,
-      losses: 154,
+    spells: {
+      spell1: 'SummonerHeal',
+      spell2: 'SummonerFlash',
     },
-    flex: {
-      tier: 'PLATINUM',
-      rank: 'II',
-      lp: 0,
-      win_rate: 48,
-      win: 156,
-      losses: 165,
-    },
-    kda_avg: 2.15,
-    kills_avg: 8.5,
-    deaths_avg: 7.2,
-    assists_avg: 11.4,
-    prefer_position: {
-      ADC: 87,
+    perks: {
+      perk: 8005,
+      perkStyle: 8300,
     },
   },
 ];
+// const sumData: SummonerInfo[] = [
+//   {
+//     name: '브랜드',
+//     level: 363,
+//     profileIconId: '4027',
+//     solo: {
+//       tier: 'GRANDMASTER',
+//       rank: 'II',
+//       lp: 89,
+//       win_rate: 52,
+//       win: 164,
+//       losses: 154,
+//     },
+//     flex: {
+//       tier: 'PLATINUM',
+//       rank: 'II',
+//       lp: 0,
+//       win_rate: 48,
+//       win: 156,
+//       losses: 165,
+//     },
+//     kda_avg: 2.15,
+//     kills_avg: 8.5,
+//     deaths_avg: 7.2,
+//     assists_avg: 11.4,
+//     prefer_position: {
+//       ADC: 87,
+//     },
+//   },
+// ];
 
 export const UserInfo = () => {
   const [games, setGames] = useState<MatchInfoList[]>([...matchData]);

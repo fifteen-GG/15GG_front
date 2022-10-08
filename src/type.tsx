@@ -20,6 +20,14 @@ export interface MatchInfoList {
   cs_per_min: number;
   vision_wards_bought_in_game: number;
   items: string[];
+  spells: {
+    spell1: string;
+    spell2: string;
+  };
+  perks: {
+    perk: number;
+    perkStyle: number;
+  };
 }
 export interface SummonerInfo {
   name: string;
