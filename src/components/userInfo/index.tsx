@@ -126,7 +126,7 @@ const sumData: SummonerInfo[] = [
 export const UserInfo = () => {
   const [games, setGames] = useState<MatchInfoList[]>([...matchData]);
   const [profiles, setProfiless] = useState<SummonerInfo[]>([]);
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const params = new URLSearchParams(window.location.search);
   let state = params.get('user');

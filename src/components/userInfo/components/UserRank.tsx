@@ -16,36 +16,32 @@ import {
 import { formatRank } from '../../utility/Url';
 
 const UserRank = (props: SumInfoProps) => {
-  const romanToNum = (s: any) => {
-    const romeNum = {
-      I: 1,
-      V: 5,
-    };
-    let result = 0;
-    const romeArray = s.split('');
-    const numArray = romeArray.map((rome: any) => rome in romeNum);
-    for (let i = 0; i < numArray.length; i++) {
-      if (numArray[i] < numArray[i + 1]) {
-        result -= numArray[i];
-      } else {
-        result += numArray[i];
-      }
-    }
-
-    return result;
-  };
   const rankName = (s: string) => {
+    const name = s.charAt(0) + s.slice(1).toLowerCase();
+    return name;
+  };
+  const rankNumber = (s: string) => {
+    const romanToNum = (s: any) => {
+      const romeNum = {
+        I: 1,
+        V: 5,
+      };
+      let number = 0;
+      const romeArray = s.split('');
+      const numArray = romeArray.map((rome: any) => rome in romeNum);
+      for (let i = 0; i < numArray.length; i++) {
+        if (numArray[i] < numArray[i + 1]) {
+          number -= numArray[i];
+        } else {
+          number += numArray[i];
+        }
+      }
+      return number;
+    };
     let result = '';
     if (s === 'MASTER' || s === 'GRANDMASTER' || s === 'CHALLENGER')
-      result =
-        props.summonerInfo.solo.tier.charAt(0) +
-        props.summonerInfo.solo.tier.slice(1).toLowerCase();
-    else
-      result =
-        props.summonerInfo.solo.tier.charAt(0) +
-        props.summonerInfo.solo.tier.slice(1).toLowerCase() +
-        ' ' +
-        romanToNum(props.summonerInfo.solo.rank);
+      result = '';
+    else result = ' ' + romanToNum(props.summonerInfo.solo.rank);
     return result;
   };
   return (
@@ -53,7 +49,10 @@ const UserRank = (props: SumInfoProps) => {
       <RankWrapper className="Solo">
         <RankText>
           <RankSubTitle>솔로랭크</RankSubTitle>
-          <RankName>{rankName(props.summonerInfo.solo.tier)}</RankName>
+          <RankName>
+            {rankName(props.summonerInfo.solo.tier) +
+              rankNumber(props.summonerInfo.solo.tier)}
+          </RankName>
           <RankContent>
             <RankLp>{props.summonerInfo.solo.lp}LP</RankLp>
             <RankWinrate>
@@ -67,7 +66,10 @@ const UserRank = (props: SumInfoProps) => {
       <RankWrapper className="Flex">
         <RankText>
           <RankSubTitle>자유랭크</RankSubTitle>
-          <RankName>{rankName(props.summonerInfo.flex.tier)}</RankName>
+          <RankName>
+            {rankName(props.summonerInfo.flex.tier) +
+              rankNumber(props.summonerInfo.flex.tier)}
+          </RankName>
           <RankContent>
             <RankLp>{props.summonerInfo.flex.lp}LP</RankLp>
             <RankWinrate>
