@@ -1,4 +1,4 @@
-import { SumInfoProps } from '../../type';
+import { SumInfoProps } from '../../../type';
 import React from 'react';
 import {
   UserIdWrapper,

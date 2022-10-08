@@ -1,4 +1,4 @@
-import { MatchInfoProps } from '../../type';
+import { MatchInfoProps } from '../../../type';
 // import { url } from 'inspector';
 import React from 'react';
 import {

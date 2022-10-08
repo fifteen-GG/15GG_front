@@ -24,7 +24,7 @@ import {
 import * as Palette from '../../../assets/colorPalette';
 import { Chart, Doughnut } from 'react-chartjs-2';
 import { ArcElement } from 'chart.js';
-import { SumInfoProps } from '../../type';
+import { SumInfoProps } from '../../../type';
 // Chart.register(ArcElement);
 
 ChartJS.register(

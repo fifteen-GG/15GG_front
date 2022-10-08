@@ -12,7 +12,7 @@ import {
 } from 'chart.js';
 import { Chart, Radar } from 'react-chartjs-2';
 import { faker } from '@faker-js/faker';
-import { SumInfoProps } from '../../type';
+import { SumInfoProps } from '../../../type';
 
 import {
   AverageGraphLabel,

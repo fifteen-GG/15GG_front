@@ -1,5 +1,5 @@
 import React from 'react';
-import { SumInfoProps } from '../../type';
+import { SumInfoProps } from '../../../type';
 
 import {
   UserRankWrapper,

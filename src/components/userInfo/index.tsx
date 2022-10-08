@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { MatchInfoList, SummonerInfo } from '../type';
+import { MatchInfoList, SummonerInfo } from '../../type';
 import styled from 'styled-components';
 import axios from 'axios';
 //import components
