@@ -25,7 +25,9 @@ export const UserInfo = () => {
   console.log(state);
   useEffect(() => {
     getData();
-    fetchData();
+    setTimeout(() => {
+      fetchData();
+    }, 3000);
   }, []);
   const getData = async () => {
     setLoading(true);
@@ -49,12 +51,10 @@ export const UserInfo = () => {
       const match = await axios.get(
         `${process.env.REACT_APP_GG_API_ROOT}riot/match/${state}?page=${page}`,
       );
-      setTimeout(() => {
-        console.log(match.data);
-        const fetchedGames: MatchInfoList[] = [...games, ...match.data];
-        setGames(fetchedGames);
-        setPage(page + 1);
-      }, 3000);
+      console.log(match.data);
+      const fetchedGames: MatchInfoList[] = [...games, ...match.data];
+      setGames(fetchedGames);
+      setPage(page + 1);
     } catch (e) {
       console.log(e); //이해필요
     }

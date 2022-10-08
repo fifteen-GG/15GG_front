@@ -84,7 +84,7 @@ export const data = {
   labels,
   datasets: [
     {
-      label: '정잭영',
+      label: '',
       data: labels.map(() => faker.datatype.number({ min: 0, max: 10 })),
       backgroundColor: 'rgba(59, 68, 78, 0.2)',
       borderColor: '#318eef',
