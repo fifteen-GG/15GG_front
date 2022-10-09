@@ -110,7 +110,13 @@ const TimelineBarGraph = () => {
   return (
     <Graph>
       <BarWrapper>
-        <Chart type="bar" data={data} options={options} height="5px" />
+        <Chart
+          type="bar"
+          ref={chartRef}
+          data={chartData}
+          options={options}
+          height="5px"
+        />
       </BarWrapper>
       <RateWrapper>
         <WinningRate>80.4%</WinningRate>

@@ -6,6 +6,9 @@ import TimelineBarGraph from './components/TimelineBarGraph';
 import GameSlider from './components/GameSlider';
 import styled from 'styled-components';
 
+import { useState, useEffect } from 'react';
+import { useSocket, SocketStatus } from './useSocket';
+
 const GameAnalysisWrapper = styled.div`
   display: flex;
   width: 100%;
@@ -23,10 +26,40 @@ const TimeInfo = styled.div`
 `;
 
 export const GameAnalysis = () => {
+  const [gameData, setGameData] = useState(Object);
+  const [time, setTime] = useState(0);
+  const [parse, setParse] = useState(0);
+  const { responseMessage } = useSocket(state => {
+    if (state === SocketStatus.onNewChatReceived) {
+      setParse(data => data + 1);
+    } else if (state === SocketStatus.onConnectionFailed) {
+      console.error('onConnectionFailed');
+    } else if (state === SocketStatus.onConnectionOpened) {
+      console.log('onConnectionOpened');
+    }
+  });
+
+  useEffect(() => {
+    if (parse) {
+      let data = JSON.parse(responseMessage);
+      setGameData(data);
+    }
+  }, [parse, responseMessage]);
+
+  useEffect(() => {
+    if (parse) setTime(gameData.timestamp);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [gameData]);
+
   return (
     <GameAnalysisWrapper>
       <GameInfo />
-      <TimeInfo>경과시간 22:31</TimeInfo>
+      <TimeInfo>
+        경과시간 {Math.trunc(time / 60)}:
+        {Math.trunc(time % 60) < 10
+          ? '0' + Math.trunc(time % 60)
+          : Math.trunc(time % 60)}
+      </TimeInfo>
       <TimelineBarGraph />
       <TimelineGraph />
       <GameSlider />
