@@ -17,7 +17,7 @@ import {
   ItemWrapper,
 } from '../styles/summoners.s';
 
-import { urlChampion, urlSpell, urlItem } from '../../utility/Url';
+import { urlChampion, urlSpell, urlItem } from '../../utils/Url';
 import { TeamInfo } from '../styles/teamInfoContainer.s';
 import { useState } from 'react';
 

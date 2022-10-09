@@ -38,7 +38,7 @@ import {
   urlSpell,
   formatPerks,
   formatPerkStyles,
-} from '../../utility/Url';
+} from '../../utils/Url';
 
 const GameCard = (props: MatchInfoProps) => {
   const analysisStatus = (s: string) => {

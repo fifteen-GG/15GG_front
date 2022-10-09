@@ -9,6 +9,7 @@ import {
   ErrorText,
   ErrorImg,
 } from '../styles/errorPage.s';
+import Error from '../../../assets/errorimage.png';
 
 const ErrorPage = () => {
   const params = new URLSearchParams(window.location.search);
@@ -23,7 +24,7 @@ const ErrorPage = () => {
         </SummonerNameWrapper>
       </SummonerWrapper>
       <ErrorTextWrapper>
-        <ErrorImg src="https://mblogthumb-phinf.pstatic.net/MjAxODA1MTdfMjg5/MDAxNTI2NTQ3NTYzMDIz.awWFb8WW9qSk85krQsWf7GXGOShPNS5ilZyVOFyrbIUg.07pMLGfgYvN_IQPPn9JLBRRvVE8yMY_xiN4LzuIfElEg.PNG.heekyun93/4c7a1d3932a211fa.png?type=w800" />
+        <ErrorImg src={Error} />
         <ErrorText>존재하지 않는 소환사입니다 다시 검색해주세요:(</ErrorText>
       </ErrorTextWrapper>
     </ErrorWrapper>

@@ -5,7 +5,7 @@ import {
   LiveGameUserChampion,
   LiveGameUserName,
 } from '../styles/liveuser.s';
-import { urlChampion } from '../../utility/Url';
+import { urlChampion } from '../../utils/Url';
 
 export const LiveUser = (props: {
   champion: string;

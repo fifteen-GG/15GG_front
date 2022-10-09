@@ -8,7 +8,7 @@ import {
   SubName,
 } from '../styles/userId.s';
 
-import { urlProfileIcons } from '../../utility/Url';
+import { urlProfileIcons } from '../../utils/Url';
 
 const UserId = (props: SumInfoProps) => {
   return (

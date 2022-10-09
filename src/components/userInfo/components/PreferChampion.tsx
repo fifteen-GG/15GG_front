@@ -12,7 +12,7 @@ import {
   ChampionInfoTitle,
   PreferChampionMsg,
 } from '../styles/preferChampion.s';
-import { urlChampion } from '../../utility/Url';
+import { urlChampion } from '../../utils/Url';
 
 const PreferChampion = () => {
   return (
