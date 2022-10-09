@@ -4,7 +4,9 @@ import {
   ChampionImg,
   ChampionLevel,
   SpellWrapper,
+  PerksWrapper,
   Spell,
+  Perk,
   UserInfoWrapper,
   SummonerInfo,
   SummonerName,
@@ -17,7 +19,13 @@ import {
   ItemWrapper,
 } from '../styles/summoners.s';
 
-import { urlChampion, urlSpell, urlItem } from '../../utils/Url';
+import {
+  urlChampion,
+  urlSpell,
+  urlItem,
+  formatPerks,
+  formatPerkStyles,
+} from '../../utils/Url';
 import { TeamInfo } from '../styles/teamInfoContainer.s';
 import { useState } from 'react';
 
@@ -42,6 +50,8 @@ export interface summonerProps {
   champion: string;
   championSpell1: string;
   championSpell2: string;
+  perks: number;
+  perkStyles: number;
   items: string[];
 }
 
@@ -55,6 +65,10 @@ const Summoner = ({ teamInfo }: TeamInfoProps) => {
           <Spell src={urlSpell(teamInfo.championSpell1)} />
           <Spell src={urlSpell(teamInfo.championSpell2)} />
         </SpellWrapper>
+        <PerksWrapper>
+          <Perk src={formatPerks(teamInfo.perks)} />
+          <Perk src={formatPerkStyles(teamInfo.perkStyles)} />
+        </PerksWrapper>
         <UserInfoWrapper>
           <SummonerInfo>
             <SummonerName>정잭영</SummonerName>
