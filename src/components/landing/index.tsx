@@ -4,21 +4,33 @@ import { LiveGame } from './components/LiveGame';
 import styled from 'styled-components';
 import Bg from '../../assets/background2.png';
 import logo from '../../assets/gg_logo_temp.svg';
+import Bg_Video from '../../assets/gg_bg_worlds_22.mp4';
 
 const LandingWrapper = styled.div`
   min-height: 100vh;
   display: flex;
   justify-content: center;
   background-position: center;
-  background-image: url(${Bg});
   background-size: cover;
 `;
 
+const BackgroundVideoWrapper = styled.video`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+`;
+
 const TitleWrapper = styled.div`
+  position: absolute;
   width: 314px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 10;
 `;
 
 const Logo = styled.img`
@@ -70,6 +82,7 @@ export const Landing = () => {
 
   return (
     <LandingWrapper>
+      <BackgroundVideoWrapper src={Bg_Video} loop autoPlay muted />
       <TitleWrapper>
         <Logo src={logo} />
         <SearchBox />
@@ -78,7 +91,6 @@ export const Landing = () => {
             <GamesTitle>실시간 분석 중</GamesTitle>
             <CodeButton onClick={routeNewCode}>코드 생성</CodeButton>
           </GamesTitleWrapper>
-          {/* todo margintop 12, bottom 64 */}
           <LiveGame />
           <LiveGame />
           <LiveGame />
