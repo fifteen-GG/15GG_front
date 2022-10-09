@@ -88,3 +88,44 @@ export const rankName = (s: SumInfoProps, ranktype: string) => {
   console.log(result);
   return result;
 };
+
+export const statInfo = (s: SumInfoProps) => {
+  type result = {
+    win_rate: number;
+    win: number;
+    losses: number;
+    kda_avg: number;
+    kills_avg: number;
+    deaths_avg: number;
+    assists_avg: number;
+    prefer_position: string[];
+    position_rate: number[];
+  };
+  let info: result = {
+    win_rate: 0,
+    win: 0,
+    losses: 0,
+    kda_avg: 0,
+    kills_avg: 0,
+    deaths_avg: 0,
+    assists_avg: 0,
+    prefer_position: ['없음'],
+    position_rate: [0],
+  };
+  if (!s.summonerInfo.kda_avg) {
+  } else {
+    info.win_rate = s.summonerInfo.solo.win_rate;
+    info.win = s.summonerInfo.solo.win;
+    info.losses = s.summonerInfo.solo.losses;
+    info.kda_avg = s.summonerInfo.kda_avg;
+    info.kills_avg = s.summonerInfo.kills_avg;
+    info.deaths_avg = s.summonerInfo.deaths_avg;
+    info.assists_avg = s.summonerInfo.assists_avg;
+  }
+  if (!s.summonerInfo.prefer_position) {
+  } else {
+    info.prefer_position = Object.keys(s.summonerInfo.prefer_position);
+    info.position_rate = Object.values(s.summonerInfo.prefer_position);
+  }
+  return info;
+};

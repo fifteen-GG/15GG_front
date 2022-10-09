@@ -11,7 +11,6 @@ import {
   UserInfoContent,
   UserInfoSubTitle,
 } from '../styles/userStatInfo.s';
-import { faker } from '@faker-js/faker';
 import {
   Chart as ChartJS,
   RadialLinearScale,
@@ -22,12 +21,10 @@ import {
   Legend,
 } from 'chart.js';
 import * as Palette from '../../../assets/colorPalette';
-import { Chart, Doughnut } from 'react-chartjs-2';
+import { Chart } from 'react-chartjs-2';
 import { ArcElement } from 'chart.js';
 import { SumInfoProps } from '../../../type';
-import { Result } from '../styles/gameCard.s';
-// Chart.register(ArcElement);
-
+import { statInfo } from '../userInfo';
 ChartJS.register(
   ArcElement,
   RadialLinearScale,
@@ -87,7 +84,7 @@ export const UserStatInfo = (props: SumInfoProps) => {
       datasets: data.datasets.map(dataset => ({
         ...dataset,
         label: props.summonerInfo.name,
-        data: [dataProof(props), 100 - dataProof(props)],
+        data: [statInfo(props).win_rate, 100 - statInfo(props).win_rate],
       })),
     };
     setChartData(chartData);
@@ -97,7 +94,7 @@ export const UserStatInfo = (props: SumInfoProps) => {
     <UserStatInfoWrapper>
       <UserFirstInfo>
         <GraphImg>
-          <GraphText>{dataProof(props)}%</GraphText>
+          <GraphText>{statInfo(props).win_rate}%</GraphText>
           <Chart
             ref={chartRef}
             type="doughnut"
@@ -107,46 +104,25 @@ export const UserStatInfo = (props: SumInfoProps) => {
         </GraphImg>
         <UserInfoText>
           <UserInfoTitle>승률</UserInfoTitle>
-          <UserInfoContent>{dataProof(props)}%</UserInfoContent>
+          <UserInfoContent>{statInfo(props).win_rate}%</UserInfoContent>
           <UserInfoSubTitle>
-            {!props.summonerInfo.solo ? 0 : props.summonerInfo.solo.win}승{' '}
-            {!props.summonerInfo.solo ? 0 : props.summonerInfo.solo.losses}패
+            {statInfo(props).win}승 {statInfo(props).losses}패
           </UserInfoSubTitle>
         </UserInfoText>
       </UserFirstInfo>
-      {!props.summonerInfo.kda_avg ? (
-        <UserInfoText>
-          <UserInfoTitle>KDA</UserInfoTitle>
-          <UserInfoContent>0</UserInfoContent>
-          <UserInfoSubTitle>0/0/0</UserInfoSubTitle>
-        </UserInfoText>
-      ) : (
-        <UserInfoText>
-          <UserInfoTitle>KDA</UserInfoTitle>
-          <UserInfoContent>{props.summonerInfo.kda_avg}</UserInfoContent>
-          <UserInfoSubTitle>
-            {props.summonerInfo.kills_avg}/{props.summonerInfo.deaths_avg}/
-            {props.summonerInfo.assists_avg}
-          </UserInfoSubTitle>
-        </UserInfoText>
-      )}
-      {!props.summonerInfo.prefer_position ? (
-        <UserInfoText>
-          <UserInfoTitle>선호 포지션</UserInfoTitle>
-          <UserInfoContent>없음</UserInfoContent>
-          <UserInfoSubTitle>0%</UserInfoSubTitle>
-        </UserInfoText>
-      ) : (
-        <UserInfoText>
-          <UserInfoTitle>선호 포지션</UserInfoTitle>
-          <UserInfoContent>
-            {Object.keys(props.summonerInfo.prefer_position)}
-          </UserInfoContent>
-          <UserInfoSubTitle>
-            {Object.values(props.summonerInfo.prefer_position)}%
-          </UserInfoSubTitle>
-        </UserInfoText>
-      )}
+      <UserInfoText>
+        <UserInfoTitle>KDA</UserInfoTitle>
+        <UserInfoContent>{statInfo(props).kda_avg}</UserInfoContent>
+        <UserInfoSubTitle>
+          {statInfo(props).kills_avg}/{statInfo(props).deaths_avg}/
+          {statInfo(props).assists_avg}
+        </UserInfoSubTitle>
+      </UserInfoText>
+      <UserInfoText>
+        <UserInfoTitle>선호 포지션</UserInfoTitle>
+        <UserInfoContent>{statInfo(props).prefer_position}</UserInfoContent>
+        <UserInfoSubTitle>{statInfo(props).position_rate}%</UserInfoSubTitle>
+      </UserInfoText>
     </UserStatInfoWrapper>
   );
 };

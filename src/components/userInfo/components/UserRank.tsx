@@ -14,7 +14,7 @@ import {
 } from '../styles/userRank.s';
 
 import { formatRank } from '../../utils/Url';
-import { rankInfo, rankName } from '../userRank';
+import { rankInfo, rankName } from '../userInfo';
 
 const UserRank = (props: SumInfoProps) => {
   return (
