@@ -12,7 +12,7 @@ import {
 } from 'chart.js';
 import { Chart, Radar } from 'react-chartjs-2';
 import { faker } from '@faker-js/faker';
-import { SumInfoProps } from '../../../type';
+import { SummonerInfo } from '../../types/summonerInfo';
 
 import {
   AverageGraphLabel,
@@ -100,7 +100,7 @@ export const data = {
   ],
 };
 
-const UserGraph = (props: SumInfoProps) => {
+const UserGraph = (props: { summonerInfo: SummonerInfo }) => {
   const chartRef = useRef<ChartJS>(null);
   const [chartData, setChartData] = useState<ChartData<'radar'>>({
     datasets: [],

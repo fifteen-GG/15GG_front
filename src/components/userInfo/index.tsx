@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { MatchInfoList, SummonerInfo } from '../../type';
+import { MatchInfo } from '../types/matchInfo';
+import { SummonerInfo } from '../types/summonerInfo';
 import styled from 'styled-components';
 import axios from 'axios';
 //import components
@@ -18,7 +19,7 @@ const UserStatWrapper = styled.div``;
 const UserGameListWrapper = styled.div``;
 
 export const UserInfo = () => {
-  const [games, setGames] = useState<MatchInfoList[]>([]);
+  const [games, setGames] = useState<MatchInfo[]>([]);
   const [profiles, setProfiless] = useState<SummonerInfo[]>([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -42,7 +43,7 @@ export const UserInfo = () => {
       if (value.status === 200) {
         setProfiless([value.data]);
       }
-      setLoading(false); // api 호출 완료 됐을 때 false로 변경하려 로딩화면 숨김처리
+      if (value.data) setLoading(false); // api 호출 완료 됐을 때 false로 변경하려 로딩화면 숨김처리
     } catch (e: any) {
       console.log(e); //이해필요
       setHttpStatusCode(e.response.status);
@@ -58,7 +59,7 @@ export const UserInfo = () => {
         `${process.env.REACT_APP_GG_API_ROOT}riot/match/${state}?page=${page}`,
       );
       console.log(match.data);
-      const fetchedGames: MatchInfoList[] = [...games, ...match.data];
+      const fetchedGames: MatchInfo[] = [...games, ...match.data];
       setGames(fetchedGames);
       setPage(page + 1);
     } catch (e) {
@@ -101,7 +102,7 @@ export const UserInfo = () => {
             </h4>
           }
         >
-          {games.map((game: MatchInfoList, index) => {
+          {games.map((game: MatchInfo, index) => {
             return <GameCard matchInfo={game} key={index}></GameCard>;
           })}
         </InfiniteScroll>

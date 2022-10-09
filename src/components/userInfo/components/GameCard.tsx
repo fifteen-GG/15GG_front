@@ -1,4 +1,4 @@
-import { MatchInfoProps } from '../../../type';
+import { MatchInfo } from '../../types/matchInfo';
 // import { url } from 'inspector';
 import React from 'react';
 import {
@@ -26,12 +26,7 @@ import {
   // ItemRow,
   ItemImg,
 } from '../styles/gameCard.s';
-// const formatChampion = (data: { championName: string }) => {
-//   return `https://opgg-static.akamaized.net/images/lol/champion/${data.championName}.png`;
-// };
-// const formatItem = (data: { championItem: string }) => {
-//   return `https://opgg-static.akamaized.net/images/lol/item/${data.championItem}.png`;
-// };
+
 import {
   urlChampion,
   urlItem,
@@ -40,7 +35,7 @@ import {
   formatPerkStyles,
 } from '../../utils/Url';
 
-const GameCard = (props: MatchInfoProps) => {
+const GameCard = (props: { matchInfo: MatchInfo }) => {
   const analysisStatus = (s: string) => {
     let result = '';
     if (s === 'live') result = '실시간 분석';
@@ -93,7 +88,7 @@ const GameCard = (props: MatchInfoProps) => {
             </CSNWard>
           </GameCardContent>
           <ItemBox>
-            {props.matchInfo.items.map((item, index) => {
+            {props.matchInfo.items.map((item: string, index: number) => {
               return (
                 <ItemImg
                   className={'item' + index}

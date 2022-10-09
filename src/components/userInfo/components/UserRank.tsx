@@ -1,5 +1,5 @@
 import React from 'react';
-import { SumInfoProps } from '../../../type';
+import { SummonerInfo } from '../../types/summonerInfo';
 import rankimg from '../../../assets/gg_tier_unranked_4x.png';
 import {
   UserRankWrapper,
@@ -16,18 +16,19 @@ import {
 import { formatRank } from '../../utils/Url';
 import { rankInfo, rankName } from '../userInfo';
 
-const UserRank = (props: SumInfoProps) => {
+const UserRank = (props: { summonerInfo: SummonerInfo }) => {
   return (
     <UserRankWrapper>
       <RankWrapper className="Solo">
         <RankText>
           <RankSubTitle>솔로랭크</RankSubTitle>
-          <RankName>{rankName(props, 'solo')}</RankName>
+          <RankName>{rankName(props.summonerInfo, 'solo')}</RankName>
           <RankContent>
-            <RankLp>{rankInfo(props, 'solo').lp}LP</RankLp>
+            <RankLp>{rankInfo(props.summonerInfo, 'solo').lp}LP</RankLp>
             <RankWinrate>
-              {rankInfo(props, 'solo').win_rate}% ({rankInfo(props, 'solo').win}
-              승 {rankInfo(props, 'solo').losses}패)
+              {rankInfo(props.summonerInfo, 'solo').win_rate}% (
+              {rankInfo(props.summonerInfo, 'solo').win}승{' '}
+              {rankInfo(props.summonerInfo, 'solo').losses}패)
             </RankWinrate>
           </RankContent>
         </RankText>
@@ -42,12 +43,13 @@ const UserRank = (props: SumInfoProps) => {
       <RankWrapper className="Flex">
         <RankText>
           <RankSubTitle>자유랭크</RankSubTitle>
-          <RankName>{rankName(props, 'flex')}</RankName>
+          <RankName>{rankName(props.summonerInfo, 'flex')}</RankName>
           <RankContent>
-            <RankLp>{rankInfo(props, 'flex').lp}LP</RankLp>
+            <RankLp>{rankInfo(props.summonerInfo, 'flex').lp}LP</RankLp>
             <RankWinrate>
-              {rankInfo(props, 'flex').win_rate}% ({rankInfo(props, 'flex').win}
-              승 {rankInfo(props, 'flex').losses}패)
+              {rankInfo(props.summonerInfo, 'flex').win_rate}% (
+              {rankInfo(props.summonerInfo, 'flex').win}승{' '}
+              {rankInfo(props.summonerInfo, 'flex').losses}패)
             </RankWinrate>
           </RankContent>
         </RankText>

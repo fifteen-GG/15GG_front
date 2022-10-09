@@ -1,6 +1,6 @@
-import { SumInfoProps } from '../../type';
+import { SummonerInfo } from '../types/summonerInfo';
 
-export const rankInfo = (s: SumInfoProps, ranktype: string) => {
+export const rankInfo = (s: SummonerInfo, ranktype: string) => {
   type result = {
     lp: number;
     win_rate: number;
@@ -14,55 +14,51 @@ export const rankInfo = (s: SumInfoProps, ranktype: string) => {
     losses: 0,
   };
   if (ranktype === 'solo') {
-    if (!s.summonerInfo.solo) {
+    if (!s.solo) {
       info.lp = 0;
       info.win_rate = 0;
       info.win = 0;
       info.losses = 0;
       return info;
     }
-    info.lp = s.summonerInfo.solo.lp;
-    info.win_rate = s.summonerInfo.solo.win_rate;
-    info.win = s.summonerInfo.solo.win;
-    info.losses = s.summonerInfo.solo.losses;
+    info.lp = s.solo.lp;
+    info.win_rate = s.solo.win_rate;
+    info.win = s.solo.win;
+    info.losses = s.solo.losses;
     return info;
   } else {
-    if (!s.summonerInfo.flex) {
+    if (!s.flex) {
       info.lp = 0;
       info.win_rate = 0;
       info.win = 0;
       info.losses = 0;
       return info;
     }
-    info.lp = s.summonerInfo.flex.lp;
-    info.win_rate = s.summonerInfo.flex.win_rate;
-    info.win = s.summonerInfo.flex.win;
-    info.losses = s.summonerInfo.flex.losses;
+    info.lp = s.flex.lp;
+    info.win_rate = s.flex.win_rate;
+    info.win = s.flex.win;
+    info.losses = s.flex.losses;
     return info;
   }
 };
 
-export const rankName = (s: SumInfoProps, ranktype: string) => {
+export const rankName = (s: SummonerInfo, ranktype: string) => {
   let tier: string;
   let rank: string;
   if (ranktype === 'solo') {
-    if (!s.summonerInfo.solo) {
+    if (!s.solo) {
       tier = 'Unranked';
       return tier;
     }
-    tier =
-      s.summonerInfo.solo.tier.charAt(0) +
-      s.summonerInfo.solo.tier.slice(1).toLowerCase();
-    rank = s.summonerInfo.solo.rank;
+    tier = s.solo.tier.charAt(0) + s.solo.tier.slice(1).toLowerCase();
+    rank = s.solo.rank;
   } else {
-    if (!s.summonerInfo.flex) {
+    if (!s.flex) {
       tier = 'Unranked';
       return tier;
     }
-    tier =
-      s.summonerInfo.flex.tier.charAt(0) +
-      s.summonerInfo.flex.tier.slice(1).toLowerCase();
-    rank = s.summonerInfo.flex.rank;
+    tier = s.flex.tier.charAt(0) + s.flex.tier.slice(1).toLowerCase();
+    rank = s.flex.rank;
   }
   const romanToNum = (s: string) => {
     const romeNum = {
@@ -89,7 +85,7 @@ export const rankName = (s: SumInfoProps, ranktype: string) => {
   return result;
 };
 
-export const statInfo = (s: SumInfoProps) => {
+export const statInfo = (s: SummonerInfo) => {
   type result = {
     win_rate: number;
     win: number;
@@ -112,20 +108,20 @@ export const statInfo = (s: SumInfoProps) => {
     prefer_position: ['없음'],
     position_rate: [0],
   };
-  if (!s.summonerInfo.kda_avg) {
+  if (!s.kda_avg) {
   } else {
-    info.win_rate = s.summonerInfo.solo.win_rate;
-    info.win = s.summonerInfo.solo.win;
-    info.losses = s.summonerInfo.solo.losses;
-    info.kda_avg = s.summonerInfo.kda_avg;
-    info.kills_avg = s.summonerInfo.kills_avg;
-    info.deaths_avg = s.summonerInfo.deaths_avg;
-    info.assists_avg = s.summonerInfo.assists_avg;
+    info.win_rate = s.solo.win_rate;
+    info.win = s.solo.win;
+    info.losses = s.solo.losses;
+    info.kda_avg = s.kda_avg;
+    info.kills_avg = s.kills_avg;
+    info.deaths_avg = s.deaths_avg;
+    info.assists_avg = s.assists_avg;
   }
-  if (!s.summonerInfo.prefer_position) {
+  if (!s.prefer_position) {
   } else {
-    info.prefer_position = Object.keys(s.summonerInfo.prefer_position);
-    info.position_rate = Object.values(s.summonerInfo.prefer_position);
+    info.prefer_position = Object.keys(s.prefer_position);
+    info.position_rate = Object.values(s.prefer_position);
   }
   return info;
 };

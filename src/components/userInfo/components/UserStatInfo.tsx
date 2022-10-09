@@ -23,7 +23,7 @@ import {
 import * as Palette from '../../../assets/colorPalette';
 import { Chart } from 'react-chartjs-2';
 import { ArcElement } from 'chart.js';
-import { SumInfoProps } from '../../../type';
+import { SummonerInfo } from '../../types/summonerInfo';
 import { statInfo } from '../userInfo';
 ChartJS.register(
   ArcElement,
@@ -62,13 +62,7 @@ const data = {
   ],
 };
 
-export const UserStatInfo = (props: SumInfoProps) => {
-  const dataProof = (s: SumInfoProps) => {
-    let result = 0;
-    if (!s.summonerInfo.solo) result = 0;
-    else result = s.summonerInfo.solo.win_rate;
-    return result;
-  };
+export const UserStatInfo = (props: { summonerInfo: SummonerInfo }) => {
   const chartRef = useRef<ChartJS>(null);
   const [chartData, setChartData] = useState<ChartData<'doughnut'>>({
     datasets: [],
@@ -84,7 +78,10 @@ export const UserStatInfo = (props: SumInfoProps) => {
       datasets: data.datasets.map(dataset => ({
         ...dataset,
         label: props.summonerInfo.name,
-        data: [statInfo(props).win_rate, 100 - statInfo(props).win_rate],
+        data: [
+          statInfo(props.summonerInfo).win_rate,
+          100 - statInfo(props.summonerInfo).win_rate,
+        ],
       })),
     };
     setChartData(chartData);
@@ -94,7 +91,7 @@ export const UserStatInfo = (props: SumInfoProps) => {
     <UserStatInfoWrapper>
       <UserFirstInfo>
         <GraphImg>
-          <GraphText>{statInfo(props).win_rate}%</GraphText>
+          <GraphText>{statInfo(props.summonerInfo).win_rate}%</GraphText>
           <Chart
             ref={chartRef}
             type="doughnut"
@@ -104,24 +101,34 @@ export const UserStatInfo = (props: SumInfoProps) => {
         </GraphImg>
         <UserInfoText>
           <UserInfoTitle>승률</UserInfoTitle>
-          <UserInfoContent>{statInfo(props).win_rate}%</UserInfoContent>
+          <UserInfoContent>
+            {statInfo(props.summonerInfo).win_rate}%
+          </UserInfoContent>
           <UserInfoSubTitle>
-            {statInfo(props).win}승 {statInfo(props).losses}패
+            {statInfo(props.summonerInfo).win}승{' '}
+            {statInfo(props.summonerInfo).losses}패
           </UserInfoSubTitle>
         </UserInfoText>
       </UserFirstInfo>
       <UserInfoText>
         <UserInfoTitle>KDA</UserInfoTitle>
-        <UserInfoContent>{statInfo(props).kda_avg}</UserInfoContent>
+        <UserInfoContent>
+          {statInfo(props.summonerInfo).kda_avg}
+        </UserInfoContent>
         <UserInfoSubTitle>
-          {statInfo(props).kills_avg}/{statInfo(props).deaths_avg}/
-          {statInfo(props).assists_avg}
+          {statInfo(props.summonerInfo).kills_avg}/
+          {statInfo(props.summonerInfo).deaths_avg}/
+          {statInfo(props.summonerInfo).assists_avg}
         </UserInfoSubTitle>
       </UserInfoText>
       <UserInfoText>
         <UserInfoTitle>선호 포지션</UserInfoTitle>
-        <UserInfoContent>{statInfo(props).prefer_position}</UserInfoContent>
-        <UserInfoSubTitle>{statInfo(props).position_rate}%</UserInfoSubTitle>
+        <UserInfoContent>
+          {statInfo(props.summonerInfo).prefer_position}
+        </UserInfoContent>
+        <UserInfoSubTitle>
+          {statInfo(props.summonerInfo).position_rate}%
+        </UserInfoSubTitle>
       </UserInfoText>
     </UserStatInfoWrapper>
   );

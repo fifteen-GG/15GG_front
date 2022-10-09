@@ -1,4 +1,4 @@
-import { SumInfoProps } from '../../../type';
+import { SummonerInfo } from '../../types/summonerInfo';
 import React from 'react';
 import {
   UserIdWrapper,
@@ -10,7 +10,7 @@ import {
 
 import { urlProfileIcons } from '../../utils/Url';
 
-const UserId = (props: SumInfoProps) => {
+const UserId = (props: { summonerInfo: SummonerInfo }) => {
   return (
     <UserIdWrapper>
       <UserImg src={urlProfileIcons(props.summonerInfo.profileIconId)} />

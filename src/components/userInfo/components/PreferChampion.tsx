@@ -1,4 +1,4 @@
-import { MatchInfoProps } from '../../../type';
+import { MatchInfo } from '../../types/matchInfo';
 import {
   PreferChampionWrapper,
   PreferChampionBox,
