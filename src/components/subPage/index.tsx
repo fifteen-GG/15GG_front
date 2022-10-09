@@ -3,6 +3,7 @@ import { PageEnum, SubPageProps } from './type';
 import { DataCode } from '../dataCode';
 import { GameAnalysis } from '../gameAnalysis';
 import { UserInfo } from '../userInfo';
+import logo from '../../assets/gg_logo_temp.svg';
 
 import styled from 'styled-components';
 
@@ -35,10 +36,10 @@ const SubPageHeader = styled.div`
   align-items: center;
 `;
 
-const LogoBox = styled.div`
-  width: 110px;
-  height: 23.6px;
-  font-size: 24px;
+const LogoBox = styled.img`
+  margin-top: 4px;
+  width: 86px;
+  object-fit: contain;
   color: white;
 `;
 
@@ -69,7 +70,7 @@ export const SubPage = ({ page }: SubPageProps) => {
     <SubPageWrapper>
       <SubPageHeaderWrapper>
         <SubPageHeader>
-          <LogoBox>15.GG</LogoBox>
+          <LogoBox src={logo} />
         </SubPageHeader>
       </SubPageHeaderWrapper>
       <SubPageContentWrapper>
