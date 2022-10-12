@@ -17,6 +17,8 @@ export const GG_TURQ_KDA = '#3595A1';
 
 //Graph
 export const GG_RADARBGC = '#00BBA3';
-// export const GG_TURQ_KDA = '#3595A1';
+export const GG_GRFTITLE = '#61676b';
 
+//TeamStats
+export const GG_STATS_BORDER = '#2b2f2e';
 // @todo: colors for rank and graphs to be added
