@@ -1,6 +1,5 @@
+import { useNavigate } from 'react-router-dom';
 import { MatchInfo } from '../../types/matchInfo';
-// import { url } from 'inspector';
-import React from 'react';
 import {
   GameListBox,
   GameInfoBox,
@@ -29,13 +28,17 @@ import {
 
 import {
   urlChampion,
-  urlItem,
   urlSpell,
   formatPerks,
   formatPerkStyles,
 } from '../../utils/Url';
+import { gameInfo, itemInfo } from '../userInfo';
 
 const GameCard = (props: { matchInfo: MatchInfo }) => {
+  const navigate = useNavigate();
+  const routegameAnalysis = () => {
+    navigate(`/live?match=${props.matchInfo.match_id}`);
+  };
   const analysisStatus = (s: string) => {
     let result = '';
     if (s === 'live') result = '실시간 분석';
@@ -44,7 +47,7 @@ const GameCard = (props: { matchInfo: MatchInfo }) => {
     return result;
   };
   return (
-    <GameListBox>
+    <GameListBox onClick={routegameAnalysis}>
       <AnalysisStatus status={props.matchInfo.status}>
         {analysisStatus(props.matchInfo.status)}
       </AnalysisStatus>
@@ -54,11 +57,7 @@ const GameCard = (props: { matchInfo: MatchInfo }) => {
           <Date>
             {props.matchInfo.created_at.replaceAll('-', '/').slice(2)}
           </Date>
-          <GameMode>
-            {props.matchInfo.queue_mode === '5v5 Ranked Solo games'
-              ? '솔로랭크'
-              : '자유랭크'}
-          </GameMode>
+          <GameMode>{gameInfo(props.matchInfo)}</GameMode>
         </GameMainInfo>
         <GameDetailInfo>
           <GameCardContent>
@@ -92,7 +91,7 @@ const GameCard = (props: { matchInfo: MatchInfo }) => {
               return (
                 <ItemImg
                   className={'item' + index}
-                  src={urlItem(item)}
+                  src={itemInfo(item)}
                   key={index}
                 />
               );

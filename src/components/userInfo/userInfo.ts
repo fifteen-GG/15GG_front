@@ -1,4 +1,9 @@
 import { SummonerInfo } from '../types/summonerInfo';
+import { MatchInfo } from '../types/matchInfo';
+import { urlChampion, urlItem } from '../utils/Url';
+import alt from '../../assets/gg_alt_img.png';
+import alt2 from '../../assets/gg_alt_img2.png';
+import { allowedNodeEnvironmentFlags } from 'process';
 
 export const rankInfo = (s: SummonerInfo, ranktype: string) => {
   type result = {
@@ -124,4 +129,54 @@ export const statInfo = (s: SummonerInfo) => {
     info.position_rate = Object.values(s.prefer_position);
   }
   return info;
+};
+
+export const championsInfo = (s: SummonerInfo, index: number) => {
+  type result = {
+    championName: string;
+    counts: number;
+    win_rate: string | number;
+    kda: string | number;
+  };
+  let info: result = {
+    championName: alt2,
+    counts: 0,
+    win_rate: '결과없음',
+    kda: '0.00',
+  };
+  if (!s.champions[index]) return info;
+  else {
+    info.championName = urlChampion(s.champions[index].championName);
+    info.counts = s.champions[index].counts;
+    info.win_rate =
+      Math.round((s.champions[index].wins / s.champions[index].counts) * 100) +
+      '%';
+    info.kda =
+      Math.round(
+        ((s.champions[index].kills + s.champions[index].assists) /
+          s.champions[index].deaths) *
+          100,
+      ) / 100;
+  }
+  return info;
+};
+export const gameInfo = (m: MatchInfo) => {
+  let mode = '';
+  if (m.queue_mode === '5v5 Ranked Solo games') {
+    mode = '솔로랭크';
+  } else if (m.queue_mode === '5v5 Ranked Flex games') {
+    mode = '자유랭크';
+  } else if (m.queue_mode === '5v5 Blind Pick games') {
+    mode = '일반게임';
+  } else if (m.queue_mode === '5v5 ARAM games') {
+    mode = '칼바람나락';
+  } else {
+    mode = '사용자설정';
+  }
+  return mode;
+};
+export const itemInfo = (item: string) => {
+  if (!item) return alt2; //이건 우리 색깔 가지고 있는 이미지
+  // if (!item) return alt; 이건 빈 이미지
+  return urlItem(item);
 };

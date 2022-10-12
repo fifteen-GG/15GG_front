@@ -24,6 +24,11 @@ export const PreferChampionText = styled.div`
   color: ${Palette.GG_GREY_70};
   margin: 0px 0px 6px 13px;
 `;
+export const ChampionAltInfo = styled.div`
+  text-align: center;
+  font-size: 14px;
+  color: ${Palette.GG_GREY_70};
+`;
 export const ChampionInfo = styled.div`
   display: flex;
   justify-content: space-around;
