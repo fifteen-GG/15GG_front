@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import type { ChartData, ChartArea, ChartType } from 'chart.js';
-
+import * as Palette from '../../../assets/colorPalette';
 import {
   TimelineBorderBox,
   TimelineWrappper,
@@ -107,7 +107,7 @@ function createGradient(
 ) {
   const graphRed = 'rgba(232, 64, 87, 0.4)';
   const graphBlue = 'rgba(53, 162, 235, 0.5)';
-  const graphNeutral = '#61676b';
+  const graphNeutral = `${Palette.GG_GRFTITLE}`;
   let gradient;
 
   area.top = 8;
