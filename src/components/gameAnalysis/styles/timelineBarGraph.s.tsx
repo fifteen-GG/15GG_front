@@ -6,7 +6,7 @@ export const Graph = styled.div`
   flex-direction: column;
   height: 29px;
   width: 100%;
-  margin: 12px 0 12px 0;
+  margin-bottom: 12px;
 `;
 export const BarWrapper = styled.div`
   display: flex;
@@ -19,7 +19,6 @@ export const BarWrapper = styled.div`
 `;
 export const RateWrapper = styled.div`
   display: flex;
-  width: 100%;
   height: 12px;
   justify-content: space-between;
 `;
@@ -29,5 +28,5 @@ export const WinningRate = styled.div`
 `;
 export const GraphTitle = styled.div`
   font-size: 12px;
-  color: #61676b;
+  color: ${Palette.GG_GRFTITLE};
 `;

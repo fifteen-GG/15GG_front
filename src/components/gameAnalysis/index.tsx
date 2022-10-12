@@ -23,6 +23,7 @@ const TimeInfo = styled.div`
   width: 100%;
   justify-content: center;
   align-items: center;
+  margin-bottom: 12px;
 `;
 
 export const GameAnalysis = () => {
