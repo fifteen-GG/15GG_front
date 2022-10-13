@@ -67,7 +67,6 @@ export const Date = styled.div`
 `;
 
 export const GameMode = styled.div`
-  width: 35px;
   height: 100%;
   margin-left: 6px;
 `;

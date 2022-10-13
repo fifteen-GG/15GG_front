@@ -1,4 +1,5 @@
 // import * as S from './styled';
+import { useNavigate } from 'react-router-dom';
 import { PageEnum, SubPageProps } from './type';
 import { DataCode } from '../dataCode';
 import { GameAnalysis } from '../gameAnalysis';
@@ -68,6 +69,10 @@ enum gameState {
 }
 
 export const SubPage = ({ page }: SubPageProps) => {
+  const navigate = useNavigate();
+  const routeLanding = () => {
+    navigate(`/`);
+  };
   const renderContent = () => {
     if (page === PageEnum.CODE) return <DataCode />;
     else if (page === PageEnum.LIVE)
@@ -78,7 +83,7 @@ export const SubPage = ({ page }: SubPageProps) => {
     <SubPageWrapper>
       <SubPageHeaderWrapper>
         <SubPageHeader>
-          <LogoBox src={logo} />
+          <LogoBox src={logo} onClick={routeLanding} />
         </SubPageHeader>
       </SubPageHeaderWrapper>
       <SubPageContentWrapper>

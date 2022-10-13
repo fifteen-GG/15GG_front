@@ -1,10 +1,11 @@
-import { MatchInfo } from '../../types/matchInfo';
+import { SummonerInfo } from '../../types/summonerInfo';
 import {
   PreferChampionWrapper,
   PreferChampionBox,
   PreferChampionText,
   ChampionInfoWrapper,
   ChampionInfo,
+  ChampionAltInfo,
   ChampionInfoText,
   ChampionImg,
   ChampionInfoContent,
@@ -12,39 +13,44 @@ import {
   ChampionInfoTitle,
   PreferChampionMsg,
 } from '../styles/preferChampion.s';
-import { urlChampion } from '../../utils/Url';
 
-const PreferChampion = () => {
+import { championsInfo } from '../userInfo';
+
+const PreferChampion = (props: { summonerInfo: SummonerInfo }) => {
   return (
     <PreferChampionWrapper>
       <PreferChampionBox>
         <PreferChampionText>선호 챔피언 TOP3</PreferChampionText>
-        <ChampionInfo>
-          <ChampionInfoWrapper>
-            <ChampionImg src={urlChampion('Jinx')} />
-            <ChampionInfoText>
-              <ChampionInfoTitle>7게임</ChampionInfoTitle>
-              <ChampionInfoContent>29%</ChampionInfoContent>
-              <ChampionInfoSubTitle>KDA 2.36:1</ChampionInfoSubTitle>
-            </ChampionInfoText>
-          </ChampionInfoWrapper>
-          <ChampionInfoWrapper>
-            <ChampionImg src={urlChampion('Ezreal')} />
-            <ChampionInfoText>
-              <ChampionInfoTitle>5게임</ChampionInfoTitle>
-              <ChampionInfoContent>60%</ChampionInfoContent>
-              <ChampionInfoSubTitle>KDA 2.93:1</ChampionInfoSubTitle>
-            </ChampionInfoText>
-          </ChampionInfoWrapper>
-          <ChampionInfoWrapper>
-            <ChampionImg src={urlChampion('Kalista')} />
-            <ChampionInfoText>
-              <ChampionInfoTitle>4게임</ChampionInfoTitle>
-              <ChampionInfoContent>0%</ChampionInfoContent>
-              <ChampionInfoSubTitle>KDA 1.38:1</ChampionInfoSubTitle>
-            </ChampionInfoText>
-          </ChampionInfoWrapper>
-        </ChampionInfo>
+        {!props.summonerInfo.champions ? (
+          <ChampionAltInfo>플레이 결과가 없어요 :(</ChampionAltInfo>
+        ) : (
+          <ChampionInfo>
+            {[...Array(3)].map((champion, index: number) => {
+              return (
+                <ChampionInfoWrapper key={index}>
+                  <ChampionImg
+                    src={championsInfo(props.summonerInfo, index).championName}
+                  />
+                  <ChampionInfoText>
+                    <ChampionInfoTitle>
+                      {championsInfo(props.summonerInfo, index).counts}게임
+                    </ChampionInfoTitle>
+                    <ChampionInfoContent
+                      counts={championsInfo(props.summonerInfo, index).counts}
+                    >
+                      {championsInfo(props.summonerInfo, index).win_rate}
+                    </ChampionInfoContent>
+                    <ChampionInfoSubTitle
+                      counts={championsInfo(props.summonerInfo, index).counts}
+                    >
+                      KDA {championsInfo(props.summonerInfo, index).kda}:1
+                    </ChampionInfoSubTitle>
+                  </ChampionInfoText>
+                </ChampionInfoWrapper>
+              );
+            })}
+          </ChampionInfo>
+        )}
       </PreferChampionBox>
       <PreferChampionMsg>
         최근 20게임을 바탕으로 분석한 결과이며, 데이터 평균에 따라 달라질 수

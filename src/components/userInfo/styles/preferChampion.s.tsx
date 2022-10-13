@@ -24,6 +24,11 @@ export const PreferChampionText = styled.div`
   color: ${Palette.GG_GREY_70};
   margin: 0px 0px 6px 13px;
 `;
+export const ChampionAltInfo = styled.div`
+  text-align: center;
+  font-size: 14px;
+  color: ${Palette.GG_GREY_70};
+`;
 export const ChampionInfo = styled.div`
   display: flex;
   justify-content: space-around;
@@ -61,12 +66,14 @@ export const ChampionInfoTitle = styled.div`
 `;
 export const ChampionInfoContent = styled.div`
   font-size: 14px;
-  color: ${Palette.GG_WHITE_100};
+  color: ${(props: { counts: number }) =>
+    props.counts === 0 ? Palette.GG_GREY_70 : Palette.GG_WHITE_100};
   font-weight: bold;
 `;
 export const ChampionInfoSubTitle = styled.div`
   font-size: 10px;
-  color: ${Palette.GG_WHITE_100};
+  color: ${(props: { counts: number }) =>
+    props.counts === 0 ? Palette.GG_GREY_70 : Palette.GG_WHITE_100};
 `;
 export const PreferChampionMsg = styled.div`
   font-size: 8px;

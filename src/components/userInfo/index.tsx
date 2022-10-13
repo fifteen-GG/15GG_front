@@ -83,7 +83,9 @@ export const UserInfo = () => {
         {profiles.map((profile: SummonerInfo, index) => (
           <UserGraph summonerInfo={profile} key={index} />
         ))}
-        {loading ? null : <PreferChampion />}
+        {profiles.map((profile: SummonerInfo, index) => (
+          <PreferChampion summonerInfo={profile} key={index} />
+        ))}
       </UserStatWrapper>
       <UserGameListWrapper>
         <InfiniteScroll
