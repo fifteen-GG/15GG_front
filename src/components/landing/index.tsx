@@ -79,12 +79,14 @@ export const Landing = () => {
   const routeNewCode = () => {
     navigate('/code');
   };
-
+  const routeLanding = () => {
+    navigate('/');
+  };
   return (
     <LandingWrapper>
       <BackgroundVideoWrapper src={Bg_Video} loop autoPlay muted />
       <TitleWrapper>
-        <Logo src={logo} />
+        <Logo src={logo} onClick={routeLanding} />
         <SearchBox />
         <GamesWrapper>
           <GamesTitleWrapper>

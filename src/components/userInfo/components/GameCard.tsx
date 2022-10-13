@@ -37,7 +37,9 @@ import { gameInfo, itemInfo } from '../userInfo';
 const GameCard = (props: { matchInfo: MatchInfo }) => {
   const navigate = useNavigate();
   const routegameAnalysis = () => {
-    navigate(`/live?match=${props.matchInfo.match_id}`);
+    navigate(
+      `/live?match=${props.matchInfo.match_id}&status=${props.matchInfo.status}`,
+    );
   };
   const analysisStatus = (s: string) => {
     let result = '';

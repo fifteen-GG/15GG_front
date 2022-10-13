@@ -27,7 +27,7 @@ const PreferChampion = (props: { summonerInfo: SummonerInfo }) => {
           <ChampionInfo>
             {[...Array(3)].map((champion, index: number) => {
               return (
-                <ChampionInfoWrapper>
+                <ChampionInfoWrapper key={index}>
                   <ChampionImg
                     src={championsInfo(props.summonerInfo, index).championName}
                   />
@@ -35,10 +35,14 @@ const PreferChampion = (props: { summonerInfo: SummonerInfo }) => {
                     <ChampionInfoTitle>
                       {championsInfo(props.summonerInfo, index).counts}게임
                     </ChampionInfoTitle>
-                    <ChampionInfoContent>
+                    <ChampionInfoContent
+                      counts={championsInfo(props.summonerInfo, index).counts}
+                    >
                       {championsInfo(props.summonerInfo, index).win_rate}
                     </ChampionInfoContent>
-                    <ChampionInfoSubTitle>
+                    <ChampionInfoSubTitle
+                      counts={championsInfo(props.summonerInfo, index).counts}
+                    >
                       KDA {championsInfo(props.summonerInfo, index).kda}:1
                     </ChampionInfoSubTitle>
                   </ChampionInfoText>
