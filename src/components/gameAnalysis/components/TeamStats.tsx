@@ -1,10 +1,10 @@
 import {
   TeamStatsWrapper,
   TeamStat,
-  TeamGold,
+  Stat as TeamGold,
+  Stat as TeamLevel,
+  Stat as TeamKills,
   StatValue,
-  TeamLevel,
-  TeamKills,
   Team,
 } from '../styles/teamStats.s';
 import { ReactComponent as RedGoldIcon } from '../svg/gold_red.svg';

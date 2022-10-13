@@ -5,7 +5,7 @@ export const TeamStatsWrapper = styled.div`
   display: flex;
   height: 64px;
   width: 100%;
-  border-top: 2px solid #2b2f2e;
+  border-top: 2px solid ${Palette.GG_STATS_BORDER};
 `;
 
 enum TeamNameEnum {
@@ -24,39 +24,17 @@ export const TeamStat = styled.div`
   justify-content: space-evenly;
   align-items: flex-end;
   :nth-child(1) {
-    border-right: 2px solid #2b2f2e;
+    border-right: 2px solid ${Palette.GG_STATS_BORDER};
   }
 `;
 
-export const TeamGold = styled.div<TeamStatProps>`
+export const Stat = styled.div<TeamStatProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   height: 40px;
   width: 40px;
-  color: ${props =>
-    props.team === TeamNameEnum.RED ? Palette.GG_RED : Palette.GG_PURPLE};
-`;
-
-export const TeamLevel = styled.div<TeamStatProps>`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  width: 40px;
-  height: 40px;
-  color: ${props =>
-    props.team === TeamNameEnum.RED ? Palette.GG_RED : Palette.GG_PURPLE};
-`;
-
-export const TeamKills = styled.div<TeamStatProps>`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  width: 40px;
-  height: 40px;
   color: ${props =>
     props.team === TeamNameEnum.RED ? Palette.GG_RED : Palette.GG_PURPLE};
 `;

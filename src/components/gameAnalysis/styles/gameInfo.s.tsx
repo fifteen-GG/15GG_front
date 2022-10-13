@@ -14,11 +14,13 @@ export const TypeInfoWrapper = styled.div`
   align-items: center;
   flex-direction: row;
   color: ${Palette.GG_WHITE_100};
+  margin-bottom: 6px;
 `;
 
 export const GameTypeInfo = styled.div`
   display: flex;
   font-size: 18px;
+  margin-right: 6px;
 `;
 interface RealTimeInfoProps {
   isLive?: boolean;
@@ -29,7 +31,6 @@ export const AnalysisTypeInfo = styled.div<RealTimeInfoProps>`
   width: auto;
   padding: 0 4px 0 4px;
   color: ${Palette.GG_WHITE_100};
-  margin-left: 6px;
   font-size: 10px;
   align-items: center;
   justify-content: center;
@@ -40,7 +41,6 @@ export const AnalysisTypeInfo = styled.div<RealTimeInfoProps>`
 export const DateInfo = styled.div`
   display: flex;
   height: 13px;
-  margin-top: 6px;
   align-items: center;
   color: ${Palette.GG_GREY_70};
   font-size: 13px;

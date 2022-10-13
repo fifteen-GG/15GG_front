@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import type { ChartData, ChartArea, ChartType } from 'chart.js';
+import * as Palette from '../../../assets/colorPalette';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -73,15 +74,15 @@ export const data = {
     {
       label: 'Dataset 1',
       data: [80.4],
-      borderColor: '#e84057',
-      backgroundColor: '#e84057',
+      borderColor: `${Palette.GG_TIMELINE_BARGRAPH_RED}`,
+      backgroundColor: `${Palette.GG_TIMELINE_BARGRAPH_RED}`,
       borderWidth: 0,
     },
     {
       label: 'Dataset 2',
       data: [100],
       borderColor: 'rgb(53, 162, 235)',
-      backgroundColor: '#5383e8',
+      backgroundColor: `${Palette.GG_TIMELINE_BARGRAPH_BLUE}`,
       borderWidth: 0,
     },
   ],

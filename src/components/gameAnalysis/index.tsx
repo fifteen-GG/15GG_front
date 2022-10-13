@@ -23,9 +23,18 @@ const TimeInfo = styled.div`
   width: 100%;
   justify-content: center;
   align-items: center;
+  margin-bottom: 12px;
 `;
-
-export const GameAnalysis = () => {
+enum gameState {
+  running,
+  end,
+  none,
+}
+interface gameInfo {
+  state: gameState;
+  matchID: string;
+}
+export const GameAnalysis = (props: gameInfo) => {
   const [gameData, setGameData] = useState(Object);
   const [time, setTime] = useState(0);
   const [parse, setParse] = useState(0);
@@ -49,6 +58,7 @@ export const GameAnalysis = () => {
   useEffect(() => {
     if (parse) setTime(gameData.timestamp);
     // eslint-disable-next-line react-hooks/exhaustive-deps
+    console.log(gameData);
   }, [gameData]);
 
   return (
