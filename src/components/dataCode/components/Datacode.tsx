@@ -33,10 +33,31 @@ export const Datacode = () => {
     }
   };
 
+  // for development environment
+  const validateCode = async (code: string) => {
+    try {
+      const value = await axios.get(
+        `${process.env.REACT_APP_GG_API_ROOT}code/validate?value=${code}`,
+      );
+      console.log(value);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   useEffect(() => {
+    if (refresh !== 0 && time >= 280) {
+      alert('시러잉');
+      return;
+    }
     getNewCode();
     reset();
     start();
+
+    // for development environment
+    if (code.join('') !== '000000') {
+      validateCode(code.join(''));
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [codeExpired, refresh]);
 
