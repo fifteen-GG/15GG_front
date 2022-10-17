@@ -1,6 +1,7 @@
 export interface MatchInfo {
   status: 'live' | 'complete' | 'incomplete';
   match_id: string;
+  game_duration: number;
   win: boolean;
   created_at: string;
   queue_mode:

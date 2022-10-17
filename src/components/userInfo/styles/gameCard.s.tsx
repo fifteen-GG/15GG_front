@@ -70,6 +70,10 @@ export const GameMode = styled.div`
   height: 100%;
   margin-left: 6px;
 `;
+export const Duration = styled.div`
+  height: 100%;
+  margin-left: 6px;
+`;
 
 export const GameDetailInfo = styled.div`
   width: 100%;

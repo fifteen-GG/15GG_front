@@ -8,6 +8,7 @@ import {
   Result,
   Date,
   GameMode,
+  Duration,
   GameDetailInfo,
   GameCardContent,
   Profile,
@@ -60,6 +61,10 @@ const GameCard = (props: { matchInfo: MatchInfo }) => {
             {props.matchInfo.created_at.replaceAll('-', '/').slice(2)}
           </Date>
           <GameMode>{gameInfo(props.matchInfo)}</GameMode>
+          <Duration>
+            {Math.round(props.matchInfo.game_duration / 60)}분{' '}
+            {props.matchInfo.game_duration % 60}초
+          </Duration>
         </GameMainInfo>
         <GameDetailInfo>
           <GameCardContent>
