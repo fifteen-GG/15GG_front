@@ -5,7 +5,6 @@ import { DataCode } from '../dataCode';
 import { GameAnalysis } from '../gameAnalysis';
 import { UserInfo } from '../userInfo';
 import logo from '../../assets/gg_logo_temp.svg';
-
 import styled from 'styled-components';
 
 const SubPageWrapper = styled.div`
@@ -60,6 +59,14 @@ const SubPageContent = styled.div`
   }
   padding: 16px;
 `;
+//state: gameState;
+//matchID: string;
+
+enum gameState {
+  running,
+  end,
+  none,
+}
 
 export const SubPage = ({ page }: SubPageProps) => {
   const navigate = useNavigate();
@@ -68,7 +75,8 @@ export const SubPage = ({ page }: SubPageProps) => {
   };
   const renderContent = () => {
     if (page === PageEnum.CODE) return <DataCode />;
-    else if (page === PageEnum.LIVE) return <GameAnalysis />;
+    else if (page === PageEnum.LIVE)
+      return <GameAnalysis state={gameState.running} matchID={'KR_123123'} />;
     else if (page === PageEnum.USER) return <UserInfo />;
   };
   return (
