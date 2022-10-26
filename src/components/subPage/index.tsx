@@ -1,6 +1,5 @@
 // import * as S from './styled';
 import { useNavigate } from 'react-router-dom';
-import { PageEnum, SubPageProps } from './type';
 import { DataCode } from '../dataCode';
 import { GameAnalysis } from '../gameAnalysis';
 import { UserInfo } from '../userInfo';
@@ -41,6 +40,7 @@ const LogoBox = styled.img`
   width: 86px;
   object-fit: contain;
   color: white;
+  cursor: pointer;
 `;
 
 const SubPageContentWrapper = styled.div`
@@ -67,17 +67,25 @@ enum gameState {
   end,
   none,
 }
-
-export const SubPage = ({ page }: SubPageProps) => {
+enum PageEnum {
+  CODE,
+  LIVE,
+  GAME,
+  USER,
+}
+interface propsType {
+  page: PageEnum;
+}
+export const SubPage = (props: propsType) => {
   const navigate = useNavigate();
   const routeLanding = () => {
     navigate(`/`);
   };
   const renderContent = () => {
-    if (page === PageEnum.CODE) return <DataCode />;
-    else if (page === PageEnum.LIVE)
+    if (props.page === PageEnum.CODE) return <DataCode />;
+    else if (props.page === PageEnum.LIVE)
       return <GameAnalysis state={gameState.running} matchID={'KR_123123'} />;
-    else if (page === PageEnum.USER) return <UserInfo />;
+    else if (props.page === PageEnum.USER) return <UserInfo />;
   };
   return (
     <SubPageWrapper>

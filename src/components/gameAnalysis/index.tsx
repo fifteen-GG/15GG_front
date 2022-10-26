@@ -31,11 +31,11 @@ enum gameState {
   end,
   none,
 }
-interface gameInfo {
+interface propsType {
   state: gameState;
   matchID: string;
 }
-export const GameAnalysis = (props: gameInfo) => {
+export const GameAnalysis = (props: propsType) => {
   const [gameData, setGameData] = useState(Object);
   const [time, setTime] = useState(0);
   const [parse, setParse] = useState(0);

@@ -1,9 +1,13 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Landing } from './components/landing';
 import { SubPage } from './components/subPage';
-import { PageEnum } from './components/subPage/type';
+enum PageEnum {
+  CODE,
+  LIVE,
+  USER,
+}
 
-function App() {
+const App = () => {
   return (
     <BrowserRouter>
       <Routes>
@@ -14,6 +18,6 @@ function App() {
       </Routes>
     </BrowserRouter>
   );
-}
+};
 
 export default App;
