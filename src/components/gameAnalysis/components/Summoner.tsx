@@ -18,7 +18,6 @@ import {
   ItemImg,
   ItemWrapper,
 } from '../styles/summoners.s';
-
 import {
   urlChampion,
   urlSpell,
@@ -26,8 +25,6 @@ import {
   formatPerks,
   formatPerkStyles,
 } from '../../utils/Url';
-import { TeamInfo } from '../styles/teamInfoContainer.s';
-import { useState } from 'react';
 
 const formatKDA = (props: {
   kills: number;
@@ -41,10 +38,9 @@ const formatKDA = (props: {
 //   redTeam: summonerProps[];
 //   blueTeam: summonerProps[];
 // }
-export type TeamInfoProps = {
+export interface TeamInfoProps {
   teamInfo: summonerProps;
-};
-
+}
 export interface summonerProps {
   // team: 'red' | 'blue';
   champion: string;
