@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import * as Palette from '../../../assets/colorPalette';
 
 //UserRank부분 스타일
-export const UserRankWrapper = styled.div`
+export const UserRankContainer = styled.div`
   @media screen and (max-width: 360px) {
     width: 328px;
   }

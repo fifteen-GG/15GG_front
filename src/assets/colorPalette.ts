@@ -16,7 +16,16 @@ export const GG_PLATINUM = '#00BBA3';
 export const GG_TURQ_KDA = '#3595A1';
 
 //Graph
-export const GG_RADARBGC = '#00BBA3';
+//Radar
+export const GG_RADAR = '#373737';
+export const GG_RADARDATA = '#2f67a1';
+export const GG_RADARDATABGC = '#3B444E40';
+export const GG_RADARAVGBGC = '#37373740';
+
+//Doughnut
+export const GG_DOUGHNUT = '#5d7fde';
+
+//Timeline
 export const GG_GRFTITLE = '#61676b';
 export const GG_TIMELINE_BARGRAPH_RED = '#e84057';
 export const GG_TIMELINE_BARGRAPH_BLUE = '#5383e8';

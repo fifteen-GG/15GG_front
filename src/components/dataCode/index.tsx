@@ -2,7 +2,7 @@ import { Header } from './components/Header';
 import { Datacode } from './components/Datacode';
 import styled from 'styled-components';
 
-const Page15Wrapper = styled.div`
+const Page15Container = styled.div`
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -14,11 +14,11 @@ const DataCodeResponsive = styled.div`
 
 export const DataCode = () => {
   return (
-    <Page15Wrapper>
+    <Page15Container>
       <DataCodeResponsive>
         <Header />
         <Datacode />
       </DataCodeResponsive>
-    </Page15Wrapper>
+    </Page15Container>
   );
 };

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import * as Palette from '../../../assets/colorPalette';
 
 //UserId 부분 스타일
-export const UserIdWrapper = styled.div`
+export const UserIdContainer = styled.div`
   width: 100%;
   @media screen and (max-width: 360px) {
     width: 328px;

@@ -14,7 +14,7 @@ import PreferChampion from './components/PreferChampion';
 import Loading from './components/Loading';
 import ErrorPage from './components/ErrorPage';
 
-const UserInfoWrapper = styled.div``;
+const UserInfoContainer = styled.div``;
 const UserStatWrapper = styled.div``;
 const UserGameListWrapper = styled.div``;
 
@@ -33,11 +33,12 @@ export const UserInfo = () => {
       fetchData();
     }, 3000);
   }, []);
+
   const getData = async () => {
     setLoading(true);
     try {
       const value = await axios.get(
-        `${process.env.REACT_APP_GG_API_ROOT}riot/user/${state}`,
+        `${process.env.REACT_APP_GG_API_ROOT}/riot/user/${state}`,
       );
       console.log(value.data);
       if (value.status === 200) {
@@ -56,7 +57,7 @@ export const UserInfo = () => {
   const fetchData = async () => {
     try {
       const match = await axios.get(
-        `${process.env.REACT_APP_GG_API_ROOT}riot/match/${state}?page=${page}`,
+        `${process.env.REACT_APP_GG_API_ROOT}/riot/match/${state}?page=${page}`,
       );
       console.log(match.data);
       const fetchedGames: MatchInfo[] = [...games, ...match.data];
@@ -68,7 +69,7 @@ export const UserInfo = () => {
   };
   if (httpStatusCode === 404) return <ErrorPage />;
   return (
-    <UserInfoWrapper>
+    <UserInfoContainer>
       {loading ? <Loading /> : null}
       <UserStatWrapper>
         {profiles.map((profile: SummonerInfo, index) => (
@@ -109,6 +110,6 @@ export const UserInfo = () => {
           })}
         </InfiniteScroll>
       </UserGameListWrapper>
-    </UserInfoWrapper>
+    </UserInfoContainer>
   );
 };

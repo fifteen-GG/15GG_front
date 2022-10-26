@@ -1,4 +1,5 @@
 import {
+  LiveUserContainer,
   LiveGameSingleUser,
   LiveGameUserImageWrapper,
   LiveGameUserPosition,
@@ -14,7 +15,7 @@ export const LiveUser = (props: {
   pos: string;
 }) => {
   return (
-    <>
+    <LiveUserContainer>
       {props.row === 'left' ? (
         <LiveGameSingleUser>
           <LiveGameUserPosition position={`${props.pos}`} />
@@ -36,6 +37,6 @@ export const LiveUser = (props: {
           <LiveGameUserPosition position={`${props.pos}`} />
         </LiveGameSingleUser>
       )}
-    </>
+    </LiveUserContainer>
   );
 };

@@ -2,10 +2,10 @@ import React, { useRef, useState, useEffect } from 'react';
 import type { ChartData, ChartArea, ChartType } from 'chart.js';
 
 import {
-  UserStatInfoWrapper,
+  UserStatInfoContainer,
+  UserWinRateWrapper,
   GraphText,
   GraphImg,
-  UserFirstInfo,
   UserInfoText,
   UserInfoTitle,
   UserInfoContent,
@@ -53,9 +53,9 @@ const data = {
   labels,
   datasets: [
     {
-      label: '정잭영',
-      data: [30, 70],
-      backgroundColor: ['#5d7fde', Palette.GG_WHITE_100],
+      label: '',
+      data: [0, 0],
+      backgroundColor: [Palette.GG_DOUGHNUT, Palette.GG_WHITE_100],
       hoverOffset: 1,
       borderWidth: 0,
     },
@@ -88,8 +88,8 @@ export const UserStatInfo = (props: { summonerInfo: SummonerInfo }) => {
     chart.update();
   }, []);
   return (
-    <UserStatInfoWrapper>
-      <UserFirstInfo>
+    <UserStatInfoContainer>
+      <UserWinRateWrapper>
         <GraphImg>
           <GraphText>{statInfo(props.summonerInfo).win_rate}%</GraphText>
           <Chart
@@ -109,7 +109,7 @@ export const UserStatInfo = (props: { summonerInfo: SummonerInfo }) => {
             {statInfo(props.summonerInfo).losses}패
           </UserInfoSubTitle>
         </UserInfoText>
-      </UserFirstInfo>
+      </UserWinRateWrapper>
       <UserInfoText>
         <UserInfoTitle>KDA</UserInfoTitle>
         <UserInfoContent>
@@ -130,7 +130,7 @@ export const UserStatInfo = (props: { summonerInfo: SummonerInfo }) => {
           {statInfo(props.summonerInfo).position_rate}%
         </UserInfoSubTitle>
       </UserInfoText>
-    </UserStatInfoWrapper>
+    </UserStatInfoContainer>
   );
 };
 export default UserStatInfo;

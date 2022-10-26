@@ -2,7 +2,7 @@ import Lottie from 'lottie-react';
 
 import { lottie } from '../../../assets';
 import {
-  LoadingWrapper,
+  LoadingContainer,
   LottieWrapper,
   SkeletonWrapper,
   SkeletonId,
@@ -13,7 +13,7 @@ import {
 
 const Loading = () => {
   return (
-    <LoadingWrapper>
+    <LoadingContainer>
       <SkeletonWrapper>
         <SkeletonId></SkeletonId>
         <SkeletonNameWrapper>
@@ -24,7 +24,7 @@ const Loading = () => {
       <LottieWrapper>
         <Lottie animationData={lottie} />
       </LottieWrapper>
-    </LoadingWrapper>
+    </LoadingContainer>
   );
 };
 

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useTimer } from 'use-timer';
 import {
+  DataCodeContainer,
   DataCodeWrapper,
   SingleDataCodeWrapper,
   SingleDataCode,
@@ -23,7 +24,9 @@ export const Datacode = () => {
 
   const getNewCode = async () => {
     try {
-      const value = await axios.get(`${process.env.REACT_APP_GG_API_ROOT}code`);
+      const value = await axios.get(
+        `${process.env.REACT_APP_GG_API_ROOT}/code`,
+      );
       console.log(value);
       if (value.status === 200) {
         setCode(value.data.value.split(''));
@@ -37,7 +40,7 @@ export const Datacode = () => {
   const validateCode = async (code: string) => {
     try {
       const value = await axios.get(
-        `${process.env.REACT_APP_GG_API_ROOT}code/validate?value=${code}`,
+        `${process.env.REACT_APP_GG_API_ROOT}/code/validate?value=${code}`,
       );
       console.log(value);
     } catch (e) {
@@ -68,7 +71,7 @@ export const Datacode = () => {
   }, [status, time]);
 
   return (
-    <>
+    <DataCodeContainer>
       <DataCodeWrapper>
         {code.map((value: number, index: number) => {
           return (
@@ -90,6 +93,6 @@ export const Datacode = () => {
           재생성
         </RefreshButton>
       </Footer>
-    </>
+    </DataCodeContainer>
   );
 };

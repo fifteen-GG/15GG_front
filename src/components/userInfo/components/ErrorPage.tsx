@@ -1,5 +1,5 @@
 import {
-  ErrorWrapper,
+  ErrorContainer,
   SummonerWrapper,
   SummonerId,
   SummonerLevel,
@@ -15,7 +15,7 @@ const ErrorPage = () => {
   const params = new URLSearchParams(window.location.search);
   let state = params.get('user');
   return (
-    <ErrorWrapper>
+    <ErrorContainer>
       <SummonerWrapper>
         <SummonerId></SummonerId>
         <SummonerNameWrapper>
@@ -27,7 +27,7 @@ const ErrorPage = () => {
         <ErrorImg src={Error} />
         <ErrorText>존재하지 않는 소환사입니다 다시 검색해주세요:(</ErrorText>
       </ErrorTextWrapper>
-    </ErrorWrapper>
+    </ErrorContainer>
   );
 };
 

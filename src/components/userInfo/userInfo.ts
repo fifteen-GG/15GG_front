@@ -3,7 +3,6 @@ import { MatchInfo } from '../types/matchInfo';
 import { urlChampion, urlItem } from '../utils/Url';
 import alt from '../../assets/gg_alt_img.png';
 import alt2 from '../../assets/gg_alt_img2.png';
-import { allowedNodeEnvironmentFlags } from 'process';
 
 export const rankInfo = (s: SummonerInfo, ranktype: string) => {
   type result = {

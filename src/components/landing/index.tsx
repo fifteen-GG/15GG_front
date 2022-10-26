@@ -2,11 +2,11 @@ import { useNavigate } from 'react-router-dom';
 import { SearchBox } from './components/SearchBox';
 import { LiveGame } from './components/LiveGame';
 import styled from 'styled-components';
-import Bg from '../../assets/background2.png';
 import logo from '../../assets/gg_logo_temp.svg';
 import Bg_Video from '../../assets/gg_bg_worlds_22.mp4';
+import * as Palette from '../../assets/colorPalette';
 
-const LandingWrapper = styled.div`
+const LandingContainer = styled.div`
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -55,7 +55,7 @@ const GamesTitleWrapper = styled.div`
 `;
 
 const GamesTitle = styled.div`
-  color: #fff;
+  color: ${Palette.GG_WHITE_100};
   font-size: 16;
   font-weight: 500;
 `;
@@ -63,10 +63,10 @@ const GamesTitle = styled.div`
 const CodeButton = styled.div`
   width: 60px;
   height: 22px;
-  background-color: #4d4ae2;
+  background-color: ${Palette.GG_PURPLE};
   border-radius: 8px;
   display: flex;
-  color: #fff;
+  color: ${Palette.GG_WHITE_100};
   font-size: 8pt;
   font-weight: 500;
   justify-content: center;
@@ -83,7 +83,7 @@ export const Landing = () => {
     navigate('/');
   };
   return (
-    <LandingWrapper>
+    <LandingContainer>
       <BackgroundVideoWrapper src={Bg_Video} loop autoPlay muted />
       <TitleWrapper>
         <Logo src={logo} onClick={routeLanding} />
@@ -100,6 +100,6 @@ export const Landing = () => {
           <LiveGame />
         </GamesWrapper>
       </TitleWrapper>
-    </LandingWrapper>
+    </LandingContainer>
   );
 };

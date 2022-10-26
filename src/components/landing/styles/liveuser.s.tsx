@@ -14,7 +14,9 @@ const gg_svg: {
   adc: gg_adc,
   sup: gg_utl,
 };
-
+export const LiveUserContainer = styled.div`
+  width: 100%;
+`;
 export const LiveGameSingleUser = styled.div`
   margin-top: 2px;
   margin-bottom: 2px;

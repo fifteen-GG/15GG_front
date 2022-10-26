@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  LiveGameWrapper,
+  LiveGameContainer,
   LiveGameTitleWrapper,
   LiveGameTitle,
   LiveGameLabel,
@@ -43,7 +43,7 @@ export const LiveGame = () => {
     ],
   });
   return (
-    <LiveGameWrapper>
+    <LiveGameContainer>
       <LiveGameTitleWrapper>
         <LiveGameLabel />
         <LiveGameTitle>
@@ -124,6 +124,6 @@ export const LiveGame = () => {
           </LiveGameTeamsRow>
         </LiveGameSingleTeamWrapper>
       </LiveGameTeamsWrapper>
-    </LiveGameWrapper>
+    </LiveGameContainer>
   );
 };

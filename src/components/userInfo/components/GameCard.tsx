@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { MatchInfo } from '../../types/matchInfo';
 import {
-  GameListBox,
-  GameInfoBox,
+  GameCardContainer,
+  GameInfoWrapper,
   AnalysisStatus,
   GameMainInfo,
   Result,
@@ -12,18 +12,17 @@ import {
   GameDetailInfo,
   GameCardContent,
   Profile,
-  SpellBox,
+  SpellWrapper,
   Spell,
-  PerkBox,
+  PerkWrapper,
   Perk,
-  KDABox,
+  KDAWrapper,
   KDAInfo,
   KDARate,
   CSNWard,
   CSInfo,
   Ward,
-  ItemBox,
-  // ItemRow,
+  ItemWrapper,
   ItemImg,
 } from '../styles/gameCard.s';
 
@@ -50,11 +49,11 @@ const GameCard = (props: { matchInfo: MatchInfo }) => {
     return result;
   };
   return (
-    <GameListBox onClick={routegameAnalysis}>
+    <GameCardContainer onClick={routegameAnalysis}>
       <AnalysisStatus status={props.matchInfo.status}>
         {analysisStatus(props.matchInfo.status)}
       </AnalysisStatus>
-      <GameInfoBox win={props.matchInfo.win}>
+      <GameInfoWrapper win={props.matchInfo.win}>
         <GameMainInfo>
           <Result>{props.matchInfo.win ? '승리' : '패배'}</Result>
           <Date>
@@ -69,21 +68,21 @@ const GameCard = (props: { matchInfo: MatchInfo }) => {
         <GameDetailInfo>
           <GameCardContent>
             <Profile src={urlChampion(props.matchInfo.champion_name)} />
-            <SpellBox>
+            <SpellWrapper>
               <Spell src={urlSpell(props.matchInfo.spells.spell1)} />
               <Spell src={urlSpell(props.matchInfo.spells.spell2)} />
-            </SpellBox>
-            <PerkBox>
+            </SpellWrapper>
+            <PerkWrapper>
               <Perk src={formatPerks(props.matchInfo.perks.perk)} />
               <Perk src={formatPerkStyles(props.matchInfo.perks.perkStyle)} />
-            </PerkBox>
-            <KDABox>
+            </PerkWrapper>
+            <KDAWrapper>
               <KDAInfo>
                 {props.matchInfo.kills} / {props.matchInfo.deaths} /{' '}
                 {props.matchInfo.assists}
               </KDAInfo>
               <KDARate>KDA {props.matchInfo.kda}</KDARate>
-            </KDABox>
+            </KDAWrapper>
             <CSNWard>
               <CSInfo>
                 CS {props.matchInfo.cs} ({props.matchInfo.cs_per_min})
@@ -93,7 +92,7 @@ const GameCard = (props: { matchInfo: MatchInfo }) => {
               </Ward>
             </CSNWard>
           </GameCardContent>
-          <ItemBox>
+          <ItemWrapper>
             {props.matchInfo.items.map((item: string, index: number) => {
               return (
                 <ItemImg
@@ -103,10 +102,10 @@ const GameCard = (props: { matchInfo: MatchInfo }) => {
                 />
               );
             })}
-          </ItemBox>
+          </ItemWrapper>
         </GameDetailInfo>
-      </GameInfoBox>
-    </GameListBox>
+      </GameInfoWrapper>
+    </GameCardContainer>
   );
 };
 export default GameCard;

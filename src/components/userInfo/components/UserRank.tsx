@@ -2,7 +2,7 @@ import React from 'react';
 import { SummonerInfo } from '../../types/summonerInfo';
 import rankimg from '../../../assets/gg_tier_unranked_4x.png';
 import {
-  UserRankWrapper,
+  UserRankContainer,
   RankWrapper,
   RankText,
   RankSubTitle,
@@ -18,7 +18,7 @@ import { rankInfo, rankName } from '../userInfo';
 
 const UserRank = (props: { summonerInfo: SummonerInfo }) => {
   return (
-    <UserRankWrapper>
+    <UserRankContainer>
       <RankWrapper className="Solo">
         <RankText>
           <RankSubTitle>솔로랭크</RankSubTitle>
@@ -61,7 +61,7 @@ const UserRank = (props: { summonerInfo: SummonerInfo }) => {
           />
         )}
       </RankWrapper>
-    </UserRankWrapper>
+    </UserRankContainer>
   );
 };
 export default UserRank;
