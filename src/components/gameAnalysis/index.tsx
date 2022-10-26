@@ -64,7 +64,7 @@ export const GameAnalysis = (props: gameInfo) => {
 
   return (
     <GameAnalysisWrapper>
-      <GameInfo />
+      <GameInfo state={props.state} />
       <>
         {props.state === gameState.none ? <EmptyCover /> : <></>}
         <TimeInfo>
