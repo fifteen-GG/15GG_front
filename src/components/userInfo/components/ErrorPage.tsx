@@ -9,7 +9,7 @@ import {
   ErrorText,
   ErrorImg,
 } from '../styles/errorPage.s';
-import Error from '../../../assets/errorimage.png';
+import Error from '../../../assets/gg_error_img.png';
 
 const ErrorPage = () => {
   const params = new URLSearchParams(window.location.search);
