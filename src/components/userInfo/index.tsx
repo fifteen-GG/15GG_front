@@ -17,21 +17,25 @@ import ErrorPage from './components/ErrorPage';
 const UserInfoContainer = styled.div``;
 const UserStatWrapper = styled.div``;
 const UserGameListWrapper = styled.div``;
+const Loader = styled.div`
+  color: white;
+  text-align: center;
+  font-size: 14px;
+  margin-top: 4px;
+`;
 
 export const UserInfo = () => {
   const [games, setGames] = useState<MatchInfo[]>([]);
   const [profiles, setProfiless] = useState<SummonerInfo[]>([]);
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState<number>(1);
+  const [loading, setLoading] = useState<boolean>(false);
   const [httpStatusCode, setHttpStatusCode] = useState();
   const params = new URLSearchParams(window.location.search);
-  let state = params.get('user');
+  let state = params.get('ID');
   console.log(state);
   useEffect(() => {
     getData();
-    setTimeout(() => {
-      fetchData();
-    }, 3000);
+    fetchData();
   }, []);
 
   const getData = async () => {
@@ -93,17 +97,7 @@ export const UserInfo = () => {
           next={fetchData}
           dataLength={games.length}
           hasMore={true}
-          loader={
-            <h4
-              style={{
-                color: 'white',
-                textAlign: 'center',
-                fontSize: '14px',
-              }}
-            >
-              데이터 불러오는 중...
-            </h4>
-          }
+          loader={<Loader>데이터 불러오는 중...</Loader>}
         >
           {games.map((game: MatchInfo, index) => {
             return <GameCard matchInfo={game} key={index}></GameCard>;

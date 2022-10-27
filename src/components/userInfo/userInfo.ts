@@ -1,10 +1,7 @@
 import { SummonerInfo } from '../types/summonerInfo';
 import { MatchInfo } from '../types/matchInfo';
-import { urlChampion, urlItem } from '../utils/Url';
-import alt from '../../assets/gg_alt_img.png';
-import alt2 from '../../assets/gg_alt_img2.png';
 
-export const rankInfo = (s: SummonerInfo, ranktype: string) => {
+export const rankInfo = (summonerInfo: SummonerInfo, ranktype: string) => {
   type result = {
     lp: number;
     win_rate: number;
@@ -18,59 +15,63 @@ export const rankInfo = (s: SummonerInfo, ranktype: string) => {
     losses: 0,
   };
   if (ranktype === 'solo') {
-    if (!s.solo) {
+    if (!summonerInfo.solo) {
       info.lp = 0;
       info.win_rate = 0;
       info.win = 0;
       info.losses = 0;
       return info;
     }
-    info.lp = s.solo.lp;
-    info.win_rate = s.solo.win_rate;
-    info.win = s.solo.win;
-    info.losses = s.solo.losses;
+    info.lp = summonerInfo.solo.lp;
+    info.win_rate = summonerInfo.solo.win_rate;
+    info.win = summonerInfo.solo.win;
+    info.losses = summonerInfo.solo.losses;
     return info;
   } else {
-    if (!s.flex) {
+    if (!summonerInfo.flex) {
       info.lp = 0;
       info.win_rate = 0;
       info.win = 0;
       info.losses = 0;
       return info;
     }
-    info.lp = s.flex.lp;
-    info.win_rate = s.flex.win_rate;
-    info.win = s.flex.win;
-    info.losses = s.flex.losses;
+    info.lp = summonerInfo.flex.lp;
+    info.win_rate = summonerInfo.flex.win_rate;
+    info.win = summonerInfo.flex.win;
+    info.losses = summonerInfo.flex.losses;
     return info;
   }
 };
 
-export const rankName = (s: SummonerInfo, ranktype: string) => {
+export const rankName = (summonerInfo: SummonerInfo, ranktype: string) => {
   let tier: string;
   let rank: string;
   if (ranktype === 'solo') {
-    if (!s.solo) {
+    if (!summonerInfo.solo) {
       tier = 'Unranked';
       return tier;
     }
-    tier = s.solo.tier.charAt(0) + s.solo.tier.slice(1).toLowerCase();
-    rank = s.solo.rank;
+    tier =
+      summonerInfo.solo.tier.charAt(0) +
+      summonerInfo.solo.tier.slice(1).toLowerCase();
+    rank = summonerInfo.solo.rank;
   } else {
-    if (!s.flex) {
+    if (!summonerInfo.flex) {
       tier = 'Unranked';
       return tier;
     }
-    tier = s.flex.tier.charAt(0) + s.flex.tier.slice(1).toLowerCase();
-    rank = s.flex.rank;
+    tier =
+      summonerInfo.flex.tier.charAt(0) +
+      summonerInfo.flex.tier.slice(1).toLowerCase();
+    rank = summonerInfo.flex.rank;
   }
-  const romanToNum = (s: string) => {
+  const romanToNum = (str: string) => {
     const romeNum = {
       I: 1,
       V: 5,
     };
     let number = 0;
-    const romeArray = s.split('');
+    const romeArray = str.split('');
     const numArray = romeArray.map((rome: string) => rome in romeNum);
     for (let i = 0; i < numArray.length; i++) {
       if (numArray[i] < numArray[i + 1]) {
@@ -89,7 +90,7 @@ export const rankName = (s: SummonerInfo, ranktype: string) => {
   return result;
 };
 
-export const statInfo = (s: SummonerInfo) => {
+export const statInfo = (summonerInfo: SummonerInfo) => {
   type result = {
     win_rate: number;
     win: number;
@@ -112,25 +113,25 @@ export const statInfo = (s: SummonerInfo) => {
     prefer_position: ['없음'],
     position_rate: [0],
   };
-  if (!s.kda_avg) {
+  if (!summonerInfo.kda_avg) {
   } else {
-    info.win_rate = s.solo.win_rate;
-    info.win = s.solo.win;
-    info.losses = s.solo.losses;
-    info.kda_avg = s.kda_avg;
-    info.kills_avg = s.kills_avg;
-    info.deaths_avg = s.deaths_avg;
-    info.assists_avg = s.assists_avg;
+    info.win_rate = summonerInfo.solo.win_rate;
+    info.win = summonerInfo.solo.win;
+    info.losses = summonerInfo.solo.losses;
+    info.kda_avg = summonerInfo.kda_avg;
+    info.kills_avg = summonerInfo.kills_avg;
+    info.deaths_avg = summonerInfo.deaths_avg;
+    info.assists_avg = summonerInfo.assists_avg;
   }
-  if (!s.prefer_position) {
+  if (!summonerInfo.prefer_position) {
   } else {
-    info.prefer_position = Object.keys(s.prefer_position);
-    info.position_rate = Object.values(s.prefer_position);
+    info.prefer_position = Object.keys(summonerInfo.prefer_position);
+    info.position_rate = Object.values(summonerInfo.prefer_position);
   }
   return info;
 };
 
-export const championsInfo = (s: SummonerInfo, index: number) => {
+export const championsInfo = (summonerInfo: SummonerInfo, index: number) => {
   type result = {
     championName: string;
     counts: number;
@@ -138,44 +139,57 @@ export const championsInfo = (s: SummonerInfo, index: number) => {
     kda: string | number;
   };
   let info: result = {
-    championName: alt2,
+    championName: '0',
     counts: 0,
     win_rate: '결과없음',
     kda: '0.00',
   };
-  if (!s.champions[index]) return info;
+  if (!summonerInfo.champions[index]) return info;
   else {
-    info.championName = urlChampion(s.champions[index].championName);
-    info.counts = s.champions[index].counts;
+    info.championName =
+      process.env.REACT_APP_DDRAGON_API_ROOT +
+      `/champion/${summonerInfo.champions[index].championName}.png`;
+    info.counts = summonerInfo.champions[index].counts;
     info.win_rate =
-      Math.round((s.champions[index].wins / s.champions[index].counts) * 100) +
-      '%';
+      Math.round(
+        (summonerInfo.champions[index].wins /
+          summonerInfo.champions[index].counts) *
+          100,
+      ) + '%';
     info.kda =
       Math.round(
-        ((s.champions[index].kills + s.champions[index].assists) /
-          s.champions[index].deaths) *
+        ((summonerInfo.champions[index].kills +
+          summonerInfo.champions[index].assists) /
+          summonerInfo.champions[index].deaths) *
           100,
       ) / 100;
   }
   return info;
 };
-export const gameInfo = (m: MatchInfo) => {
+export const gameInfo = (matchInfo: MatchInfo) => {
   let mode = '';
-  if (m.queue_mode === '5v5 Ranked Solo games') {
+  if (matchInfo.queue_mode === '5v5 Ranked Solo games') {
     mode = '솔로랭크';
-  } else if (m.queue_mode === '5v5 Ranked Flex games') {
+  } else if (matchInfo.queue_mode === '5v5 Ranked Flex games') {
     mode = '자유랭크';
-  } else if (m.queue_mode === '5v5 Blind Pick games') {
+  } else if (matchInfo.queue_mode === '5v5 Blind Pick games') {
     mode = '일반게임';
-  } else if (m.queue_mode === '5v5 ARAM games') {
+  } else if (matchInfo.queue_mode === '5v5 ARAM games') {
     mode = '칼바람나락';
   } else {
     mode = '사용자설정';
   }
   return mode;
 };
-export const itemInfo = (item: string) => {
-  if (!item) return alt2; //이건 우리 색깔 가지고 있는 이미지
-  // if (!item) return alt; 이건 빈 이미지
-  return urlItem(item);
+// export const itemInfo = (item: string) => {
+//   if (!item) return alt2; //이건 우리 색깔 가지고 있는 이미지
+//   // if (!item) return alt; 이건 빈 이미지
+//   return urlItem(item);
+// };
+export const analysisStatus = (status: string) => {
+  let result = '';
+  if (status === 'live') result = '실시간 분석';
+  else if (status === 'complete') result = '분석완료';
+  else result = '미분석';
+  return result;
 };

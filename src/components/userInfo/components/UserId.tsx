@@ -8,12 +8,15 @@ import {
   SubName,
 } from '../styles/userId.s';
 
-import { urlProfileIcons } from '../../utils/Url';
-
 const UserId = (props: { summonerInfo: SummonerInfo }) => {
   return (
     <UserIdContainer>
-      <UserImg src={urlProfileIcons(props.summonerInfo.profileIconId)} />
+      <UserImg
+        src={
+          process.env.REACT_APP_DDRAGON_API_ROOT +
+          `/profileicon/${props.summonerInfo.profileIconId}.png`
+        }
+      />
       <NameWrapper>
         <UserName>{props.summonerInfo.name}</UserName>
         <SubName>LV {props.summonerInfo.level}</SubName>

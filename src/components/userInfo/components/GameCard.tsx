@@ -26,27 +26,14 @@ import {
   ItemImg,
 } from '../styles/gameCard.s';
 
-import {
-  urlChampion,
-  urlSpell,
-  formatPerks,
-  formatPerkStyles,
-} from '../../utils/Url';
-import { gameInfo, itemInfo } from '../userInfo';
+import { gameInfo, analysisStatus } from '../userInfo';
 
 const GameCard = (props: { matchInfo: MatchInfo }) => {
   const navigate = useNavigate();
   const routegameAnalysis = () => {
-    navigate(
-      `/live?match=${props.matchInfo.match_id}&status=${props.matchInfo.status}`,
-    );
-  };
-  const analysisStatus = (s: string) => {
-    let result = '';
-    if (s === 'live') result = '실시간 분석';
-    else if (s === 'complete') result = '분석완료';
-    else result = '미분석';
-    return result;
+    navigate(`/live?match=${props.matchInfo.match_id}`, {
+      state: props.matchInfo.status,
+    });
   };
   return (
     <GameCardContainer onClick={routegameAnalysis}>
@@ -67,14 +54,39 @@ const GameCard = (props: { matchInfo: MatchInfo }) => {
         </GameMainInfo>
         <GameDetailInfo>
           <GameCardContent>
-            <Profile src={urlChampion(props.matchInfo.champion_name)} />
+            <Profile
+              src={
+                process.env.REACT_APP_DDRAGON_API_ROOT +
+                `/champion/${props.matchInfo.champion_name}.png`
+              }
+            />
             <SpellWrapper>
-              <Spell src={urlSpell(props.matchInfo.spells.spell1)} />
-              <Spell src={urlSpell(props.matchInfo.spells.spell2)} />
+              <Spell
+                src={
+                  process.env.REACT_APP_DDRAGON_API_ROOT +
+                  `/spell/${props.matchInfo.spells.spell1}.png`
+                }
+              />
+              <Spell
+                src={
+                  process.env.REACT_APP_DDRAGON_API_ROOT +
+                  `/spell/${props.matchInfo.spells.spell2}.png`
+                }
+              />
             </SpellWrapper>
             <PerkWrapper>
-              <Perk src={formatPerks(props.matchInfo.perks.perk)} />
-              <Perk src={formatPerkStyles(props.matchInfo.perks.perkStyle)} />
+              <Perk
+                src={
+                  process.env.REACT_APP_OPGG_API_ROOT +
+                  `/lol/perk/${props.matchInfo.perks.perk}.png`
+                }
+              />
+              <Perk
+                src={
+                  process.env.REACT_APP_OPGG_API_ROOT +
+                  `/lol/perkStyle/${props.matchInfo.perks.perkStyle}.png`
+                }
+              />
             </PerkWrapper>
             <KDAWrapper>
               <KDAInfo>
@@ -97,7 +109,9 @@ const GameCard = (props: { matchInfo: MatchInfo }) => {
               return (
                 <ItemImg
                   className={'item' + index}
-                  src={itemInfo(item)}
+                  src={
+                    process.env.REACT_APP_DDRAGON_API_ROOT + `/item/${item}.png`
+                  }
                   key={index}
                 />
               );

@@ -13,7 +13,6 @@ import {
   RankImg,
 } from '../styles/userRank.s';
 
-import { formatRank } from '../../utils/Url';
 import { rankInfo, rankName } from '../userInfo';
 
 const UserRank = (props: { summonerInfo: SummonerInfo }) => {
@@ -36,7 +35,10 @@ const UserRank = (props: { summonerInfo: SummonerInfo }) => {
           <RankImg src={rankimg} />
         ) : (
           <RankImg
-            src={formatRank(props.summonerInfo.solo.tier.toLowerCase())}
+            src={
+              process.env.REACT_APP_OPGG_API_ROOT +
+              `/medals_new/${props.summonerInfo.solo.tier.toLowerCase()}.png`
+            }
           />
         )}
       </RankWrapper>
@@ -57,7 +59,10 @@ const UserRank = (props: { summonerInfo: SummonerInfo }) => {
           <RankImg src={rankimg} />
         ) : (
           <RankImg
-            src={formatRank(props.summonerInfo.flex.tier.toLowerCase())}
+            src={
+              process.env.REACT_APP_OPGG_API_ROOT +
+              `/medals_new/${props.summonerInfo.flex.tier.toLowerCase()}.png`
+            }
           />
         )}
       </RankWrapper>

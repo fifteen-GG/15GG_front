@@ -10,7 +10,7 @@ export const SearchBox = () => {
   //router
   const navigate = useNavigate();
   const routeUserInfo = () => {
-    navigate(`/user?user=${searchValue}`);
+    navigate(`/user?ID=${searchValue}`);
   };
   const [searchValue, setSearchValue] = useState('');
 

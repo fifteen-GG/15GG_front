@@ -76,22 +76,16 @@ const CodeButton = styled.div`
 
 export const Landing = () => {
   const navigate = useNavigate();
-  const routeNewCode = () => {
-    navigate('/code');
-  };
-  const routeLanding = () => {
-    navigate('/');
-  };
   return (
     <LandingContainer>
       <BackgroundVideoWrapper src={Bg_Video} loop autoPlay muted />
       <TitleWrapper>
-        <Logo src={logo} onClick={routeLanding} />
+        <Logo src={logo} onClick={() => navigate('/')} />
         <SearchBox />
         <GamesWrapper>
           <GamesTitleWrapper>
             <GamesTitle>실시간 분석 중</GamesTitle>
-            <CodeButton onClick={routeNewCode}>코드 생성</CodeButton>
+            <CodeButton onClick={() => navigate('/code')}>코드 생성</CodeButton>
           </GamesTitleWrapper>
           <LiveGame />
           <LiveGame />

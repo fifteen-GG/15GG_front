@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { SummonerInfo } from '../../types/summonerInfo';
 import {
   PreferChampionContainer,
@@ -17,6 +18,8 @@ import {
 import { championsInfo } from '../userInfo';
 
 const PreferChampion = (props: { summonerInfo: SummonerInfo }) => {
+  // const [champions, setChampions] = useState<SummonerInfo[]>([]);
+  // setChampions(...props.summonerInfo.champions);
   return (
     <PreferChampionContainer>
       <PreferChampionWrapper>
