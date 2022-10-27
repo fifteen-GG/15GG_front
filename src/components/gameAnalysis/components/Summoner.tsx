@@ -18,13 +18,6 @@ import {
   ItemImg,
   ItemWrapper,
 } from '../styles/summoners.s';
-<<<<<<< HEAD
-
-const formatKDA = (kills: number, deaths: number, assists: number) => {
-  return `${kills}  /  ${deaths}  /  ${assists} `;
-};
-
-=======
 import {
   urlChampion,
   urlSpell,
@@ -48,7 +41,6 @@ const formatKDA = (props: {
 export interface propsType {
   teamInfo: summonerProps;
 }
->>>>>>> 23658ea7ab045f0d4a549f806209f55dddffe0e2
 export interface summonerProps {
   champion: string;
   championSpell1: string;
@@ -58,31 +50,6 @@ export interface summonerProps {
   items: string[];
 }
 
-<<<<<<< HEAD
-const Summoner = (props: { teamInfo: summonerProps }) => {
-  return (
-    <PlayerWrapper>
-      <UserInterface>
-        <ChampionImg
-          src={`${process.env.REACT_APP_DDRAGON_API_ROOT}/champion/${props.teamInfo.champion}.png`}
-        />
-        <ChampionLevel>16</ChampionLevel>
-        <SpellWrapper>
-          <Spell
-            src={`${process.env.REACT_APP_DDRAGON_API_ROOT}/spell/${props.teamInfo.championSpell1}.png`}
-          />
-          <Spell
-            src={`${process.env.REACT_APP_DDRAGON_API_ROOT}/spell/${props.teamInfo.championSpell2}.png`}
-          />
-        </SpellWrapper>
-        <PerksWrapper>
-          <Perk
-            src={`${process.env.REACT_APP_OPGG_API_ROOT}/lol/perk/${props.teamInfo.perks}.png`}
-          />
-          <Perk
-            src={`${process.env.REACT_APP_OPGG_API_ROOT}/lol/perkStyle/${props.teamInfo.perkStyles}.png`}
-          />
-=======
 const Summoner = (props: propsType) => {
   return (
     <PlayerWrapper>
@@ -96,7 +63,6 @@ const Summoner = (props: propsType) => {
         <PerksWrapper>
           <Perk src={formatPerks(props.teamInfo.perks)} />
           <Perk src={formatPerkStyles(props.teamInfo.perkStyles)} />
->>>>>>> 23658ea7ab045f0d4a549f806209f55dddffe0e2
         </PerksWrapper>
         <UserInfoWrapper>
           <SummonerInfo>
@@ -120,11 +86,7 @@ const Summoner = (props: propsType) => {
             ) : (
               <ItemImg
                 className="item3"
-<<<<<<< HEAD
-                src={`${process.env.REACT_APP_DDRAGON_API_ROOT}/item/${props.teamInfo.items[3]}.png`}
-=======
                 src={urlItem(props.teamInfo.items[3])}
->>>>>>> 23658ea7ab045f0d4a549f806209f55dddffe0e2
                 key={index}
               />
             );
