@@ -1,11 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
-import type { ChartData, ChartArea, ChartType } from 'chart.js';
+import type { ChartData, ChartArea } from 'chart.js';
 import * as Palette from '../../../assets/colorPalette';
-import {
-  TimelineBorderBox,
-  TimelineWrappper,
-  WinningRate,
-} from '../styles/timelineGraph.s';
+import { TimelineWrappper } from '../styles/timelineGraph.s';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -17,8 +13,7 @@ import {
   Filler,
   Legend,
 } from 'chart.js';
-import { Chart, Line } from 'react-chartjs-2';
-import { faker } from '@faker-js/faker';
+import { Chart } from 'react-chartjs-2';
 
 ChartJS.register(
   CategoryScale,
@@ -100,11 +95,11 @@ export const data = {
   ],
 };
 
-function createGradient(
+const createGradient = (
   ctx: CanvasRenderingContext2D,
   area: ChartArea,
   graphType: string,
-) {
+) => {
   const graphRed = 'rgba(232, 64, 87, 0.4)';
   const graphBlue = 'rgba(53, 162, 235, 0.5)';
   const graphNeutral = `${Palette.GG_GRFTITLE}`;
@@ -136,7 +131,7 @@ function createGradient(
     : (gradient = blueTeamGradient);
 
   return gradient;
-}
+};
 
 const TimelineGraph = () => {
   const chartRef = useRef<ChartJS>(null);

@@ -18,7 +18,6 @@ import {
   ItemImg,
   ItemWrapper,
 } from '../styles/summoners.s';
-
 import {
   urlChampion,
   urlSpell,
@@ -26,8 +25,6 @@ import {
   formatPerks,
   formatPerkStyles,
 } from '../../utils/Url';
-import { TeamInfo } from '../styles/teamInfoContainer.s';
-import { useState } from 'react';
 
 const formatKDA = (props: {
   kills: number;
@@ -41,10 +38,9 @@ const formatKDA = (props: {
 //   redTeam: summonerProps[];
 //   blueTeam: summonerProps[];
 // }
-export type TeamInfoProps = {
+export interface propsType {
   teamInfo: summonerProps;
-};
-
+}
 export interface summonerProps {
   // team: 'red' | 'blue';
   champion: string;
@@ -55,19 +51,19 @@ export interface summonerProps {
   items: string[];
 }
 
-const Summoner = ({ teamInfo }: TeamInfoProps) => {
+const Summoner = (props: propsType) => {
   return (
     <PlayerWrapper>
       <UserInterface>
-        <ChampionImg src={urlChampion(teamInfo.champion)} />
+        <ChampionImg src={urlChampion(props.teamInfo.champion)} />
         <ChampionLevel>16</ChampionLevel>
         <SpellWrapper>
-          <Spell src={urlSpell(teamInfo.championSpell1)} />
-          <Spell src={urlSpell(teamInfo.championSpell2)} />
+          <Spell src={urlSpell(props.teamInfo.championSpell1)} />
+          <Spell src={urlSpell(props.teamInfo.championSpell2)} />
         </SpellWrapper>
         <PerksWrapper>
-          <Perk src={formatPerks(teamInfo.perks)} />
-          <Perk src={formatPerkStyles(teamInfo.perkStyles)} />
+          <Perk src={formatPerks(props.teamInfo.perks)} />
+          <Perk src={formatPerkStyles(props.teamInfo.perkStyles)} />
         </PerksWrapper>
         <UserInfoWrapper>
           <SummonerInfo>
@@ -84,13 +80,13 @@ const Summoner = ({ teamInfo }: TeamInfoProps) => {
       </UserInterface>
       <ItemInterface>
         <ItemWrapper>
-          {teamInfo.items.map((item, index) => {
+          {props.teamInfo.items.map((item, index) => {
             return index !== 3 ? (
               <ItemImg src={urlItem(item)} key={index} />
             ) : (
               <ItemImg
                 className="item3"
-                src={urlItem(teamInfo.items[3])}
+                src={urlItem(props.teamInfo.items[3])}
                 key={index}
               />
             );
