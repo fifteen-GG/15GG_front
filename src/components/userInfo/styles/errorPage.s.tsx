@@ -1,11 +1,8 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import * as Palette from '../../../assets/colorPalette';
 
-export const ErrorWrapper = styled.div`
+export const ErrorContainer = styled.div`
   width: 100%;
-  @media screen and (max-width: 360px) {
-    width: 328px;
-  }
 `;
 
 export const SummonerWrapper = styled.div`
@@ -41,9 +38,6 @@ export const SummonerLevel = styled.div`
 export const ErrorTextWrapper = styled.div`
   width: 100%;
   height: 208px;
-  @media screen and (max-width: 360px) {
-    width: 328px;
-  }
 `;
 export const ErrorImg = styled.img`
   width: 60px;

@@ -14,30 +14,35 @@ import PreferChampion from './components/PreferChampion';
 import Loading from './components/Loading';
 import ErrorPage from './components/ErrorPage';
 
-const UserInfoWrapper = styled.div``;
+const UserInfoContainer = styled.div``;
 const UserStatWrapper = styled.div``;
 const UserGameListWrapper = styled.div``;
+const Loader = styled.div`
+  color: white;
+  text-align: center;
+  font-size: 14px;
+  margin-top: 4px;
+`;
 
 export const UserInfo = () => {
   const [games, setGames] = useState<MatchInfo[]>([]);
   const [profiles, setProfiless] = useState<SummonerInfo[]>([]);
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState<number>(1);
+  const [loading, setLoading] = useState<boolean>(false);
   const [httpStatusCode, setHttpStatusCode] = useState();
   const params = new URLSearchParams(window.location.search);
-  let state = params.get('user');
+  let state = params.get('ID');
   console.log(state);
   useEffect(() => {
     getData();
-    setTimeout(() => {
-      fetchData();
-    }, 3000);
+    fetchData();
   }, []);
+
   const getData = async () => {
     setLoading(true);
     try {
       const value = await axios.get(
-        `${process.env.REACT_APP_GG_API_ROOT}riot/user/${state}`,
+        `${process.env.REACT_APP_GG_API_ROOT}/riot/user/${state}`,
       );
       console.log(value.data);
       if (value.status === 200) {
@@ -56,7 +61,7 @@ export const UserInfo = () => {
   const fetchData = async () => {
     try {
       const match = await axios.get(
-        `${process.env.REACT_APP_GG_API_ROOT}riot/match/${state}?page=${page}`,
+        `${process.env.REACT_APP_GG_API_ROOT}/riot/match/${state}?page=${page}`,
       );
       console.log(match.data);
       const fetchedGames: MatchInfo[] = [...games, ...match.data];
@@ -68,7 +73,7 @@ export const UserInfo = () => {
   };
   if (httpStatusCode === 404) return <ErrorPage />;
   return (
-    <UserInfoWrapper>
+    <UserInfoContainer>
       {loading ? <Loading /> : null}
       <UserStatWrapper>
         {profiles.map((profile: SummonerInfo, index) => (
@@ -92,23 +97,13 @@ export const UserInfo = () => {
           next={fetchData}
           dataLength={games.length}
           hasMore={true}
-          loader={
-            <h4
-              style={{
-                color: 'white',
-                textAlign: 'center',
-                fontSize: '14px',
-              }}
-            >
-              데이터 불러오는 중...
-            </h4>
-          }
+          loader={<Loader>데이터 불러오는 중...</Loader>}
         >
           {games.map((game: MatchInfo, index) => {
             return <GameCard matchInfo={game} key={index}></GameCard>;
           })}
         </InfiniteScroll>
       </UserGameListWrapper>
-    </UserInfoWrapper>
+    </UserInfoContainer>
   );
 };

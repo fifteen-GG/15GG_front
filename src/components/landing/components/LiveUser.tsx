@@ -1,11 +1,11 @@
 import {
+  LiveUserContainer,
   LiveGameSingleUser,
   LiveGameUserImageWrapper,
   LiveGameUserPosition,
   LiveGameUserChampion,
   LiveGameUserName,
 } from '../styles/liveuser.s';
-import { urlChampion } from '../../utils/Url';
 
 export const LiveUser = (props: {
   champion: string;
@@ -14,12 +14,17 @@ export const LiveUser = (props: {
   pos: string;
 }) => {
   return (
-    <>
+    <LiveUserContainer>
       {props.row === 'left' ? (
         <LiveGameSingleUser>
           <LiveGameUserPosition position={`${props.pos}`} />
           <LiveGameUserImageWrapper>
-            <LiveGameUserChampion src={urlChampion(props.champion)} />
+            <LiveGameUserChampion
+              src={
+                process.env.REACT_APP_DDRAGON_API_ROOT +
+                `/champion/${props.champion}.png`
+              }
+            />
           </LiveGameUserImageWrapper>
           <LiveGameUserName style={{ marginLeft: '2px' }}>
             {props.name}
@@ -31,11 +36,16 @@ export const LiveUser = (props: {
             {props.name}
           </LiveGameUserName>
           <LiveGameUserImageWrapper>
-            <LiveGameUserChampion src={urlChampion(props.champion)} />
+            <LiveGameUserChampion
+              src={
+                process.env.REACT_APP_DDRAGON_API_ROOT +
+                `/champion/${props.champion}.png`
+              }
+            />
           </LiveGameUserImageWrapper>
           <LiveGameUserPosition position={`${props.pos}`} />
         </LiveGameSingleUser>
       )}
-    </>
+    </LiveUserContainer>
   );
 };

@@ -2,15 +2,12 @@ import styled from 'styled-components';
 import * as Palette from '../../../assets/colorPalette';
 
 //UserGraph 스타일
-export const PreferChampionWrapper = styled.div`
+export const PreferChampionContainer = styled.div`
   width: 100%;
   height: 88px;
 `;
 
-export const PreferChampionBox = styled.div`
-  @media screen and (max-width: 360px) {
-    width: 328px;
-  }
+export const PreferChampionWrapper = styled.div`
   height: 68px;
   box-sizing: border-box;
   margin-top: 8px;

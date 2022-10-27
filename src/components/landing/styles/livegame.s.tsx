@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import BackgroundImage from '../../../assets/gg_bg_314.svg';
 import LiveGameLabelImage from '../../../assets/gg_label_live.svg';
 
-export const LiveGameWrapper = styled.div`
+export const LiveGameContainer = styled.div`
   width: 314px;
   height: 84px;
   border-radius: 8px;

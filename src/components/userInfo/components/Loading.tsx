@@ -1,8 +1,8 @@
 import Lottie from 'lottie-react';
 
-import { lottie } from '../../../assets';
+import { gg_lottie_bg } from '../../../assets';
 import {
-  LoadingWrapper,
+  LoadingContainer,
   LottieWrapper,
   SkeletonWrapper,
   SkeletonId,
@@ -13,7 +13,7 @@ import {
 
 const Loading = () => {
   return (
-    <LoadingWrapper>
+    <LoadingContainer>
       <SkeletonWrapper>
         <SkeletonId></SkeletonId>
         <SkeletonNameWrapper>
@@ -22,9 +22,9 @@ const Loading = () => {
         </SkeletonNameWrapper>
       </SkeletonWrapper>
       <LottieWrapper>
-        <Lottie animationData={lottie} />
+        <Lottie animationData={gg_lottie_bg} />
       </LottieWrapper>
-    </LoadingWrapper>
+    </LoadingContainer>
   );
 };
 

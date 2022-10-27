@@ -2,7 +2,7 @@ import React from 'react';
 import { SummonerInfo } from '../../types/summonerInfo';
 import rankimg from '../../../assets/gg_tier_unranked_4x.png';
 import {
-  UserRankWrapper,
+  UserRankContainer,
   RankWrapper,
   RankText,
   RankSubTitle,
@@ -13,12 +13,11 @@ import {
   RankImg,
 } from '../styles/userRank.s';
 
-import { formatRank } from '../../utils/Url';
 import { rankInfo, rankName } from '../userInfo';
 
 const UserRank = (props: { summonerInfo: SummonerInfo }) => {
   return (
-    <UserRankWrapper>
+    <UserRankContainer>
       <RankWrapper className="Solo">
         <RankText>
           <RankSubTitle>솔로랭크</RankSubTitle>
@@ -36,7 +35,10 @@ const UserRank = (props: { summonerInfo: SummonerInfo }) => {
           <RankImg src={rankimg} />
         ) : (
           <RankImg
-            src={formatRank(props.summonerInfo.solo.tier.toLowerCase())}
+            src={
+              process.env.REACT_APP_OPGG_API_ROOT +
+              `/medals_new/${props.summonerInfo.solo.tier.toLowerCase()}.png`
+            }
           />
         )}
       </RankWrapper>
@@ -57,11 +59,14 @@ const UserRank = (props: { summonerInfo: SummonerInfo }) => {
           <RankImg src={rankimg} />
         ) : (
           <RankImg
-            src={formatRank(props.summonerInfo.flex.tier.toLowerCase())}
+            src={
+              process.env.REACT_APP_OPGG_API_ROOT +
+              `/medals_new/${props.summonerInfo.flex.tier.toLowerCase()}.png`
+            }
           />
         )}
       </RankWrapper>
-    </UserRankWrapper>
+    </UserRankContainer>
   );
 };
 export default UserRank;

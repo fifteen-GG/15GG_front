@@ -1,84 +1,100 @@
 import { useNavigate } from 'react-router-dom';
 import { MatchInfo } from '../../types/matchInfo';
 import {
-  GameListBox,
-  GameInfoBox,
+  GameCardContainer,
+  GameInfoWrapper,
   AnalysisStatus,
   GameMainInfo,
   Result,
   Date,
   GameMode,
+  Duration,
   GameDetailInfo,
   GameCardContent,
   Profile,
-  SpellBox,
+  SpellWrapper,
   Spell,
-  PerkBox,
+  PerkWrapper,
   Perk,
-  KDABox,
+  KDAWrapper,
   KDAInfo,
   KDARate,
   CSNWard,
   CSInfo,
   Ward,
-  ItemBox,
-  // ItemRow,
+  ItemWrapper,
   ItemImg,
 } from '../styles/gameCard.s';
 
-import {
-  urlChampion,
-  urlSpell,
-  formatPerks,
-  formatPerkStyles,
-} from '../../utils/Url';
-import { gameInfo, itemInfo } from '../userInfo';
+import { gameInfo, analysisStatus } from '../userInfo';
 
 const GameCard = (props: { matchInfo: MatchInfo }) => {
   const navigate = useNavigate();
   const routegameAnalysis = () => {
-    navigate(
-      `/live?match=${props.matchInfo.match_id}&status=${props.matchInfo.status}`,
-    );
-  };
-  const analysisStatus = (s: string) => {
-    let result = '';
-    if (s === 'live') result = '실시간 분석';
-    else if (s === 'complete') result = '분석완료';
-    else result = '미분석';
-    return result;
+    navigate(`/live?match=${props.matchInfo.match_id}`, {
+      state: props.matchInfo.status,
+    });
   };
   return (
-    <GameListBox onClick={routegameAnalysis}>
+    <GameCardContainer onClick={routegameAnalysis}>
       <AnalysisStatus status={props.matchInfo.status}>
         {analysisStatus(props.matchInfo.status)}
       </AnalysisStatus>
-      <GameInfoBox win={props.matchInfo.win}>
+      <GameInfoWrapper win={props.matchInfo.win}>
         <GameMainInfo>
           <Result>{props.matchInfo.win ? '승리' : '패배'}</Result>
           <Date>
             {props.matchInfo.created_at.replaceAll('-', '/').slice(2)}
           </Date>
           <GameMode>{gameInfo(props.matchInfo)}</GameMode>
+          <Duration>
+            {Math.round(props.matchInfo.game_duration / 60)}분{' '}
+            {props.matchInfo.game_duration % 60}초
+          </Duration>
         </GameMainInfo>
         <GameDetailInfo>
           <GameCardContent>
-            <Profile src={urlChampion(props.matchInfo.champion_name)} />
-            <SpellBox>
-              <Spell src={urlSpell(props.matchInfo.spells.spell1)} />
-              <Spell src={urlSpell(props.matchInfo.spells.spell2)} />
-            </SpellBox>
-            <PerkBox>
-              <Perk src={formatPerks(props.matchInfo.perks.perk)} />
-              <Perk src={formatPerkStyles(props.matchInfo.perks.perkStyle)} />
-            </PerkBox>
-            <KDABox>
+            <Profile
+              src={
+                process.env.REACT_APP_DDRAGON_API_ROOT +
+                `/champion/${props.matchInfo.champion_name}.png`
+              }
+            />
+            <SpellWrapper>
+              <Spell
+                src={
+                  process.env.REACT_APP_DDRAGON_API_ROOT +
+                  `/spell/${props.matchInfo.spells.spell1}.png`
+                }
+              />
+              <Spell
+                src={
+                  process.env.REACT_APP_DDRAGON_API_ROOT +
+                  `/spell/${props.matchInfo.spells.spell2}.png`
+                }
+              />
+            </SpellWrapper>
+            <PerkWrapper>
+              <Perk
+                src={
+                  process.env.REACT_APP_OPGG_API_ROOT +
+                  `/lol/perk/${props.matchInfo.perks.perk}.png`
+                }
+              />
+              <Perk
+                src={
+                  process.env.REACT_APP_OPGG_API_ROOT +
+                  `/lol/perkStyle/${props.matchInfo.perks.perkStyle}.png`
+                }
+              />
+            </PerkWrapper>
+            <KDAWrapper>
               <KDAInfo>
                 {props.matchInfo.kills} / {props.matchInfo.deaths} /{' '}
                 {props.matchInfo.assists}
               </KDAInfo>
               <KDARate>KDA {props.matchInfo.kda}</KDARate>
-            </KDABox>
+            </KDAWrapper>
             <CSNWard>
               <CSInfo>
                 CS {props.matchInfo.cs} ({props.matchInfo.cs_per_min})
@@ -88,20 +104,22 @@ const GameCard = (props: { matchInfo: MatchInfo }) => {
               </Ward>
             </CSNWard>
           </GameCardContent>
-          <ItemBox>
+          <ItemWrapper>
             {props.matchInfo.items.map((item: string, index: number) => {
               return (
                 <ItemImg
                   className={'item' + index}
-                  src={itemInfo(item)}
+                  src={
+                    process.env.REACT_APP_DDRAGON_API_ROOT + `/item/${item}.png`
+                  }
                   key={index}
                 />
               );
             })}
-          </ItemBox>
+          </ItemWrapper>
         </GameDetailInfo>
-      </GameInfoBox>
-    </GameListBox>
+      </GameInfoWrapper>
+    </GameCardContainer>
   );
 };
 export default GameCard;

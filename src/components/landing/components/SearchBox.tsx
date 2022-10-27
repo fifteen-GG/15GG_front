@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  SearchBoxWrapper,
+  SearchBoxContainer,
   SearchField,
   SearchButton,
 } from '../styles/searchbox.s';
@@ -10,7 +10,7 @@ export const SearchBox = () => {
   //router
   const navigate = useNavigate();
   const routeUserInfo = () => {
-    navigate(`/user?user=${searchValue}`);
+    navigate(`/user?ID=${searchValue}`);
   };
   const [searchValue, setSearchValue] = useState('');
 
@@ -18,7 +18,7 @@ export const SearchBox = () => {
     setSearchValue(e.target.value);
   };
   return (
-    <SearchBoxWrapper>
+    <SearchBoxContainer>
       <SearchField
         placeholder="소환사명 검색하기..."
         onChange={handleSearchValue}
@@ -27,6 +27,6 @@ export const SearchBox = () => {
         }}
       ></SearchField>
       <SearchButton onClick={routeUserInfo} />
-    </SearchBoxWrapper>
+    </SearchBoxContainer>
   );
 };

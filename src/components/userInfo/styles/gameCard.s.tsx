@@ -1,14 +1,11 @@
 import styled from 'styled-components';
 import * as Palette from '../../../assets/colorPalette';
 
-export const GameListBox = styled.div`
+export const GameCardContainer = styled.div`
   width: 100%;
-  @media screen and (max-width: 360px) {
-    width: 328px;
-  }
 `;
 
-export const GameInfoBox = styled.div`
+export const GameInfoWrapper = styled.div`
   height: 46px;
   background: ${(props: { win: boolean }) =>
     props.win ? '#4b5f71' : '#634749'};
@@ -70,6 +67,10 @@ export const GameMode = styled.div`
   height: 100%;
   margin-left: 6px;
 `;
+export const Duration = styled.div`
+  height: 100%;
+  margin-left: 6px;
+`;
 
 export const GameDetailInfo = styled.div`
   width: 100%;
@@ -88,7 +89,7 @@ export const Profile = styled.img`
   border-radius: 10px;
   background: ${Palette.GG_BLACK_100};
 `;
-export const SpellBox = styled.div`
+export const SpellWrapper = styled.div`
   display: flex;
   height: 32px;
   width: 15px;
@@ -104,7 +105,7 @@ export const Spell = styled.img`
   border-radius: 2px;
   background: ${Palette.GG_BLACK_100};
 `;
-export const PerkBox = styled.div`
+export const PerkWrapper = styled.div`
   display: flex;
   height: 32px;
   width: 15px;
@@ -119,7 +120,7 @@ export const Perk = styled.img`
   border-radius: 10px;
   background: ${Palette.GG_BLACK_100};
 `;
-export const KDABox = styled.div`
+export const KDAWrapper = styled.div`
   height: 100%;
   color: white;
   margin-left: 4px;
@@ -155,7 +156,7 @@ export const Ward = styled.div`
   margin-top: 7px;
 `;
 
-export const ItemBox = styled.div`
+export const ItemWrapper = styled.div`
   display: flex;
   @media screen and (max-width: 650px) {
     flex-wrap: wrap;
@@ -172,7 +173,8 @@ export const ItemImg = styled.img`
   width: 15px;
   height: 15px;
   border-radius: 2px;
-  background: black;
+  background: ${Palette.GG_BLACK_100};
+  onerror: none;
   margin-left: 2px;
   &.item0 {
     order: 0;
