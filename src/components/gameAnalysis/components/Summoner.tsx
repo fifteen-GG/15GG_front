@@ -18,11 +18,37 @@ import {
   ItemImg,
   ItemWrapper,
 } from '../styles/summoners.s';
+<<<<<<< HEAD
 
 const formatKDA = (kills: number, deaths: number, assists: number) => {
   return `${kills}  /  ${deaths}  /  ${assists} `;
 };
 
+=======
+import {
+  urlChampion,
+  urlSpell,
+  urlItem,
+  formatPerks,
+  formatPerkStyles,
+} from '../../utils/Url';
+
+const formatKDA = (props: {
+  kills: number;
+  deaths: number;
+  assists: number;
+}) => {
+  return `${props.kills}  /  ${props.deaths}  /  ${props.assists} `;
+};
+
+// export interface Team {
+//   redTeam: summonerProps[];
+//   blueTeam: summonerProps[];
+// }
+export interface propsType {
+  teamInfo: summonerProps;
+}
+>>>>>>> 23658ea7ab045f0d4a549f806209f55dddffe0e2
 export interface summonerProps {
   champion: string;
   championSpell1: string;
@@ -32,6 +58,7 @@ export interface summonerProps {
   items: string[];
 }
 
+<<<<<<< HEAD
 const Summoner = (props: { teamInfo: summonerProps }) => {
   return (
     <PlayerWrapper>
@@ -55,6 +82,21 @@ const Summoner = (props: { teamInfo: summonerProps }) => {
           <Perk
             src={`${process.env.REACT_APP_OPGG_API_ROOT}/lol/perkStyle/${props.teamInfo.perkStyles}.png`}
           />
+=======
+const Summoner = (props: propsType) => {
+  return (
+    <PlayerWrapper>
+      <UserInterface>
+        <ChampionImg src={urlChampion(props.teamInfo.champion)} />
+        <ChampionLevel>16</ChampionLevel>
+        <SpellWrapper>
+          <Spell src={urlSpell(props.teamInfo.championSpell1)} />
+          <Spell src={urlSpell(props.teamInfo.championSpell2)} />
+        </SpellWrapper>
+        <PerksWrapper>
+          <Perk src={formatPerks(props.teamInfo.perks)} />
+          <Perk src={formatPerkStyles(props.teamInfo.perkStyles)} />
+>>>>>>> 23658ea7ab045f0d4a549f806209f55dddffe0e2
         </PerksWrapper>
         <UserInfoWrapper>
           <SummonerInfo>
@@ -78,7 +120,11 @@ const Summoner = (props: { teamInfo: summonerProps }) => {
             ) : (
               <ItemImg
                 className="item3"
+<<<<<<< HEAD
                 src={`${process.env.REACT_APP_DDRAGON_API_ROOT}/item/${props.teamInfo.items[3]}.png`}
+=======
+                src={urlItem(props.teamInfo.items[3])}
+>>>>>>> 23658ea7ab045f0d4a549f806209f55dddffe0e2
                 key={index}
               />
             );

@@ -1,5 +1,5 @@
-import React, { useRef, useState, useEffect } from 'react';
-import type { ChartData, ChartArea, ChartType } from 'chart.js';
+import { useRef, useState, useEffect } from 'react';
+import type { ChartData } from 'chart.js';
 import * as Palette from '../../../assets/colorPalette';
 import {
   Chart as ChartJS,
@@ -10,7 +10,7 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { Chart, Bar } from 'react-chartjs-2';
+import { Chart } from 'react-chartjs-2';
 import {
   BarWrapper,
   RateWrapper,
@@ -73,7 +73,7 @@ export const data = {
   datasets: [
     {
       label: 'Dataset 1',
-      data: [80.4],
+      data: [50.0],
       borderColor: `${Palette.GG_TIMELINE_BARGRAPH_RED}`,
       backgroundColor: `${Palette.GG_TIMELINE_BARGRAPH_RED}`,
       borderWidth: 0,
@@ -89,6 +89,7 @@ export const data = {
 };
 const TimelineBarGraph = () => {
   const chartRef = useRef<ChartJS>(null);
+  const [redWinningRate, setRedWinningRate] = useState(50.0);
   const [chartData, setChartData] = useState<ChartData<'bar'>>({
     datasets: [],
   });
@@ -108,6 +109,7 @@ const TimelineBarGraph = () => {
 
     setChartData(chartData);
   }, []);
+
   return (
     <Graph>
       <BarWrapper>
@@ -120,9 +122,9 @@ const TimelineBarGraph = () => {
         />
       </BarWrapper>
       <RateWrapper>
-        <WinningRate>80.4%</WinningRate>
+        <WinningRate>{redWinningRate}%</WinningRate>
         <GraphTitle>승률</GraphTitle>
-        <WinningRate>19.6%</WinningRate>
+        <WinningRate>{100 - redWinningRate}%</WinningRate>
       </RateWrapper>
     </Graph>
   );
