@@ -70,7 +70,9 @@ const Summoner = (props: propsType) => {
             <SummonerTier>P4</SummonerTier>
           </SummonerInfo>
           <KDAWrapper>
-            <KDADetails>{formatKDA(15, 6, 5)}</KDADetails>
+            <KDADetails>
+              {formatKDA({ kills: 15, deaths: 6, assists: 5 })}
+            </KDADetails>
             <KDA>KDA 3.3</KDA>
           </KDAWrapper>
         </UserInfoWrapper>

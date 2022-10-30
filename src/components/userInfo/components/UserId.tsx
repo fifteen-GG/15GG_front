@@ -2,25 +2,27 @@ import { SummonerInfo } from '../../types/summonerInfo';
 import React from 'react';
 import {
   UserIdContainer,
-  UserImg,
-  NameWrapper,
+  UserIcon,
+  UserNameWrapper,
   UserName,
   SubName,
 } from '../styles/userId.s';
-
-const UserId = (props: { summonerInfo: SummonerInfo }) => {
+interface propsType {
+  summonerInfo: SummonerInfo;
+}
+const UserId = (props: propsType) => {
   return (
     <UserIdContainer>
-      <UserImg
+      <UserIcon
         src={
           process.env.REACT_APP_DDRAGON_API_ROOT +
           `/profileicon/${props.summonerInfo.profileIconId}.png`
         }
       />
-      <NameWrapper>
+      <UserNameWrapper>
         <UserName>{props.summonerInfo.name}</UserName>
         <SubName>LV {props.summonerInfo.level}</SubName>
-      </NameWrapper>
+      </UserNameWrapper>
     </UserIdContainer>
   );
 };

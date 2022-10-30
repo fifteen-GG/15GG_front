@@ -14,9 +14,7 @@ const pulse = keyframes`
   }
 `;
 
-export const LoadingContainer = styled.div`
-  width: 100%;
-`;
+export const LoadingContainer = styled.div``;
 
 export const SkeletonWrapper = styled.div`
   height: 76px;

@@ -10,7 +10,7 @@ export const UserIdContainer = styled.div`
   background: ${Palette.GG_BLACK_100};
   display: flex;
 `;
-export const UserImg = styled.img`
+export const UserIcon = styled.img`
   width: 52px;
   height: 52px;
   background: ${Palette.GG_BLACK_100};
@@ -18,7 +18,7 @@ export const UserImg = styled.img`
   border-radius: 10px;
   display: flex;
 `;
-export const NameWrapper = styled.div`
+export const UserNameWrapper = styled.div`
   flex-direction: column;
 `;
 export const UserName = styled.div`

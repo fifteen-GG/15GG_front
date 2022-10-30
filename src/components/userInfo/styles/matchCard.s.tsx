@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 import * as Palette from '../../../assets/colorPalette';
 
-export const GameCardContainer = styled.div`
-  width: 100%;
-`;
+export const MatchCardContainer = styled.div``;
 
-export const GameInfoWrapper = styled.div`
+export const MatchInfoWrapper = styled.div`
   height: 46px;
   background: ${(props: { win: boolean }) =>
     props.win ? '#4b5f71' : '#634749'};
@@ -40,7 +38,7 @@ export const AnalysisStatus = styled.div`
   letter-spacing: normal;
 `;
 
-export const GameMainInfo = styled.div`
+export const MatchMainInfo = styled.div`
   height: 10px;
   color: ${Palette.GG_WHITE_100};
   font-size: 10px;
@@ -53,33 +51,33 @@ export const GameMainInfo = styled.div`
   display: flex;
 `;
 
-export const Result = styled.div`
+export const MatchResult = styled.div`
   width: 18px;
   height: 100%;
 `;
 
-export const Date = styled.div`
+export const MatchDate = styled.div`
   height: 100%;
   margin-left: 8px;
 `;
 
-export const GameMode = styled.div`
+export const MatchMode = styled.div`
   height: 100%;
   margin-left: 6px;
 `;
-export const Duration = styled.div`
+export const MatchDuration = styled.div`
   height: 100%;
   margin-left: 6px;
 `;
 
-export const GameDetailInfo = styled.div`
+export const MatchDetailInfo = styled.div`
   width: 100%;
   height: 32px;
   margin-top: 6px;
   display: flex;
   justify-content: space-between;
 `;
-export const GameCardContent = styled.div`
+export const MatchCardContent = styled.div`
   display: flex;
 `;
 

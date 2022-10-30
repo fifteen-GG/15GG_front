@@ -1,7 +1,7 @@
 import {
   ErrorContainer,
   SummonerWrapper,
-  SummonerId,
+  SummonerIcon,
   SummonerLevel,
   SummonerNameWrapper,
   SummonerName,
@@ -13,13 +13,13 @@ import gg_error_bg from '../../../assets/gg_error_bg.png';
 
 const ErrorPage = () => {
   const params = new URLSearchParams(window.location.search);
-  let state = params.get('user');
+  let ID = params.get('ID');
   return (
     <ErrorContainer>
       <SummonerWrapper>
-        <SummonerId></SummonerId>
+        <SummonerIcon></SummonerIcon>
         <SummonerNameWrapper>
-          <SummonerName>{state}</SummonerName>
+          <SummonerName>{ID}</SummonerName>
           <SummonerLevel>LV 0</SummonerLevel>
         </SummonerNameWrapper>
       </SummonerWrapper>
