@@ -25,6 +25,7 @@ import {
   formatPerks,
   formatPerkStyles,
 } from '../../utils/Url';
+import { kill } from 'process';
 
 const formatKDA = (props: {
   kills: number;
@@ -70,7 +71,9 @@ const Summoner = (props: propsType) => {
             <SummonerTier>P4</SummonerTier>
           </SummonerInfo>
           <KDAWrapper>
-            <KDADetails>{formatKDA(15, 6, 5)}</KDADetails>
+            <KDADetails>
+              {formatKDA({ kills: 13, deaths: 5, assists: 6 })}
+            </KDADetails>
             <KDA>KDA 3.3</KDA>
           </KDAWrapper>
         </UserInfoWrapper>
