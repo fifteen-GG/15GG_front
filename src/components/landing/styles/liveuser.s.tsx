@@ -14,20 +14,17 @@ const gg_svg: {
   adc: gg_adc,
   sup: gg_utl,
 };
-export const LiveUserContainer = styled.div`
+export const UserWrapper = styled.div`
   width: 100%;
-`;
-export const LiveGameSingleUser = styled.div`
   margin-top: 2px;
   margin-bottom: 2px;
   width: 65px;
   height: 12px;
   display: flex;
-  flex-direction: row;
   align-items: center;
 `;
 
-export const LiveGameUserPosition = styled.div<{ position: string }>`
+export const GameUserPosition = styled.div<{ position: string }>`
   background-image: ${props => `url(${gg_svg[props.position]})`};
   margin-left: 1px;
   margin-right: 1px;
@@ -36,7 +33,7 @@ export const LiveGameUserPosition = styled.div<{ position: string }>`
   border-radius: 2px;
 `;
 
-export const LiveGameUserImageWrapper = styled.div`
+export const GameUserImageWrapper = styled.div`
   display: flex;
   width: 12px;
   height: 12px;
@@ -46,13 +43,13 @@ export const LiveGameUserImageWrapper = styled.div`
   align-items: center;
 `;
 
-export const LiveGameUserChampion = styled.img`
+export const GameUserChampion = styled.img`
   height: 14px;
   width: 14px;
   border-radius: 2px;
 `;
 
-export const LiveGameUserName = styled.div`
+export const GameUserName = styled.div`
   color: #fff;
   font-size: 10px;
   font-weight: 300;

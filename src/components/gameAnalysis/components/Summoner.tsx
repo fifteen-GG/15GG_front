@@ -25,6 +25,7 @@ import {
   formatPerks,
   formatPerkStyles,
 } from '../../utils/Url';
+import { kill } from 'process';
 
 const formatKDA = (props: {
   kills: number;
