@@ -3,7 +3,6 @@ import * as Palette from '../../../assets/colorPalette';
 
 //UserGraph 스타일
 export const PreferChampionContainer = styled.div`
-  width: 100%;
   height: 88px;
 `;
 

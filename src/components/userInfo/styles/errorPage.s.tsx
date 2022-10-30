@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import * as Palette from '../../../assets/colorPalette';
 
-export const ErrorContainer = styled.div`
-  width: 100%;
-`;
+export const ErrorContainer = styled.div``;
 
 export const SummonerWrapper = styled.div`
   width: 100%;
@@ -12,7 +10,7 @@ export const SummonerWrapper = styled.div`
   display: flex;
 `;
 
-export const SummonerId = styled.div`
+export const SummonerIcon = styled.div`
   width: 52px;
   height: 52px;
   background: ${Palette.GG_BLACK_70};

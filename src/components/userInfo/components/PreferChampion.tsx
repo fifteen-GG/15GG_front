@@ -15,11 +15,23 @@ import {
   PreferChampionMsg,
 } from '../styles/preferChampion.s';
 
-import { championsInfo } from '../userInfo';
+import { formatChampionsInfo } from '../userInfo';
 
-const PreferChampion = (props: { summonerInfo: SummonerInfo }) => {
-  // const [champions, setChampions] = useState<SummonerInfo[]>([]);
-  // setChampions(...props.summonerInfo.champions);
+export interface userChampion {
+  championName: string;
+  counts: number;
+  win_rate: string | number;
+  kda: string | number;
+}
+interface propsType {
+  summonerInfo: SummonerInfo;
+}
+const PreferChampion = (props: propsType) => {
+  const [userChampion, setUserChampion] = useState<userChampion[]>([
+    formatChampionsInfo(props.summonerInfo, 0),
+    formatChampionsInfo(props.summonerInfo, 1),
+    formatChampionsInfo(props.summonerInfo, 2),
+  ]);
   return (
     <PreferChampionContainer>
       <PreferChampionWrapper>
@@ -28,25 +40,20 @@ const PreferChampion = (props: { summonerInfo: SummonerInfo }) => {
           <ChampionAltInfo>플레이 결과가 없어요 :(</ChampionAltInfo>
         ) : (
           <ChampionInfo>
-            {[...Array(3)].map((champion, index: number) => {
+            {userChampion.map((champion, index: number) => {
               return (
                 <ChampionInfoWrapper key={index}>
-                  <ChampionImg
-                    src={championsInfo(props.summonerInfo, index).championName}
-                  />
+                  <ChampionImg src={userChampion[index].championName} />
                   <ChampionInfoText>
                     <ChampionInfoTitle>
-                      {championsInfo(props.summonerInfo, index).counts}게임
+                      {userChampion[index].counts}
+                      게임
                     </ChampionInfoTitle>
-                    <ChampionInfoContent
-                      counts={championsInfo(props.summonerInfo, index).counts}
-                    >
-                      {championsInfo(props.summonerInfo, index).win_rate}
+                    <ChampionInfoContent counts={userChampion[index].counts}>
+                      {userChampion[index].win_rate}
                     </ChampionInfoContent>
-                    <ChampionInfoSubTitle
-                      counts={championsInfo(props.summonerInfo, index).counts}
-                    >
-                      KDA {championsInfo(props.summonerInfo, index).kda}:1
+                    <ChampionInfoSubTitle counts={userChampion[index].counts}>
+                      KDA {userChampion[index].kda}:1
                     </ChampionInfoSubTitle>
                   </ChampionInfoText>
                 </ChampionInfoWrapper>

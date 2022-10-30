@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import type { ChartData, ChartArea, ChartType } from 'chart.js';
 
 import {
@@ -24,7 +24,7 @@ import * as Palette from '../../../assets/colorPalette';
 import { Chart } from 'react-chartjs-2';
 import { ArcElement } from 'chart.js';
 import { SummonerInfo } from '../../types/summonerInfo';
-import { statInfo } from '../userInfo';
+import { formatStatInfo } from '../userInfo';
 ChartJS.register(
   ArcElement,
   RadialLinearScale,
@@ -62,7 +62,24 @@ const data = {
   ],
 };
 
-export const UserStatInfo = (props: { summonerInfo: SummonerInfo }) => {
+export interface userStat {
+  win_rate: number;
+  win: number;
+  losses: number;
+  kda_avg: number;
+  kills_avg: number;
+  deaths_avg: number;
+  assists_avg: number;
+  prefer_position: string[];
+  position_rate: number[];
+}
+interface propsType {
+  summonerInfo: SummonerInfo;
+}
+export const UserStatInfo = (props: propsType) => {
+  const [userStat, setUserStat] = useState<userStat>(
+    formatStatInfo(props.summonerInfo),
+  );
   const chartRef = useRef<ChartJS>(null);
   const [chartData, setChartData] = useState<ChartData<'doughnut'>>({
     datasets: [],
@@ -78,10 +95,7 @@ export const UserStatInfo = (props: { summonerInfo: SummonerInfo }) => {
       datasets: data.datasets.map(dataset => ({
         ...dataset,
         label: props.summonerInfo.name,
-        data: [
-          statInfo(props.summonerInfo).win_rate,
-          100 - statInfo(props.summonerInfo).win_rate,
-        ],
+        data: [userStat.win_rate, 100 - userStat.win_rate],
       })),
     };
     setChartData(chartData);
@@ -91,7 +105,7 @@ export const UserStatInfo = (props: { summonerInfo: SummonerInfo }) => {
     <UserStatInfoContainer>
       <UserWinRateWrapper>
         <GraphImg>
-          <GraphText>{statInfo(props.summonerInfo).win_rate}%</GraphText>
+          <GraphText>{userStat.win_rate}%</GraphText>
           <Chart
             ref={chartRef}
             type="doughnut"
@@ -101,34 +115,23 @@ export const UserStatInfo = (props: { summonerInfo: SummonerInfo }) => {
         </GraphImg>
         <UserInfoText>
           <UserInfoTitle>승률</UserInfoTitle>
-          <UserInfoContent>
-            {statInfo(props.summonerInfo).win_rate}%
-          </UserInfoContent>
+          <UserInfoContent>{userStat.win_rate}%</UserInfoContent>
           <UserInfoSubTitle>
-            {statInfo(props.summonerInfo).win}승{' '}
-            {statInfo(props.summonerInfo).losses}패
+            {userStat.win}승 {userStat.losses}패
           </UserInfoSubTitle>
         </UserInfoText>
       </UserWinRateWrapper>
       <UserInfoText>
         <UserInfoTitle>KDA</UserInfoTitle>
-        <UserInfoContent>
-          {statInfo(props.summonerInfo).kda_avg}
-        </UserInfoContent>
+        <UserInfoContent>{userStat.kda_avg}</UserInfoContent>
         <UserInfoSubTitle>
-          {statInfo(props.summonerInfo).kills_avg}/
-          {statInfo(props.summonerInfo).deaths_avg}/
-          {statInfo(props.summonerInfo).assists_avg}
+          {userStat.kills_avg}/{userStat.deaths_avg}/{userStat.assists_avg}
         </UserInfoSubTitle>
       </UserInfoText>
       <UserInfoText>
         <UserInfoTitle>선호 포지션</UserInfoTitle>
-        <UserInfoContent>
-          {statInfo(props.summonerInfo).prefer_position}
-        </UserInfoContent>
-        <UserInfoSubTitle>
-          {statInfo(props.summonerInfo).position_rate}%
-        </UserInfoSubTitle>
+        <UserInfoContent>{userStat.prefer_position}</UserInfoContent>
+        <UserInfoSubTitle>{userStat.position_rate}%</UserInfoSubTitle>
       </UserInfoText>
     </UserStatInfoContainer>
   );

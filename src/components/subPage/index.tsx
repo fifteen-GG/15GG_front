@@ -70,7 +70,6 @@ enum gameState {
 enum PageEnum {
   CODE,
   LIVE,
-  GAME,
   USER,
 }
 interface propsType {

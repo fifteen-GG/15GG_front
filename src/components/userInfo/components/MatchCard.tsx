@@ -1,16 +1,16 @@
 import { useNavigate } from 'react-router-dom';
 import { MatchInfo } from '../../types/matchInfo';
 import {
-  GameCardContainer,
-  GameInfoWrapper,
+  MatchCardContainer,
+  MatchInfoWrapper,
   AnalysisStatus,
-  GameMainInfo,
-  Result,
-  Date,
-  GameMode,
-  Duration,
-  GameDetailInfo,
-  GameCardContent,
+  MatchMainInfo,
+  MatchResult,
+  MatchDate,
+  MatchMode,
+  MatchDuration,
+  MatchDetailInfo,
+  MatchCardContent,
   Profile,
   SpellWrapper,
   Spell,
@@ -24,11 +24,14 @@ import {
   Ward,
   ItemWrapper,
   ItemImg,
-} from '../styles/gameCard.s';
+} from '../styles/matchCard.s';
+import { formatMatchInfo, formatAnalysisStatus } from '../userInfo';
 
-import { gameInfo, analysisStatus } from '../userInfo';
+interface propsType {
+  matchInfo: MatchInfo;
+}
 
-const GameCard = (props: { matchInfo: MatchInfo }) => {
+const MatchCard = (props: propsType) => {
   const navigate = useNavigate();
   const routegameAnalysis = () => {
     navigate(`/live?match=${props.matchInfo.match_id}`, {
@@ -36,24 +39,24 @@ const GameCard = (props: { matchInfo: MatchInfo }) => {
     });
   };
   return (
-    <GameCardContainer onClick={routegameAnalysis}>
+    <MatchCardContainer onClick={routegameAnalysis}>
       <AnalysisStatus status={props.matchInfo.status}>
-        {analysisStatus(props.matchInfo.status)}
+        {formatAnalysisStatus(props.matchInfo.status)}
       </AnalysisStatus>
-      <GameInfoWrapper win={props.matchInfo.win}>
-        <GameMainInfo>
-          <Result>{props.matchInfo.win ? '승리' : '패배'}</Result>
-          <Date>
+      <MatchInfoWrapper win={props.matchInfo.win}>
+        <MatchMainInfo>
+          <MatchResult>{props.matchInfo.win ? '승리' : '패배'}</MatchResult>
+          <MatchDate>
             {props.matchInfo.created_at.replaceAll('-', '/').slice(2)}
-          </Date>
-          <GameMode>{gameInfo(props.matchInfo)}</GameMode>
-          <Duration>
+          </MatchDate>
+          <MatchMode>{formatMatchInfo(props.matchInfo)}</MatchMode>
+          <MatchDuration>
             {Math.round(props.matchInfo.game_duration / 60)}분{' '}
             {props.matchInfo.game_duration % 60}초
-          </Duration>
-        </GameMainInfo>
-        <GameDetailInfo>
-          <GameCardContent>
+          </MatchDuration>
+        </MatchMainInfo>
+        <MatchDetailInfo>
+          <MatchCardContent>
             <Profile
               src={
                 process.env.REACT_APP_DDRAGON_API_ROOT +
@@ -103,7 +106,7 @@ const GameCard = (props: { matchInfo: MatchInfo }) => {
                 제어 와드 {props.matchInfo.vision_wards_bought_in_game}
               </Ward>
             </CSNWard>
-          </GameCardContent>
+          </MatchCardContent>
           <ItemWrapper>
             {props.matchInfo.items.map((item: string, index: number) => {
               return (
@@ -117,9 +120,9 @@ const GameCard = (props: { matchInfo: MatchInfo }) => {
               );
             })}
           </ItemWrapper>
-        </GameDetailInfo>
-      </GameInfoWrapper>
-    </GameCardContainer>
+        </MatchDetailInfo>
+      </MatchInfoWrapper>
+    </MatchCardContainer>
   );
 };
-export default GameCard;
+export default MatchCard;

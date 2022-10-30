@@ -30,30 +30,13 @@ export interface SummonerInfo {
     ADC?: number;
     SUP?: number;
   };
-  champions: [
-    {
-      championName: string;
-      counts: number;
-      kills: number;
-      deaths: number;
-      assists: number;
-      wins: number;
-    },
-    {
-      championName: string;
-      counts: number;
-      kills: number;
-      deaths: number;
-      assists: number;
-      wins: number;
-    },
-    {
-      championName: string;
-      counts: number;
-      kills: number;
-      deaths: number;
-      assists: number;
-      wins: number;
-    },
-  ];
+  champions: champions[];
+}
+interface champions {
+  championName: string;
+  counts: number;
+  kills: number;
+  deaths: number;
+  assists: number;
+  wins: number;
 }

@@ -8,7 +8,7 @@ import axios from 'axios';
 import UserRank from './components/UserRank';
 import UserGraph from './components/UserGraph';
 import UserStatInfo from './components/UserStatInfo';
-import GameCard from './components/GameCard';
+import MatchCard from './components/MatchCard';
 import UserId from './components/UserId';
 import PreferChampion from './components/PreferChampion';
 import Loading from './components/Loading';
@@ -31,18 +31,18 @@ export const UserInfo = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [httpStatusCode, setHttpStatusCode] = useState();
   const params = new URLSearchParams(window.location.search);
-  let state = params.get('ID');
-  console.log(state);
+  let ID = params.get('ID');
+  console.log(ID);
   useEffect(() => {
-    getData();
-    fetchData();
+    getUserData();
+    getMatchData();
   }, []);
 
-  const getData = async () => {
+  const getUserData = async () => {
     setLoading(true);
     try {
       const value = await axios.get(
-        `${process.env.REACT_APP_GG_API_ROOT}/riot/user/${state}`,
+        `${process.env.REACT_APP_GG_API_ROOT}/riot/user/${ID}`,
       );
       console.log(value.data);
       if (value.status === 200) {
@@ -56,12 +56,12 @@ export const UserInfo = () => {
       //이해필요
     }
   };
-  console.log(state);
+  console.log(ID);
 
-  const fetchData = async () => {
+  const getMatchData = async () => {
     try {
       const match = await axios.get(
-        `${process.env.REACT_APP_GG_API_ROOT}/riot/match/${state}?page=${page}`,
+        `${process.env.REACT_APP_GG_API_ROOT}/riot/match/${ID}?page=${page}`,
       );
       console.log(match.data);
       const fetchedGames: MatchInfo[] = [...games, ...match.data];
@@ -94,13 +94,13 @@ export const UserInfo = () => {
       </UserStatWrapper>
       <UserGameListWrapper>
         <InfiniteScroll
-          next={fetchData}
+          next={getMatchData}
           dataLength={games.length}
           hasMore={true}
           loader={<Loader>데이터 불러오는 중...</Loader>}
         >
           {games.map((game: MatchInfo, index) => {
-            return <GameCard matchInfo={game} key={index}></GameCard>;
+            return <MatchCard matchInfo={game} key={index}></MatchCard>;
           })}
         </InfiniteScroll>
       </UserGameListWrapper>

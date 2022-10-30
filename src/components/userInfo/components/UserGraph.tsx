@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import type { ChartData } from 'chart.js';
 
 import {
@@ -16,15 +16,15 @@ import { SummonerInfo } from '../../types/summonerInfo';
 
 import {
   UserGraphContainer,
-  UserGraphDraw,
+  UserGraphImg,
   UserGraphWrapper,
   UserGraphText,
   UserGraphLabel,
-  UserEx,
-  UserText,
+  UserBox,
+  UserName,
   AvgGraphLabel,
-  AvgEx,
-  AvgText,
+  AvgBox,
+  AvgName,
 } from '../styles/userGraph.s';
 
 import * as Palette from '../../../assets/colorPalette';
@@ -99,8 +99,10 @@ export const data = {
     },
   ],
 };
-
-const UserGraph = (props: { summonerInfo: SummonerInfo }) => {
+interface propsType {
+  summonerInfo: SummonerInfo;
+}
+const UserGraph = (props: propsType) => {
   const chartRef = useRef<ChartJS>(null);
   const [chartData, setChartData] = useState<ChartData<'radar'>>({
     datasets: [],
@@ -108,7 +110,6 @@ const UserGraph = (props: { summonerInfo: SummonerInfo }) => {
 
   useEffect(() => {
     const chart = chartRef.current;
-
     if (!chart) {
       return;
     }
@@ -116,7 +117,6 @@ const UserGraph = (props: { summonerInfo: SummonerInfo }) => {
       ...data,
       datasets: data.datasets.map(dataset => ({
         ...dataset,
-        // label: `${summoner_id}`,
       })),
     };
     setChartData(chartData);
@@ -127,22 +127,22 @@ const UserGraph = (props: { summonerInfo: SummonerInfo }) => {
       <UserGraphWrapper>
         <UserGraphText>
           <UserGraphLabel>
-            <UserEx></UserEx>
-            <UserText>{props.summonerInfo.name}</UserText>
+            <UserBox></UserBox>
+            <UserName>{props.summonerInfo.name}</UserName>
           </UserGraphLabel>
           <AvgGraphLabel>
-            <AvgEx></AvgEx>
-            <AvgText>Average</AvgText>
+            <AvgBox></AvgBox>
+            <AvgName>Average</AvgName>
           </AvgGraphLabel>
         </UserGraphText>
-        <UserGraphDraw>
+        <UserGraphImg>
           <Chart
             type="radar"
             ref={chartRef}
             data={chartData}
             options={options}
           />
-        </UserGraphDraw>
+        </UserGraphImg>
       </UserGraphWrapper>
     </UserGraphContainer>
   );
