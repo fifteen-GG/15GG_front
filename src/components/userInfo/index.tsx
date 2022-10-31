@@ -11,7 +11,7 @@ import UserStatInfo from './components/UserStatInfo';
 import MatchCard from './components/MatchCard';
 import UserId from './components/UserId';
 import PreferChampion from './components/PreferChampion';
-import Loading from './components/Loading';
+import LoadingPage from './components/LoadingPage';
 import ErrorPage from './components/ErrorPage';
 
 const UserInfoContainer = styled.div``;
@@ -29,20 +29,20 @@ export const UserInfo = () => {
   const [profiles, setProfiless] = useState<SummonerInfo[]>([]);
   const [page, setPage] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(false);
-  const [httpStatusCode, setHttpStatusCode] = useState();
+  const [httpStatusCode, setHttpStatusCode] = useState<number>(200);
   const params = new URLSearchParams(window.location.search);
-  let ID = params.get('ID');
-  console.log(ID);
+  let id = params.get('ID');
+  console.log(id);
   useEffect(() => {
     getUserData();
     getMatchData();
   }, []);
-
+  console.log(httpStatusCode);
   const getUserData = async () => {
     setLoading(true);
     try {
       const value = await axios.get(
-        `${process.env.REACT_APP_GG_API_ROOT}/riot/user/${ID}`,
+        `${process.env.REACT_APP_GG_API_ROOT}/riot/user/${id}`,
       );
       console.log(value.data);
       if (value.status === 200) {
@@ -56,12 +56,12 @@ export const UserInfo = () => {
       //이해필요
     }
   };
-  console.log(ID);
+  console.log(id);
 
   const getMatchData = async () => {
     try {
       const match = await axios.get(
-        `${process.env.REACT_APP_GG_API_ROOT}/riot/match/${ID}?page=${page}`,
+        `${process.env.REACT_APP_GG_API_ROOT}/riot/match/${id}?page=${page}`,
       );
       console.log(match.data);
       const fetchedGames: MatchInfo[] = [...games, ...match.data];
@@ -74,7 +74,7 @@ export const UserInfo = () => {
   if (httpStatusCode === 404) return <ErrorPage />;
   return (
     <UserInfoContainer>
-      {loading ? <Loading /> : null}
+      {loading ? <LoadingPage /> : null}
       <UserStatWrapper>
         {profiles.map((profile: SummonerInfo, index) => (
           <UserId summonerInfo={profile} key={index} />

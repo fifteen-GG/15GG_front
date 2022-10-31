@@ -2,18 +2,18 @@ import Lottie from 'lottie-react';
 
 import { gg_lottie_bg } from '../../../assets';
 import {
-  LoadingContainer,
+  LoadingPageContainer,
   LottieWrapper,
   SkeletonWrapper,
   SkeletonId,
   SkeletonNameWrapper,
   SkeletonName,
   SkeletonLevel,
-} from '../styles/loading.s';
+} from '../styles/loadingPage.s';
 
-const Loading = () => {
+const LoadingPage = () => {
   return (
-    <LoadingContainer>
+    <LoadingPageContainer>
       <SkeletonWrapper>
         <SkeletonId></SkeletonId>
         <SkeletonNameWrapper>
@@ -24,8 +24,8 @@ const Loading = () => {
       <LottieWrapper>
         <Lottie animationData={gg_lottie_bg} />
       </LottieWrapper>
-    </LoadingContainer>
+    </LoadingPageContainer>
   );
 };
 
-export default Loading;
+export default LoadingPage;

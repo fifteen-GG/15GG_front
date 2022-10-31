@@ -14,7 +14,7 @@ const pulse = keyframes`
   }
 `;
 
-export const LoadingContainer = styled.div``;
+export const LoadingPageContainer = styled.div``;
 
 export const SkeletonWrapper = styled.div`
   height: 76px;
