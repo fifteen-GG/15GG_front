@@ -1,51 +1,52 @@
 import {
-  LiveUserContainer,
-  LiveGameSingleUser,
-  LiveGameUserImageWrapper,
-  LiveGameUserPosition,
-  LiveGameUserChampion,
-  LiveGameUserName,
+  UserWrapper,
+  GameUserImageWrapper,
+  GameUserPosition,
+  GameUserChampion,
+  GameUserName,
 } from '../styles/liveuser.s';
 
-export const LiveUser = (props: {
+interface propsType {
   champion: string;
   name: string;
   row: string;
   pos: string;
-}) => {
+}
+
+export const LiveUser = (props: propsType) => {
   return (
-    <LiveUserContainer>
+    <>
       {props.row === 'left' ? (
-        <LiveGameSingleUser>
-          <LiveGameUserPosition position={`${props.pos}`} />
-          <LiveGameUserImageWrapper>
-            <LiveGameUserChampion
+        <UserWrapper>
+          <GameUserPosition position={`${props.pos}`} />
+          <GameUserImageWrapper>
+            <GameUserChampion
               src={
                 process.env.REACT_APP_DDRAGON_API_ROOT +
                 `/champion/${props.champion}.png`
               }
             />
-          </LiveGameUserImageWrapper>
-          <LiveGameUserName style={{ marginLeft: '2px' }}>
+          </GameUserImageWrapper>
+          <GameUserName style={{ marginLeft: '2px' }}>
             {props.name}
-          </LiveGameUserName>
-        </LiveGameSingleUser>
+          </GameUserName>
+        </UserWrapper>
       ) : (
-        <LiveGameSingleUser style={{ justifyContent: 'flex-end' }}>
-          <LiveGameUserName style={{ marginRight: '2px' }}>
+        <UserWrapper style={{ justifyContent: 'flex-end' }}>
+          <GameUserName style={{ marginRight: '2px' }}>
             {props.name}
-          </LiveGameUserName>
-          <LiveGameUserImageWrapper>
-            <LiveGameUserChampion
+          </GameUserName>
+          <GameUserImageWrapper>
+            <GameUserChampion
               src={
                 process.env.REACT_APP_DDRAGON_API_ROOT +
                 `/champion/${props.champion}.png`
               }
             />
-          </LiveGameUserImageWrapper>
-          <LiveGameUserPosition position={`${props.pos}`} />
-        </LiveGameSingleUser>
+          </GameUserImageWrapper>
+          <GameUserPosition position={`${props.pos}`} />
+        </UserWrapper>
       )}
-    </LiveUserContainer>
+    </>
   );
 };

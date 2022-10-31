@@ -4,7 +4,6 @@ import searchBox from '../../../assets/gg_searchbox_bg.svg';
 import serarchButton from '../../../assets/gg_searchbox_button.svg';
 
 export const SearchBoxContainer = styled.div`
-  margin-top: 32px;
   width: 314px;
   height: 38px;
   background-image: url(${searchBox});

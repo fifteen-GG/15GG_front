@@ -9,12 +9,14 @@ import * as Palette from '../../assets/colorPalette';
 const LandingContainer = styled.div`
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   background-position: center;
   background-size: cover;
 `;
 
-const BackgroundVideoWrapper = styled.video`
+const BackgroundVideo = styled.video`
   position: absolute;
   top: 0;
   left: 0;
@@ -23,9 +25,10 @@ const BackgroundVideoWrapper = styled.video`
   object-fit: cover;
   z-index: -1;
 `;
-//안에 여러 요소들이 자리잡고 있는만큼 전체 뷰포트 크기가 형성되어 모바일같은 전체 영역보다 작은 화면에서는 비디오가 짤림
-//따라서 화면 비에 따라 위에 마진을 줄여주고 동영상 높이를 100%가 아닌 vh로 바꿔줌
+
 const TitleWrapper = styled.div`
+
+const ObjectWrapper = styled.div`
   position: absolute;
   width: 314px;
   display: flex;
@@ -33,13 +36,18 @@ const TitleWrapper = styled.div`
   align-items: center;
   z-index: 10;
 `;
-
+const TitleWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 300px;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 64px;
+`;
 const Logo = styled.img`
-  @media screen and (max-width: 400px) {
-    margin-top: 100px;
-  }
-  transition: 0.5s;
   margin-top: 180px;
+  margin-bottom: 38px;
   width: 150px;
   height: 45px;
   background-position: center;
@@ -49,7 +57,6 @@ const Logo = styled.img`
 
 const GamesWrapper = styled.div`
   width: 314px;
-  margin-top: 64px;
 `;
 
 const GamesTitleWrapper = styled.div`
@@ -57,6 +64,7 @@ const GamesTitleWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-bottom: 8px;
 `;
 
 const GamesTitle = styled.div`
@@ -83,10 +91,12 @@ export const Landing = () => {
   const navigate = useNavigate();
   return (
     <LandingContainer>
-      <BackgroundVideoWrapper src={Bg_Video} muted autoPlay loop />
-      <TitleWrapper>
-        <Logo src={logo} onClick={() => navigate('/')} />
-        <SearchBox />
+      <BackgroundVideo src={Bg_Video} loop autoPlay muted />
+      <ObjectWrapper>
+        <TitleWrapper>
+          <Logo src={logo} onClick={() => navigate('/')} />
+          <SearchBox />
+        </TitleWrapper>
         <GamesWrapper>
           <GamesTitleWrapper>
             <GamesTitle>실시간 분석 중</GamesTitle>
@@ -98,7 +108,7 @@ export const Landing = () => {
           <LiveGame />
           <LiveGame />
         </GamesWrapper>
-      </TitleWrapper>
+      </ObjectWrapper>
     </LandingContainer>
   );
 };

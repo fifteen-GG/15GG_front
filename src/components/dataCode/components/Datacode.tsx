@@ -4,7 +4,6 @@ import { useTimer } from 'use-timer';
 import {
   DataCodeContainer,
   DataCodeWrapper,
-  SingleDataCodeWrapper,
   SingleDataCode,
   Footer,
   FooterContent,
@@ -74,11 +73,7 @@ export const Datacode = () => {
     <DataCodeContainer>
       <DataCodeWrapper>
         {code.map((value: number, index: number) => {
-          return (
-            <SingleDataCodeWrapper key={index}>
-              <SingleDataCode>{value}</SingleDataCode>
-            </SingleDataCodeWrapper>
-          );
+          return <SingleDataCode key={index}>{value}</SingleDataCode>;
         })}
       </DataCodeWrapper>
       <Footer>
