@@ -21,10 +21,12 @@ const BackgroundVideo = styled.video`
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 120vh;
   object-fit: cover;
   z-index: -1;
 `;
+
+const TitleWrapper = styled.div`
 
 const ObjectWrapper = styled.div`
   position: absolute;
@@ -44,6 +46,7 @@ const TitleWrapper = styled.div`
   margin-bottom: 64px;
 `;
 const Logo = styled.img`
+  margin-top: 180px;
   margin-bottom: 38px;
   width: 150px;
   height: 45px;

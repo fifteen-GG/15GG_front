@@ -13,13 +13,13 @@ import gg_error_bg from '../../../assets/gg_error_bg.png';
 
 const ErrorPage = () => {
   const params = new URLSearchParams(window.location.search);
-  let ID = params.get('ID');
+  let id = params.get('ID');
   return (
     <ErrorContainer>
       <SummonerWrapper>
         <SummonerIcon></SummonerIcon>
         <SummonerNameWrapper>
-          <SummonerName>{ID}</SummonerName>
+          <SummonerName>{id}</SummonerName>
           <SummonerLevel>LV 0</SummonerLevel>
         </SummonerNameWrapper>
       </SummonerWrapper>

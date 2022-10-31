@@ -17,21 +17,34 @@ import {
 
 import { formatChampionsInfo } from '../userInfo';
 
-export interface userChampion {
-  championName: string;
-  counts: number;
-  win_rate: string | number;
-  kda: string | number;
-}
+export type userChampion = [
+  {
+    championName: string;
+    counts: number;
+    win_rate: string | number;
+    kda: string | number;
+  },
+  {
+    championName: string;
+    counts: number;
+    win_rate: string | number;
+    kda: string | number;
+  },
+  {
+    championName: string;
+    counts: number;
+    win_rate: string | number;
+    kda: string | number;
+  },
+];
 interface propsType {
   summonerInfo: SummonerInfo;
 }
 const PreferChampion = (props: propsType) => {
-  const [userChampion, setUserChampion] = useState<userChampion[]>([
-    formatChampionsInfo(props.summonerInfo, 0),
-    formatChampionsInfo(props.summonerInfo, 1),
-    formatChampionsInfo(props.summonerInfo, 2),
-  ]);
+  const [userChampion, setUserChampion] = useState<userChampion>(
+    formatChampionsInfo(props.summonerInfo),
+  );
+  console.log(userChampion);
   return (
     <PreferChampionContainer>
       <PreferChampionWrapper>

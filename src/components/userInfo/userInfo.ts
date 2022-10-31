@@ -106,39 +106,52 @@ export const formatStatInfo = (summonerInfo: SummonerInfo) => {
   return state;
 };
 
-export const formatChampionsInfo = (
-  summonerInfo: SummonerInfo,
-  index: number,
-) => {
-  let state: userChampion = {
-    championName: '0',
-    counts: 0,
-    win_rate: '결과없음',
-    kda: '0.00',
-  };
+export const formatChampionsInfo = (summonerInfo: SummonerInfo) => {
+  let state: userChampion = [
+    {
+      championName: '0',
+      counts: 0,
+      win_rate: '결과없음',
+      kda: '0.00',
+    },
+    {
+      championName: '0',
+      counts: 0,
+      win_rate: '결과없음',
+      kda: '0.00',
+    },
+    {
+      championName: '0',
+      counts: 0,
+      win_rate: '결과없음',
+      kda: '0.00',
+    },
+  ];
   if (!summonerInfo.champions) {
     return state;
   }
-  if (!summonerInfo.champions[index]) return state;
-  else {
-    state.championName =
-      process.env.REACT_APP_DDRAGON_API_ROOT +
-      `/champion/${summonerInfo.champions[index].championName}.png`;
-    state.counts = summonerInfo.champions[index].counts;
-    state.win_rate =
-      Math.round(
-        (summonerInfo.champions[index].wins /
-          summonerInfo.champions[index].counts) *
-          100,
-      ) + '%';
-    state.kda =
-      Math.round(
-        ((summonerInfo.champions[index].kills +
-          summonerInfo.champions[index].assists) /
-          summonerInfo.champions[index].deaths) *
-          100,
-      ) / 100;
-  }
+  state.map((champion, index: number) => {
+    if (!summonerInfo.champions[index]) return state;
+    else {
+      state[index].championName =
+        process.env.REACT_APP_DDRAGON_API_ROOT +
+        `/champion/${summonerInfo.champions[index].championName}.png`;
+      state[index].counts = summonerInfo.champions[index].counts;
+      state[index].win_rate =
+        Math.round(
+          (summonerInfo.champions[index].wins /
+            summonerInfo.champions[index].counts) *
+            100,
+        ) + '%';
+      state[index].kda =
+        Math.round(
+          ((summonerInfo.champions[index].kills +
+            summonerInfo.champions[index].assists) /
+            summonerInfo.champions[index].deaths) *
+            100,
+        ) / 100;
+    }
+  });
   return state;
 };
 
