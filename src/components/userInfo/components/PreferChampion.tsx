@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SummonerInfo } from '../../types/summonerInfo';
+import { SummonerInfoType } from '../../types/summonerInfo';
 import {
   PreferChampionContainer,
   PreferChampionWrapper,
@@ -38,7 +38,7 @@ export type userChampion = [
   },
 ];
 interface propsType {
-  summonerInfo: SummonerInfo;
+  summonerInfo: SummonerInfoType;
 }
 const PreferChampion = (props: propsType) => {
   const [userChampion, setUserChampion] = useState<userChampion>(

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import * as Palette from '../../../assets/colorPalette';
 
-export const Container = styled.div`
+export const EmptyCoverContainer = styled.div`
   display: flex;
   position: absolute;
   z-index: 2;

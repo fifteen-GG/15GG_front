@@ -1,13 +1,13 @@
 import {
+  TeamInfoContainer,
   TeamInfoWrapper,
-  TeamInfo,
   TeamInfoHeader,
   TeamName,
   Team,
   UserInfoColumnWrapper,
   UserInfoColumn,
   PlayerList,
-} from '../styles/teamInfoContainer.s';
+} from '../styles/teamInfo.s';
 import { useState } from 'react';
 
 import Summoner from './Summoner';
@@ -22,6 +22,9 @@ const summonerRed: summonerProps[] = [
     perks: 8008,
     perkStyles: 8100,
     items: ['3133', '6694', '3089', '3340', '3047', '3086', '3087'],
+    kills: 6,
+    deaths: 3,
+    assists: 4,
   },
   {
     champion: 'Jax',
@@ -30,6 +33,9 @@ const summonerRed: summonerProps[] = [
     perks: 8008,
     perkStyles: 8100,
     items: ['3033', '3032', '3036', '3340', '3035', '3038', '3040'],
+    kills: 6,
+    deaths: 3,
+    assists: 4,
   },
   {
     champion: `Katarina`,
@@ -38,6 +44,9 @@ const summonerRed: summonerProps[] = [
     perks: 8008,
     perkStyles: 8100,
     items: ['3133', '6694', '3089', '3340', '3047', '3086', '3087'],
+    kills: 6,
+    deaths: 3,
+    assists: 4,
   },
   {
     champion: 'Blitzcrank',
@@ -46,6 +55,9 @@ const summonerRed: summonerProps[] = [
     perks: 8008,
     perkStyles: 8100,
     items: ['3033', '3032', '3036', '3340', '3035', '3038', '3040'],
+    kills: 6,
+    deaths: 3,
+    assists: 4,
   },
   {
     champion: 'Brand',
@@ -54,6 +66,9 @@ const summonerRed: summonerProps[] = [
     perks: 8008,
     perkStyles: 8100,
     items: ['3133', '6694', '3089', '3340', '3047', '3086', '3087'],
+    kills: 6,
+    deaths: 3,
+    assists: 4,
   },
 ];
 
@@ -65,6 +80,9 @@ const summonerBlue: summonerProps[] = [
     perks: 8008,
     perkStyles: 8100,
     items: ['3033', '3032', '3036', '3340', '3035', '3038', '3040'],
+    kills: 6,
+    deaths: 3,
+    assists: 4,
   },
   {
     champion: 'Rumble',
@@ -73,6 +91,9 @@ const summonerBlue: summonerProps[] = [
     perks: 8008,
     perkStyles: 8100,
     items: ['3133', '6694', '3089', '3340', '3047', '3086', '3087'],
+    kills: 6,
+    deaths: 3,
+    assists: 4,
   },
   {
     champion: 'Lux',
@@ -81,6 +102,9 @@ const summonerBlue: summonerProps[] = [
     perks: 8008,
     perkStyles: 8100,
     items: ['3033', '3032', '3036', '3340', '3035', '3038', '3040'],
+    kills: 6,
+    deaths: 3,
+    assists: 4,
   },
   {
     champion: 'Draven',
@@ -89,6 +113,9 @@ const summonerBlue: summonerProps[] = [
     perks: 8008,
     perkStyles: 8100,
     items: ['3133', '6694', '3089', '3340', '3047', '3086', '3087'],
+    kills: 6,
+    deaths: 3,
+    assists: 4,
   },
   {
     champion: 'Nasus',
@@ -97,17 +124,20 @@ const summonerBlue: summonerProps[] = [
     perks: 8008,
     perkStyles: 8100,
     items: ['3033', '3032', '3036', '3340', '3035', '3038', '3040'],
+    kills: 6,
+    deaths: 3,
+    assists: 4,
   },
 ];
 
-const TeamInfoContainer = () => {
+const TeamInfo = () => {
   const [redteams, setRedteams] = useState<summonerProps[]>([...summonerRed]);
   const [blueteams, setBlueteams] = useState<summonerProps[]>([
     ...summonerBlue,
   ]);
   return (
-    <TeamInfoWrapper>
-      <TeamInfo>
+    <TeamInfoContainer>
+      <TeamInfoWrapper>
         <TeamInfoHeader>
           <TeamName team={Team.RED}>RED TEAM</TeamName>
           <UserInfoColumnWrapper>
@@ -120,8 +150,8 @@ const TeamInfoContainer = () => {
             return <Summoner teamInfo={redteam} key={index} />;
           })}
         </PlayerList>
-      </TeamInfo>
-      <TeamInfo>
+      </TeamInfoWrapper>
+      <TeamInfoWrapper>
         <TeamInfoHeader>
           <TeamName team={Team.BLUE}>BLUE TEAM</TeamName>
           <UserInfoColumnWrapper>
@@ -134,9 +164,9 @@ const TeamInfoContainer = () => {
             return <Summoner teamInfo={blueteam} key={index} />;
           })}
         </PlayerList>
-      </TeamInfo>
-    </TeamInfoWrapper>
+      </TeamInfoWrapper>
+    </TeamInfoContainer>
   );
 };
 
-export default TeamInfoContainer;
+export default TeamInfo;

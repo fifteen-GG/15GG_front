@@ -1,5 +1,5 @@
-import { SummonerInfo } from '../types/summonerInfo';
-import { MatchInfo } from '../types/matchInfo';
+import { SummonerInfoType } from '../types/summonerInfo';
+import { MatchInfoType } from '../types/matchInfo';
 import { userRank } from './components/UserRank';
 import { userStat } from './components/UserStatInfo';
 import { userChampion } from './components/PreferChampion';
@@ -23,7 +23,7 @@ const romanToNum = (str: string) => {
 };
 
 export const formatRankInfo = (
-  summonerInfo: SummonerInfo,
+  summonerInfo: SummonerInfoType,
   ranktype: string,
 ) => {
   let tier: string;
@@ -76,7 +76,7 @@ export const formatRankInfo = (
   return state;
 };
 
-export const formatStatInfo = (summonerInfo: SummonerInfo) => {
+export const formatStatInfo = (summonerInfo: SummonerInfoType) => {
   let state: userStat = {
     win_rate: 0,
     win: 0,
@@ -106,7 +106,7 @@ export const formatStatInfo = (summonerInfo: SummonerInfo) => {
   return state;
 };
 
-export const formatChampionsInfo = (summonerInfo: SummonerInfo) => {
+export const formatChampionsInfo = (summonerInfo: SummonerInfoType) => {
   let state: userChampion = [
     {
       championName: '0',
@@ -155,7 +155,7 @@ export const formatChampionsInfo = (summonerInfo: SummonerInfo) => {
   return state;
 };
 
-export const formatMatchInfo = (matchInfo: MatchInfo) => {
+export const formatMatchInfo = (matchInfo: MatchInfoType) => {
   let mode = '';
   if (matchInfo.queue_mode === '5v5 Ranked Solo games') {
     mode = '솔로랭크';

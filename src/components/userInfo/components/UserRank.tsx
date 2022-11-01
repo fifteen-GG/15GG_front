@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SummonerInfo } from '../../types/summonerInfo';
+import { SummonerInfoType } from '../../types/summonerInfo';
 import gg_tier_unranked from '../../../assets/gg_tier_unranked_4x.png';
 import {
   UserRankContainer,
@@ -22,7 +22,7 @@ export interface userRank {
   losses: number;
 }
 interface propsType {
-  summonerInfo: SummonerInfo;
+  summonerInfo: SummonerInfoType;
 }
 const UserRank = (props: propsType) => {
   const [userSoloRank, setSoloUserRank] = useState<userRank>(

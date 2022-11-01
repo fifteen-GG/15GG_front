@@ -12,7 +12,7 @@ import {
 } from 'chart.js';
 import { Chart } from 'react-chartjs-2';
 import { faker } from '@faker-js/faker';
-import { SummonerInfo } from '../../types/summonerInfo';
+import { SummonerInfoType } from '../../types/summonerInfo';
 
 import {
   UserGraphContainer,
@@ -100,7 +100,7 @@ export const data = {
   ],
 };
 interface propsType {
-  summonerInfo: SummonerInfo;
+  summonerInfo: SummonerInfoType;
 }
 const UserGraph = (props: propsType) => {
   const chartRef = useRef<ChartJS>(null);

@@ -26,8 +26,6 @@ const BackgroundVideo = styled.video`
   z-index: -1;
 `;
 
-const TitleWrapper = styled.div`
-
 const ObjectWrapper = styled.div`
   position: absolute;
   width: 314px;

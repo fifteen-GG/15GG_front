@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { MatchInfo } from '../../types/matchInfo';
+import { MatchInfoType } from '../../types/matchInfo';
 import {
   MatchCardContainer,
   MatchInfoWrapper,
@@ -28,7 +28,7 @@ import {
 import { formatMatchInfo, formatAnalysisStatus } from '../userInfo';
 
 interface propsType {
-  matchInfo: MatchInfo;
+  matchInfo: MatchInfoType;
 }
 
 const MatchCard = (props: propsType) => {

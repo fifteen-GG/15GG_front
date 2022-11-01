@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import * as Palette from '../../../assets/colorPalette';
 
-export const GameInfoWrapper = styled.div`
+export const GameInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -23,7 +23,7 @@ export const GameTypeInfo = styled.div`
   margin-right: 6px;
 `;
 interface RealTimeInfoProps {
-  isLive?: boolean;
+  isLive: boolean;
 }
 export const AnalysisTypeInfo = styled.div<RealTimeInfoProps>`
   display: flex;

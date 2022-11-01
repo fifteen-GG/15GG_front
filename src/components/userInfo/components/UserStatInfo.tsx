@@ -23,7 +23,7 @@ import {
 import * as Palette from '../../../assets/colorPalette';
 import { Chart } from 'react-chartjs-2';
 import { ArcElement } from 'chart.js';
-import { SummonerInfo } from '../../types/summonerInfo';
+import { SummonerInfoType } from '../../types/summonerInfo';
 import { formatStatInfo } from '../userInfo';
 ChartJS.register(
   ArcElement,
@@ -74,7 +74,7 @@ export interface userStat {
   position_rate: number[];
 }
 interface propsType {
-  summonerInfo: SummonerInfo;
+  summonerInfo: SummonerInfoType;
 }
 export const UserStatInfo = (props: propsType) => {
   const [userStat, setUserStat] = useState<userStat>(

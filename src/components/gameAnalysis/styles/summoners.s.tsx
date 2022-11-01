@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import * as Palette from '../../../assets/colorPalette';
 
-export const PlayerWrapper = styled.div`
+export const SummonerContainer = styled.div`
   display: flex;
   height: 38px;
   padding: 0px 4px 0px 8px;

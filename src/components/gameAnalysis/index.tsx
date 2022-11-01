@@ -1,6 +1,6 @@
 import GameInfo from './components/GameInfo';
 import TeamStats from './components/TeamStats';
-import TeamInfoContainer from './components/TeamInfoContainer';
+import TeamInfo from './components/TeamInfo';
 import TimelineGraph from './components/TimelineGraph';
 import TimelineBarGraph from './components/TimelineBarGraph';
 import GameSlider from './components/GameSlider';
@@ -10,7 +10,7 @@ import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import { useSocket, SocketStatus } from './useSocket';
 
-const GameAnalysisWrapper = styled.div`
+const GameAnalysisContainer = styled.div`
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -37,8 +37,8 @@ interface propsType {
 }
 export const GameAnalysis = (props: propsType) => {
   const [gameData, setGameData] = useState(Object);
-  const [time, setTime] = useState(0);
-  const [parse, setParse] = useState(0);
+  const [time, setTime] = useState<number>(0);
+  const [parse, setParse] = useState<number>(0);
   const { responseMessage } = useSocket(state => {
     if (state === SocketStatus.onNewChatReceived) {
       setParse(data => data + 1);
@@ -63,10 +63,10 @@ export const GameAnalysis = (props: propsType) => {
   }, [gameData]);
 
   return (
-    <GameAnalysisWrapper>
+    <GameAnalysisContainer>
       <GameInfo state={props.state} />
       <>
-        {props.state === gameState.none ? <EmptyCover /> : <></>}
+        {props.state === gameState.none ? <EmptyCover /> : null}
         <TimeInfo>
           경과시간 {Math.trunc(time / 60)}:
           {Math.trunc(time % 60) < 10
@@ -75,10 +75,10 @@ export const GameAnalysis = (props: propsType) => {
         </TimeInfo>
         <TimelineBarGraph />
         <TimelineGraph />
-        {props.state === gameState.running ? <></> : <GameSlider />}
+        {props.state === gameState.running ? null : <GameSlider />}
       </>
       <TeamStats />
-      <TeamInfoContainer />
-    </GameAnalysisWrapper>
+      <TeamInfo />
+    </GameAnalysisContainer>
   );
 };

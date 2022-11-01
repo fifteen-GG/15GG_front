@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import type { ChartData, ChartArea } from 'chart.js';
 import * as Palette from '../../../assets/colorPalette';
-import { TimelineWrappper } from '../styles/timelineGraph.s';
+import { TimelineContainer } from '../styles/timelineGraph.s';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -162,9 +162,7 @@ const TimelineGraph = () => {
   }, []);
 
   return (
-    // <TimelineBorderBox>
-    // </TimelineBorderBox>
-    <TimelineWrappper>
+    <TimelineContainer>
       <Chart
         type="line"
         ref={chartRef}
@@ -173,7 +171,7 @@ const TimelineGraph = () => {
         // height={84}
         width={360}
       />
-    </TimelineWrappper>
+    </TimelineContainer>
   );
 };
 
