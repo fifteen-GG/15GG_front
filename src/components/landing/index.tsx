@@ -25,6 +25,7 @@ const BackgroundVideo = styled.video`
   object-fit: cover;
   z-index: -1;
 `;
+
 const ObjectWrapper = styled.div`
   position: absolute;
   width: 314px;
@@ -70,7 +71,7 @@ const GamesTitle = styled.div`
   font-weight: 500;
 `;
 
-const GetCodeButton = styled.div`
+const CodeButton = styled.div`
   width: 60px;
   height: 22px;
   background-color: ${Palette.GG_PURPLE};
@@ -97,15 +98,13 @@ export const Landing = () => {
         <GamesWrapper>
           <GamesTitleWrapper>
             <GamesTitle>실시간 분석 중</GamesTitle>
-            <GetCodeButton onClick={() => navigate('/code')}>
-              코드 생성
-            </GetCodeButton>
+            <CodeButton onClick={() => navigate('/code')}>코드 생성</CodeButton>
           </GamesTitleWrapper>
-          <LiveGame key={1} />
-          <LiveGame key={2} />
-          <LiveGame key={3} />
-          <LiveGame key={4} />
-          <LiveGame key={5} />
+          <LiveGame />
+          <LiveGame />
+          <LiveGame />
+          <LiveGame />
+          <LiveGame />
         </GamesWrapper>
       </ObjectWrapper>
     </LandingContainer>

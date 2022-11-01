@@ -1,4 +1,4 @@
-export interface MatchInfo {
+export interface MatchInfoType {
   status: 'live' | 'complete' | 'incomplete';
   match_id: string;
   game_duration: number;
@@ -26,4 +26,9 @@ export interface MatchInfo {
     perk: number;
     perkStyle: number;
   };
+}
+enum gameState {
+  running,
+  end,
+  none,
 }

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import * as Palette from '../../../assets/colorPalette';
 
-export const TeamStatsWrapper = styled.div`
+export const TeamStatsContainer = styled.div`
   display: flex;
   height: 64px;
   width: 100%;

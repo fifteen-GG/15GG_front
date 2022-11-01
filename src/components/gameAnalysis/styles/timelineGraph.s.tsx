@@ -14,7 +14,7 @@ export const TimelineBorderBox = styled.div`
   margin-bottom: 8px;
 `;
 
-export const TimelineWrappper = styled.div`
+export const TimelineContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 86px;

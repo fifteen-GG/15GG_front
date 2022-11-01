@@ -1,5 +1,5 @@
 import {
-  TeamStatsWrapper,
+  TeamStatsContainer,
   TeamStat,
   Stat as TeamGold,
   Stat as TeamLevel,
@@ -16,7 +16,7 @@ import { ReactComponent as BlueLevelIcon } from '../svg/level_blue.svg';
 
 const TeamStats = () => {
   return (
-    <TeamStatsWrapper>
+    <TeamStatsContainer>
       <TeamStat>
         <TeamGold team={Team.RED}>
           <RedGoldIcon />
@@ -45,7 +45,7 @@ const TeamStats = () => {
           <StatValue>44.1K</StatValue>
         </TeamGold>
       </TeamStat>
-    </TeamStatsWrapper>
+    </TeamStatsContainer>
   );
 };
 

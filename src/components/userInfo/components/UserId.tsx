@@ -1,4 +1,4 @@
-import { SummonerInfo } from '../../types/summonerInfo';
+import { SummonerInfoType } from '../../types/summonerInfo';
 import React from 'react';
 import {
   UserIdContainer,
@@ -8,7 +8,7 @@ import {
   SubName,
 } from '../styles/userId.s';
 interface propsType {
-  summonerInfo: SummonerInfo;
+  summonerInfo: SummonerInfoType;
 }
 const UserId = (props: propsType) => {
   return (

@@ -1,4 +1,4 @@
-export interface SummonerInfo {
+export interface SummonerInfoType {
   name: string;
   level: number;
   profileIconId: string;

@@ -1,5 +1,5 @@
 import {
-  GameInfoWrapper,
+  GameInfoContainer,
   TypeInfoWrapper,
   GameTypeInfo,
   AnalysisTypeInfo,
@@ -16,7 +16,7 @@ interface propsType {
 
 const GameInfo = (props: propsType) => {
   return (
-    <GameInfoWrapper>
+    <GameInfoContainer>
       <TypeInfoWrapper>
         <GameTypeInfo>자유랭크</GameTypeInfo>
         <AnalysisTypeInfo
@@ -26,7 +26,7 @@ const GameInfo = (props: propsType) => {
         </AnalysisTypeInfo>
       </TypeInfoWrapper>
       <DateInfo>2022년 7월 19일</DateInfo>
-    </GameInfoWrapper>
+    </GameInfoContainer>
   );
 };
 

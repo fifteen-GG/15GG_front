@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { MatchInfo } from '../types/matchInfo';
-import { SummonerInfo } from '../types/summonerInfo';
+import { MatchInfoType } from '../types/matchInfo';
+import { SummonerInfoType } from '../types/summonerInfo';
 import styled from 'styled-components';
 import axios from 'axios';
 //import components
@@ -25,8 +25,8 @@ const Loader = styled.div`
 `;
 
 export const UserInfo = () => {
-  const [games, setGames] = useState<MatchInfo[]>([]);
-  const [profiles, setProfiless] = useState<SummonerInfo[]>([]);
+  const [games, setGames] = useState<MatchInfoType[]>([]);
+  const [profiles, setProfiless] = useState<SummonerInfoType[]>([]);
   const [page, setPage] = useState<number>(1);
   const [loading, setLoading] = useState<boolean>(false);
   const [httpStatusCode, setHttpStatusCode] = useState<number>(200);
@@ -64,7 +64,7 @@ export const UserInfo = () => {
         `${process.env.REACT_APP_GG_API_ROOT}/riot/match/${id}?page=${page}`,
       );
       console.log(match.data);
-      const fetchedGames: MatchInfo[] = [...games, ...match.data];
+      const fetchedGames: MatchInfoType[] = [...games, ...match.data];
       setGames(fetchedGames);
       setPage(page + 1);
     } catch (e) {
@@ -75,31 +75,35 @@ export const UserInfo = () => {
   return (
     <UserInfoContainer>
       {loading ? <LoadingPage /> : null}
-      {profiles.map((profile: SummonerInfo, index) => (
-        <UserId summonerInfo={profile} key={index} />
-      ))}
-      {profiles.map((profile: SummonerInfo, index) => (
-        <UserRank summonerInfo={profile} key={index} />
-      ))}
-      {profiles.map((profile: SummonerInfo, index) => (
-        <UserStatInfo summonerInfo={profile} key={index} />
-      ))}
-      {profiles.map((profile: SummonerInfo, index) => (
-        <UserGraph summonerInfo={profile} key={index} />
-      ))}
-      {profiles.map((profile: SummonerInfo, index) => (
-        <PreferChampion summonerInfo={profile} key={index} />
-      ))}
-      <InfiniteScroll
-        next={getMatchData}
-        dataLength={games.length}
-        hasMore={true}
-        loader={<Loader>데이터 불러오는 중...</Loader>}
-      >
-        {games.map((game: MatchInfo, index) => {
-          return <MatchCard game={game} key={index}></MatchCard>;
-        })}
-      </InfiniteScroll>
+      <UserStatWrapper>
+        {profiles.map((profile: SummonerInfoType, index) => (
+          <UserId summonerInfo={profile} key={index} />
+        ))}
+        {profiles.map((profile: SummonerInfoType, index) => (
+          <UserRank summonerInfo={profile} key={index} />
+        ))}
+        {profiles.map((profile: SummonerInfoType, index) => (
+          <UserStatInfo summonerInfo={profile} key={index} />
+        ))}
+        {profiles.map((profile: SummonerInfoType, index) => (
+          <UserGraph summonerInfo={profile} key={index} />
+        ))}
+        {profiles.map((profile: SummonerInfoType, index) => (
+          <PreferChampion summonerInfo={profile} key={index} />
+        ))}
+      </UserStatWrapper>
+      <UserGameListWrapper>
+        <InfiniteScroll
+          next={getMatchData}
+          dataLength={games.length}
+          hasMore={true}
+          loader={<Loader>데이터 불러오는 중...</Loader>}
+        >
+          {games.map((game: MatchInfoType, index) => {
+            return <MatchCard matchInfo={game} key={index}></MatchCard>;
+          })}
+        </InfiniteScroll>
+      </UserGameListWrapper>
     </UserInfoContainer>
   );
 };

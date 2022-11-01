@@ -1,5 +1,5 @@
 import {
-  PlayerWrapper,
+  SummonerContainer,
   UserInterface,
   ChampionImg,
   ChampionLevel,
@@ -25,15 +25,6 @@ import {
   formatPerks,
   formatPerkStyles,
 } from '../../utils/Url';
-import { kill } from 'process';
-
-const formatKDA = (props: {
-  kills: number;
-  deaths: number;
-  assists: number;
-}) => {
-  return `${props.kills}  /  ${props.deaths}  /  ${props.assists} `;
-};
 
 // export interface Team {
 //   redTeam: summonerProps[];
@@ -49,11 +40,14 @@ export interface summonerProps {
   perks: number;
   perkStyles: number;
   items: string[];
+  kills: number;
+  deaths: number;
+  assists: number;
 }
 
 const Summoner = (props: propsType) => {
   return (
-    <PlayerWrapper>
+    <SummonerContainer>
       <UserInterface>
         <ChampionImg src={urlChampion(props.teamInfo.champion)} />
         <ChampionLevel>16</ChampionLevel>
@@ -72,7 +66,7 @@ const Summoner = (props: propsType) => {
           </SummonerInfo>
           <KDAWrapper>
             <KDADetails>
-              {formatKDA({ kills: 15, deaths: 6, assists: 5 })}
+              {`${props.teamInfo.kills}  /  ${props.teamInfo.deaths}  /  ${props.teamInfo.assists} `}
             </KDADetails>
             <KDA>KDA 3.3</KDA>
           </KDAWrapper>
@@ -97,7 +91,7 @@ const Summoner = (props: propsType) => {
         </ItemWrapper>
         40,480 · 20K
       </ItemInterface>
-    </PlayerWrapper>
+    </SummonerContainer>
   );
 };
 
