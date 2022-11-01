@@ -6,7 +6,7 @@ import { UserInfo } from '../userInfo';
 import logo from '../../assets/gg_logo_temp.svg';
 import styled from 'styled-components';
 
-const SubPageWrapper = styled.div`
+const SubPageContainer = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -87,7 +87,7 @@ export const SubPage = (props: propsType) => {
     else if (props.page === PageEnum.USER) return <UserInfo />;
   };
   return (
-    <SubPageWrapper>
+    <SubPageContainer>
       <SubPageHeaderWrapper>
         <SubPageHeader>
           <LogoBox src={logo} onClick={routeLanding} />
@@ -98,6 +98,6 @@ export const SubPage = (props: propsType) => {
           <>{renderContent()}</>
         </SubPageContent>
       </SubPageContentWrapper>
-    </SubPageWrapper>
+    </SubPageContainer>
   );
 };

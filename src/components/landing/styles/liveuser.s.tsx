@@ -14,6 +14,7 @@ const gg_svg: {
   adc: gg_adc,
   sup: gg_utl,
 };
+export const UserContainer = styled.div``;
 export const UserWrapper = styled.div`
   width: 100%;
   margin-top: 2px;

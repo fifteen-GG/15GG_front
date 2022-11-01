@@ -75,35 +75,31 @@ export const UserInfo = () => {
   return (
     <UserInfoContainer>
       {loading ? <LoadingPage /> : null}
-      <UserStatWrapper>
-        {profiles.map((profile: SummonerInfo, index) => (
-          <UserId summonerInfo={profile} key={index} />
-        ))}
-        {profiles.map((profile: SummonerInfo, index) => (
-          <UserRank summonerInfo={profile} key={index} />
-        ))}
-        {profiles.map((profile: SummonerInfo, index) => (
-          <UserStatInfo summonerInfo={profile} key={index} />
-        ))}
-        {profiles.map((profile: SummonerInfo, index) => (
-          <UserGraph summonerInfo={profile} key={index} />
-        ))}
-        {profiles.map((profile: SummonerInfo, index) => (
-          <PreferChampion summonerInfo={profile} key={index} />
-        ))}
-      </UserStatWrapper>
-      <UserGameListWrapper>
-        <InfiniteScroll
-          next={getMatchData}
-          dataLength={games.length}
-          hasMore={true}
-          loader={<Loader>데이터 불러오는 중...</Loader>}
-        >
-          {games.map((game: MatchInfo, index) => {
-            return <MatchCard matchInfo={game} key={index}></MatchCard>;
-          })}
-        </InfiniteScroll>
-      </UserGameListWrapper>
+      {profiles.map((profile: SummonerInfo, index) => (
+        <UserId summonerInfo={profile} key={index} />
+      ))}
+      {profiles.map((profile: SummonerInfo, index) => (
+        <UserRank summonerInfo={profile} key={index} />
+      ))}
+      {profiles.map((profile: SummonerInfo, index) => (
+        <UserStatInfo summonerInfo={profile} key={index} />
+      ))}
+      {profiles.map((profile: SummonerInfo, index) => (
+        <UserGraph summonerInfo={profile} key={index} />
+      ))}
+      {profiles.map((profile: SummonerInfo, index) => (
+        <PreferChampion summonerInfo={profile} key={index} />
+      ))}
+      <InfiniteScroll
+        next={getMatchData}
+        dataLength={games.length}
+        hasMore={true}
+        loader={<Loader>데이터 불러오는 중...</Loader>}
+      >
+        {games.map((game: MatchInfo, index) => {
+          return <MatchCard game={game} key={index}></MatchCard>;
+        })}
+      </InfiniteScroll>
     </UserInfoContainer>
   );
 };

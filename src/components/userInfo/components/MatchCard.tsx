@@ -28,31 +28,31 @@ import {
 import { formatMatchInfo, formatAnalysisStatus } from '../userInfo';
 
 interface propsType {
-  matchInfo: MatchInfo;
+  game: MatchInfo;
 }
 
 const MatchCard = (props: propsType) => {
   const navigate = useNavigate();
   const routegameAnalysis = () => {
-    navigate(`/live?match=${props.matchInfo.match_id}`, {
-      state: props.matchInfo.status,
+    navigate(`/live?match=${props.game.match_id}`, {
+      state: props.game.status,
     });
   };
   return (
     <MatchCardContainer onClick={routegameAnalysis}>
-      <AnalysisStatus status={props.matchInfo.status}>
-        {formatAnalysisStatus(props.matchInfo.status)}
+      <AnalysisStatus status={props.game.status}>
+        {formatAnalysisStatus(props.game.status)}
       </AnalysisStatus>
-      <MatchInfoWrapper win={props.matchInfo.win}>
+      <MatchInfoWrapper win={props.game.win}>
         <MatchMainInfo>
-          <MatchResult>{props.matchInfo.win ? '승리' : '패배'}</MatchResult>
+          <MatchResult>{props.game.win ? '승리' : '패배'}</MatchResult>
           <MatchDate>
-            {props.matchInfo.created_at.replaceAll('-', '/').slice(2)}
+            {props.game.created_at.replaceAll('-', '/').slice(2)}
           </MatchDate>
-          <MatchMode>{formatMatchInfo(props.matchInfo)}</MatchMode>
+          <MatchMode>{formatMatchInfo(props.game)}</MatchMode>
           <MatchDuration>
-            {Math.round(props.matchInfo.game_duration / 60)}분{' '}
-            {props.matchInfo.game_duration % 60}초
+            {Math.round(props.game.game_duration / 60)}분{' '}
+            {props.game.game_duration % 60}초
           </MatchDuration>
         </MatchMainInfo>
         <MatchDetailInfo>
@@ -60,20 +60,20 @@ const MatchCard = (props: propsType) => {
             <Profile
               src={
                 process.env.REACT_APP_DDRAGON_API_ROOT +
-                `/champion/${props.matchInfo.champion_name}.png`
+                `/champion/${props.game.champion_name}.png`
               }
             />
             <SpellWrapper>
               <Spell
                 src={
                   process.env.REACT_APP_DDRAGON_API_ROOT +
-                  `/spell/${props.matchInfo.spells.spell1}.png`
+                  `/spell/${props.game.spells.spell1}.png`
                 }
               />
               <Spell
                 src={
                   process.env.REACT_APP_DDRAGON_API_ROOT +
-                  `/spell/${props.matchInfo.spells.spell2}.png`
+                  `/spell/${props.game.spells.spell2}.png`
                 }
               />
             </SpellWrapper>
@@ -81,34 +81,31 @@ const MatchCard = (props: propsType) => {
               <Perk
                 src={
                   process.env.REACT_APP_OPGG_API_ROOT +
-                  `/lol/perk/${props.matchInfo.perks.perk}.png`
+                  `/lol/perk/${props.game.perks.perk}.png`
                 }
               />
               <Perk
                 src={
                   process.env.REACT_APP_OPGG_API_ROOT +
-                  `/lol/perkStyle/${props.matchInfo.perks.perkStyle}.png`
+                  `/lol/perkStyle/${props.game.perks.perkStyle}.png`
                 }
               />
             </PerkWrapper>
             <KDAWrapper>
               <KDAInfo>
-                {props.matchInfo.kills} / {props.matchInfo.deaths} /{' '}
-                {props.matchInfo.assists}
+                {props.game.kills} / {props.game.deaths} / {props.game.assists}
               </KDAInfo>
-              <KDARate>KDA {props.matchInfo.kda}</KDARate>
+              <KDARate>KDA {props.game.kda}</KDARate>
             </KDAWrapper>
             <CSNWard>
               <CSInfo>
-                CS {props.matchInfo.cs} ({props.matchInfo.cs_per_min})
+                CS {props.game.cs} ({props.game.cs_per_min})
               </CSInfo>
-              <Ward>
-                제어 와드 {props.matchInfo.vision_wards_bought_in_game}
-              </Ward>
+              <Ward>제어 와드 {props.game.vision_wards_bought_in_game}</Ward>
             </CSNWard>
           </MatchCardContent>
           <ItemWrapper>
-            {props.matchInfo.items.map((item: string, index: number) => {
+            {props.game.items.map((item: string, index: number) => {
               return (
                 <ItemImg
                   className={'item' + index}

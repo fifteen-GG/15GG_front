@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
   LiveGameContainer,
   TitleWrapper,
@@ -6,8 +6,8 @@ import {
   AnalysisTypeLabel,
   GameInfoWrapper,
   TeamWrapper,
-  TeamsRow as UpperLine,
-  TeamsRow as LowerLine,
+  TeamsRow as UpperLinePosition,
+  TeamsRow as LowerLinePosition,
 } from '../styles/livegame.s';
 import { LiveUser } from './LiveUser';
 
@@ -54,56 +54,60 @@ export const LiveGame = () => {
       </TitleWrapper>
       <GameInfoWrapper>
         <TeamWrapper key={100}>
-          <UpperLine>
-            {game.redTeam.slice(0, 3).map(index => {
+          <UpperLinePosition>
+            {game.redTeam.slice(0, 3).map((data, index) => {
               return (
                 <LiveUser
+                  key={index}
                   row="left"
-                  name={index.name}
-                  champion={index.champion}
-                  pos={index.position}
+                  name={data.name}
+                  champion={data.champion}
+                  pos={data.position}
                 />
               );
             })}
-          </UpperLine>
-          <LowerLine>
-            {game.redTeam.slice(3, 5).map(index => {
+          </UpperLinePosition>
+          <LowerLinePosition>
+            {game.redTeam.slice(3, 5).map((data, index) => {
               return (
                 <LiveUser
+                  key={index}
                   row="left"
-                  name={index.name}
-                  champion={index.champion}
-                  pos={index.position}
+                  name={data.name}
+                  champion={data.champion}
+                  pos={data.position}
                 />
               );
             })}
-          </LowerLine>
+          </LowerLinePosition>
         </TeamWrapper>
         <TeamWrapper key={200}>
-          <LowerLine>
-            {game.blueTeam.slice(0, 2).map(index => {
+          <LowerLinePosition>
+            {game.blueTeam.slice(0, 2).map((data, index) => {
               return (
                 <LiveUser
+                  key={index}
                   row="right"
-                  name={index.name}
-                  champion={index.champion}
-                  pos={index.position}
+                  name={data.name}
+                  champion={data.champion}
+                  pos={data.position}
                 />
               );
             })}
-          </LowerLine>
-          <UpperLine>
-            {game.blueTeam.slice(2, 5).map(index => {
+          </LowerLinePosition>
+          <UpperLinePosition>
+            {game.blueTeam.slice(2, 5).map((data, index) => {
               return (
                 <LiveUser
+                  key={index}
                   row="right"
-                  name={index.name}
-                  champion={index.champion}
-                  pos={index.position}
+                  name={data.name}
+                  champion={data.champion}
+                  pos={data.position}
                 />
               );
             })}
-          </UpperLine>
+          </UpperLinePosition>
         </TeamWrapper>
       </GameInfoWrapper>
     </LiveGameContainer>

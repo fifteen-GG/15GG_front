@@ -1,4 +1,4 @@
-import gg_error_img from '.././../../assets/gg_error_img.png';
+import gg_error_img from '.././../../assets/gg_error_bg.png';
 import { Container, ErrorImg, InformationMsg } from '../styles/emptyCover.s';
 
 const EmptyCover = () => {
