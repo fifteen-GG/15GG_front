@@ -18,13 +18,6 @@ import {
   ItemImg,
   ItemWrapper,
 } from '../styles/summoners.s';
-import {
-  urlChampion,
-  urlSpell,
-  urlItem,
-  formatPerks,
-  formatPerkStyles,
-} from '../../utils/Url';
 
 // export interface Team {
 //   redTeam: summonerProps[];
