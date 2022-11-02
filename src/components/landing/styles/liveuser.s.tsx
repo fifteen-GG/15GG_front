@@ -4,6 +4,7 @@ import gg_mid from '../../../assets/gg_pos_mid.svg';
 import gg_jgl from '../../../assets/gg_pos_jgl.svg';
 import gg_adc from '../../../assets/gg_pos_adc.svg';
 import gg_utl from '../../../assets/gg_pos_utl.svg';
+import * as Palette from '../../../assets/colorPalette';
 
 const gg_svg: {
   [key: string]: string;
@@ -14,6 +15,9 @@ const gg_svg: {
   adc: gg_adc,
   sup: gg_utl,
 };
+
+export const LiveUserContainer = styled.div``;
+
 export const UserWrapper = styled.div`
   width: 100%;
   margin-top: 2px;
@@ -50,7 +54,7 @@ export const GameUserChampion = styled.img`
 `;
 
 export const GameUserName = styled.div`
-  color: #fff;
+  color: ${Palette.GG_WHITE_100};
   font-size: 10px;
   font-weight: 300;
 `;

@@ -1,4 +1,5 @@
 import {
+  LiveUserContainer,
   UserWrapper,
   GameUserImageWrapper,
   GameUserPosition,
@@ -15,7 +16,7 @@ interface propsType {
 
 export const LiveUser = (props: propsType) => {
   return (
-    <>
+    <LiveUserContainer>
       {props.row === 'left' ? (
         <UserWrapper>
           <GameUserPosition position={`${props.pos}`} />
@@ -47,6 +48,6 @@ export const LiveUser = (props: propsType) => {
           <GameUserPosition position={`${props.pos}`} />
         </UserWrapper>
       )}
-    </>
+    </LiveUserContainer>
   );
 };

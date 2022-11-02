@@ -49,15 +49,40 @@ const Summoner = (props: propsType) => {
   return (
     <SummonerContainer>
       <UserInterface>
-        <ChampionImg src={urlChampion(props.teamInfo.champion)} />
+        <ChampionImg
+          src={
+            process.env.REACT_APP_DDRAGON_API_ROOT +
+            `/champion/${props.teamInfo.champion}.png`
+          }
+        />
         <ChampionLevel>16</ChampionLevel>
         <SpellWrapper>
-          <Spell src={urlSpell(props.teamInfo.championSpell1)} />
-          <Spell src={urlSpell(props.teamInfo.championSpell2)} />
+          <Spell
+            src={
+              process.env.REACT_APP_DDRAGON_API_ROOT +
+              `/spell/${props.teamInfo.championSpell1}.png`
+            }
+          />
+          <Spell
+            src={
+              process.env.REACT_APP_DDRAGON_API_ROOT +
+              `/spell/${props.teamInfo.championSpell2}.png`
+            }
+          />
         </SpellWrapper>
         <PerksWrapper>
-          <Perk src={formatPerks(props.teamInfo.perks)} />
-          <Perk src={formatPerkStyles(props.teamInfo.perkStyles)} />
+          <Perk
+            src={
+              process.env.REACT_APP_OPGG_API_ROOT +
+              `/lol/perk/${props.teamInfo.perks}.png`
+            }
+          />
+          <Perk
+            src={
+              process.env.REACT_APP_OPGG_API_ROOT +
+              `/lol/perkStyle/${props.teamInfo.perkStyles}.png`
+            }
+          />
         </PerksWrapper>
         <UserInfoWrapper>
           <SummonerInfo>
@@ -75,15 +100,10 @@ const Summoner = (props: propsType) => {
       <ItemInterface>
         <ItemWrapper>
           {props.teamInfo.items.map((item, index) => {
-            return index !== 3 ? (
+            return (
               <ItemImg
+                className={'item' + index}
                 src={`${process.env.REACT_APP_DDRAGON_API_ROOT}/item/${item}.png`}
-                key={index}
-              />
-            ) : (
-              <ItemImg
-                className="item3"
-                src={urlItem(props.teamInfo.items[3])}
                 key={index}
               />
             );

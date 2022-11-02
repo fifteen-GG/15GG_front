@@ -27,6 +27,9 @@ export const GG_DOUGHNUT = '#5d7fde';
 
 //Timeline
 export const GG_GRFTITLE = '#61676b';
+export const GG_TIMELINE_RED = '#e8405766';
+export const GG_TIMELINE_BLUE = '#35a2eb80';
+//TimelineBar
 export const GG_TIMELINE_BARGRAPH_RED = '#e84057';
 export const GG_TIMELINE_BARGRAPH_BLUE = '#5383e8';
 

@@ -155,16 +155,18 @@ export const formatChampionsInfo = (summonerInfo: SummonerInfoType) => {
   return state;
 };
 
-export const formatMatchInfo = (matchInfo: MatchInfoType) => {
+export const formatMatchMode = (queue_mode: string) => {
   let mode = '';
-  if (matchInfo.queue_mode === '5v5 Ranked Solo games') {
+  if (queue_mode === '5v5 Ranked Solo games') {
     mode = '솔로랭크';
-  } else if (matchInfo.queue_mode === '5v5 Ranked Flex games') {
+  } else if (queue_mode === '5v5 Ranked Flex games') {
     mode = '자유랭크';
-  } else if (matchInfo.queue_mode === '5v5 Blind Pick games') {
+  } else if (queue_mode === '5v5 Blind Pick games') {
     mode = '일반게임';
-  } else if (matchInfo.queue_mode === '5v5 ARAM games') {
+  } else if (queue_mode === '5v5 ARAM games') {
     mode = '칼바람나락';
+  } else if (queue_mode === 'Pick URF games') {
+    mode = 'U.R.F.';
   } else {
     mode = '사용자설정';
   }

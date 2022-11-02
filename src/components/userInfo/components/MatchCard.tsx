@@ -25,7 +25,7 @@ import {
   ItemWrapper,
   ItemImg,
 } from '../styles/matchCard.s';
-import { formatMatchInfo, formatAnalysisStatus } from '../userInfo';
+import { formatMatchMode, formatAnalysisStatus } from '../userInfo';
 
 interface propsType {
   matchInfo: MatchInfoType;
@@ -33,13 +33,25 @@ interface propsType {
 
 const MatchCard = (props: propsType) => {
   const navigate = useNavigate();
-  const routegameAnalysis = () => {
-    navigate(`/live?match=${props.matchInfo.match_id}`, {
-      state: props.matchInfo.status,
-    });
-  };
+  // const routegameAnalysis = () => {
+  //   navigate(`/live`, {
+  //     state: props.matchInfo.status,
+  //   });
+  // };
   return (
-    <MatchCardContainer onClick={routegameAnalysis}>
+    <MatchCardContainer
+      onClick={() =>
+        navigate(`/live`, {
+          state: {
+            status: 'incomplete',
+            // props.matchInfo.status,
+            mode: props.matchInfo.queue_mode,
+            matchID: props.matchInfo.match_id,
+            date: props.matchInfo.created_at,
+          },
+        })
+      }
+    >
       <AnalysisStatus status={props.matchInfo.status}>
         {formatAnalysisStatus(props.matchInfo.status)}
       </AnalysisStatus>
@@ -49,7 +61,7 @@ const MatchCard = (props: propsType) => {
           <MatchDate>
             {props.matchInfo.created_at.replaceAll('-', '/').slice(2)}
           </MatchDate>
-          <MatchMode>{formatMatchInfo(props.matchInfo)}</MatchMode>
+          <MatchMode>{formatMatchMode(props.matchInfo.queue_mode)}</MatchMode>
           <MatchDuration>
             {Math.round(props.matchInfo.game_duration / 60)}분{' '}
             {props.matchInfo.game_duration % 60}초

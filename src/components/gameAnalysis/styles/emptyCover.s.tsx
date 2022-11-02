@@ -2,14 +2,14 @@ import styled from 'styled-components';
 import * as Palette from '../../../assets/colorPalette';
 
 export const EmptyCoverContainer = styled.div`
+  width: 100%;
+  height: 180px;
   display: flex;
   position: absolute;
   z-index: 2;
   flex-direction: column;
-  height: 180px;
-  width: 100%;
   align-items: center;
-  background-color: rgba(30, 32, 37, 0.75);
+  background-color: ${Palette.GG_BLACK_100 + `BF`};
   margin-top: 54px;
 `;
 export const ErrorImg = styled.img`
