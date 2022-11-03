@@ -25,7 +25,7 @@ export const GameTypeInfo = styled.div`
 interface RealTimeInfoProps {
   isLive: boolean;
 }
-export const AnalysisTypeInfo = styled.div<RealTimeInfoProps>`
+export const AnalysisTypeInfo = styled.div`
   display: flex;
   height: 16px;
   width: auto;
@@ -35,8 +35,12 @@ export const AnalysisTypeInfo = styled.div<RealTimeInfoProps>`
   align-items: center;
   justify-content: center;
   border-radius: 3px;
-  background-color: ${props =>
-    props.isLive ? Palette.GG_RED : Palette.GG_PURPLE};
+  background-color: ${(props: { status: 'live' | 'complete' | 'incomplete' }) =>
+    props.status === 'live'
+      ? Palette.GG_RED
+      : props.status === 'complete'
+      ? Palette.GG_PURPLE
+      : Palette.GG_BLACK_50_UNSELECTED};
 `;
 export const DateInfo = styled.div`
   display: flex;
