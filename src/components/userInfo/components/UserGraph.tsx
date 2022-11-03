@@ -19,12 +19,12 @@ import {
   UserGraphImg,
   UserGraphWrapper,
   UserGraphText,
-  UserGraphLabel,
-  UserBox,
-  UserName,
-  AvgGraphLabel,
-  AvgBox,
-  AvgName,
+  ColumnLabel as UserGraphLabel,
+  ColumnLabel as AvgGraphLabel,
+  ColumnBox as UserColumn,
+  ColumnBox as AvgColumn,
+  ColumnName as UserName,
+  ColumnName as AvgName,
 } from '../styles/userGraph.s';
 
 import * as Palette from '../../../assets/colorPalette';
@@ -127,11 +127,15 @@ const UserGraph = (props: propsType) => {
       <UserGraphWrapper>
         <UserGraphText>
           <UserGraphLabel>
-            <UserBox></UserBox>
+            <UserColumn
+              style={{ backgroundColor: `${Palette.GG_RADARDATA}` }}
+            ></UserColumn>
             <UserName>{props.userName}</UserName>
           </UserGraphLabel>
           <AvgGraphLabel>
-            <AvgBox></AvgBox>
+            <AvgColumn
+              style={{ backgroundColor: `${Palette.GG_GREY_70}` }}
+            ></AvgColumn>
             <AvgName>Average</AvgName>
           </AvgGraphLabel>
         </UserGraphText>

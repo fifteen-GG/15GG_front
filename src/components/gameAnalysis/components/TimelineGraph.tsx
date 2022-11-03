@@ -1,7 +1,7 @@
-import React, { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import type { ChartData, ChartArea } from 'chart.js';
 import * as Palette from '../../../assets/colorPalette';
-import { TimelineContainer } from '../styles/timelineGraph.s';
+import { TimelineGraphContainer } from '../styles/timelineGraph.s';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -84,7 +84,7 @@ export const data = {
         above: `${Palette.GG_TIMELINE_RED}`,
         below: `${Palette.GG_TIMELINE_BLUE}`,
       },
-      data: [50, 40, 30, -10, 40, -50, 10, 20, 10, 50, 50, 50, 50],
+      data: [50, 40, 30, -10, 40, -50, 10, 20, 10, 50, 50, 50, 50, 40, 30, 20],
       // borderColor: createGradient(chart.ctx, chart.chartArea),
       borderColor: 'red',
       backgroundColor: `${Palette.GG_TIMELINE_BLUE}`,
@@ -162,7 +162,7 @@ const TimelineGraph = () => {
   }, []);
 
   return (
-    <TimelineContainer>
+    <TimelineGraphContainer>
       <Chart
         type="line"
         ref={chartRef}
@@ -171,7 +171,7 @@ const TimelineGraph = () => {
         // height={84}
         width={360}
       />
-    </TimelineContainer>
+    </TimelineGraphContainer>
   );
 };
 

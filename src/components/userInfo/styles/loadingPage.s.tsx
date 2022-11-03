@@ -22,7 +22,7 @@ export const SkeletonWrapper = styled.div`
   display: flex;
 `;
 
-export const SkeletonId = styled.div`
+export const SkeletonIcon = styled.div`
   width: 52px;
   height: 52px;
   background: ${Palette.GG_WHITE_100 + '14'};

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import * as Palette from '../../../assets/colorPalette';
+import { gameState } from '../../types/enum';
 
 export const GameInfoContainer = styled.div`
   display: flex;
@@ -8,7 +9,7 @@ export const GameInfoContainer = styled.div`
   height: 54px;
 `;
 
-export const GameTypeWrapper = styled.div`
+export const HeaderWrapper = styled.div`
   display: flex;
   height: 18px;
   align-items: center;
@@ -23,10 +24,7 @@ export const GameType = styled.div`
   margin-right: 6px;
   font-weight: 500;
 `;
-// interface RealTimeInfoProps {
-//   isLive: boolean;
-// }
-export const AnalysisTypeInfo = styled.div`
+export const AnalysisInfo = styled.div`
   width: auto;
   height: 16px;
   display: flex;
@@ -37,10 +35,10 @@ export const AnalysisTypeInfo = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 3px;
-  background-color: ${(props: { status: 'live' | 'complete' | 'incomplete' }) =>
-    props.status === 'live'
+  background-color: ${(props: { status: gameState }) =>
+    props.status === gameState.live
       ? Palette.GG_RED
-      : props.status === 'complete'
+      : props.status === gameState.end
       ? Palette.GG_PURPLE
       : Palette.GG_BLACK_50_UNSELECTED};
 `;

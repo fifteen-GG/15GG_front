@@ -29,6 +29,7 @@ export interface SummonerInfoType {
     MID?: number;
     ADC?: number;
     SUP?: number;
+    '-': number;
   };
   champions: playData[];
 }

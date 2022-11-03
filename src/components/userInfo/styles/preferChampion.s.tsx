@@ -8,8 +8,8 @@ export const PreferChampionContainer = styled.div`
 
 export const PreferChampionWrapper = styled.div`
   height: 68px;
+  margin-bottom: 4px;
   box-sizing: border-box;
-  margin-top: 8px;
   padding-top: 8px;
   background-color: ${Palette.GG_BLACK_70};
   border-radius: 6px;
@@ -41,7 +41,7 @@ export const ChampionInfoWrapper = styled.div`
 export const ChampionInfoText = styled.div`
   width: 56px;
   height: 38px;
-  font-weight: 500;
+  font-weight: 700;
   font-stretch: normal;
   font-style: normal;
   line-height: 1;
@@ -64,7 +64,7 @@ export const ChampionInfoContent = styled.div`
   font-size: 14px;
   color: ${(props: { counts: number }) =>
     props.counts === 0 ? Palette.GG_GREY_70 : Palette.GG_WHITE_100};
-  font-weight: bold;
+  font-weight: 700;
 `;
 export const ChampionInfoSubTitle = styled.div`
   font-size: 10px;
@@ -74,6 +74,5 @@ export const ChampionInfoSubTitle = styled.div`
 export const PreferChampionMsg = styled.div`
   font-size: 8px;
   text-align: center;
-  margin-top: 4px;
   color: ${Palette.GG_GREY_70};
 `;

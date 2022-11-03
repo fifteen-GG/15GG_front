@@ -3,7 +3,7 @@ import { SearchBox } from './components/SearchBox';
 import { LiveGame } from './components/LiveGame';
 import styled from 'styled-components';
 import logo from '../../assets/gg_logo_temp.svg';
-import Bg_Video from '../../assets/gg_bg_worlds_22.mp4';
+import bgVideo from '../../assets/gg_bg_worlds_22.mp4';
 import * as Palette from '../../assets/colorPalette';
 
 const LandingContainer = styled.div`
@@ -26,7 +26,7 @@ const BackgroundVideo = styled.video`
   z-index: -1;
 `;
 
-const ObjectWrapper = styled.div`
+const LandingWrapper = styled.div`
   position: absolute;
   width: 314px;
   display: flex;
@@ -58,7 +58,7 @@ const GamesWrapper = styled.div`
 `;
 
 const GamesTitleWrapper = styled.div`
-  width: 314px;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -86,11 +86,12 @@ const CodeButton = styled.div`
 `;
 
 export const Landing = () => {
+  const matchId = [1, 2, 3, 4, 5];
   const navigate = useNavigate();
   return (
     <LandingContainer>
-      <BackgroundVideo src={Bg_Video} loop autoPlay muted />
-      <ObjectWrapper>
+      <BackgroundVideo src={bgVideo} loop autoPlay muted />
+      <LandingWrapper>
         <TitleWrapper>
           <Logo src={logo} onClick={() => navigate('/')} />
           <SearchBox />
@@ -100,13 +101,11 @@ export const Landing = () => {
             <GamesTitle>실시간 분석 중</GamesTitle>
             <CodeButton onClick={() => navigate('/code')}>코드 생성</CodeButton>
           </GamesTitleWrapper>
-          <LiveGame />
-          <LiveGame />
-          <LiveGame />
-          <LiveGame />
-          <LiveGame />
+          {matchId.map((data, index) => {
+            return <LiveGame key={data} />;
+          })}
         </GamesWrapper>
-      </ObjectWrapper>
+      </LandingWrapper>
     </LandingContainer>
   );
 };

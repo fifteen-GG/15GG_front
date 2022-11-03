@@ -23,7 +23,8 @@ import {
   UserInfoContent,
   UserInfoSubTitle,
 } from '../styles/userStatInfo.s';
-import { RankData } from '../../types/summonerInfo';
+import { SummonerInfoType } from '../../types/summonerInfo';
+import { formatStatInfo } from '../userInfoFunc';
 ChartJS.register(
   ArcElement,
   RadialLinearScale,
@@ -60,16 +61,25 @@ const data = {
   ],
 };
 // for props
-export interface propsType {
+export interface userStat {
   userName: string;
-  soloRank: RankData;
+  win_rate: number;
+  win: number;
+  losses: number;
   kda_avg: number;
   kills_avg: number;
   deaths_avg: number;
   assists_avg: number;
-  prefer_position: Object;
+  prefer_position: string[];
+  position_rate: number[];
+}
+interface propsType {
+  summonerInfo: SummonerInfoType;
 }
 export const UserStatInfo = (props: propsType) => {
+  const [userStat, setUserStat] = useState<userStat>(
+    formatStatInfo(props.summonerInfo),
+  );
   const chartRef = useRef<ChartJS>(null);
   const [chartData, setChartData] = useState<ChartData<'doughnut'>>({
     datasets: [],
@@ -84,8 +94,8 @@ export const UserStatInfo = (props: propsType) => {
       ...data, //
       datasets: data.datasets.map(dataset => ({
         ...dataset,
-        label: props?.userName,
-        data: [props.soloRank?.win_rate, 100 - props.soloRank?.win_rate],
+        label: userStat.userName,
+        data: [userStat?.win_rate, 100 - userStat?.win_rate],
       })),
     };
     setChartData(chartData);
@@ -95,7 +105,7 @@ export const UserStatInfo = (props: propsType) => {
     <UserStatInfoContainer>
       <UserWinRateWrapper>
         <GraphImg>
-          <GraphText>{props.soloRank?.win_rate}%</GraphText>
+          <GraphText>{userStat?.win_rate}%</GraphText>
           <Chart
             ref={chartRef}
             type="doughnut"
@@ -105,32 +115,23 @@ export const UserStatInfo = (props: propsType) => {
         </GraphImg>
         <UserInfoText>
           <UserInfoTitle>승률</UserInfoTitle>
-          <UserInfoContent>{props.soloRank?.win_rate}%</UserInfoContent>
+          <UserInfoContent>{userStat?.win_rate}%</UserInfoContent>
           <UserInfoSubTitle>
-            {props.soloRank?.win}승 {props.soloRank?.losses}패
+            {userStat?.win}승 {userStat?.losses}패
           </UserInfoSubTitle>
         </UserInfoText>
       </UserWinRateWrapper>
       <UserInfoText>
         <UserInfoTitle>KDA</UserInfoTitle>
-        <UserInfoContent>{props?.kda_avg}</UserInfoContent>
+        <UserInfoContent>{userStat?.kda_avg}</UserInfoContent>
         <UserInfoSubTitle>
-          {props?.kills_avg}/{props?.deaths_avg}/{props?.assists_avg}
+          {userStat?.kills_avg}/{userStat?.deaths_avg}/{userStat.assists_avg}
         </UserInfoSubTitle>
       </UserInfoText>
       <UserInfoText>
         <UserInfoTitle>선호 포지션</UserInfoTitle>
-        <UserInfoContent>
-          {props?.prefer_position === undefined
-            ? 'Undefined'
-            : Object.keys(props?.prefer_position)}
-        </UserInfoContent>
-        <UserInfoSubTitle>
-          {props?.prefer_position === undefined
-            ? 'Undefined'
-            : Object.values(props?.prefer_position)}
-          %
-        </UserInfoSubTitle>
+        <UserInfoContent>{userStat?.prefer_position}</UserInfoContent>
+        <UserInfoSubTitle>{userStat?.position_rate}%</UserInfoSubTitle>
       </UserInfoText>
     </UserStatInfoContainer>
   );

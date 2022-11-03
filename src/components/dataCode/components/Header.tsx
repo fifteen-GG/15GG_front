@@ -1,4 +1,3 @@
-import React from 'react';
 import { HeaderContainer, Title, SubTitle } from '../styles/header.s';
 
 export const Header = () => {

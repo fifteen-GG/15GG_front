@@ -1,13 +1,13 @@
 import {
   SummonerContainer,
-  UserInterface,
+  SummonerInterface,
   ChampionImg,
   ChampionLevel,
   SpellWrapper,
   PerksWrapper,
-  Spell,
-  Perk,
-  UserInfoWrapper,
+  ImgBox as SpellImg,
+  ImgBox as PerkImg,
+  SummonerInfoWrapper,
   SummonerInfo,
   SummonerName,
   SummonerTier,
@@ -18,14 +18,6 @@ import {
   ItemImg,
   ItemWrapper,
 } from '../styles/summoners.s';
-
-// export interface Team {
-//   redTeam: summonerProps[];
-//   blueTeam: summonerProps[];
-// }
-export interface propsType {
-  teamInfo: summonerProps;
-}
 export interface summonerProps {
   champion: string;
   championSpell1: string;
@@ -37,11 +29,13 @@ export interface summonerProps {
   deaths: number;
   assists: number;
 }
-
+export interface propsType {
+  teamInfo: summonerProps;
+}
 const Summoner = (props: propsType) => {
   return (
     <SummonerContainer>
-      <UserInterface>
+      <SummonerInterface>
         <ChampionImg
           src={
             process.env.REACT_APP_DDRAGON_API_ROOT +
@@ -50,13 +44,13 @@ const Summoner = (props: propsType) => {
         />
         <ChampionLevel>16</ChampionLevel>
         <SpellWrapper>
-          <Spell
+          <SpellImg
             src={
               process.env.REACT_APP_DDRAGON_API_ROOT +
               `/spell/${props.teamInfo.championSpell1}.png`
             }
           />
-          <Spell
+          <SpellImg
             src={
               process.env.REACT_APP_DDRAGON_API_ROOT +
               `/spell/${props.teamInfo.championSpell2}.png`
@@ -64,20 +58,20 @@ const Summoner = (props: propsType) => {
           />
         </SpellWrapper>
         <PerksWrapper>
-          <Perk
+          <PerkImg
             src={
               process.env.REACT_APP_OPGG_API_ROOT +
               `/lol/perk/${props.teamInfo.perks}.png`
             }
           />
-          <Perk
+          <PerkImg
             src={
               process.env.REACT_APP_OPGG_API_ROOT +
               `/lol/perkStyle/${props.teamInfo.perkStyles}.png`
             }
           />
         </PerksWrapper>
-        <UserInfoWrapper>
+        <SummonerInfoWrapper>
           <SummonerInfo>
             <SummonerName>정잭영</SummonerName>
             <SummonerTier>P4</SummonerTier>
@@ -88,8 +82,8 @@ const Summoner = (props: propsType) => {
             </KDADetails>
             <KDA>KDA 3.3</KDA>
           </KDAWrapper>
-        </UserInfoWrapper>
-      </UserInterface>
+        </SummonerInfoWrapper>
+      </SummonerInterface>
       <ItemInterface>
         <ItemWrapper>
           {props.teamInfo.items.map((item, index) => {

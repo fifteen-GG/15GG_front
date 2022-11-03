@@ -1,10 +1,10 @@
 import {
   UserContainer,
-  UserWrapper,
-  GameUserImageWrapper,
-  GameUserPosition,
-  GameUserChampion,
-  GameUserName,
+  UserInfoWrapper,
+  ImageWrapper,
+  UserPosition,
+  UserChampion,
+  UserName,
 } from '../styles/liveuser.s';
 
 interface propsType {
@@ -18,35 +18,31 @@ export const LiveUser = (props: propsType) => {
   return (
     <UserContainer>
       {props.row === 'left' ? (
-        <UserWrapper>
-          <GameUserPosition position={`${props.pos}`} />
-          <GameUserImageWrapper>
-            <GameUserChampion
+        <UserInfoWrapper>
+          <UserPosition position={`${props.pos}`} />
+          <ImageWrapper>
+            <UserChampion
               src={
                 process.env.REACT_APP_DDRAGON_API_ROOT +
                 `/champion/${props.champion}.png`
               }
             />
-          </GameUserImageWrapper>
-          <GameUserName style={{ marginLeft: '2px' }}>
-            {props.name}
-          </GameUserName>
-        </UserWrapper>
+          </ImageWrapper>
+          <UserName style={{ marginLeft: '2px' }}>{props.name}</UserName>
+        </UserInfoWrapper>
       ) : (
-        <UserWrapper style={{ justifyContent: 'flex-end' }}>
-          <GameUserName style={{ marginRight: '2px' }}>
-            {props.name}
-          </GameUserName>
-          <GameUserImageWrapper>
-            <GameUserChampion
+        <UserInfoWrapper style={{ justifyContent: 'flex-end' }}>
+          <UserName style={{ marginRight: '2px' }}>{props.name}</UserName>
+          <ImageWrapper>
+            <UserChampion
               src={
                 process.env.REACT_APP_DDRAGON_API_ROOT +
                 `/champion/${props.champion}.png`
               }
             />
-          </GameUserImageWrapper>
-          <GameUserPosition position={`${props.pos}`} />
-        </UserWrapper>
+          </ImageWrapper>
+          <UserPosition position={`${props.pos}`} />
+        </UserInfoWrapper>
       )}
     </UserContainer>
   );

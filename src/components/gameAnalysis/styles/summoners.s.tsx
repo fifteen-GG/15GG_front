@@ -7,7 +7,7 @@ export const SummonerContainer = styled.div`
   padding: 0px 4px 0px 8px;
   justify-content: space-between;
 `;
-export const UserInterface = styled.div`
+export const SummonerInterface = styled.div`
   display: flex;
   height: 22px;
   margin-top: 7px;
@@ -55,21 +55,13 @@ export const PerksWrapper = styled.div`
   border-radius: 2px;
 `;
 
-export const Spell = styled.img`
+export const ImgBox = styled.img`
   height: 10px;
   width: 10px;
-  background-color: ${Palette.GG_WHITE_100};
   border-radius: 2px;
 `;
 
-export const Perk = styled.img`
-  height: 10px;
-  width: 10px;
-  /* background-color: ${Palette.GG_WHITE_100}; */
-  border-radius: 2px;
-`;
-
-export const UserInfoWrapper = styled.div`
+export const SummonerInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 22px;

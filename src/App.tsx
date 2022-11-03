@@ -1,11 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Landing } from './components/landing';
 import { SubPage } from './components/subPage';
-enum PageEnum {
-  CODE,
-  LIVE,
-  USER,
-}
+import { PageEnum } from './components/types/enum';
 
 const App = () => {
   return (

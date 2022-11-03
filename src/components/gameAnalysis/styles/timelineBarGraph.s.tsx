@@ -8,7 +8,7 @@ export const TimelineBarContainer = styled.div`
   width: 100%;
   margin-bottom: 12px;
 `;
-export const BarWrapper = styled.div`
+export const GraphWrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 4px;

@@ -1,1 +1,1 @@
-export { default as gg_lottie_bg } from './gg_lottie_bg/36321-khazix.json';
+export { default as lottieImg } from './gg_lottie_bg/36321-khazix.json';

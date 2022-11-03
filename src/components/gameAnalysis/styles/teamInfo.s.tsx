@@ -5,7 +5,6 @@ enum TeamNameEnum {
   RED,
   BLUE,
 }
-
 interface TeamStatProps {
   team: TeamNameEnum;
 }

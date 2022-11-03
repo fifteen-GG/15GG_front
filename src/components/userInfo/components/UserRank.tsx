@@ -1,5 +1,5 @@
 import { RankData } from '../../types/summonerInfo';
-import gg_tier_unranked from '../../../assets/gg_tier_unranked_4x.png';
+import unrankedImg from '../../../assets/gg_tier_unranked_4x.png';
 import {
   UserRankContainer,
   RankWrapper,
@@ -11,51 +11,54 @@ import {
   RankWinrate,
   RankImg,
 } from '../styles/userRank.s';
-interface propsType {
-  userName: string;
-  soloRank: RankData;
-  flexRank: RankData;
+import { SummonerInfoType } from '../../types/summonerInfo';
+import { formatRankInfo } from '../userInfoFunc';
+import { useState } from 'react';
+export interface userRank {
+  name: string;
+  lp: number;
+  win_rate: number;
+  win: number;
+  losses: number;
 }
+interface propsType {
+  summonerInfo: SummonerInfoType;
+}
+// export interface userRank {
+//   name: string;
+//   lp: number;
+//   win_rate: number;
+//   win: number;
+//   losses: number;
+// }
 const UserRank = (props: propsType) => {
-  let tier: string;
-  const tierFormatting = (tier: string, Case: Number) => {
-    tier = tier;
-    if (Case === 1) return tier?.charAt(0) + tier?.slice(1).toLowerCase();
-    else if (Case === 2) return tier?.toLowerCase();
-  };
-  const rankFormatting = (rank: string) => {
-    const romeNum = ['I', 'II', 'III', 'IV', 'V'];
-    let Rank = 1;
-    romeNum.map((data, index) => {
-      if (data === rank) Rank = index + 1;
-    });
-    return Rank;
-  };
+  const [userSoloRank, setSoloUserRank] = useState<userRank>(
+    formatRankInfo(props.summonerInfo, 'solo'),
+  );
+  const [userFlexRank, setFlexUserRank] = useState<userRank>(
+    formatRankInfo(props.summonerInfo, 'flex'),
+  );
   return (
     <UserRankContainer>
       <RankWrapper className="Solo">
         <RankText>
           <RankSubTitle>솔로랭크</RankSubTitle>
-          <RankName>
-            {`${tierFormatting(props.soloRank?.tier, 1)} ${rankFormatting(
-              props.soloRank?.rank,
-            )}`}
-          </RankName>
+          <RankName>{userSoloRank.name}</RankName>
           <RankContent>
-            <RankLp>{props.soloRank?.lp}LP</RankLp>
+            <RankLp>{userSoloRank.lp}LP</RankLp>
             <RankWinrate>
-              {props.soloRank?.win_rate}% ({props.soloRank?.win}승{' '}
-              {props.soloRank?.losses}패)
+              {userSoloRank.win_rate}% ({userSoloRank.win}승{' '}
+              {userSoloRank.losses}패)
             </RankWinrate>
           </RankContent>
         </RankText>
-        {!props.soloRank ? (
-          <RankImg src={gg_tier_unranked} />
+        {!props.summonerInfo.solo ? (
+          <RankImg src={unrankedImg} />
         ) : (
           <RankImg
             src={
               process.env.REACT_APP_OPGG_API_ROOT +
-              `/medals_new/${tierFormatting(props.soloRank?.tier, 2)}.png`
+              `/medals_new/${props.summonerInfo.solo?.tier.toLowerCase()}.png`
             }
           />
         )}
@@ -63,25 +66,22 @@ const UserRank = (props: propsType) => {
       <RankWrapper className="Flex">
         <RankText>
           <RankSubTitle>자유랭크</RankSubTitle>
-          <RankName>{`${tierFormatting(
-            props.flexRank?.tier,
-            1,
-          )} ${rankFormatting(props.flexRank?.rank)}`}</RankName>
+          <RankName>{userFlexRank.name}</RankName>
           <RankContent>
-            <RankLp>{props.flexRank?.lp}LP</RankLp>
+            <RankLp>{userSoloRank.lp}LP</RankLp>
             <RankWinrate>
-              {props.flexRank?.win_rate}% ({props.flexRank?.win}승{' '}
-              {props.flexRank?.losses}패)
+              {userSoloRank.win_rate}% ({userSoloRank.win}승{' '}
+              {userSoloRank.losses}패)
             </RankWinrate>
           </RankContent>
         </RankText>
-        {!props.flexRank ? (
-          <RankImg src={gg_tier_unranked} />
+        {!props.summonerInfo.flex ? (
+          <RankImg src={unrankedImg} />
         ) : (
           <RankImg
             src={
               process.env.REACT_APP_OPGG_API_ROOT +
-              `/medals_new/${tierFormatting(props.flexRank?.tier, 2)}.png`
+              `/medals_new/${props.summonerInfo.flex?.tier.toLowerCase()}.png`
             }
           />
         )}

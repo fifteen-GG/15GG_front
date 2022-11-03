@@ -7,13 +7,8 @@ import {
 } from '../styles/searchbox.s';
 
 export const SearchBox = () => {
-  //router
   const navigate = useNavigate();
-  // const routeUserInfo = () => {
-  //   navigate(`/user?ID=${searchValue}`);
-  // };
-  const [searchValue, setSearchValue] = useState('');
-
+  const [searchValue, setSearchValue] = useState<string>('');
   const handleSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
@@ -22,7 +17,7 @@ export const SearchBox = () => {
       <SearchField
         placeholder="소환사명 검색하기..."
         onChange={handleSearchValue}
-        onKeyDown={e => {
+        onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
           if (e.key === 'Enter') navigate(`/user?ID=${searchValue}`);
         }}
       ></SearchField>

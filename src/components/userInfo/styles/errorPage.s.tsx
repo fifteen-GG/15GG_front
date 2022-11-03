@@ -22,7 +22,7 @@ export const SummonerNameWrapper = styled.div`
   flex-direction: column;
 `;
 export const SummonerName = styled.div`
-  font-weight: bold;
+  font-weight: 700;
   font-size: 28px;
   color: ${Palette.GG_WHITE_100};
 `;
@@ -44,14 +44,13 @@ export const ErrorImg = styled.img`
   display: block;
   margin-top: 54px;
   margin-bottom: 14px;
-}
 `;
 
 export const ErrorText = styled.div`
   font-size: 14px;
   width: 158px;
   height: 34px;
-  font-weight: bold;
+  font-weight: 700;
   text-align: center;
   line-height: 1.2;
   margin: 0 auto;

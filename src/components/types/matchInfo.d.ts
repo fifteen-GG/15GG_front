@@ -1,3 +1,4 @@
+import { gameState, queue_mode } from './enum';
 export interface MatchInfoType {
   status: gameState;
   match_id: string;
@@ -22,16 +23,4 @@ export interface MatchInfoType {
     perk: number;
     perkStyle: number;
   };
-}
-export enum gameState {
-  live = 'live',
-  end = 'complete',
-  none = 'incomplete',
-}
-export enum queue_mode {
-  solo = '5v5 Ranked Solo games',
-  blind = '5v5 Blind Pick games',
-  aram = '5v5 ARAM games',
-  flex = '5v5 Ranked Flex games',
-  urf = 'Pick URF games',
 }

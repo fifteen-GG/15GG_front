@@ -5,6 +5,7 @@ import { GameAnalysis } from '../gameAnalysis';
 import { UserInfo } from '../userInfo';
 import logo from '../../assets/gg_logo_temp.svg';
 import styled from 'styled-components';
+import { PageEnum } from '../types/enum';
 
 const SubPageContainer = styled.div`
   display: flex;
@@ -59,19 +60,6 @@ const SubPageContent = styled.div`
   }
   padding: 16px;
 `;
-//state: gameState;
-//matchID: string;
-
-// enum gameState {
-//   running,
-//   end,
-//   none,
-// }
-enum PageEnum {
-  CODE,
-  LIVE,
-  USER,
-}
 interface propsType {
   page: PageEnum;
 }

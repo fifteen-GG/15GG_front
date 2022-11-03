@@ -5,7 +5,7 @@ import * as Palette from '../../../assets/colorPalette';
 export const UserStatInfoContainer = styled.div`
   width: 100%;
   height: 56px;
-  margin-top: 4px;
+  margin-bottom: 8px;
   background-color: ${Palette.GG_BLACK_70};
   border-radius: 6px;
   display: flex;
@@ -41,7 +41,7 @@ export const UserInfoTitle = styled.div`
 export const UserInfoContent = styled.div`
   font-size: 14px;
   color: ${Palette.GG_WHITE_100};
-  font-weight: bold;
+  font-weight: 700;
 `;
 export const UserInfoSubTitle = styled.div`
   font-size: 10px;

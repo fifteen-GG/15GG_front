@@ -1,6 +1,13 @@
 import styled from 'styled-components';
 import * as Palette from '../../../assets/colorPalette';
 
+import goldRed from '../svg/gold_red.svg';
+import killRed from '../svg/kills_red.svg';
+import levelRed from '../svg/level_red.svg';
+import goldBlue from '../svg/gold_blue.svg';
+import killBlue from '../svg/kills_blue.svg';
+import levelBlue from '../svg/level_blue.svg';
+
 export const TeamStatsContainer = styled.div`
   display: flex;
   height: 64px;
@@ -9,15 +16,13 @@ export const TeamStatsContainer = styled.div`
 `;
 
 enum TeamNameEnum {
-  RED,
-  BLUE,
+  RED = 'Red',
+  BLUE = 'Blue',
 }
-
 interface TeamStatProps {
   team: TeamNameEnum;
 }
-
-export const TeamStat = styled.div`
+export const TeamStatWrapper = styled.div`
   display: flex;
   width: calc(50% - 1px);
   height: 48px;
@@ -27,8 +32,25 @@ export const TeamStat = styled.div`
     border-right: 2px solid ${Palette.GG_STATS_BORDER};
   }
 `;
+const gg_svg: {
+  [key: string]: string;
+} = {
+  goldRed: goldRed,
+  killRed: killRed,
+  levelRed: levelRed,
+  goldBlue: goldBlue,
+  killBlue: killBlue,
+  levelBlue: levelBlue,
+};
 
-export const Stat = styled.div<TeamStatProps>`
+export const Icon = styled.div<{ team: string }>`
+  width: 20px;
+  height: 20px;
+  background-image: ${props => `url(${gg_svg[props.team]})`};
+  background-size: cover;
+`;
+
+export const Stat = styled.div<{ team: string }>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -38,12 +60,9 @@ export const Stat = styled.div<TeamStatProps>`
   color: ${props =>
     props.team === TeamNameEnum.RED ? Palette.GG_RED : Palette.GG_PURPLE};
 `;
-
 export const StatValue = styled.div`
   display: flex;
   color: ${Palette.GG_WHITE_100};
   font-size: 12px;
   font-weight: bold;
 `;
-
-export { TeamNameEnum as Team };

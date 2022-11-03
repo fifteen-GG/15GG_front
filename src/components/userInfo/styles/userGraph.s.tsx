@@ -5,7 +5,7 @@ import * as Palette from '../../../assets/colorPalette';
 export const UserGraphContainer = styled.div`
   width: 100%;
   height: 180px;
-  margin-top: 8px;
+  margin-bottom: 8px;
   background-color: ${Palette.GG_BLACK_70};
   border-radius: 6px;
   display: flex;
@@ -26,32 +26,31 @@ export const UserGraphText = styled.div`
   margin-left: 14px;
   margin-top: 10px;
 `;
-export const UserGraphLabel = styled.div`
+export const ColumnLabel = styled.div`
   display: flex;
 `;
-export const UserBox = styled.div`
+export const ColumnBox = styled.div`
   width: 10px;
   height: 10px;
-  background-color: ${Palette.GG_RADARDATA};
+  margin-right: 4px;
   border-radius: 2px;
 `;
-export const UserName = styled.div`
-  margin-left: 4px;
+export const ColumnName = styled.div`
   font-size: 10px;
   color: ${Palette.GG_WHITE_100};
 `;
 
-export const AvgGraphLabel = styled.div`
-  display: flex;
-`;
-export const AvgBox = styled.div`
-  width: 10px;
-  height: 10px;
-  background-color: ${Palette.GG_GREY_70};
-  border-radius: 2px;
-`;
-export const AvgName = styled.div`
-  margin-left: 4px;
-  font-size: 10px;
-  color: ${Palette.GG_WHITE_100};
-`;
+// export const AvgGraphLabel = styled.div`
+//   display: flex;
+// `;
+// export const AvgColumn = styled.div`
+//   width: 10px;
+//   height: 10px;
+//   margin-right: 4px;
+//   background-color: ${Palette.GG_GREY_70};
+//   border-radius: 2px;
+// `;
+// export const AvgName = styled.div`
+//   font-size: 10px;
+//   color: ${Palette.GG_WHITE_100};
+// `;

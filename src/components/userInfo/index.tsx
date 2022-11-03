@@ -13,6 +13,7 @@ import UserId from './components/UserId';
 import PreferChampion from './components/PreferChampion';
 import LoadingPage from './components/LoadingPage';
 import ErrorPage from './components/ErrorPage';
+// import { exceptionHandling } from './components/function/userInfoFunc';
 
 const UserInfoContainer = styled.div`
   width: 100%;
@@ -20,11 +21,6 @@ const UserInfoContainer = styled.div`
     width: 328px;
   }
 `;
-const UserStatWrapper = styled.div`
-  width: 100%;
-  height: 96px;
-`;
-const UserGameListWrapper = styled.div``;
 const Loader = styled.div`
   color: white;
   text-align: center;
@@ -69,7 +65,7 @@ export const UserInfo = () => {
       setGamesData(fetchedGames);
       setPageNum(pageNum + 1);
     } catch (e) {
-      console.log(e); //이해필요
+      console.log(e);
     }
   };
   if (httpStatusCode === 404) return <ErrorPage />;
@@ -84,36 +80,20 @@ export const UserInfo = () => {
             userName={summonerInfo.name}
             level={summonerInfo.level}
           />
-          <UserStatWrapper>
-            <UserRank
-              userName={summonerInfo.name}
-              soloRank={summonerInfo.solo}
-              flexRank={summonerInfo.flex}
-            />
-          </UserStatWrapper>
-          <UserStatInfo
-            userName={summonerInfo.name}
-            soloRank={summonerInfo.solo}
-            kda_avg={summonerInfo.kda_avg}
-            kills_avg={summonerInfo.kills_avg}
-            deaths_avg={summonerInfo.deaths_avg}
-            assists_avg={summonerInfo.assists_avg}
-            prefer_position={summonerInfo.prefer_position}
-          />
+          <UserRank summonerInfo={summonerInfo} />
+          <UserStatInfo summonerInfo={summonerInfo} />
           <UserGraph userName={summonerInfo.name} />
-          <PreferChampion preferChampion={summonerInfo.champions} />
-          <UserGameListWrapper>
-            <InfiniteScroll
-              next={getMatchData}
-              dataLength={gamesData.length}
-              hasMore={true}
-              loader={<Loader>데이터 불러오는 중...</Loader>}
-            >
-              {gamesData.map((game: MatchInfoType, index) => {
-                return <MatchCard matchInfo={game} key={index}></MatchCard>;
-              })}
-            </InfiniteScroll>
-          </UserGameListWrapper>
+          <PreferChampion summonerInfo={summonerInfo} />
+          <InfiniteScroll
+            next={getMatchData}
+            dataLength={gamesData.length}
+            hasMore={true}
+            loader={<Loader>데이터 불러오는 중...</Loader>}
+          >
+            {gamesData.map((game: MatchInfoType, index) => {
+              return <MatchCard matchInfo={game} key={index}></MatchCard>;
+            })}
+          </InfiniteScroll>
         </>
       )}
     </UserInfoContainer>

@@ -7,10 +7,10 @@ import GameSlider from './components/GameSlider';
 import EmptyCover from './components/EmptyCover';
 import styled from 'styled-components';
 import * as Palette from '../../assets/colorPalette';
-
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router';
 import { useSocket, SocketStatus } from './useSocket';
+import { gameState } from '../types/enum';
 
 const GameAnalysisContainer = styled.div`
   width: 100%;
@@ -31,24 +31,11 @@ const TimeInfo = styled.div`
   align-items: center;
   margin-bottom: 12px;
 `;
-// enum gameState {
-//   running,
-//   end,
-//   none,
-// }
-// interface propsType {
-//   state: gameState;
-//   matchID: string;
-// }
 export const GameAnalysis = () => {
   const [gameData, setGameData] = useState(Object);
   const [time, setTime] = useState<number>(0);
   const [parse, setParse] = useState<number>(0);
   const { state } = useLocation();
-  console.log(state.status);
-  console.log(state.mode);
-  console.log(state.matchID);
-  console.log(state.date);
   const { responseMessage } = useSocket(state => {
     if (state === SocketStatus.onNewChatReceived) {
       setParse(data => data + 1);
@@ -60,33 +47,31 @@ export const GameAnalysis = () => {
   });
 
   useEffect(() => {
-    if (parse === 0 && state.status === 'live') {
+    if (parse && state?.status === gameState.live) {
       let data = JSON.parse(responseMessage);
       setGameData(data);
     }
   }, [parse, responseMessage]);
 
   useEffect(() => {
-    if (parse === 0 && state.status === 'live') setTime(gameData.timestamp);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (parse && state?.status === gameState.live) setTime(gameData.timestamp);
     console.log(gameData, state.status);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [gameData]);
 
   return (
     <GameAnalysisContainer>
       <GameInfo status={state.status} mode={state.mode} date={state.date} />
-      <>
-        {state.status === 'incomplete' ? <EmptyCover /> : null}
-        <TimeInfo>
-          경과시간 {Math.trunc(time / 60)}:
-          {Math.trunc(time % 60) < 10
-            ? '0' + Math.trunc(time % 60)
-            : Math.trunc(time % 60)}
-        </TimeInfo>
-        <TimelineBarGraph />
-        <TimelineGraph />
-        {state.status === 'live' ? <GameSlider /> : null}
-      </>
+      {state.status === gameState.none ? <EmptyCover /> : null}
+      <TimeInfo>
+        경과시간 {Math.trunc(time / 60)}:
+        {Math.trunc(time % 60) < 10
+          ? '0' + Math.trunc(time % 60)
+          : Math.trunc(time % 60)}
+      </TimeInfo>
+      <TimelineBarGraph />
+      <TimelineGraph />
+      {state.status === gameState.live ? <GameSlider /> : null}
       <TeamStats />
       <TeamInfo />
     </GameAnalysisContainer>

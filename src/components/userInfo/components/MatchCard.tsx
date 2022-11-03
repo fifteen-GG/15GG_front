@@ -6,21 +6,21 @@ import {
   AnalysisStatus,
   MatchMainInfo,
   MatchResult,
-  MatchDate,
-  MatchMode,
-  MatchDuration,
+  MatchData as MatchDate,
+  MatchData as MatchMode,
+  MatchData as MatchDuration,
   MatchDetailInfo,
   MatchCardContent,
   Profile,
-  SpellWrapper,
-  Spell,
-  PerkWrapper,
-  Perk,
+  ImgWrapper as SpellWrapper,
+  ImgWrapper as PerkWrapper,
+  ImgBox as Spell,
+  ImgBox as Perk,
   KDAWrapper,
-  KDAInfo,
+  KDA,
   KDARate,
-  CSNWard,
-  CSInfo,
+  CSNWardWrapper,
+  CS,
   Ward,
   ItemWrapper,
   ItemImg,
@@ -42,11 +42,11 @@ interface propsType {
 }
 const MatchCard = (props: propsType) => {
   const navigate = useNavigate();
-  const routegameAnalysis = () => {
-    navigate(`/live?match=${props.matchInfo.match_id}`, {
-      state: props.matchInfo.status,
-    });
-  };
+  // const routegameAnalysis = () => {
+  //   navigate(`/live?match=${props.matchInfo.match_id}`, {
+  //     state: props.matchInfo.status,
+  //   });
+  // };
   const formatMatchInfo = (queMode: string) => {
     if (queMode === queue_mode.solo) {
       return '솔로랭크';
@@ -126,29 +126,31 @@ const MatchCard = (props: propsType) => {
                   process.env.REACT_APP_OPGG_API_ROOT +
                   `/lol/perk/${props.matchInfo.perks.perk}.png`
                 }
+                style={{ borderRadius: '10px' }}
               />
               <Perk
                 src={
                   process.env.REACT_APP_OPGG_API_ROOT +
                   `/lol/perkStyle/${props.matchInfo.perks.perkStyle}.png`
                 }
+                style={{ borderRadius: '10px' }}
               />
             </PerkWrapper>
             <KDAWrapper>
-              <KDAInfo>
+              <KDA>
                 {props.matchInfo.kills} / {props.matchInfo.deaths} /{' '}
                 {props.matchInfo.assists}
-              </KDAInfo>
+              </KDA>
               <KDARate>KDA {props.matchInfo.kda}</KDARate>
             </KDAWrapper>
-            <CSNWard>
-              <CSInfo>
+            <CSNWardWrapper>
+              <CS>
                 CS {props.matchInfo.cs} ({props.matchInfo.cs_per_min})
-              </CSInfo>
+              </CS>
               <Ward>
                 제어 와드 {props.matchInfo.vision_wards_bought_in_game}
               </Ward>
-            </CSNWard>
+            </CSNWardWrapper>
           </MatchCardContent>
           <ItemWrapper>
             {props.matchInfo.items.map((item: string, index: number) => {

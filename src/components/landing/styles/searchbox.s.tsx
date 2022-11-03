@@ -8,7 +8,7 @@ export const SearchBoxContainer = styled.div`
   height: 38px;
   background-image: url(${searchBox});
   border-radius: 18px;
-  box-shadow: 0 2px 4px 0 rgba(54, 54, 59, 0.25);
+  box-shadow: 0 2px 4px 0 ${Palette.GG_SEARCH_SHADOW};
   display: flex;
   flex-direction: row;
   justify-content: left;

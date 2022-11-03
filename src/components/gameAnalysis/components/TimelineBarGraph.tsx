@@ -13,12 +13,11 @@ import {
 import { Chart } from 'react-chartjs-2';
 import {
   TimelineBarContainer,
-  BarWrapper,
+  GraphWrapper,
   RateWrapper,
   WinningRate,
   GraphTitle,
 } from '../styles/timelineBarGraph.s';
-
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -27,7 +26,6 @@ ChartJS.register(
   Tooltip,
   Legend,
 );
-
 export const options = {
   indexAxis: 'y' as const,
   maintainAspectRatio: false,
@@ -65,9 +63,7 @@ export const options = {
     },
   },
 };
-
 const labels = [''];
-
 export const data = {
   labels,
   datasets: [
@@ -81,7 +77,7 @@ export const data = {
     {
       label: 'Dataset 2',
       data: [100],
-      borderColor: 'rgb(53, 162, 235)',
+      borderColor: `${Palette.GG_TIMELINE_BARGRAPH_BORDER_BLUE}`,
       backgroundColor: `${Palette.GG_TIMELINE_BARGRAPH_BLUE}`,
       borderWidth: 0,
     },
@@ -93,10 +89,8 @@ const TimelineBarGraph = () => {
   const [chartData, setChartData] = useState<ChartData<'bar'>>({
     datasets: [],
   });
-
   useEffect(() => {
     const chart = chartRef.current;
-
     if (!chart) {
       return;
     }
@@ -106,13 +100,12 @@ const TimelineBarGraph = () => {
         ...dataset,
       })),
     };
-
     setChartData(chartData);
   }, []);
 
   return (
     <TimelineBarContainer>
-      <BarWrapper>
+      <GraphWrapper>
         <Chart
           type="bar"
           ref={chartRef}
@@ -120,7 +113,7 @@ const TimelineBarGraph = () => {
           options={options}
           height="5px"
         />
-      </BarWrapper>
+      </GraphWrapper>
       <RateWrapper>
         <WinningRate>{redWinningRate}%</WinningRate>
         <GraphTitle>승률</GraphTitle>

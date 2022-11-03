@@ -1,9 +1,9 @@
 import {
   UserIdContainer,
   UserIcon,
-  UserNameWrapper,
+  UserInfoWrapper,
   UserName,
-  SubName,
+  Level,
 } from '../styles/userId.s';
 interface propsType {
   profileIcon: string;
@@ -19,10 +19,10 @@ const UserId = (props: propsType) => {
           `/profileicon/${props.profileIcon}.png`
         }
       />
-      <UserNameWrapper>
+      <UserInfoWrapper>
         <UserName>{props.userName}</UserName>
-        <SubName>{'LV ' + props.level}</SubName>
-      </UserNameWrapper>
+        <Level>{'LV ' + props.level}</Level>
+      </UserInfoWrapper>
     </UserIdContainer>
   );
 };

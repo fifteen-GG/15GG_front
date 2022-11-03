@@ -10,20 +10,17 @@ import {
   TeamsRow as LowerLinePosition,
 } from '../styles/livegame.s';
 import { LiveUser } from './LiveUser';
-
 interface userData {
   name: string;
   champion: string;
   position: string;
 }
-
 interface gameData {
   gameType: string;
   gameDate: string;
   redTeam: userData[];
   blueTeam: userData[];
 }
-
 export const LiveGame = () => {
   const [game, setGame] = useState<gameData>({
     gameType: '솔로랭크',
