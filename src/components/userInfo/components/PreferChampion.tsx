@@ -42,7 +42,7 @@ const PreferChampion = (props: propsType) => {
                         {Math.round((data.wins / data.counts) * 100) + '%'}
                       </ChampionInfoContent>
                       <ChampionInfoSubTitle counts={data.counts}>
-                        {'KAD' +
+                        {'KDA ' +
                           Math.round(
                             ((data.kills + data.assists) / data.deaths) * 100,
                           ) /

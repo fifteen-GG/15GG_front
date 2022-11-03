@@ -30,6 +30,7 @@ enum queue_mode {
   blind = '5v5 Blind Pick games',
   aram = '5v5 ARAM games',
   flex = '5v5 Ranked Flex games',
+  urf = 'Pick URF games',
 }
 export enum gameState {
   live = 'live',
@@ -46,15 +47,17 @@ const MatchCard = (props: propsType) => {
       state: props.matchInfo.status,
     });
   };
-  const formatMatchInfo = (matchInfo: MatchInfoType) => {
-    if (matchInfo.queue_mode === queue_mode.solo) {
+  const formatMatchInfo = (queMode: string) => {
+    if (queMode === queue_mode.solo) {
       return '솔로랭크';
-    } else if (matchInfo.queue_mode === queue_mode.flex) {
+    } else if (queMode === queue_mode.flex) {
       return '자유랭크';
-    } else if (matchInfo.queue_mode === queue_mode.blind) {
+    } else if (queMode === queue_mode.blind) {
       return '일반게임';
-    } else if (matchInfo.queue_mode === queue_mode.aram) {
+    } else if (queMode === queue_mode.aram) {
       return '칼바람나락';
+    } else if (queMode === queue_mode.urf) {
+      return '우루프모드';
     } else {
       return '사용자설정';
     }
@@ -77,7 +80,7 @@ const MatchCard = (props: propsType) => {
           <MatchDate>
             {props.matchInfo.created_at.replaceAll('-', '/').slice(2)}
           </MatchDate>
-          <MatchMode>{formatMatchInfo(props.matchInfo)}</MatchMode>
+          <MatchMode>{formatMatchInfo(props.matchInfo.queue_mode)}</MatchMode>
           <MatchDuration>
             {Math.round(props.matchInfo.game_duration / 60)}분{' '}
             {props.matchInfo.game_duration % 60}초

@@ -33,4 +33,5 @@ export enum queue_mode {
   blind = '5v5 Blind Pick games',
   aram = '5v5 ARAM games',
   flex = '5v5 Ranked Flex games',
+  urf = 'Pick URF games',
 }

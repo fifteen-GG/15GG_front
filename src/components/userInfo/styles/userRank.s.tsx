@@ -3,7 +3,6 @@ import * as Palette from '../../../assets/colorPalette';
 
 //UserRank부분 스타일
 export const UserRankContainer = styled.div`
-  background: ${Palette.GG_BLACK_100};
   margin-top: 4px;
   display: flex;
   padding: 0px 2px 0 2px;

@@ -13,14 +13,12 @@ import UserId from './components/UserId';
 import PreferChampion from './components/PreferChampion';
 import LoadingPage from './components/LoadingPage';
 import ErrorPage from './components/ErrorPage';
-import * as Palette from '../../assets/colorPalette';
 
 const UserInfoContainer = styled.div`
   width: 100%;
   @media screen and (max-width: 360px) {
     width: 328px;
   }
-  background: ${Palette.GG_BLACK_100};
 `;
 const UserStatWrapper = styled.div`
   width: 100%;
