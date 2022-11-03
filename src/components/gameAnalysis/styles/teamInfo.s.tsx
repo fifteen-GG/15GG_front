@@ -49,7 +49,7 @@ export const UserInfoColumn = styled.div`
   color: ${Palette.GG_WHITE_100};
   font-weight: 700;
 `;
-export const PlayerList = styled.div`
+export const SummonerList = styled.div`
   display: flex;
   flex-direction: column;
   background-color: ${Palette.GG_BLACK_70};

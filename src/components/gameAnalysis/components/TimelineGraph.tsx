@@ -81,13 +81,13 @@ export const data = {
     {
       fill: {
         target: 'origin',
-        above: 'rgba(232, 64, 87, 0.4)',
-        below: 'rgba(53, 162, 235, 0.5)',
+        above: `${Palette.GG_TIMELINE_RED}`,
+        below: `${Palette.GG_TIMELINE_BLUE}`,
       },
       data: [50, 40, 30, -10, 40, -50, 10, 20, 10, 50, 50, 50, 50],
       // borderColor: createGradient(chart.ctx, chart.chartArea),
       borderColor: 'red',
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
+      backgroundColor: `${Palette.GG_TIMELINE_BLUE}`,
       lineTension: 0.5,
       pointRadius: 0,
       borderWidth: 1.5,
@@ -100,8 +100,8 @@ const createGradient = (
   area: ChartArea,
   graphType: string,
 ) => {
-  const graphRed = 'rgba(232, 64, 87, 0.4)';
-  const graphBlue = 'rgba(53, 162, 235, 0.5)';
+  const graphRed = `${Palette.GG_TIMELINE_RED}`;
+  const graphBlue = `${Palette.GG_TIMELINE_BLUE}`;
   const graphNeutral = `${Palette.GG_GRFTITLE}`;
   let gradient;
 

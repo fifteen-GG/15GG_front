@@ -9,9 +9,9 @@ import {
 export const SearchBox = () => {
   //router
   const navigate = useNavigate();
-  const routeUserInfo = () => {
-    navigate(`/user?ID=${searchValue}`);
-  };
+  // const routeUserInfo = () => {
+  //   navigate(`/user?ID=${searchValue}`);
+  // };
   const [searchValue, setSearchValue] = useState('');
 
   const handleSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,10 +23,10 @@ export const SearchBox = () => {
         placeholder="소환사명 검색하기..."
         onChange={handleSearchValue}
         onKeyDown={e => {
-          if (e.key === 'Enter') routeUserInfo();
+          if (e.key === 'Enter') navigate(`/user?ID=${searchValue}`);
         }}
       ></SearchField>
-      <SearchButton onClick={routeUserInfo} />
+      <SearchButton onClick={() => navigate(`/user?ID=${searchValue}`)} />
     </SearchBoxContainer>
   );
 };

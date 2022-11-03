@@ -1,31 +1,37 @@
 import {
   GameInfoContainer,
-  TypeInfoWrapper,
-  GameTypeInfo,
+  GameTypeWrapper,
+  GameType,
   AnalysisTypeInfo,
   DateInfo,
 } from '../styles/gameInfo.s';
-enum gameState {
-  running,
-  end,
-  none,
-}
+import {
+  formatMatchMode,
+  formatAnalysisStatus,
+  formatMatchDate,
+} from '../gameInfo';
+
+// enum gameState {
+//   running,
+//   end,
+//   none,
+// }
 interface propsType {
-  state: gameState;
+  status: 'live' | 'complete' | 'incomplete';
+  mode: string;
+  date: string;
 }
 
 const GameInfo = (props: propsType) => {
   return (
     <GameInfoContainer>
-      <TypeInfoWrapper>
-        <GameTypeInfo>자유랭크</GameTypeInfo>
-        <AnalysisTypeInfo
-          isLive={props.state === gameState.running ? true : false}
-        >
-          {props.state === gameState.running ? '실시간' : '분석완료'}
+      <GameTypeWrapper>
+        <GameType>{formatMatchMode(props.mode)}</GameType>
+        <AnalysisTypeInfo status={props.status}>
+          {formatAnalysisStatus(props.status)}
         </AnalysisTypeInfo>
-      </TypeInfoWrapper>
-      <DateInfo>2022년 7월 19일</DateInfo>
+      </GameTypeWrapper>
+      <DateInfo>{formatMatchDate(props.date)}</DateInfo>
     </GameInfoContainer>
   );
 };

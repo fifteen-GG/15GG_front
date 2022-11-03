@@ -62,11 +62,11 @@ const SubPageContent = styled.div`
 //state: gameState;
 //matchID: string;
 
-enum gameState {
-  running,
-  end,
-  none,
-}
+// enum gameState {
+//   running,
+//   end,
+//   none,
+// }
 enum PageEnum {
   CODE,
   LIVE,
@@ -77,20 +77,19 @@ interface propsType {
 }
 export const SubPage = (props: propsType) => {
   const navigate = useNavigate();
-  const routeLanding = () => {
-    navigate(`/`);
-  };
+  // const routeLanding = () => {
+  //   navigate(`/`);
+  // };
   const renderContent = () => {
     if (props.page === PageEnum.CODE) return <DataCode />;
-    else if (props.page === PageEnum.LIVE)
-      return <GameAnalysis state={gameState.running} matchID={'KR_123123'} />;
+    else if (props.page === PageEnum.LIVE) return <GameAnalysis />;
     else if (props.page === PageEnum.USER) return <UserInfo />;
   };
   return (
     <SubPageContainer>
       <SubPageHeaderWrapper>
         <SubPageHeader>
-          <LogoBox src={logo} onClick={routeLanding} />
+          <LogoBox src={logo} onClick={() => navigate(`/`)} />
         </SubPageHeader>
       </SubPageHeaderWrapper>
       <SubPageContentWrapper>

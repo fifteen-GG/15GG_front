@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import * as Palette from '../../../assets/colorPalette';
 import searchBox from '../../../assets/gg_searchbox_bg.svg';
-import serarchButton from '../../../assets/gg_searchbox_button.svg';
+import searchButton from '../../../assets/gg_searchbox_button.svg';
 
 export const SearchBoxContainer = styled.div`
   width: 314px;
@@ -32,5 +32,5 @@ export const SearchButton = styled.div`
   height: 38px;
   margin-left: 22px;
   cursor: pointer;
-  background-image: url(${serarchButton});
+  background-image: url(${searchButton});
 `;

@@ -8,7 +8,7 @@ export const GameInfoContainer = styled.div`
   height: 54px;
 `;
 
-export const TypeInfoWrapper = styled.div`
+export const GameTypeWrapper = styled.div`
   display: flex;
   height: 18px;
   align-items: center;
@@ -17,26 +17,32 @@ export const TypeInfoWrapper = styled.div`
   margin-bottom: 6px;
 `;
 
-export const GameTypeInfo = styled.div`
+export const GameType = styled.div`
   display: flex;
   font-size: 18px;
   margin-right: 6px;
+  font-weight: 500;
 `;
-interface RealTimeInfoProps {
-  isLive: boolean;
-}
-export const AnalysisTypeInfo = styled.div<RealTimeInfoProps>`
-  display: flex;
-  height: 16px;
+// interface RealTimeInfoProps {
+//   isLive: boolean;
+// }
+export const AnalysisTypeInfo = styled.div`
   width: auto;
+  height: 16px;
+  display: flex;
   padding: 0 4px 0 4px;
   color: ${Palette.GG_WHITE_100};
   font-size: 10px;
+  font-weight: 500;
   align-items: center;
   justify-content: center;
   border-radius: 3px;
-  background-color: ${props =>
-    props.isLive ? Palette.GG_RED : Palette.GG_PURPLE};
+  background-color: ${(props: { status: 'live' | 'complete' | 'incomplete' }) =>
+    props.status === 'live'
+      ? Palette.GG_RED
+      : props.status === 'complete'
+      ? Palette.GG_PURPLE
+      : Palette.GG_BLACK_50_UNSELECTED};
 `;
 export const DateInfo = styled.div`
   display: flex;

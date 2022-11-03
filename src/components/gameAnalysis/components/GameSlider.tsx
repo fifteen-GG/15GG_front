@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Range, getTrackBackground } from 'react-range';
 import * as Palette from '../../../assets/colorPalette';
-import { GameSliderWrapper } from '../styles/gameslider.s';
+import { GameSliderContainer } from '../styles/gameslider.s';
 
 // const convertTime = (seconds: number) => {
 //   const minutes = Math.floor(seconds / 60);
@@ -15,7 +15,7 @@ const GameSlider = () => {
   const MIN = 0;
   const MAX = 1500;
   return (
-    <GameSliderWrapper>
+    <GameSliderContainer>
       <Range
         values={values}
         step={STEP}
@@ -73,7 +73,7 @@ const GameSlider = () => {
           />
         )}
       />
-    </GameSliderWrapper>
+    </GameSliderContainer>
   );
 };
 

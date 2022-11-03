@@ -6,39 +6,49 @@ import TimelineBarGraph from './components/TimelineBarGraph';
 import GameSlider from './components/GameSlider';
 import EmptyCover from './components/EmptyCover';
 import styled from 'styled-components';
+import * as Palette from '../../assets/colorPalette';
 
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router';
 import { useSocket, SocketStatus } from './useSocket';
 
 const GameAnalysisContainer = styled.div`
-  display: flex;
   width: 100%;
+  @media screen and (max-width: 360px) {
+    width: 328px;
+  }
+  display: flex;
   flex-direction: column;
   align-items: center;
 `;
 const TimeInfo = styled.div`
+  width: 100%;
   display: flex;
   font-size: 12px;
-  color: #ffffff;
+  color: ${Palette.GG_WHITE_100};
   font-weight: 300;
-  width: 100%;
   justify-content: center;
   align-items: center;
   margin-bottom: 12px;
 `;
-enum gameState {
-  running,
-  end,
-  none,
-}
-interface propsType {
-  state: gameState;
-  matchID: string;
-}
-export const GameAnalysis = (props: propsType) => {
+// enum gameState {
+//   running,
+//   end,
+//   none,
+// }
+// interface propsType {
+//   state: gameState;
+//   matchID: string;
+// }
+export const GameAnalysis = () => {
   const [gameData, setGameData] = useState(Object);
   const [time, setTime] = useState<number>(0);
   const [parse, setParse] = useState<number>(0);
+  const { state } = useLocation();
+  console.log(state.status);
+  console.log(state.mode);
+  console.log(state.matchID);
+  console.log(state.date);
   const { responseMessage } = useSocket(state => {
     if (state === SocketStatus.onNewChatReceived) {
       setParse(data => data + 1);
@@ -50,23 +60,23 @@ export const GameAnalysis = (props: propsType) => {
   });
 
   useEffect(() => {
-    if (parse && props.state === gameState.running) {
+    if (parse === 0 && state.status === 'live') {
       let data = JSON.parse(responseMessage);
       setGameData(data);
     }
   }, [parse, responseMessage]);
 
   useEffect(() => {
-    if (parse && props.state === gameState.running) setTime(gameData.timestamp);
+    if (parse === 0 && state.status === 'live') setTime(gameData.timestamp);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    console.log(gameData, props.state);
+    console.log(gameData, state.status);
   }, [gameData]);
 
   return (
     <GameAnalysisContainer>
-      <GameInfo state={props.state} />
+      <GameInfo status={state.status} mode={state.mode} date={state.date} />
       <>
-        {props.state === gameState.none ? <EmptyCover /> : null}
+        {state.status === 'incomplete' ? <EmptyCover /> : null}
         <TimeInfo>
           경과시간 {Math.trunc(time / 60)}:
           {Math.trunc(time % 60) < 10
@@ -75,7 +85,7 @@ export const GameAnalysis = (props: propsType) => {
         </TimeInfo>
         <TimelineBarGraph />
         <TimelineGraph />
-        {props.state === gameState.running ? null : <GameSlider />}
+        {state.status === 'live' ? <GameSlider /> : null}
       </>
       <TeamStats />
       <TeamInfo />
