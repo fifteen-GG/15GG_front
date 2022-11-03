@@ -1,7 +1,7 @@
 import {
   GameInfoContainer,
-  TypeInfoWrapper,
-  GameTypeInfo,
+  GameTypeWrapper as GameTypeWrapper,
+  GameType as GameType,
   AnalysisTypeInfo,
   DateInfo,
 } from '../styles/gameInfo.s';
@@ -17,14 +17,14 @@ interface propsType {
 const GameInfo = (props: propsType) => {
   return (
     <GameInfoContainer>
-      <TypeInfoWrapper>
-        <GameTypeInfo>자유랭크</GameTypeInfo>
+      <GameTypeWrapper>
+        <GameType>자유랭크</GameType>
         <AnalysisTypeInfo
           isLive={props.state === gameState.running ? true : false}
         >
           {props.state === gameState.running ? '실시간' : '분석완료'}
         </AnalysisTypeInfo>
-      </TypeInfoWrapper>
+      </GameTypeWrapper>
       <DateInfo>2022년 7월 19일</DateInfo>
     </GameInfoContainer>
   );

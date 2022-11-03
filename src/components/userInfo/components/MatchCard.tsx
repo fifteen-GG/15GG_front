@@ -25,12 +25,20 @@ import {
   ItemWrapper,
   ItemImg,
 } from '../styles/matchCard.s';
-import { formatMatchInfo, formatAnalysisStatus } from '../userInfo';
-
+enum queue_mode {
+  solo = '5v5 Ranked Solo games',
+  blind = '5v5 Blind Pick games',
+  aram = '5v5 ARAM games',
+  flex = '5v5 Ranked Flex games',
+}
+export enum gameState {
+  live = 'live',
+  end = 'complete',
+  none = 'incomplete',
+}
 interface propsType {
   matchInfo: MatchInfoType;
 }
-
 const MatchCard = (props: propsType) => {
   const navigate = useNavigate();
   const routegameAnalysis = () => {
@@ -38,6 +46,26 @@ const MatchCard = (props: propsType) => {
       state: props.matchInfo.status,
     });
   };
+  const formatMatchInfo = (matchInfo: MatchInfoType) => {
+    if (matchInfo.queue_mode === queue_mode.solo) {
+      return '솔로랭크';
+    } else if (matchInfo.queue_mode === queue_mode.flex) {
+      return '자유랭크';
+    } else if (matchInfo.queue_mode === queue_mode.blind) {
+      return '일반게임';
+    } else if (matchInfo.queue_mode === queue_mode.aram) {
+      return '칼바람나락';
+    } else {
+      return '사용자설정';
+    }
+  };
+
+  const formatAnalysisStatus = (status: string) => {
+    if (status === gameState.live) return '실시간 분석';
+    else if (status === gameState.end) return '분석완료';
+    else return '미분석';
+  };
+  ///status, win, reated_at, game_duration, queue_mode
   return (
     <MatchCardContainer onClick={routegameAnalysis}>
       <AnalysisStatus status={props.matchInfo.status}>

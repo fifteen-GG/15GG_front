@@ -13,9 +13,19 @@ import UserId from './components/UserId';
 import PreferChampion from './components/PreferChampion';
 import LoadingPage from './components/LoadingPage';
 import ErrorPage from './components/ErrorPage';
+import * as Palette from '../../assets/colorPalette';
 
-const UserInfoContainer = styled.div``;
-const UserStatWrapper = styled.div``;
+const UserInfoContainer = styled.div`
+  width: 100%;
+  @media screen and (max-width: 360px) {
+    width: 328px;
+  }
+  background: ${Palette.GG_BLACK_100};
+`;
+const UserStatWrapper = styled.div`
+  width: 100%;
+  height: 96px;
+`;
 const UserGameListWrapper = styled.div``;
 const Loader = styled.div`
   color: white;
@@ -25,48 +35,41 @@ const Loader = styled.div`
 `;
 
 export const UserInfo = () => {
-  const [games, setGames] = useState<MatchInfoType[]>([]);
-  const [profiles, setProfiless] = useState<SummonerInfoType[]>([]);
-  const [page, setPage] = useState<number>(1);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [gamesData, setGamesData] = useState<MatchInfoType[]>([]);
+  const [summonerInfo, setSummonerInfo] = useState<SummonerInfoType>(
+    {} as SummonerInfoType,
+  );
+  const [pageNum, setPageNum] = useState<number>(1);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [httpStatusCode, setHttpStatusCode] = useState<number>(200);
   const params = new URLSearchParams(window.location.search);
-  let id = params.get('ID');
-  console.log(id);
+  const id = params.get('ID');
   useEffect(() => {
     getUserData();
     getMatchData();
   }, []);
-  console.log(httpStatusCode);
   const getUserData = async () => {
-    setLoading(true);
+    setIsLoading(true);
     try {
       const value = await axios.get(
         `${process.env.REACT_APP_GG_API_ROOT}/riot/user/${id}`,
       );
-      console.log(value.data);
       if (value.status === 200) {
-        setProfiless([value.data]);
+        setSummonerInfo(value.data);
       }
-      if (value.data) setLoading(false); // api 호출 완료 됐을 때 false로 변경하려 로딩화면 숨김처리
+      if (value.data) setIsLoading(false);
     } catch (e: any) {
-      console.log(e); //이해필요
       setHttpStatusCode(e.response.status);
-      console.log(e.response.status);
-      //이해필요
     }
   };
-  console.log(id);
-
   const getMatchData = async () => {
     try {
       const match = await axios.get(
-        `${process.env.REACT_APP_GG_API_ROOT}/riot/match/${id}?page=${page}`,
+        `${process.env.REACT_APP_GG_API_ROOT}/riot/match/${id}?page=${pageNum}`,
       );
-      console.log(match.data);
-      const fetchedGames: MatchInfoType[] = [...games, ...match.data];
-      setGames(fetchedGames);
-      setPage(page + 1);
+      const fetchedGames: MatchInfoType[] = [...gamesData, ...match.data];
+      setGamesData(fetchedGames);
+      setPageNum(pageNum + 1);
     } catch (e) {
       console.log(e); //이해필요
     }
@@ -74,36 +77,47 @@ export const UserInfo = () => {
   if (httpStatusCode === 404) return <ErrorPage />;
   return (
     <UserInfoContainer>
-      {loading ? <LoadingPage /> : null}
-      <UserStatWrapper>
-        {profiles.map((profile: SummonerInfoType, index) => (
-          <UserId summonerInfo={profile} key={index} />
-        ))}
-        {profiles.map((profile: SummonerInfoType, index) => (
-          <UserRank summonerInfo={profile} key={index} />
-        ))}
-        {profiles.map((profile: SummonerInfoType, index) => (
-          <UserStatInfo summonerInfo={profile} key={index} />
-        ))}
-        {profiles.map((profile: SummonerInfoType, index) => (
-          <UserGraph summonerInfo={profile} key={index} />
-        ))}
-        {profiles.map((profile: SummonerInfoType, index) => (
-          <PreferChampion summonerInfo={profile} key={index} />
-        ))}
-      </UserStatWrapper>
-      <UserGameListWrapper>
-        <InfiniteScroll
-          next={getMatchData}
-          dataLength={games.length}
-          hasMore={true}
-          loader={<Loader>데이터 불러오는 중...</Loader>}
-        >
-          {games.map((game: MatchInfoType, index) => {
-            return <MatchCard matchInfo={game} key={index}></MatchCard>;
-          })}
-        </InfiniteScroll>
-      </UserGameListWrapper>
+      {isLoading ? (
+        <LoadingPage />
+      ) : (
+        <>
+          <UserId
+            profileIcon={summonerInfo.profileIconId}
+            userName={summonerInfo.name}
+            level={summonerInfo.level}
+          />
+          <UserStatWrapper>
+            <UserRank
+              userName={summonerInfo.name}
+              soloRank={summonerInfo.solo}
+              flexRank={summonerInfo.flex}
+            />
+          </UserStatWrapper>
+          <UserStatInfo
+            userName={summonerInfo.name}
+            soloRank={summonerInfo.solo}
+            kda_avg={summonerInfo.kda_avg}
+            kills_avg={summonerInfo.kills_avg}
+            deaths_avg={summonerInfo.deaths_avg}
+            assists_avg={summonerInfo.assists_avg}
+            prefer_position={summonerInfo.prefer_position}
+          />
+          <UserGraph userName={summonerInfo.name} />
+          <PreferChampion preferChampion={summonerInfo.champions} />
+          <UserGameListWrapper>
+            <InfiniteScroll
+              next={getMatchData}
+              dataLength={gamesData.length}
+              hasMore={true}
+              loader={<Loader>데이터 불러오는 중...</Loader>}
+            >
+              {gamesData.map((game: MatchInfoType, index) => {
+                return <MatchCard matchInfo={game} key={index}></MatchCard>;
+              })}
+            </InfiniteScroll>
+          </UserGameListWrapper>
+        </>
+      )}
     </UserInfoContainer>
   );
 };

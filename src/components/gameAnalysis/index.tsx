@@ -66,7 +66,7 @@ export const GameAnalysis = (props: propsType) => {
     <GameAnalysisContainer>
       <GameInfo state={props.state} />
       <>
-        {props.state === gameState.none ? <EmptyCover /> : null}
+        {props.state !== gameState.none ? <EmptyCover /> : null}
         <TimeInfo>
           경과시간 {Math.trunc(time / 60)}:
           {Math.trunc(time % 60) < 10
