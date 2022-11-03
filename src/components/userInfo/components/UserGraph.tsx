@@ -100,7 +100,7 @@ export const data = {
   ],
 };
 interface propsType {
-  summonerInfo: SummonerInfoType;
+  userName: string;
 }
 const UserGraph = (props: propsType) => {
   const chartRef = useRef<ChartJS>(null);
@@ -128,7 +128,7 @@ const UserGraph = (props: propsType) => {
         <UserGraphText>
           <UserGraphLabel>
             <UserBox></UserBox>
-            <UserName>{props.summonerInfo.name}</UserName>
+            <UserName>{props.userName}</UserName>
           </UserGraphLabel>
           <AvgGraphLabel>
             <AvgBox></AvgBox>

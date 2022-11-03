@@ -8,7 +8,7 @@ export const GameInfoContainer = styled.div`
   height: 54px;
 `;
 
-export const TypeInfoWrapper = styled.div`
+export const GameTypeWrapper = styled.div`
   display: flex;
   height: 18px;
   align-items: center;
@@ -17,7 +17,7 @@ export const TypeInfoWrapper = styled.div`
   margin-bottom: 6px;
 `;
 
-export const GameTypeInfo = styled.div`
+export const GameType = styled.div`
   display: flex;
   font-size: 18px;
   margin-right: 6px;

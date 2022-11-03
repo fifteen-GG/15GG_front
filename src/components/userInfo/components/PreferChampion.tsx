@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SummonerInfoType } from '../../types/summonerInfo';
+import { playData, RankData } from '../../types/summonerInfo';
 import {
   PreferChampionContainer,
   PreferChampionWrapper,
@@ -14,63 +14,44 @@ import {
   ChampionInfoTitle,
   PreferChampionMsg,
 } from '../styles/preferChampion.s';
-
-import { formatChampionsInfo } from '../userInfo';
-
-export type userChampion = [
-  {
-    championName: string;
-    counts: number;
-    win_rate: string | number;
-    kda: string | number;
-  },
-  {
-    championName: string;
-    counts: number;
-    win_rate: string | number;
-    kda: string | number;
-  },
-  {
-    championName: string;
-    counts: number;
-    win_rate: string | number;
-    kda: string | number;
-  },
-];
 interface propsType {
-  summonerInfo: SummonerInfoType;
+  preferChampion: playData[];
 }
 const PreferChampion = (props: propsType) => {
-  const [userChampion, setUserChampion] = useState<userChampion>(
-    formatChampionsInfo(props.summonerInfo),
-  );
-  console.log(userChampion);
   return (
     <PreferChampionContainer>
       <PreferChampionWrapper>
         <PreferChampionText>선호 챔피언 TOP3</PreferChampionText>
-        {!props.summonerInfo.champions ? (
+        {!props.preferChampion ? (
           <ChampionAltInfo>플레이 결과가 없어요 :(</ChampionAltInfo>
         ) : (
           <ChampionInfo>
-            {userChampion.map((champion, index: number) => {
-              return (
-                <ChampionInfoWrapper key={index}>
-                  <ChampionImg src={userChampion[index].championName} />
-                  <ChampionInfoText>
-                    <ChampionInfoTitle>
-                      {userChampion[index].counts}
-                      게임
-                    </ChampionInfoTitle>
-                    <ChampionInfoContent counts={userChampion[index].counts}>
-                      {userChampion[index].win_rate}
-                    </ChampionInfoContent>
-                    <ChampionInfoSubTitle counts={userChampion[index].counts}>
-                      KDA {userChampion[index].kda}:1
-                    </ChampionInfoSubTitle>
-                  </ChampionInfoText>
-                </ChampionInfoWrapper>
-              );
+            {props.preferChampion.map((data, index) => {
+              if (index < 3) {
+                return (
+                  <ChampionInfoWrapper key={index}>
+                    <ChampionImg
+                      src={
+                        process.env.REACT_APP_DDRAGON_API_ROOT +
+                        `/champion/${data.championName}.png`
+                      }
+                    />
+                    <ChampionInfoText>
+                      <ChampionInfoTitle>{data.counts}게임</ChampionInfoTitle>
+                      <ChampionInfoContent counts={data.counts}>
+                        {Math.round((data.wins / data.counts) * 100) + '%'}
+                      </ChampionInfoContent>
+                      <ChampionInfoSubTitle counts={data.counts}>
+                        {'KDA ' +
+                          Math.round(
+                            ((data.kills + data.assists) / data.deaths) * 100,
+                          ) /
+                            100}
+                      </ChampionInfoSubTitle>
+                    </ChampionInfoText>
+                  </ChampionInfoWrapper>
+                );
+              }
             })}
           </ChampionInfo>
         )}

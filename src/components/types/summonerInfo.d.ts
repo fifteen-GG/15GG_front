@@ -30,13 +30,21 @@ export interface SummonerInfoType {
     ADC?: number;
     SUP?: number;
   };
-  champions: champions[];
+  champions: playData[];
 }
-interface champions {
+export interface playData {
   championName: string;
   counts: number;
   kills: number;
   deaths: number;
   assists: number;
   wins: number;
+}
+export interface RankData {
+  tier: string;
+  rank: string;
+  lp: number;
+  win_rate: number;
+  win: number;
+  losses: number;
 }

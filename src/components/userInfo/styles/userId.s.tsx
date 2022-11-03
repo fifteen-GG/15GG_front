@@ -4,16 +4,11 @@ import * as Palette from '../../../assets/colorPalette';
 //UserId 부분 스타일
 export const UserIdContainer = styled.div`
   width: 100%;
-  @media screen and (max-width: 360px) {
-    width: 328px;
-  }
-  background: ${Palette.GG_BLACK_100};
   display: flex;
 `;
 export const UserIcon = styled.img`
   width: 52px;
   height: 52px;
-  background: ${Palette.GG_BLACK_100};
   margin: 2px 6px 6px 2px;
   border-radius: 10px;
   display: flex;

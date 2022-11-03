@@ -1,14 +1,10 @@
 export interface MatchInfoType {
-  status: 'live' | 'complete' | 'incomplete';
+  status: gameState;
   match_id: string;
   game_duration: number;
   win: boolean;
   created_at: string;
-  queue_mode:
-    | '5v5 Ranked Solo games'
-    | '5v5 Blind Pick games'
-    | '5v5 ARAM games'
-    | '5v5 Ranked Flex games';
+  queue_mode: queue_mode;
   champion_name: string;
   kills: number;
   deaths: number;
@@ -27,8 +23,15 @@ export interface MatchInfoType {
     perkStyle: number;
   };
 }
-enum gameState {
-  running,
-  end,
-  none,
+export enum gameState {
+  live = 'live',
+  end = 'complete',
+  none = 'incomplete',
+}
+export enum queue_mode {
+  solo = '5v5 Ranked Solo games',
+  blind = '5v5 Blind Pick games',
+  aram = '5v5 ARAM games',
+  flex = '5v5 Ranked Flex games',
+  urf = 'Pick URF games',
 }

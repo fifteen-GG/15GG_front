@@ -1,5 +1,3 @@
-import { SummonerInfoType } from '../../types/summonerInfo';
-import React from 'react';
 import {
   UserIdContainer,
   UserIcon,
@@ -8,7 +6,9 @@ import {
   SubName,
 } from '../styles/userId.s';
 interface propsType {
-  summonerInfo: SummonerInfoType;
+  profileIcon: string;
+  userName: string;
+  level: Number;
 }
 const UserId = (props: propsType) => {
   return (
@@ -16,12 +16,12 @@ const UserId = (props: propsType) => {
       <UserIcon
         src={
           process.env.REACT_APP_DDRAGON_API_ROOT +
-          `/profileicon/${props.summonerInfo.profileIconId}.png`
+          `/profileicon/${props.profileIcon}.png`
         }
       />
       <UserNameWrapper>
-        <UserName>{props.summonerInfo.name}</UserName>
-        <SubName>LV {props.summonerInfo.level}</SubName>
+        <UserName>{props.userName}</UserName>
+        <SubName>{'LV ' + props.level}</SubName>
       </UserNameWrapper>
     </UserIdContainer>
   );

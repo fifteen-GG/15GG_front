@@ -1,10 +1,11 @@
 import {
   GameInfoContainer,
-  TypeInfoWrapper,
-  GameTypeInfo,
+  GameTypeWrapper,
+  GameType,
   AnalysisTypeInfo,
   DateInfo,
 } from '../styles/gameInfo.s';
+
 
 enum gameState {
   live = 'live',
@@ -22,6 +23,7 @@ enum queue_mode {
 interface propsType {
   status: gameState;
   mode: queue_mode;
+
   date: string;
 }
 
@@ -61,12 +63,14 @@ const GameInfo = (props: propsType) => {
   };
   return (
     <GameInfoContainer>
+
       <TypeInfoWrapper>
         <GameTypeInfo>{formatMatchInfo(props.mode)}</GameTypeInfo>
         <AnalysisTypeInfo status={props.status}>
           {formatAnalysisStatus(props.status)}
         </AnalysisTypeInfo>
       </TypeInfoWrapper>
+
       <DateInfo>{formatMatchDate(props.date)}</DateInfo>
     </GameInfoContainer>
   );
