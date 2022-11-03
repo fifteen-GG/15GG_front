@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import * as Palette from '../../../assets/colorPalette';
 
-export const Graph = styled.div`
+export const TimelineBarContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 29px;

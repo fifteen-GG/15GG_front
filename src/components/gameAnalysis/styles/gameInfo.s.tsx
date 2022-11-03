@@ -21,17 +21,19 @@ export const GameTypeInfo = styled.div`
   display: flex;
   font-size: 18px;
   margin-right: 6px;
+  font-weight: 500;
 `;
-interface RealTimeInfoProps {
-  isLive: boolean;
-}
+// interface RealTimeInfoProps {
+//   isLive: boolean;
+// }
 export const AnalysisTypeInfo = styled.div`
-  display: flex;
-  height: 16px;
   width: auto;
+  height: 16px;
+  display: flex;
   padding: 0 4px 0 4px;
   color: ${Palette.GG_WHITE_100};
   font-size: 10px;
+  font-weight: 500;
   align-items: center;
   justify-content: center;
   border-radius: 3px;

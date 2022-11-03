@@ -12,11 +12,11 @@ import {
 } from 'chart.js';
 import { Chart } from 'react-chartjs-2';
 import {
+  TimelineBarContainer,
   BarWrapper,
   RateWrapper,
   WinningRate,
   GraphTitle,
-  Graph,
 } from '../styles/timelineBarGraph.s';
 
 ChartJS.register(
@@ -89,7 +89,7 @@ export const data = {
 };
 const TimelineBarGraph = () => {
   const chartRef = useRef<ChartJS>(null);
-  const [redWinningRate, setRedWinningRate] = useState(50.0);
+  const [redWinningRate, setRedWinningRate] = useState<number>(50.0);
   const [chartData, setChartData] = useState<ChartData<'bar'>>({
     datasets: [],
   });
@@ -111,7 +111,7 @@ const TimelineBarGraph = () => {
   }, []);
 
   return (
-    <Graph>
+    <TimelineBarContainer>
       <BarWrapper>
         <Chart
           type="bar"
@@ -126,7 +126,7 @@ const TimelineBarGraph = () => {
         <GraphTitle>승률</GraphTitle>
         <WinningRate>{100 - redWinningRate}%</WinningRate>
       </RateWrapper>
-    </Graph>
+    </TimelineBarContainer>
   );
 };
 

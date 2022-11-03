@@ -89,12 +89,7 @@ export const SubPage = (props: propsType) => {
     <SubPageContainer>
       <SubPageHeaderWrapper>
         <SubPageHeader>
-          <LogoBox
-            src={logo}
-            onClick={() => {
-              navigate(`/`);
-            }}
-          />
+          <LogoBox src={logo} onClick={() => navigate(`/`)} />
         </SubPageHeader>
       </SubPageHeaderWrapper>
       <SubPageContentWrapper>

@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export const GameSliderWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
+export const GameSliderContainer = styled.div`
   width: 100%;
   height: 54px;
+  display: flex;
+  flex-direction: column;
 `;
