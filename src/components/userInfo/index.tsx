@@ -15,7 +15,12 @@ import LoadingPage from './components/LoadingPage';
 import ErrorPage from './components/ErrorPage';
 
 const UserInfoContainer = styled.div``;
-const UserStatWrapper = styled.div``;
+const UserStatWrapper = styled.div`
+  width: 100%;
+  @media screen and (max-width: 360px) {
+    width: 328px;
+  }
+`;
 const UserGameListWrapper = styled.div``;
 const Loader = styled.div`
   color: white;
@@ -23,7 +28,9 @@ const Loader = styled.div`
   font-size: 14px;
   margin-top: 4px;
 `;
-
+interface propsType {
+  summonerInfo: SummonerInfoType;
+}
 export const UserInfo = () => {
   const [games, setGames] = useState<MatchInfoType[]>([]);
   const [profiles, setProfiless] = useState<SummonerInfoType[]>([]);
@@ -75,23 +82,15 @@ export const UserInfo = () => {
   return (
     <UserInfoContainer>
       {loading ? <LoadingPage /> : null}
-      <UserStatWrapper>
-        {profiles.map((profile: SummonerInfoType, index) => (
+      {profiles.map((profile: SummonerInfoType, index) => (
+        <UserStatWrapper>
           <UserId summonerInfo={profile} key={index} />
-        ))}
-        {profiles.map((profile: SummonerInfoType, index) => (
           <UserRank summonerInfo={profile} key={index} />
-        ))}
-        {profiles.map((profile: SummonerInfoType, index) => (
           <UserStatInfo summonerInfo={profile} key={index} />
-        ))}
-        {profiles.map((profile: SummonerInfoType, index) => (
           <UserGraph summonerInfo={profile} key={index} />
-        ))}
-        {profiles.map((profile: SummonerInfoType, index) => (
           <PreferChampion summonerInfo={profile} key={index} />
-        ))}
-      </UserStatWrapper>
+        </UserStatWrapper>
+      ))}
       <UserGameListWrapper>
         <InfiniteScroll
           next={getMatchData}

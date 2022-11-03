@@ -9,6 +9,7 @@ import styled from 'styled-components';
 
 import { useState, useEffect } from 'react';
 import { useSocket, SocketStatus } from './useSocket';
+import { useLocation } from 'react-router-dom';
 
 const GameAnalysisContainer = styled.div`
   display: flex;
@@ -26,19 +27,27 @@ const TimeInfo = styled.div`
   align-items: center;
   margin-bottom: 12px;
 `;
+// enum gameState {
+//   running,
+//   end,
+//   none,
+// }
+// interface propsType {
+//   state: gameState;
+//   matchID: string;
+// }
 enum gameState {
-  running,
-  end,
-  none,
+  live = 'live',
+  end = 'complete',
+  none = 'incomplete',
 }
-interface propsType {
-  state: gameState;
-  matchID: string;
-}
-export const GameAnalysis = (props: propsType) => {
+
+export const GameAnalysis = () => {
   const [gameData, setGameData] = useState(Object);
   const [time, setTime] = useState<number>(0);
   const [parse, setParse] = useState<number>(0);
+  const { state } = useLocation();
+  console.log(state);
   const { responseMessage } = useSocket(state => {
     if (state === SocketStatus.onNewChatReceived) {
       setParse(data => data + 1);
@@ -50,23 +59,24 @@ export const GameAnalysis = (props: propsType) => {
   });
 
   useEffect(() => {
-    if (parse && props.state === gameState.running) {
+    if (parse === 0 && state.status === gameState.live) {
       let data = JSON.parse(responseMessage);
       setGameData(data);
     }
   }, [parse, responseMessage]);
 
   useEffect(() => {
-    if (parse && props.state === gameState.running) setTime(gameData.timestamp);
+    if (parse === 0 && state.status === gameState.live)
+      setTime(gameData.timestamp);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    console.log(gameData, props.state);
+    console.log(gameData, state.status);
   }, [gameData]);
 
   return (
     <GameAnalysisContainer>
-      <GameInfo state={props.state} />
+      <GameInfo status={state.status} mode={state.mode} date={state.date} />
       <>
-        {props.state === gameState.none ? <EmptyCover /> : null}
+        {state.status === gameState.none ? <EmptyCover /> : null}
         <TimeInfo>
           경과시간 {Math.trunc(time / 60)}:
           {Math.trunc(time % 60) < 10
@@ -75,7 +85,7 @@ export const GameAnalysis = (props: propsType) => {
         </TimeInfo>
         <TimelineBarGraph />
         <TimelineGraph />
-        {props.state === gameState.running ? null : <GameSlider />}
+        {state.status === gameState.live ? <GameSlider /> : null}
       </>
       <TeamStats />
       <TeamInfo />

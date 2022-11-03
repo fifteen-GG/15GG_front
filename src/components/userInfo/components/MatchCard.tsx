@@ -34,8 +34,12 @@ interface propsType {
 const MatchCard = (props: propsType) => {
   const navigate = useNavigate();
   const routegameAnalysis = () => {
-    navigate(`/live?match=${props.matchInfo.match_id}`, {
-      state: props.matchInfo.status,
+    navigate(`/live`, {
+      state: {
+        status: props.matchInfo.status,
+        mode: props.matchInfo.queue_mode,
+        date: props.matchInfo.created_at,
+      },
     });
   };
   return (
