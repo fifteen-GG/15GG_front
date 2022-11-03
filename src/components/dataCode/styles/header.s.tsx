@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import * as Palette from '../../../assets/colorPalette';
 
-export const HeadeContainer = styled.div`
+export const HeaderContainer = styled.div`
   margin-bottom: 16px;
 `;
 

@@ -6,13 +6,10 @@ import {
   Team,
   UserInfoColumnWrapper,
   UserInfoColumn,
-  PlayerList,
+  SummonerList,
 } from '../styles/teamInfo.s';
 import { useState } from 'react';
-
-import Summoner from './Summoner';
-
-import { summonerProps } from './Summoner';
+import Summoner, { summonerProps } from './Summoner';
 
 const summonerRed: summonerProps[] = [
   {
@@ -21,7 +18,7 @@ const summonerRed: summonerProps[] = [
     championSpell2: 'SummonerFlash',
     perks: 8008,
     perkStyles: 8100,
-    items: ['3133', '6694', '3089', '3340', '3047', '3086', '3087'],
+    items: ['3133', '6694', '3089', '3047', '3086', '3087', '3340'],
     kills: 6,
     deaths: 3,
     assists: 4,
@@ -32,7 +29,7 @@ const summonerRed: summonerProps[] = [
     championSpell2: 'SummonerFlash',
     perks: 8008,
     perkStyles: 8100,
-    items: ['3033', '3032', '3036', '3340', '3035', '3038', '3040'],
+    items: ['3033', '3032', '3036', '3035', '3038', '3040', '3340'],
     kills: 6,
     deaths: 3,
     assists: 4,
@@ -43,7 +40,7 @@ const summonerRed: summonerProps[] = [
     championSpell2: 'SummonerFlash',
     perks: 8008,
     perkStyles: 8100,
-    items: ['3133', '6694', '3089', '3340', '3047', '3086', '3087'],
+    items: ['3133', '6694', '3089', '3047', '3086', '3087', '3340'],
     kills: 6,
     deaths: 3,
     assists: 4,
@@ -54,7 +51,7 @@ const summonerRed: summonerProps[] = [
     championSpell2: 'SummonerFlash',
     perks: 8008,
     perkStyles: 8100,
-    items: ['3033', '3032', '3036', '3340', '3035', '3038', '3040'],
+    items: ['3033', '3032', '3036', '3035', '3038', '3040', '3340'],
     kills: 6,
     deaths: 3,
     assists: 4,
@@ -65,7 +62,7 @@ const summonerRed: summonerProps[] = [
     championSpell2: 'SummonerFlash',
     perks: 8008,
     perkStyles: 8100,
-    items: ['3133', '6694', '3089', '3340', '3047', '3086', '3087'],
+    items: ['3133', '6694', '3089', '3047', '3086', '3087', '3340'],
     kills: 6,
     deaths: 3,
     assists: 4,
@@ -79,7 +76,7 @@ const summonerBlue: summonerProps[] = [
     championSpell2: 'SummonerFlash',
     perks: 8008,
     perkStyles: 8100,
-    items: ['3033', '3032', '3036', '3340', '3035', '3038', '3040'],
+    items: ['3033', '3032', '3036', '3035', '3038', '3040', '3340'],
     kills: 6,
     deaths: 3,
     assists: 4,
@@ -90,7 +87,7 @@ const summonerBlue: summonerProps[] = [
     championSpell2: 'SummonerFlash',
     perks: 8008,
     perkStyles: 8100,
-    items: ['3133', '6694', '3089', '3340', '3047', '3086', '3087'],
+    items: ['3133', '6694', '3089', '3047', '3086', '3087', '3340'],
     kills: 6,
     deaths: 3,
     assists: 4,
@@ -101,7 +98,7 @@ const summonerBlue: summonerProps[] = [
     championSpell2: 'SummonerFlash',
     perks: 8008,
     perkStyles: 8100,
-    items: ['3033', '3032', '3036', '3340', '3035', '3038', '3040'],
+    items: ['3033', '3032', '3036', '3035', '3038', '3040', '3340'],
     kills: 6,
     deaths: 3,
     assists: 4,
@@ -112,7 +109,7 @@ const summonerBlue: summonerProps[] = [
     championSpell2: 'SummonerFlash',
     perks: 8008,
     perkStyles: 8100,
-    items: ['3133', '6694', '3089', '3340', '3047', '3086', '3087'],
+    items: ['3133', '6694', '3089', '3047', '3086', '3087', '3340'],
     kills: 6,
     deaths: 3,
     assists: 4,
@@ -123,7 +120,7 @@ const summonerBlue: summonerProps[] = [
     championSpell2: 'SummonerFlash',
     perks: 8008,
     perkStyles: 8100,
-    items: ['3033', '3032', '3036', '3340', '3035', '3038', '3040'],
+    items: ['3033', '3032', '3036', '3035', '3038', '3040', '3340'],
     kills: 6,
     deaths: 3,
     assists: 4,
@@ -145,11 +142,11 @@ const TeamInfo = () => {
             <UserInfoColumn>ITEMS</UserInfoColumn>
           </UserInfoColumnWrapper>
         </TeamInfoHeader>
-        <PlayerList>
+        <SummonerList>
           {redteams.map((redteam: summonerProps, index) => {
             return <Summoner teamInfo={redteam} key={index} />;
           })}
-        </PlayerList>
+        </SummonerList>
       </TeamInfoWrapper>
       <TeamInfoWrapper>
         <TeamInfoHeader>
@@ -159,11 +156,11 @@ const TeamInfo = () => {
             <UserInfoColumn>ITEMS</UserInfoColumn>
           </UserInfoColumnWrapper>
         </TeamInfoHeader>
-        <PlayerList>
+        <SummonerList>
           {blueteams.map((blueteam: summonerProps, index) => {
             return <Summoner teamInfo={blueteam} key={index} />;
           })}
-        </PlayerList>
+        </SummonerList>
       </TeamInfoWrapper>
     </TeamInfoContainer>
   );

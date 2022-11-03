@@ -6,7 +6,7 @@ import { UserInfo } from '../userInfo';
 import logo from '../../assets/gg_logo_temp.svg';
 import styled from 'styled-components';
 
-const SubPageWrapper = styled.div`
+const SubPageContainer = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -62,11 +62,11 @@ const SubPageContent = styled.div`
 //state: gameState;
 //matchID: string;
 
-enum gameState {
-  running,
-  end,
-  none,
-}
+// enum gameState {
+//   running,
+//   end,
+//   none,
+// }
 enum PageEnum {
   CODE,
   LIVE,
@@ -77,20 +77,19 @@ interface propsType {
 }
 export const SubPage = (props: propsType) => {
   const navigate = useNavigate();
-  const routeLanding = () => {
-    navigate(`/`);
-  };
+  // const routeLanding = () => {
+  //   navigate(`/`);
+  // };
   const renderContent = () => {
     if (props.page === PageEnum.CODE) return <DataCode />;
-    else if (props.page === PageEnum.LIVE)
-      return <GameAnalysis state={gameState.running} matchID={'KR_123123'} />;
+    else if (props.page === PageEnum.LIVE) return <GameAnalysis />;
     else if (props.page === PageEnum.USER) return <UserInfo />;
   };
   return (
-    <SubPageWrapper>
+    <SubPageContainer>
       <SubPageHeaderWrapper>
         <SubPageHeader>
-          <LogoBox src={logo} onClick={routeLanding} />
+          <LogoBox src={logo} onClick={() => navigate(`/`)} />
         </SubPageHeader>
       </SubPageHeaderWrapper>
       <SubPageContentWrapper>
@@ -98,6 +97,6 @@ export const SubPage = (props: propsType) => {
           <>{renderContent()}</>
         </SubPageContent>
       </SubPageContentWrapper>
-    </SubPageWrapper>
+    </SubPageContainer>
   );
 };

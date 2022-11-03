@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import BackgroundImage from '../../../assets/gg_bg_314.svg';
 import LiveGameLabelImage from '../../../assets/gg_label_live.svg';
+import * as Palette from '../../../assets/colorPalette';
 
 export const LiveGameContainer = styled.div`
   width: 314px;
@@ -32,7 +33,7 @@ export const AnalysisTypeLabel = styled.div`
 
 export const GameTitle = styled.div`
   font-size: 10px;
-  color: #fff;
+  color: ${Palette.GG_WHITE_100};
   font-weight: 400;
 `;
 

@@ -70,7 +70,19 @@ const MatchCard = (props: propsType) => {
   };
   ///status, win, reated_at, game_duration, queue_mode
   return (
-    <MatchCardContainer onClick={routegameAnalysis}>
+    <MatchCardContainer
+      onClick={() =>
+        navigate(`/live`, {
+          state: {
+            status: 'incomplete',
+            // props.matchInfo.status,
+            mode: props.matchInfo.queue_mode,
+            matchID: props.matchInfo.match_id,
+            date: props.matchInfo.created_at,
+          },
+        })
+      }
+    >
       <AnalysisStatus status={props.matchInfo.status}>
         {formatAnalysisStatus(props.matchInfo.status)}
       </AnalysisStatus>

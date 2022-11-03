@@ -11,9 +11,9 @@ import {
 } from '../styles/datacode.s';
 
 export const Datacode = () => {
-  const [code, setCode] = useState([0, 0, 0, 0, 0, 0]);
-  const [codeExpired, setCodeExpired] = useState(0);
-  const [refresh, setRefresh] = useState(0);
+  const [code, setCode] = useState<number[]>([0, 0, 0, 0, 0, 0]);
+  const [codeExpired, setCodeExpired] = useState<number>(0);
+  const [refresh, setRefresh] = useState<number>(0);
   //useTimer library
   const { time, start, reset, status } = useTimer({
     initialTime: 5 * 60,
