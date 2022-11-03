@@ -25,19 +25,50 @@ import {
   ItemWrapper,
   ItemImg,
 } from '../styles/matchCard.s';
-import { formatMatchMode, formatAnalysisStatus } from '../userInfo';
-
+enum queue_mode {
+  solo = '5v5 Ranked Solo games',
+  blind = '5v5 Blind Pick games',
+  aram = '5v5 ARAM games',
+  flex = '5v5 Ranked Flex games',
+  urf = 'Pick URF games',
+}
+export enum gameState {
+  live = 'live',
+  end = 'complete',
+  none = 'incomplete',
+}
 interface propsType {
   matchInfo: MatchInfoType;
 }
-
 const MatchCard = (props: propsType) => {
   const navigate = useNavigate();
-  // const routegameAnalysis = () => {
-  //   navigate(`/live`, {
-  //     state: props.matchInfo.status,
-  //   });
-  // };
+  const routegameAnalysis = () => {
+    navigate(`/live?match=${props.matchInfo.match_id}`, {
+      state: props.matchInfo.status,
+    });
+  };
+  const formatMatchInfo = (queMode: string) => {
+    if (queMode === queue_mode.solo) {
+      return '솔로랭크';
+    } else if (queMode === queue_mode.flex) {
+      return '자유랭크';
+    } else if (queMode === queue_mode.blind) {
+      return '일반게임';
+    } else if (queMode === queue_mode.aram) {
+      return '칼바람나락';
+    } else if (queMode === queue_mode.urf) {
+      return '우루프모드';
+    } else {
+      return '사용자설정';
+    }
+  };
+
+  const formatAnalysisStatus = (status: string) => {
+    if (status === gameState.live) return '실시간 분석';
+    else if (status === gameState.end) return '분석완료';
+    else return '미분석';
+  };
+  ///status, win, reated_at, game_duration, queue_mode
   return (
     <MatchCardContainer
       onClick={() =>
@@ -61,7 +92,7 @@ const MatchCard = (props: propsType) => {
           <MatchDate>
             {props.matchInfo.created_at.replaceAll('-', '/').slice(2)}
           </MatchDate>
-          <MatchMode>{formatMatchMode(props.matchInfo.queue_mode)}</MatchMode>
+          <MatchMode>{formatMatchInfo(props.matchInfo.queue_mode)}</MatchMode>
           <MatchDuration>
             {Math.round(props.matchInfo.game_duration / 60)}분{' '}
             {props.matchInfo.game_duration % 60}초

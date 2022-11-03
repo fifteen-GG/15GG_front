@@ -1,7 +1,7 @@
 import {
   GameInfoContainer,
-  TypeInfoWrapper,
-  GameTypeInfo,
+  GameTypeWrapper,
+  GameType,
   AnalysisTypeInfo,
   DateInfo,
 } from '../styles/gameInfo.s';
@@ -25,12 +25,12 @@ interface propsType {
 const GameInfo = (props: propsType) => {
   return (
     <GameInfoContainer>
-      <TypeInfoWrapper>
-        <GameTypeInfo>{formatMatchMode(props.mode)}</GameTypeInfo>
+      <GameTypeWrapper>
+        <GameType>{formatMatchMode(props.mode)}</GameType>
         <AnalysisTypeInfo status={props.status}>
           {formatAnalysisStatus(props.status)}
         </AnalysisTypeInfo>
-      </TypeInfoWrapper>
+      </GameTypeWrapper>
       <DateInfo>{formatMatchDate(props.date)}</DateInfo>
     </GameInfoContainer>
   );
