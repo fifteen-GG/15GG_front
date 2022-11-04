@@ -1,13 +1,13 @@
 import {
-  PlayerWrapper,
-  UserInterface,
+  SummonerContainer,
+  SummonerInterface,
   ChampionImg,
   ChampionLevel,
   SpellWrapper,
   PerksWrapper,
-  Spell,
-  Perk,
-  UserInfoWrapper,
+  ImgBox as SpellImg,
+  ImgBox as PerkImg,
+  SummonerInfoWrapper,
   SummonerInfo,
   SummonerName,
   SummonerTier,
@@ -18,79 +18,79 @@ import {
   ItemImg,
   ItemWrapper,
 } from '../styles/summoners.s';
-
-import {
-  urlChampion,
-  urlSpell,
-  urlItem,
-  formatPerks,
-  formatPerkStyles,
-} from '../../utils/Url';
-import { TeamInfo } from '../styles/teamInfoContainer.s';
-import { useState } from 'react';
-
-const formatKDA = (props: {
-  kills: number;
-  deaths: number;
-  assists: number;
-}) => {
-  return `${props.kills}  /  ${props.deaths}  /  ${props.assists} `;
-};
-
-// export interface Team {
-//   redTeam: summonerProps[];
-//   blueTeam: summonerProps[];
-// }
-export type TeamInfoProps = {
-  teamInfo: summonerProps;
-};
-
 export interface summonerProps {
-  // team: 'red' | 'blue';
   champion: string;
   championSpell1: string;
   championSpell2: string;
   perks: number;
   perkStyles: number;
   items: string[];
+  kills: number;
+  deaths: number;
+  assists: number;
 }
-
-const Summoner = ({ teamInfo }: TeamInfoProps) => {
+export interface propsType {
+  teamInfo: summonerProps;
+}
+const Summoner = (props: propsType) => {
   return (
-    <PlayerWrapper>
-      <UserInterface>
-        <ChampionImg src={urlChampion(teamInfo.champion)} />
+    <SummonerContainer>
+      <SummonerInterface>
+        <ChampionImg
+          src={
+            process.env.REACT_APP_DDRAGON_API_ROOT +
+            `/champion/${props.teamInfo.champion}.png`
+          }
+        />
         <ChampionLevel>16</ChampionLevel>
         <SpellWrapper>
-          <Spell src={urlSpell(teamInfo.championSpell1)} />
-          <Spell src={urlSpell(teamInfo.championSpell2)} />
+          <SpellImg
+            src={
+              process.env.REACT_APP_DDRAGON_API_ROOT +
+              `/spell/${props.teamInfo.championSpell1}.png`
+            }
+          />
+          <SpellImg
+            src={
+              process.env.REACT_APP_DDRAGON_API_ROOT +
+              `/spell/${props.teamInfo.championSpell2}.png`
+            }
+          />
         </SpellWrapper>
         <PerksWrapper>
-          <Perk src={formatPerks(teamInfo.perks)} />
-          <Perk src={formatPerkStyles(teamInfo.perkStyles)} />
+          <PerkImg
+            src={
+              process.env.REACT_APP_OPGG_API_ROOT +
+              `/lol/perk/${props.teamInfo.perks}.png`
+            }
+          />
+          <PerkImg
+            src={
+              process.env.REACT_APP_OPGG_API_ROOT +
+              `/lol/perkStyle/${props.teamInfo.perkStyles}.png`
+            }
+          />
         </PerksWrapper>
-        <UserInfoWrapper>
+        <SummonerInfoWrapper>
           <SummonerInfo>
             <SummonerName>정잭영</SummonerName>
             <SummonerTier>P4</SummonerTier>
           </SummonerInfo>
           <KDAWrapper>
             <KDADetails>
-              {formatKDA({ kills: 15, deaths: 6, assists: 5 })}
+              {`${props.teamInfo.kills}  /  ${props.teamInfo.deaths}  /  ${props.teamInfo.assists} `}
             </KDADetails>
             <KDA>KDA 3.3</KDA>
           </KDAWrapper>
-        </UserInfoWrapper>
-      </UserInterface>
+        </SummonerInfoWrapper>
+      </SummonerInterface>
       <ItemInterface>
         <ItemWrapper>
-          {teamInfo.items.map((item, index) => {
-            return index !== 3 ? (
-              <ItemImg src={urlItem(item)} key={index} />
-            ) : (
+          {props.teamInfo.items.map((item, index) => {
+            return (
               <ItemImg
-                className="item3"
-                src={urlItem(teamInfo.items[3])}
+                className={'item' + index}
+                src={`${process.env.REACT_APP_DDRAGON_API_ROOT}/item/${item}.png`}
                 key={index}
               />
             );
@@ -98,7 +98,7 @@ const Summoner = ({ teamInfo }: TeamInfoProps) => {
         </ItemWrapper>
         40,480 · 20K
       </ItemInterface>
-    </PlayerWrapper>
+    </SummonerContainer>
   );
 };
 

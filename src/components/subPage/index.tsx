@@ -1,13 +1,13 @@
 // import * as S from './styled';
 import { useNavigate } from 'react-router-dom';
-import { PageEnum, SubPageProps } from './type';
 import { DataCode } from '../dataCode';
 import { GameAnalysis } from '../gameAnalysis';
 import { UserInfo } from '../userInfo';
 import logo from '../../assets/gg_logo_temp.svg';
 import styled from 'styled-components';
+import { PageEnum } from '../types/enum';
 
-const SubPageWrapper = styled.div`
+const SubPageContainer = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -41,6 +41,7 @@ const LogoBox = styled.img`
   width: 86px;
   object-fit: contain;
   color: white;
+  cursor: pointer;
 `;
 
 const SubPageContentWrapper = styled.div`
@@ -59,31 +60,24 @@ const SubPageContent = styled.div`
   }
   padding: 16px;
 `;
-//state: gameState;
-//matchID: string;
-
-enum gameState {
-  running,
-  end,
-  none,
+interface propsType {
+  page: PageEnum;
 }
-
-export const SubPage = ({ page }: SubPageProps) => {
+export const SubPage = (props: propsType) => {
   const navigate = useNavigate();
-  const routeLanding = () => {
-    navigate(`/`);
-  };
+  // const routeLanding = () => {
+  //   navigate(`/`);
+  // };
   const renderContent = () => {
-    if (page === PageEnum.CODE) return <DataCode />;
-    else if (page === PageEnum.LIVE)
-      return <GameAnalysis state={gameState.running} matchID={'KR_123123'} />;
-    else if (page === PageEnum.USER) return <UserInfo />;
+    if (props.page === PageEnum.CODE) return <DataCode />;
+    else if (props.page === PageEnum.LIVE) return <GameAnalysis />;
+    else if (props.page === PageEnum.USER) return <UserInfo />;
   };
   return (
-    <SubPageWrapper>
+    <SubPageContainer>
       <SubPageHeaderWrapper>
         <SubPageHeader>
-          <LogoBox src={logo} onClick={routeLanding} />
+          <LogoBox src={logo} onClick={() => navigate(`/`)} />
         </SubPageHeader>
       </SubPageHeaderWrapper>
       <SubPageContentWrapper>
@@ -91,6 +85,6 @@ export const SubPage = ({ page }: SubPageProps) => {
           <>{renderContent()}</>
         </SubPageContent>
       </SubPageContentWrapper>
-    </SubPageWrapper>
+    </SubPageContainer>
   );
 };

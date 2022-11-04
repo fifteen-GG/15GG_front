@@ -1,15 +1,14 @@
 import styled from 'styled-components';
 import * as Palette from '../../../assets/colorPalette';
 import searchBox from '../../../assets/gg_searchbox_bg.svg';
-import serarchButton from '../../../assets/gg_searchbox_button.svg';
+import searchButton from '../../../assets/gg_searchbox_button.svg';
 
-export const SearchBoxWrapper = styled.div`
-  margin-top: 32px;
+export const SearchBoxContainer = styled.div`
   width: 314px;
   height: 38px;
   background-image: url(${searchBox});
   border-radius: 18px;
-  box-shadow: 0 2px 4px 0 rgba(54, 54, 59, 0.25);
+  box-shadow: 0 2px 4px 0 ${Palette.GG_SEARCH_SHADOW};
   display: flex;
   flex-direction: row;
   justify-content: left;
@@ -33,5 +32,5 @@ export const SearchButton = styled.div`
   height: 38px;
   margin-left: 22px;
   cursor: pointer;
-  background-image: url(${serarchButton});
+  background-image: url(${searchButton});
 `;

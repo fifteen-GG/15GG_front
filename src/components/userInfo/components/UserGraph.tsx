@@ -1,5 +1,5 @@
-import React, { useRef, useState, useEffect } from 'react';
-import type { ChartData, ChartArea, ChartType } from 'chart.js';
+import { useRef, useState, useEffect } from 'react';
+import type { ChartData } from 'chart.js';
 
 import {
   Chart as ChartJS,
@@ -10,21 +10,21 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { Chart, Radar } from 'react-chartjs-2';
+import { Chart } from 'react-chartjs-2';
 import { faker } from '@faker-js/faker';
-import { SummonerInfo } from '../../types/summonerInfo';
+import { SummonerInfoType } from '../../types/summonerInfo';
 
 import {
-  AverageGraphLabel,
-  UserGraphContent,
-  UserGraphDraw,
-  UserGraphLabel,
+  UserGraphContainer,
+  UserGraphImg,
   UserGraphWrapper,
   UserGraphText,
-  UserEx,
-  UserText,
-  AvgEx,
-  AvgText,
+  ColumnLabel as UserGraphLabel,
+  ColumnLabel as AvgGraphLabel,
+  ColumnBox as UserColumn,
+  ColumnBox as AvgColumn,
+  ColumnName as UserName,
+  ColumnName as AvgName,
 } from '../styles/userGraph.s';
 
 import * as Palette from '../../../assets/colorPalette';
@@ -51,12 +51,12 @@ const options = {
   scales: {
     r: {
       angleLines: {
-        color: '#373737',
+        color: Palette.GG_RADAR,
       },
-      backgroundColor: 'rgba(55, 55, 55, 0.5)',
+      backgroundColor: Palette.GG_RADAR + '80',
       grid: {
         circular: true,
-        color: '#373737',
+        color: Palette.GG_RADAR,
       },
       ticks: {
         maxTicksLimit: 6,
@@ -86,21 +86,23 @@ export const data = {
     {
       label: '',
       data: labels.map(() => faker.datatype.number({ min: 0, max: 10 })),
-      backgroundColor: 'rgba(59, 68, 78, 0.2)',
-      borderColor: '#318eef',
+      backgroundColor: Palette.GG_RADARDATABGC,
+      borderColor: Palette.GG_RADARDATA,
       borderWidth: 1,
     },
     {
       label: 'Average',
       data: labels.map(() => faker.datatype.number({ min: 0, max: 10 })),
-      backgroundColor: 'rgba(60, 60, 60, 0.2)',
-      borderColor: '#999999',
+      backgroundColor: Palette.GG_RADARAVGBGC,
+      borderColor: Palette.GG_GREY_70,
       borderWidth: 1,
     },
   ],
 };
-
-const UserGraph = (props: { summonerInfo: SummonerInfo }) => {
+interface propsType {
+  userName: string;
+}
+const UserGraph = (props: propsType) => {
   const chartRef = useRef<ChartJS>(null);
   const [chartData, setChartData] = useState<ChartData<'radar'>>({
     datasets: [],
@@ -108,7 +110,6 @@ const UserGraph = (props: { summonerInfo: SummonerInfo }) => {
 
   useEffect(() => {
     const chart = chartRef.current;
-
     if (!chart) {
       return;
     }
@@ -116,35 +117,38 @@ const UserGraph = (props: { summonerInfo: SummonerInfo }) => {
       ...data,
       datasets: data.datasets.map(dataset => ({
         ...dataset,
-        // label: `${summoner_id}`,
       })),
     };
     setChartData(chartData);
   }, []);
 
   return (
-    <UserGraphWrapper>
-      <UserGraphContent>
+    <UserGraphContainer>
+      <UserGraphWrapper>
         <UserGraphText>
           <UserGraphLabel>
-            <UserEx></UserEx>
-            <UserText>{props.summonerInfo.name}</UserText>
+            <UserColumn
+              style={{ backgroundColor: `${Palette.GG_RADARDATA}` }}
+            ></UserColumn>
+            <UserName>{props.userName}</UserName>
           </UserGraphLabel>
-          <AverageGraphLabel>
-            <AvgEx></AvgEx>
-            <AvgText>Average</AvgText>
-          </AverageGraphLabel>
+          <AvgGraphLabel>
+            <AvgColumn
+              style={{ backgroundColor: `${Palette.GG_GREY_70}` }}
+            ></AvgColumn>
+            <AvgName>Average</AvgName>
+          </AvgGraphLabel>
         </UserGraphText>
-        <UserGraphDraw>
+        <UserGraphImg>
           <Chart
             type="radar"
             ref={chartRef}
             data={chartData}
             options={options}
           />
-        </UserGraphDraw>
-      </UserGraphContent>
-    </UserGraphWrapper>
+        </UserGraphImg>
+      </UserGraphWrapper>
+    </UserGraphContainer>
   );
 };
 

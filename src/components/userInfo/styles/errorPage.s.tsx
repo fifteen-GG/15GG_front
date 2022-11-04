@@ -1,12 +1,7 @@
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import * as Palette from '../../../assets/colorPalette';
 
-export const ErrorWrapper = styled.div`
-  width: 100%;
-  @media screen and (max-width: 360px) {
-    width: 328px;
-  }
-`;
+export const ErrorContainer = styled.div``;
 
 export const SummonerWrapper = styled.div`
   width: 100%;
@@ -15,7 +10,7 @@ export const SummonerWrapper = styled.div`
   display: flex;
 `;
 
-export const SummonerId = styled.div`
+export const SummonerIcon = styled.div`
   width: 52px;
   height: 52px;
   background: ${Palette.GG_BLACK_70};
@@ -27,7 +22,7 @@ export const SummonerNameWrapper = styled.div`
   flex-direction: column;
 `;
 export const SummonerName = styled.div`
-  font-weight: bold;
+  font-weight: 700;
   font-size: 28px;
   color: ${Palette.GG_WHITE_100};
 `;
@@ -41,9 +36,6 @@ export const SummonerLevel = styled.div`
 export const ErrorTextWrapper = styled.div`
   width: 100%;
   height: 208px;
-  @media screen and (max-width: 360px) {
-    width: 328px;
-  }
 `;
 export const ErrorImg = styled.img`
   width: 60px;
@@ -52,14 +44,13 @@ export const ErrorImg = styled.img`
   display: block;
   margin-top: 54px;
   margin-bottom: 14px;
-}
 `;
 
 export const ErrorText = styled.div`
   font-size: 14px;
   width: 158px;
   height: 34px;
-  font-weight: bold;
+  font-weight: 700;
   text-align: center;
   line-height: 1.2;
   margin: 0 auto;

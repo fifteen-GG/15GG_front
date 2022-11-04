@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useTimer } from 'use-timer';
 import {
+  DataCodeContainer,
   DataCodeWrapper,
-  SingleDataCodeWrapper,
   SingleDataCode,
   Footer,
   FooterContent,
@@ -11,9 +11,9 @@ import {
 } from '../styles/datacode.s';
 
 export const Datacode = () => {
-  const [code, setCode] = useState([0, 0, 0, 0, 0, 0]);
-  const [codeExpired, setCodeExpired] = useState(0);
-  const [refresh, setRefresh] = useState(0);
+  const [code, setCode] = useState<number[]>([0, 0, 0, 0, 0, 0]);
+  const [codeExpired, setCodeExpired] = useState<number>(0);
+  const [refresh, setRefresh] = useState<number>(0);
   //useTimer library
   const { time, start, reset, status } = useTimer({
     initialTime: 5 * 60,
@@ -23,7 +23,9 @@ export const Datacode = () => {
 
   const getNewCode = async () => {
     try {
-      const value = await axios.get(`${process.env.REACT_APP_GG_API_ROOT}code`);
+      const value = await axios.get(
+        `${process.env.REACT_APP_GG_API_ROOT}/code`,
+      );
       console.log(value);
       if (value.status === 200) {
         setCode(value.data.value.split(''));
@@ -37,7 +39,7 @@ export const Datacode = () => {
   const validateCode = async (code: string) => {
     try {
       const value = await axios.get(
-        `${process.env.REACT_APP_GG_API_ROOT}code/validate?value=${code}`,
+        `${process.env.REACT_APP_GG_API_ROOT}/code/validate?value=${code}`,
       );
       console.log(value);
     } catch (e) {
@@ -68,14 +70,10 @@ export const Datacode = () => {
   }, [status, time]);
 
   return (
-    <>
+    <DataCodeContainer>
       <DataCodeWrapper>
         {code.map((value: number, index: number) => {
-          return (
-            <SingleDataCodeWrapper key={index}>
-              <SingleDataCode>{value}</SingleDataCode>
-            </SingleDataCodeWrapper>
-          );
+          return <SingleDataCode key={index}>{value}</SingleDataCode>;
         })}
       </DataCodeWrapper>
       <Footer>
@@ -90,6 +88,6 @@ export const Datacode = () => {
           재생성
         </RefreshButton>
       </Footer>
-    </>
+    </DataCodeContainer>
   );
 };

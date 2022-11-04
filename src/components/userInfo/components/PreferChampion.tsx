@@ -1,7 +1,8 @@
-import { SummonerInfo } from '../../types/summonerInfo';
+import { useState } from 'react';
+import { SummonerInfoType } from '../../types/summonerInfo';
 import {
+  PreferChampionContainer,
   PreferChampionWrapper,
-  PreferChampionBox,
   PreferChampionText,
   ChampionInfoWrapper,
   ChampionInfo,
@@ -13,37 +14,57 @@ import {
   ChampionInfoTitle,
   PreferChampionMsg,
 } from '../styles/preferChampion.s';
-
-import { championsInfo } from '../userInfo';
-
-const PreferChampion = (props: { summonerInfo: SummonerInfo }) => {
+import { formatChampionsInfo } from '../userInfoFunc';
+export type userChampion = [
+  {
+    championName: string;
+    counts: number;
+    win_rate: string | number;
+    kda: string | number;
+  },
+  {
+    championName: string;
+    counts: number;
+    win_rate: string | number;
+    kda: string | number;
+  },
+  {
+    championName: string;
+    counts: number;
+    win_rate: string | number;
+    kda: string | number;
+  },
+];
+interface propsType {
+  summonerInfo: SummonerInfoType;
+}
+const PreferChampion = (props: propsType) => {
+  const [userChampion, setUserChampion] = useState<userChampion>(
+    formatChampionsInfo(props.summonerInfo),
+  );
+  console.log(userChampion);
   return (
-    <PreferChampionWrapper>
-      <PreferChampionBox>
+    <PreferChampionContainer>
+      <PreferChampionWrapper>
         <PreferChampionText>선호 챔피언 TOP3</PreferChampionText>
         {!props.summonerInfo.champions ? (
           <ChampionAltInfo>플레이 결과가 없어요 :(</ChampionAltInfo>
         ) : (
           <ChampionInfo>
-            {[...Array(3)].map((champion, index: number) => {
+            {userChampion.map((champion, index: number) => {
               return (
                 <ChampionInfoWrapper key={index}>
-                  <ChampionImg
-                    src={championsInfo(props.summonerInfo, index).championName}
-                  />
+                  <ChampionImg src={userChampion[index].championName} />
                   <ChampionInfoText>
                     <ChampionInfoTitle>
-                      {championsInfo(props.summonerInfo, index).counts}게임
+                      {userChampion[index].counts}
+                      게임
                     </ChampionInfoTitle>
-                    <ChampionInfoContent
-                      counts={championsInfo(props.summonerInfo, index).counts}
-                    >
-                      {championsInfo(props.summonerInfo, index).win_rate}
+                    <ChampionInfoContent counts={userChampion[index].counts}>
+                      {userChampion[index].win_rate}
                     </ChampionInfoContent>
-                    <ChampionInfoSubTitle
-                      counts={championsInfo(props.summonerInfo, index).counts}
-                    >
-                      KDA {championsInfo(props.summonerInfo, index).kda}:1
+                    <ChampionInfoSubTitle counts={userChampion[index].counts}>
+                      KDA {userChampion[index].kda}:1
                     </ChampionInfoSubTitle>
                   </ChampionInfoText>
                 </ChampionInfoWrapper>
@@ -51,13 +72,12 @@ const PreferChampion = (props: { summonerInfo: SummonerInfo }) => {
             })}
           </ChampionInfo>
         )}
-      </PreferChampionBox>
+      </PreferChampionWrapper>
       <PreferChampionMsg>
         최근 20게임을 바탕으로 분석한 결과이며, 데이터 평균에 따라 달라질 수
         있습니다.
       </PreferChampionMsg>
-    </PreferChampionWrapper>
+    </PreferChampionContainer>
   );
 };
-
 export default PreferChampion;

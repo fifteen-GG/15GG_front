@@ -1,41 +1,49 @@
 import {
-  LiveGameSingleUser,
-  LiveGameUserImageWrapper,
-  LiveGameUserPosition,
-  LiveGameUserChampion,
-  LiveGameUserName,
+  UserContainer,
+  UserInfoWrapper,
+  ImageWrapper,
+  UserPosition,
+  UserChampion,
+  UserName,
 } from '../styles/liveuser.s';
-import { urlChampion } from '../../utils/Url';
 
-export const LiveUser = (props: {
+interface propsType {
   champion: string;
   name: string;
   row: string;
   pos: string;
-}) => {
+}
+
+export const LiveUser = (props: propsType) => {
   return (
-    <>
+    <UserContainer>
       {props.row === 'left' ? (
-        <LiveGameSingleUser>
-          <LiveGameUserPosition position={`${props.pos}`} />
-          <LiveGameUserImageWrapper>
-            <LiveGameUserChampion src={urlChampion(props.champion)} />
-          </LiveGameUserImageWrapper>
-          <LiveGameUserName style={{ marginLeft: '2px' }}>
-            {props.name}
-          </LiveGameUserName>
-        </LiveGameSingleUser>
+        <UserInfoWrapper>
+          <UserPosition position={`${props.pos}`} />
+          <ImageWrapper>
+            <UserChampion
+              src={
+                process.env.REACT_APP_DDRAGON_API_ROOT +
+                `/champion/${props.champion}.png`
+              }
+            />
+          </ImageWrapper>
+          <UserName style={{ marginLeft: '2px' }}>{props.name}</UserName>
+        </UserInfoWrapper>
       ) : (
-        <LiveGameSingleUser style={{ justifyContent: 'flex-end' }}>
-          <LiveGameUserName style={{ marginRight: '2px' }}>
-            {props.name}
-          </LiveGameUserName>
-          <LiveGameUserImageWrapper>
-            <LiveGameUserChampion src={urlChampion(props.champion)} />
-          </LiveGameUserImageWrapper>
-          <LiveGameUserPosition position={`${props.pos}`} />
-        </LiveGameSingleUser>
+        <UserInfoWrapper style={{ justifyContent: 'flex-end' }}>
+          <UserName style={{ marginRight: '2px' }}>{props.name}</UserName>
+          <ImageWrapper>
+            <UserChampion
+              src={
+                process.env.REACT_APP_DDRAGON_API_ROOT +
+                `/champion/${props.champion}.png`
+              }
+            />
+          </ImageWrapper>
+          <UserPosition position={`${props.pos}`} />
+        </UserInfoWrapper>
       )}
-    </>
+    </UserContainer>
   );
 };

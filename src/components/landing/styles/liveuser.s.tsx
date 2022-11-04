@@ -4,6 +4,7 @@ import gg_mid from '../../../assets/gg_pos_mid.svg';
 import gg_jgl from '../../../assets/gg_pos_jgl.svg';
 import gg_adc from '../../../assets/gg_pos_adc.svg';
 import gg_utl from '../../../assets/gg_pos_utl.svg';
+import * as Palette from '../../../assets/colorPalette';
 
 const gg_svg: {
   [key: string]: string;
@@ -14,18 +15,18 @@ const gg_svg: {
   adc: gg_adc,
   sup: gg_utl,
 };
-
-export const LiveGameSingleUser = styled.div`
+export const UserContainer = styled.div``;
+export const UserInfoWrapper = styled.div`
+  width: 100%;
   margin-top: 2px;
   margin-bottom: 2px;
   width: 65px;
   height: 12px;
   display: flex;
-  flex-direction: row;
   align-items: center;
 `;
 
-export const LiveGameUserPosition = styled.div<{ position: string }>`
+export const UserPosition = styled.div<{ position: string }>`
   background-image: ${props => `url(${gg_svg[props.position]})`};
   margin-left: 1px;
   margin-right: 1px;
@@ -34,7 +35,7 @@ export const LiveGameUserPosition = styled.div<{ position: string }>`
   border-radius: 2px;
 `;
 
-export const LiveGameUserImageWrapper = styled.div`
+export const ImageWrapper = styled.div`
   display: flex;
   width: 12px;
   height: 12px;
@@ -44,14 +45,14 @@ export const LiveGameUserImageWrapper = styled.div`
   align-items: center;
 `;
 
-export const LiveGameUserChampion = styled.img`
+export const UserChampion = styled.img`
   height: 14px;
   width: 14px;
   border-radius: 2px;
 `;
 
-export const LiveGameUserName = styled.div`
-  color: #fff;
+export const UserName = styled.div`
+  color: ${Palette.GG_WHITE_100};
   font-size: 10px;
   font-weight: 300;
 `;

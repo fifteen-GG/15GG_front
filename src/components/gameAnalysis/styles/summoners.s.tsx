@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import * as Palette from '../../../assets/colorPalette';
 
-export const PlayerWrapper = styled.div`
+export const SummonerContainer = styled.div`
   display: flex;
   height: 38px;
   padding: 0px 4px 0px 8px;
   justify-content: space-between;
 `;
-export const UserInterface = styled.div`
+export const SummonerInterface = styled.div`
   display: flex;
   height: 22px;
   margin-top: 7px;
@@ -23,7 +23,7 @@ export const ChampionLevel = styled.div`
   display: flex;
   height: 10px;
   width: 10px;
-  background-color: rgba(30, 32, 37, 0.8);
+  background-color: ${Palette.GG_BLACK_100 + `CC`};
   border-radius: 2px;
   align-items: center;
   justify-content: center;
@@ -55,21 +55,13 @@ export const PerksWrapper = styled.div`
   border-radius: 2px;
 `;
 
-export const Spell = styled.img`
+export const ImgBox = styled.img`
   height: 10px;
   width: 10px;
-  background-color: ${Palette.GG_WHITE_100};
   border-radius: 2px;
 `;
 
-export const Perk = styled.img`
-  height: 10px;
-  width: 10px;
-  /* background-color: ${Palette.GG_WHITE_100}; */
-  border-radius: 2px;
-`;
-
-export const UserInfoWrapper = styled.div`
+export const SummonerInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 22px;
@@ -134,11 +126,11 @@ export const ItemWrapper = styled.div`
 export const ItemImg = styled.img`
   height: 15px;
   width: 15px;
-  background-color: ${Palette.GG_WHITE_100};
+  background: ${Palette.GG_BLACK_100};
+  onerror: none;
   margin-right: 2px;
   border-radius: 2px;
-  &.item3 {
-    order: 1;
+  &.item6 {
     border-radius: 7px;
   }
 `;

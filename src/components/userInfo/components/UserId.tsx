@@ -1,24 +1,29 @@
-import { SummonerInfo } from '../../types/summonerInfo';
-import React from 'react';
 import {
-  UserIdWrapper,
-  UserImg,
-  NameWrapper,
+  UserIdContainer,
+  UserIcon,
+  UserInfoWrapper,
   UserName,
-  SubName,
+  Level,
 } from '../styles/userId.s';
-
-import { urlProfileIcons } from '../../utils/Url';
-
-const UserId = (props: { summonerInfo: SummonerInfo }) => {
+interface propsType {
+  profileIcon: string;
+  userName: string;
+  level: Number;
+}
+const UserId = (props: propsType) => {
   return (
-    <UserIdWrapper>
-      <UserImg src={urlProfileIcons(props.summonerInfo.profileIconId)} />
-      <NameWrapper>
-        <UserName>{props.summonerInfo.name}</UserName>
-        <SubName>LV {props.summonerInfo.level}</SubName>
-      </NameWrapper>
-    </UserIdWrapper>
+    <UserIdContainer>
+      <UserIcon
+        src={
+          process.env.REACT_APP_DDRAGON_API_ROOT +
+          `/profileicon/${props.profileIcon}.png`
+        }
+      />
+      <UserInfoWrapper>
+        <UserName>{props.userName}</UserName>
+        <Level>{'LV ' + props.level}</Level>
+      </UserInfoWrapper>
+    </UserIdContainer>
   );
 };
 export default UserId;

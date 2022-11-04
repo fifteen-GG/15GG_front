@@ -1,31 +1,31 @@
 import Lottie from 'lottie-react';
 
-import { lottie } from '../../../assets';
+import { lottieImg } from '../../../assets';
 import {
-  LoadingWrapper,
+  LoadingPageContainer,
   LottieWrapper,
   SkeletonWrapper,
-  SkeletonId,
+  SkeletonIcon,
   SkeletonNameWrapper,
   SkeletonName,
   SkeletonLevel,
-} from '../styles/loading.s';
+} from '../styles/loadingPage.s';
 
-const Loading = () => {
+const LoadingPage = () => {
   return (
-    <LoadingWrapper>
+    <LoadingPageContainer>
       <SkeletonWrapper>
-        <SkeletonId></SkeletonId>
+        <SkeletonIcon></SkeletonIcon>
         <SkeletonNameWrapper>
           <SkeletonName></SkeletonName>
           <SkeletonLevel></SkeletonLevel>
         </SkeletonNameWrapper>
       </SkeletonWrapper>
       <LottieWrapper>
-        <Lottie animationData={lottie} />
+        <Lottie animationData={lottieImg} />
       </LottieWrapper>
-    </LoadingWrapper>
+    </LoadingPageContainer>
   );
 };
 
-export default Loading;
+export default LoadingPage;

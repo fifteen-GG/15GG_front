@@ -1,7 +1,7 @@
 import {
-  ErrorWrapper,
+  ErrorContainer,
   SummonerWrapper,
-  SummonerId,
+  SummonerIcon,
   SummonerLevel,
   SummonerNameWrapper,
   SummonerName,
@@ -9,25 +9,25 @@ import {
   ErrorText,
   ErrorImg,
 } from '../styles/errorPage.s';
-import Error from '../../../assets/errorimage.png';
+import errorImg from '../../../assets/gg_error_bg.png';
 
 const ErrorPage = () => {
   const params = new URLSearchParams(window.location.search);
-  let state = params.get('user');
+  let id = params.get('ID');
   return (
-    <ErrorWrapper>
+    <ErrorContainer>
       <SummonerWrapper>
-        <SummonerId></SummonerId>
+        <SummonerIcon></SummonerIcon>
         <SummonerNameWrapper>
-          <SummonerName>{state}</SummonerName>
+          <SummonerName>{id}</SummonerName>
           <SummonerLevel>LV 0</SummonerLevel>
         </SummonerNameWrapper>
       </SummonerWrapper>
       <ErrorTextWrapper>
-        <ErrorImg src={Error} />
+        <ErrorImg src={errorImg} />
         <ErrorText>존재하지 않는 소환사입니다 다시 검색해주세요:(</ErrorText>
       </ErrorTextWrapper>
-    </ErrorWrapper>
+    </ErrorContainer>
   );
 };
 

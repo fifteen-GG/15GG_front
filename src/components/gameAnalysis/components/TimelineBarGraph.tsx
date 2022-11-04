@@ -1,5 +1,5 @@
-import React, { useRef, useState, useEffect } from 'react';
-import type { ChartData, ChartArea, ChartType } from 'chart.js';
+import { useRef, useState, useEffect } from 'react';
+import type { ChartData } from 'chart.js';
 import * as Palette from '../../../assets/colorPalette';
 import {
   Chart as ChartJS,
@@ -10,15 +10,14 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { Chart, Bar } from 'react-chartjs-2';
+import { Chart } from 'react-chartjs-2';
 import {
-  BarWrapper,
+  TimelineBarContainer,
+  GraphWrapper,
   RateWrapper,
   WinningRate,
   GraphTitle,
-  Graph,
 } from '../styles/timelineBarGraph.s';
-
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -27,7 +26,6 @@ ChartJS.register(
   Tooltip,
   Legend,
 );
-
 export const options = {
   indexAxis: 'y' as const,
   maintainAspectRatio: false,
@@ -65,15 +63,13 @@ export const options = {
     },
   },
 };
-
 const labels = [''];
-
 export const data = {
   labels,
   datasets: [
     {
       label: 'Dataset 1',
-      data: [80.4],
+      data: [50.0],
       borderColor: `${Palette.GG_TIMELINE_BARGRAPH_RED}`,
       backgroundColor: `${Palette.GG_TIMELINE_BARGRAPH_RED}`,
       borderWidth: 0,
@@ -81,7 +77,7 @@ export const data = {
     {
       label: 'Dataset 2',
       data: [100],
-      borderColor: 'rgb(53, 162, 235)',
+      borderColor: `${Palette.GG_TIMELINE_BARGRAPH_BORDER_BLUE}`,
       backgroundColor: `${Palette.GG_TIMELINE_BARGRAPH_BLUE}`,
       borderWidth: 0,
     },
@@ -89,13 +85,12 @@ export const data = {
 };
 const TimelineBarGraph = () => {
   const chartRef = useRef<ChartJS>(null);
+  const [redWinningRate, setRedWinningRate] = useState<number>(50.0);
   const [chartData, setChartData] = useState<ChartData<'bar'>>({
     datasets: [],
   });
-
   useEffect(() => {
     const chart = chartRef.current;
-
     if (!chart) {
       return;
     }
@@ -105,12 +100,12 @@ const TimelineBarGraph = () => {
         ...dataset,
       })),
     };
-
     setChartData(chartData);
   }, []);
+
   return (
-    <Graph>
-      <BarWrapper>
+    <TimelineBarContainer>
+      <GraphWrapper>
         <Chart
           type="bar"
           ref={chartRef}
@@ -118,13 +113,13 @@ const TimelineBarGraph = () => {
           options={options}
           height="5px"
         />
-      </BarWrapper>
+      </GraphWrapper>
       <RateWrapper>
-        <WinningRate>80.4%</WinningRate>
+        <WinningRate>{redWinningRate}%</WinningRate>
         <GraphTitle>승률</GraphTitle>
-        <WinningRate>19.6%</WinningRate>
+        <WinningRate>{100 - redWinningRate}%</WinningRate>
       </RateWrapper>
-    </Graph>
+    </TimelineBarContainer>
   );
 };
 

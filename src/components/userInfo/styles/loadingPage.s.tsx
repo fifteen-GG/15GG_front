@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import * as Palette from '../../../assets/colorPalette';
 const pulse = keyframes`
   0% {
     opacity: 0.2;
@@ -13,24 +14,18 @@ const pulse = keyframes`
   }
 `;
 
-export const LoadingWrapper = styled.div`
-  width: 100%;
-  @media screen and (max-width: 360px) {
-    width: 328px;
-  }
-`;
+export const LoadingPageContainer = styled.div``;
 
 export const SkeletonWrapper = styled.div`
-  width: 100%;
   height: 76px;
   margin: 0 auto;
   display: flex;
 `;
 
-export const SkeletonId = styled.div`
+export const SkeletonIcon = styled.div`
   width: 52px;
   height: 52px;
-  background: rgba(255, 255, 255, 0.08);
+  background: ${Palette.GG_WHITE_100 + '14'};
   margin: 2px 8px 6px 2px;
   border-radius: 10px;
   animation: ${pulse} 2s infinite ease-in-out;
@@ -41,7 +36,7 @@ export const SkeletonNameWrapper = styled.div`
 export const SkeletonName = styled.div`
   width: 108px;
   height: 24px;
-  background: rgba(255, 255, 255, 0.16);
+  background: ${Palette.GG_WHITE_100 + '29'};
   margin: 2px 0px 8px 0px;
   border-radius: 50px;
   animation: ${pulse} 2s infinite ease-in-out;
@@ -51,7 +46,7 @@ export const SkeletonName = styled.div`
 export const SkeletonLevel = styled.div`
   width: 57px;
   height: 16px;
-  background: rgba(255, 255, 255, 0.05);
+  background: ${Palette.GG_WHITE_100 + '0D'};
   border-radius: 8px;
   animation: ${pulse} 2s infinite ease-in-out;
   overflow: hidden;

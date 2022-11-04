@@ -1,13 +1,11 @@
-export interface MatchInfo {
-  status: 'live' | 'complete' | 'incomplete';
+import { gameState, queue_mode } from './enum';
+export interface MatchInfoType {
+  status: gameState;
   match_id: string;
+  game_duration: number;
   win: boolean;
   created_at: string;
-  queue_mode:
-    | '5v5 Ranked Solo games'
-    | '5v5 Blind Pick games'
-    | '5v5 ARAM games'
-    | '5v5 Ranked Flex games';
+  queue_mode: queue_mode;
   champion_name: string;
   kills: number;
   deaths: number;

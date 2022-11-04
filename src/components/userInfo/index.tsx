@@ -1,114 +1,101 @@
 import { useState, useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { MatchInfo } from '../types/matchInfo';
-import { SummonerInfo } from '../types/summonerInfo';
+import { MatchInfoType } from '../types/matchInfo';
+import { SummonerInfoType } from '../types/summonerInfo';
 import styled from 'styled-components';
 import axios from 'axios';
 //import components
 import UserRank from './components/UserRank';
 import UserGraph from './components/UserGraph';
 import UserStatInfo from './components/UserStatInfo';
-import GameCard from './components/GameCard';
+import MatchCard from './components/MatchCard';
 import UserId from './components/UserId';
 import PreferChampion from './components/PreferChampion';
-import Loading from './components/Loading';
+import LoadingPage from './components/LoadingPage';
 import ErrorPage from './components/ErrorPage';
+// import { exceptionHandling } from './components/function/userInfoFunc';
 
-const UserInfoWrapper = styled.div``;
-const UserStatWrapper = styled.div``;
-const UserGameListWrapper = styled.div``;
+const UserInfoContainer = styled.div`
+  width: 100%;
+  @media screen and (max-width: 360px) {
+    width: 328px;
+  }
+`;
+const Loader = styled.div`
+  color: white;
+  text-align: center;
+  font-size: 14px;
+  margin-top: 4px;
+`;
 
 export const UserInfo = () => {
-  const [games, setGames] = useState<MatchInfo[]>([]);
-  const [profiles, setProfiless] = useState<SummonerInfo[]>([]);
-  const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
-  const [httpStatusCode, setHttpStatusCode] = useState();
+  const [gamesData, setGamesData] = useState<MatchInfoType[]>([]);
+  const [summonerInfo, setSummonerInfo] = useState<SummonerInfoType>(
+    {} as SummonerInfoType,
+  );
+  const [pageNum, setPageNum] = useState<number>(1);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [httpStatusCode, setHttpStatusCode] = useState<number>(200);
   const params = new URLSearchParams(window.location.search);
-  let state = params.get('user');
-  console.log(state);
+  const id = params.get('ID');
   useEffect(() => {
-    getData();
-    setTimeout(() => {
-      fetchData();
-    }, 3000);
+    getUserData();
+    getMatchData();
   }, []);
-  const getData = async () => {
-    setLoading(true);
+  const getUserData = async () => {
+    setIsLoading(true);
     try {
       const value = await axios.get(
-        `${process.env.REACT_APP_GG_API_ROOT}riot/user/${state}`,
+        `${process.env.REACT_APP_GG_API_ROOT}/riot/user/${id}`,
       );
-      console.log(value.data);
       if (value.status === 200) {
-        setProfiless([value.data]);
+        setSummonerInfo(value.data);
       }
-      if (value.data) setLoading(false); // api 호출 완료 됐을 때 false로 변경하려 로딩화면 숨김처리
+      if (value.data) setIsLoading(false);
     } catch (e: any) {
-      console.log(e); //이해필요
       setHttpStatusCode(e.response.status);
-      console.log(e.response.status);
-      //이해필요
     }
   };
-  console.log(state);
-
-  const fetchData = async () => {
+  const getMatchData = async () => {
     try {
       const match = await axios.get(
-        `${process.env.REACT_APP_GG_API_ROOT}riot/match/${state}?page=${page}`,
+        `${process.env.REACT_APP_GG_API_ROOT}/riot/match/${id}?page=${pageNum}`,
       );
-      console.log(match.data);
-      const fetchedGames: MatchInfo[] = [...games, ...match.data];
-      setGames(fetchedGames);
-      setPage(page + 1);
+      const fetchedGames: MatchInfoType[] = [...gamesData, ...match.data];
+      setGamesData(fetchedGames);
+      setPageNum(pageNum + 1);
     } catch (e) {
-      console.log(e); //이해필요
+      console.log(e);
     }
   };
   if (httpStatusCode === 404) return <ErrorPage />;
   return (
-    <UserInfoWrapper>
-      {loading ? <Loading /> : null}
-      <UserStatWrapper>
-        {profiles.map((profile: SummonerInfo, index) => (
-          <UserId summonerInfo={profile} key={index} />
-        ))}
-        {profiles.map((profile: SummonerInfo, index) => (
-          <UserRank summonerInfo={profile} key={index} />
-        ))}
-        {profiles.map((profile: SummonerInfo, index) => (
-          <UserStatInfo summonerInfo={profile} key={index} />
-        ))}
-        {profiles.map((profile: SummonerInfo, index) => (
-          <UserGraph summonerInfo={profile} key={index} />
-        ))}
-        {profiles.map((profile: SummonerInfo, index) => (
-          <PreferChampion summonerInfo={profile} key={index} />
-        ))}
-      </UserStatWrapper>
-      <UserGameListWrapper>
-        <InfiniteScroll
-          next={fetchData}
-          dataLength={games.length}
-          hasMore={true}
-          loader={
-            <h4
-              style={{
-                color: 'white',
-                textAlign: 'center',
-                fontSize: '14px',
-              }}
-            >
-              데이터 불러오는 중...
-            </h4>
-          }
-        >
-          {games.map((game: MatchInfo, index) => {
-            return <GameCard matchInfo={game} key={index}></GameCard>;
-          })}
-        </InfiniteScroll>
-      </UserGameListWrapper>
-    </UserInfoWrapper>
+    <UserInfoContainer>
+      {isLoading ? (
+        <LoadingPage />
+      ) : (
+        <>
+          <UserId
+            profileIcon={summonerInfo.profileIconId}
+            userName={summonerInfo.name}
+            level={summonerInfo.level}
+          />
+          <UserRank summonerInfo={summonerInfo} />
+          <UserStatInfo summonerInfo={summonerInfo} />
+          <UserGraph userName={summonerInfo.name} />
+          <PreferChampion summonerInfo={summonerInfo} />
+          <InfiniteScroll
+            next={getMatchData}
+            dataLength={gamesData.length}
+            hasMore={true}
+            loader={<Loader>데이터 불러오는 중...</Loader>}
+          >
+            {gamesData.map((game: MatchInfoType, index) => {
+              return <MatchCard matchInfo={game} key={index}></MatchCard>;
+            })}
+          </InfiniteScroll>
+        </>
+      )}
+    </UserInfoContainer>
   );
 };

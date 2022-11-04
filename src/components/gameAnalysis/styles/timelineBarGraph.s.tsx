@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 import * as Palette from '../../../assets/colorPalette';
 
-export const Graph = styled.div`
+export const TimelineBarContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 29px;
   width: 100%;
   margin-bottom: 12px;
 `;
-export const BarWrapper = styled.div`
+export const GraphWrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 4px;

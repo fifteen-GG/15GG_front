@@ -1,16 +1,6 @@
-import React, { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
+//for chart
 import type { ChartData, ChartArea, ChartType } from 'chart.js';
-
-import {
-  UserStatInfoWrapper,
-  GraphText,
-  GraphImg,
-  UserFirstInfo,
-  UserInfoText,
-  UserInfoTitle,
-  UserInfoContent,
-  UserInfoSubTitle,
-} from '../styles/userStatInfo.s';
 import {
   Chart as ChartJS,
   RadialLinearScale,
@@ -23,8 +13,18 @@ import {
 import * as Palette from '../../../assets/colorPalette';
 import { Chart } from 'react-chartjs-2';
 import { ArcElement } from 'chart.js';
-import { SummonerInfo } from '../../types/summonerInfo';
-import { statInfo } from '../userInfo';
+import {
+  UserStatInfoContainer,
+  UserWinRateWrapper,
+  GraphText,
+  GraphImg,
+  UserInfoText,
+  UserInfoTitle,
+  UserInfoContent,
+  UserInfoSubTitle,
+} from '../styles/userStatInfo.s';
+import { SummonerInfoType } from '../../types/summonerInfo';
+import { formatStatInfo } from '../userInfoFunc';
 ChartJS.register(
   ArcElement,
   RadialLinearScale,
@@ -35,7 +35,6 @@ ChartJS.register(
   Legend,
 );
 const labels = ['Blue', 'Red'];
-
 const options = {
   options: {
     maintainAspectRatio: false,
@@ -53,16 +52,34 @@ const data = {
   labels,
   datasets: [
     {
-      label: '정잭영',
-      data: [30, 70],
-      backgroundColor: ['#5d7fde', Palette.GG_WHITE_100],
+      label: '',
+      data: [0, 0],
+      backgroundColor: [Palette.GG_DOUGHNUT, Palette.GG_WHITE_100],
       hoverOffset: 1,
       borderWidth: 0,
     },
   ],
 };
-
-export const UserStatInfo = (props: { summonerInfo: SummonerInfo }) => {
+// for props
+export interface userStat {
+  userName: string;
+  win_rate: number;
+  win: number;
+  losses: number;
+  kda_avg: number;
+  kills_avg: number;
+  deaths_avg: number;
+  assists_avg: number;
+  prefer_position: string[];
+  position_rate: number[];
+}
+interface propsType {
+  summonerInfo: SummonerInfoType;
+}
+export const UserStatInfo = (props: propsType) => {
+  const [userStat, setUserStat] = useState<userStat>(
+    formatStatInfo(props.summonerInfo),
+  );
   const chartRef = useRef<ChartJS>(null);
   const [chartData, setChartData] = useState<ChartData<'doughnut'>>({
     datasets: [],
@@ -77,21 +94,18 @@ export const UserStatInfo = (props: { summonerInfo: SummonerInfo }) => {
       ...data, //
       datasets: data.datasets.map(dataset => ({
         ...dataset,
-        label: props.summonerInfo.name,
-        data: [
-          statInfo(props.summonerInfo).win_rate,
-          100 - statInfo(props.summonerInfo).win_rate,
-        ],
+        label: userStat.userName,
+        data: [userStat?.win_rate, 100 - userStat?.win_rate],
       })),
     };
     setChartData(chartData);
     chart.update();
   }, []);
   return (
-    <UserStatInfoWrapper>
-      <UserFirstInfo>
+    <UserStatInfoContainer>
+      <UserWinRateWrapper>
         <GraphImg>
-          <GraphText>{statInfo(props.summonerInfo).win_rate}%</GraphText>
+          <GraphText>{userStat?.win_rate}%</GraphText>
           <Chart
             ref={chartRef}
             type="doughnut"
@@ -101,36 +115,25 @@ export const UserStatInfo = (props: { summonerInfo: SummonerInfo }) => {
         </GraphImg>
         <UserInfoText>
           <UserInfoTitle>승률</UserInfoTitle>
-          <UserInfoContent>
-            {statInfo(props.summonerInfo).win_rate}%
-          </UserInfoContent>
+          <UserInfoContent>{userStat?.win_rate}%</UserInfoContent>
           <UserInfoSubTitle>
-            {statInfo(props.summonerInfo).win}승{' '}
-            {statInfo(props.summonerInfo).losses}패
+            {userStat?.win}승 {userStat?.losses}패
           </UserInfoSubTitle>
         </UserInfoText>
-      </UserFirstInfo>
+      </UserWinRateWrapper>
       <UserInfoText>
         <UserInfoTitle>KDA</UserInfoTitle>
-        <UserInfoContent>
-          {statInfo(props.summonerInfo).kda_avg}
-        </UserInfoContent>
+        <UserInfoContent>{userStat?.kda_avg}</UserInfoContent>
         <UserInfoSubTitle>
-          {statInfo(props.summonerInfo).kills_avg}/
-          {statInfo(props.summonerInfo).deaths_avg}/
-          {statInfo(props.summonerInfo).assists_avg}
+          {userStat?.kills_avg}/{userStat?.deaths_avg}/{userStat.assists_avg}
         </UserInfoSubTitle>
       </UserInfoText>
       <UserInfoText>
         <UserInfoTitle>선호 포지션</UserInfoTitle>
-        <UserInfoContent>
-          {statInfo(props.summonerInfo).prefer_position}
-        </UserInfoContent>
-        <UserInfoSubTitle>
-          {statInfo(props.summonerInfo).position_rate}%
-        </UserInfoSubTitle>
+        <UserInfoContent>{userStat?.prefer_position}</UserInfoContent>
+        <UserInfoSubTitle>{userStat?.position_rate}%</UserInfoSubTitle>
       </UserInfoText>
-    </UserStatInfoWrapper>
+    </UserStatInfoContainer>
   );
 };
 export default UserStatInfo;

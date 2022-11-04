@@ -1,4 +1,4 @@
-export interface SummonerInfo {
+export interface SummonerInfoType {
   name: string;
   level: number;
   profileIconId: string;
@@ -29,31 +29,23 @@ export interface SummonerInfo {
     MID?: number;
     ADC?: number;
     SUP?: number;
+    '-': number;
   };
-  champions: [
-    {
-      championName: string;
-      counts: number;
-      kills: number;
-      deaths: number;
-      assists: number;
-      wins: number;
-    },
-    {
-      championName: string;
-      counts: number;
-      kills: number;
-      deaths: number;
-      assists: number;
-      wins: number;
-    },
-    {
-      championName: string;
-      counts: number;
-      kills: number;
-      deaths: number;
-      assists: number;
-      wins: number;
-    },
-  ];
+  champions: playData[];
+}
+export interface playData {
+  championName: string;
+  counts: number;
+  kills: number;
+  deaths: number;
+  assists: number;
+  wins: number;
+}
+export interface RankData {
+  tier: string;
+  rank: string;
+  lp: number;
+  win_rate: number;
+  win: number;
+  losses: number;
 }

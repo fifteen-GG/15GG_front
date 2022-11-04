@@ -5,16 +5,15 @@ enum TeamNameEnum {
   RED,
   BLUE,
 }
-
 interface TeamStatProps {
   team: TeamNameEnum;
 }
-export const TeamInfoWrapper = styled.div`
+export const TeamInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
 `;
-export const TeamInfo = styled.div`
+export const TeamInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 234px;
@@ -49,7 +48,7 @@ export const UserInfoColumn = styled.div`
   color: ${Palette.GG_WHITE_100};
   font-weight: 700;
 `;
-export const PlayerList = styled.div`
+export const SummonerList = styled.div`
   display: flex;
   flex-direction: column;
   background-color: ${Palette.GG_BLACK_70};

@@ -1,28 +1,26 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import {
-  LiveGameWrapper,
-  LiveGameTitleWrapper,
-  LiveGameTitle,
-  LiveGameLabel,
-  LiveGameTeamsWrapper,
-  LiveGameSingleTeamWrapper,
-  LiveGameTeamsRow,
+  LiveGameContainer,
+  TitleWrapper,
+  GameTitle,
+  AnalysisTypeLabel,
+  GameInfoWrapper,
+  TeamWrapper,
+  TeamsRow as UpperLinePosition,
+  TeamsRow as LowerLinePosition,
 } from '../styles/livegame.s';
 import { LiveUser } from './LiveUser';
-
 interface userData {
   name: string;
   champion: string;
   position: string;
 }
-
 interface gameData {
   gameType: string;
   gameDate: string;
   redTeam: userData[];
   blueTeam: userData[];
 }
-
 export const LiveGame = () => {
   const [game, setGame] = useState<gameData>({
     gameType: '솔로랭크',
@@ -42,88 +40,73 @@ export const LiveGame = () => {
       { name: '정잭구...', champion: 'Galio', position: 'mid' },
     ],
   });
+
   return (
-    <LiveGameWrapper>
-      <LiveGameTitleWrapper>
-        <LiveGameLabel />
-        <LiveGameTitle>
+    <LiveGameContainer>
+      <TitleWrapper>
+        <AnalysisTypeLabel />
+        <GameTitle>
           {game.gameDate} · {game.gameType}
-        </LiveGameTitle>
-      </LiveGameTitleWrapper>
-      <LiveGameTeamsWrapper>
-        <LiveGameSingleTeamWrapper>
-          <LiveGameTeamsRow>
-            <LiveUser
-              row="left"
-              name={game.redTeam[0].name}
-              champion={game.redTeam[0].champion}
-              pos={game.redTeam[0].position}
-            />
-            <LiveUser
-              row="left"
-              name={game.redTeam[1].name}
-              champion={game.redTeam[1].champion}
-              pos={game.redTeam[1].position}
-            />
-            <LiveUser
-              row="left"
-              name={game.redTeam[2].name}
-              champion={game.redTeam[2].champion}
-              pos={game.redTeam[2].position}
-            />
-          </LiveGameTeamsRow>
-          <LiveGameTeamsRow>
-            <LiveUser
-              row="left"
-              name={game.redTeam[3].name}
-              champion={game.redTeam[3].champion}
-              pos={game.redTeam[3].position}
-            />
-            <LiveUser
-              row="left"
-              name={game.redTeam[4].name}
-              champion={game.redTeam[4].champion}
-              pos={game.redTeam[4].position}
-            />
-          </LiveGameTeamsRow>
-        </LiveGameSingleTeamWrapper>
-        <LiveGameSingleTeamWrapper>
-          <LiveGameTeamsRow>
-            <LiveUser
-              row="right"
-              name={game.blueTeam[0].name}
-              champion={game.blueTeam[0].champion}
-              pos={game.blueTeam[0].position}
-            />
-            <LiveUser
-              row="right"
-              name={game.blueTeam[1].name}
-              champion={game.blueTeam[1].champion}
-              pos={game.blueTeam[1].position}
-            />
-          </LiveGameTeamsRow>
-          <LiveGameTeamsRow>
-            <LiveUser
-              row="right"
-              name={game.blueTeam[2].name}
-              champion={game.blueTeam[2].champion}
-              pos={game.blueTeam[2].position}
-            />
-            <LiveUser
-              row="right"
-              name={game.blueTeam[3].name}
-              champion={game.blueTeam[3].champion}
-              pos={game.blueTeam[3].position}
-            />
-            <LiveUser
-              row="right"
-              name={game.blueTeam[4].name}
-              champion={game.blueTeam[4].champion}
-              pos={game.blueTeam[4].position}
-            />
-          </LiveGameTeamsRow>
-        </LiveGameSingleTeamWrapper>
-      </LiveGameTeamsWrapper>
-    </LiveGameWrapper>
+        </GameTitle>
+      </TitleWrapper>
+      <GameInfoWrapper>
+        <TeamWrapper key={100}>
+          <UpperLinePosition>
+            {game.redTeam.slice(0, 3).map((data, index) => {
+              return (
+                <LiveUser
+                  key={index}
+                  row="left"
+                  name={data.name}
+                  champion={data.champion}
+                  pos={data.position}
+                />
+              );
+            })}
+          </UpperLinePosition>
+          <LowerLinePosition>
+            {game.redTeam.slice(3, 5).map((data, index) => {
+              return (
+                <LiveUser
+                  key={index}
+                  row="left"
+                  name={data.name}
+                  champion={data.champion}
+                  pos={data.position}
+                />
+              );
+            })}
+          </LowerLinePosition>
+        </TeamWrapper>
+        <TeamWrapper key={200}>
+          <LowerLinePosition>
+            {game.blueTeam.slice(0, 2).map((data, index) => {
+              return (
+                <LiveUser
+                  key={index}
+                  row="right"
+                  name={data.name}
+                  champion={data.champion}
+                  pos={data.position}
+                />
+              );
+            })}
+          </LowerLinePosition>
+          <UpperLinePosition>
+            {game.blueTeam.slice(2, 5).map((data, index) => {
+              return (
+                <LiveUser
+                  key={index}
+                  row="right"
+                  name={data.name}
+                  champion={data.champion}
+                  pos={data.position}
+                />
+              );
+            })}
+          </UpperLinePosition>
+        </TeamWrapper>
+      </GameInfoWrapper>
+    </LiveGameContainer>
   );
 };

@@ -1,11 +1,7 @@
-import React, { useRef, useState, useEffect } from 'react';
-import type { ChartData, ChartArea, ChartType } from 'chart.js';
+import { useRef, useState, useEffect } from 'react';
+import type { ChartData, ChartArea } from 'chart.js';
 import * as Palette from '../../../assets/colorPalette';
-import {
-  TimelineBorderBox,
-  TimelineWrappper,
-  WinningRate,
-} from '../styles/timelineGraph.s';
+import { TimelineGraphContainer } from '../styles/timelineGraph.s';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -17,8 +13,7 @@ import {
   Filler,
   Legend,
 } from 'chart.js';
-import { Chart, Line } from 'react-chartjs-2';
-import { faker } from '@faker-js/faker';
+import { Chart } from 'react-chartjs-2';
 
 ChartJS.register(
   CategoryScale,
@@ -86,13 +81,13 @@ export const data = {
     {
       fill: {
         target: 'origin',
-        above: 'rgba(232, 64, 87, 0.4)',
-        below: 'rgba(53, 162, 235, 0.5)',
+        above: `${Palette.GG_TIMELINE_RED}`,
+        below: `${Palette.GG_TIMELINE_BLUE}`,
       },
-      data: [50, 40, 30, -10, 40, -50, 10, 20, 10, 50, 50, 50, 50],
+      data: [50, 40, 30, -10, 40, -50, 10, 20, 10, 50, 50, 50, 50, 40, 30, 20],
       // borderColor: createGradient(chart.ctx, chart.chartArea),
       borderColor: 'red',
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
+      backgroundColor: `${Palette.GG_TIMELINE_BLUE}`,
       lineTension: 0.5,
       pointRadius: 0,
       borderWidth: 1.5,
@@ -100,13 +95,13 @@ export const data = {
   ],
 };
 
-function createGradient(
+const createGradient = (
   ctx: CanvasRenderingContext2D,
   area: ChartArea,
   graphType: string,
-) {
-  const graphRed = 'rgba(232, 64, 87, 0.4)';
-  const graphBlue = 'rgba(53, 162, 235, 0.5)';
+) => {
+  const graphRed = `${Palette.GG_TIMELINE_RED}`;
+  const graphBlue = `${Palette.GG_TIMELINE_BLUE}`;
   const graphNeutral = `${Palette.GG_GRFTITLE}`;
   let gradient;
 
@@ -136,7 +131,7 @@ function createGradient(
     : (gradient = blueTeamGradient);
 
   return gradient;
-}
+};
 
 const TimelineGraph = () => {
   const chartRef = useRef<ChartJS>(null);
@@ -167,9 +162,7 @@ const TimelineGraph = () => {
   }, []);
 
   return (
-    // <TimelineBorderBox>
-    // </TimelineBorderBox>
-    <TimelineWrappper>
+    <TimelineGraphContainer>
       <Chart
         type="line"
         ref={chartRef}
@@ -178,7 +171,7 @@ const TimelineGraph = () => {
         // height={84}
         width={360}
       />
-    </TimelineWrappper>
+    </TimelineGraphContainer>
   );
 };
 
