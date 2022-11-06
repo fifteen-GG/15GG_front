@@ -7,6 +7,7 @@ import levelRed from '../svg/level_red.svg';
 import goldBlue from '../svg/gold_blue.svg';
 import killBlue from '../svg/kills_blue.svg';
 import levelBlue from '../svg/level_blue.svg';
+import { deflate } from 'zlib';
 
 export const TeamStatsContainer = styled.div`
   display: flex;
@@ -19,9 +20,6 @@ enum TeamNameEnum {
   RED = 'Red',
   BLUE = 'Blue',
 }
-interface TeamStatProps {
-  team: TeamNameEnum;
-}
 export const TeamStatWrapper = styled.div`
   display: flex;
   width: calc(50% - 1px);
@@ -32,8 +30,16 @@ export const TeamStatWrapper = styled.div`
     border-right: 2px solid ${Palette.GG_STATS_BORDER};
   }
 `;
+export enum pngType {
+  goldRed = 'goldRed',
+  killRed = 'killRed',
+  levelRed = 'levelRed',
+  goldBlue = 'goldBlue',
+  killBlue = 'killBlue',
+  levelBlue = 'levelBlue',
+}
 const gg_svg: {
-  [key: string]: string;
+  [key in pngType]: string;
 } = {
   goldRed: goldRed,
   killRed: killRed,
@@ -43,7 +49,7 @@ const gg_svg: {
   levelBlue: levelBlue,
 };
 
-export const Icon = styled.div<{ team: string }>`
+export const Icon = styled.div<{ team: pngType }>`
   width: 20px;
   height: 20px;
   background-image: ${props => `url(${gg_svg[props.team]})`};
