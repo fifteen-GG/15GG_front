@@ -68,7 +68,6 @@ const summonerRed: summonerProps[] = [
     assists: 4,
   },
 ];
-
 const summonerBlue: summonerProps[] = [
   {
     champion: 'Aphelios',
@@ -126,42 +125,36 @@ const summonerBlue: summonerProps[] = [
     assists: 4,
   },
 ];
-
+const team = [
+  { team: 'RED TEAM', summoners: summonerRed },
+  { team: 'BLUE TEAM', summoners: summonerBlue },
+];
 const TeamInfo = () => {
   const [redteams, setRedteams] = useState<summonerProps[]>([...summonerRed]);
   const [blueteams, setBlueteams] = useState<summonerProps[]>([
     ...summonerBlue,
   ]);
+  const [teamInfo, setTeamInfo] = useState([...team]);
   return (
     <TeamInfoContainer>
-      <TeamInfoWrapper>
-        <TeamInfoHeader>
-          <TeamName team={Team.RED}>RED TEAM</TeamName>
-          <UserInfoColumnWrapper>
-            <UserInfoColumn>SUMMONER</UserInfoColumn>
-            <UserInfoColumn>ITEMS</UserInfoColumn>
-          </UserInfoColumnWrapper>
-        </TeamInfoHeader>
-        <SummonerList>
-          {redteams.map((redteam: summonerProps, index) => {
-            return <Summoner teamInfo={redteam} key={index} />;
-          })}
-        </SummonerList>
-      </TeamInfoWrapper>
-      <TeamInfoWrapper>
-        <TeamInfoHeader>
-          <TeamName team={Team.BLUE}>BLUE TEAM</TeamName>
-          <UserInfoColumnWrapper>
-            <UserInfoColumn>SUMMONER</UserInfoColumn>
-            <UserInfoColumn>ITEMS</UserInfoColumn>
-          </UserInfoColumnWrapper>
-        </TeamInfoHeader>
-        <SummonerList>
-          {blueteams.map((blueteam: summonerProps, index) => {
-            return <Summoner teamInfo={blueteam} key={index} />;
-          })}
-        </SummonerList>
-      </TeamInfoWrapper>
+      {teamInfo.map((data, index) => {
+        return (
+          <TeamInfoWrapper>
+            <TeamInfoHeader>
+              <TeamName team={index}>{data.team}</TeamName>
+              <UserInfoColumnWrapper>
+                <UserInfoColumn>SUMMONER</UserInfoColumn>
+                <UserInfoColumn>ITEMS</UserInfoColumn>
+              </UserInfoColumnWrapper>
+            </TeamInfoHeader>
+            <SummonerList>
+              {data.summoners.map((summoner: summonerProps, index) => {
+                return <Summoner teamInfo={summoner} key={index} />;
+              })}
+            </SummonerList>
+          </TeamInfoWrapper>
+        );
+      })}
     </TeamInfoContainer>
   );
 };

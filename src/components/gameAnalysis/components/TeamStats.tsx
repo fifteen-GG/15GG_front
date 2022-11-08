@@ -7,7 +7,7 @@ import {
   StatValue,
   Icon,
 } from '../styles/teamStats.s';
-
+import { pngType } from '../styles/teamStats.s';
 const TeamStats = () => {
   const TeamStatData = [
     {
@@ -29,15 +29,18 @@ const TeamStats = () => {
         return (
           <TeamStatWrapper key={data.team}>
             <TeamGold team={data.team}>
-              <Icon team={'gold' + data.team} />
+              <Icon team={('gold' + data.team) as pngType} />
               <StatValue>{data.gold}K</StatValue>
             </TeamGold>
             <TeamLevel team={data.team}>
-              <Icon team={'level' + data.team} style={{ width: '25px' }} />
+              <Icon
+                team={('level' + data.team) as pngType}
+                style={{ width: '25px' }}
+              />
               <StatValue>{data.level}</StatValue>
             </TeamLevel>
             <TeamKills team={data.team}>
-              <Icon team={'kill' + data.team} />
+              <Icon team={('kill' + data.team) as pngType} />
               <StatValue>{data.kill}</StatValue>
             </TeamKills>
           </TeamStatWrapper>
