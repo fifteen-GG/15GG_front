@@ -35,6 +35,9 @@ export const GameAnalysis = () => {
   const [gameData, setGameData] = useState(Object);
   const [time, setTime] = useState<number>(0);
   const [parse, setParse] = useState<number>(0);
+  const params = new URLSearchParams(window.location.search);
+  const matchID = params.get('match%ID');
+  console.log(matchID);
   const { state } = useLocation();
   const { responseMessage } = useSocket(state => {
     if (state === SocketStatus.onNewChatReceived) {
