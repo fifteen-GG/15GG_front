@@ -14,11 +14,11 @@ export const rankFormat = (rank: string, tier: string) => {
   return Rank;
 };
 
-export const totalFormat = (summonerInfo: SummonerInfoType) => {
+export const totalFormat = (data: SummonerInfoType) => {
   let state: SummonerInfoCopy = {
-    name: summonerInfo.name,
-    level: summonerInfo.level,
-    profileIconId: summonerInfo.profileIconId,
+    name: data.name,
+    level: data.level,
+    profileIconId: data.profileIconId,
     soloRank: {
       name: 'Unranked',
       tier: '0',
@@ -63,65 +63,60 @@ export const totalFormat = (summonerInfo: SummonerInfoType) => {
       },
     ],
   };
-  if (!summonerInfo.solo) {
+  if (!data.solo) {
   } else {
-    state.soloRank.losses = summonerInfo.solo.losses;
-    state.soloRank.lp = summonerInfo.solo.lp;
-    state.soloRank.win = summonerInfo.solo.win;
-    state.soloRank.win_rate = summonerInfo.solo.win_rate;
-    state.soloRank.tier = summonerInfo.solo.tier;
+    state.soloRank.losses = data.solo.losses;
+    state.soloRank.lp = data.solo.lp;
+    state.soloRank.win = data.solo.win;
+    state.soloRank.win_rate = data.solo.win_rate;
+    state.soloRank.tier = data.solo.tier;
     state.soloRank.name =
-      tierFormat(summonerInfo.solo.tier) +
-      rankFormat(summonerInfo.solo.rank, summonerInfo.solo.tier);
+      tierFormat(data.solo.tier) + rankFormat(data.solo.rank, data.solo.tier);
   }
-  if (!summonerInfo.kda_avg) {
+  if (!data.kda_avg) {
   } else {
-    state.soloRank.win_rate = summonerInfo.solo.win_rate;
-    state.soloRank.win = summonerInfo.solo.win;
-    state.soloRank.losses = summonerInfo.solo.losses;
-    state.kda_avg = summonerInfo.kda_avg;
-    state.kills_avg = summonerInfo.kills_avg;
-    state.deaths_avg = summonerInfo.deaths_avg;
-    state.assists_avg = summonerInfo.assists_avg;
+    state.soloRank.win_rate = data.solo.win_rate;
+    state.soloRank.win = data.solo.win;
+    state.soloRank.losses = data.solo.losses;
+    state.kda_avg = data.kda_avg;
+    state.kills_avg = data.kills_avg;
+    state.deaths_avg = data.deaths_avg;
+    state.assists_avg = data.assists_avg;
   }
-  if (!summonerInfo.flex) {
+  if (!data.flex) {
   } else {
-    state.flexRank.losses = summonerInfo.flex.losses;
-    state.flexRank.lp = summonerInfo.flex.lp;
-    state.flexRank.win = summonerInfo.flex.win;
-    state.flexRank.win_rate = summonerInfo.flex.win_rate;
-    state.flexRank.tier = summonerInfo.flex.tier;
+    state.flexRank.losses = data.flex.losses;
+    state.flexRank.lp = data.flex.lp;
+    state.flexRank.win = data.flex.win;
+    state.flexRank.win_rate = data.flex.win_rate;
+    state.flexRank.tier = data.flex.tier;
     state.flexRank.name =
-      tierFormat(summonerInfo.flex.tier) +
-      rankFormat(summonerInfo.flex.rank, summonerInfo.flex.tier);
+      tierFormat(data.flex.tier) + rankFormat(data.flex.rank, data.flex.tier);
   }
-  if (!summonerInfo.prefer_position) {
+  if (!data.prefer_position) {
   } else {
-    state.prefer_position = Object.keys(summonerInfo.prefer_position);
-    state.position_rate = Object.values(summonerInfo.prefer_position);
+    state.prefer_position = Object.keys(data.prefer_position);
+    state.position_rate = Object.values(data.prefer_position);
   }
-  if (!summonerInfo.champions) {
+  if (!data.champions) {
     return state;
   }
   state.champions.map((champion, index: number) => {
-    if (!summonerInfo.champions[index]) {
+    if (!data.champions[index]) {
       return state;
     } else {
       state.champions[index].championName =
         process.env.REACT_APP_DDRAGON_API_ROOT +
-        `/champion/${summonerInfo.champions[index].championName}.png`;
-      state.champions[index].counts = summonerInfo.champions[index].counts;
+        `/champion/${data.champions[index].championName}.png`;
+      state.champions[index].counts = data.champions[index].counts;
       state.champions[index].win_rate =
         Math.round(
-          (summonerInfo.champions[index].wins /
-            summonerInfo.champions[index].counts) *
-            100,
+          (data.champions[index].wins / data.champions[index].counts) * 100,
         ) + '%';
       state.champions[index].kda =
         Math.round(
-          ((summonerInfo.champions[index].kills +
-            summonerInfo.champions[index].assists) /
-            summonerInfo.champions[index].deaths) *
+          ((data.champions[index].kills + data.champions[index].assists) /
+            data.champions[index].deaths) *
             100,
         ) / 100;
     }
