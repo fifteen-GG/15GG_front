@@ -11,6 +11,12 @@ import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router';
 import { useSocket, SocketStatus } from './useSocket';
 import { gameState } from '../types/enum';
+import axios from 'axios';
+import type {
+  summonerDetail,
+  teamDetail,
+  teamAvgData,
+} from '../types/matchDetails';
 
 const GameAnalysisContainer = styled.div`
   width: 100%;
@@ -32,10 +38,29 @@ const TimeInfo = styled.div`
   margin-bottom: 12px;
 `;
 export const GameAnalysis = () => {
-  const [gameData, setGameData] = useState(Object);
+  const [liveData, setLiveData] = useState(Object);
+  const [gameData, setGameData] = useState([
+    {} as teamDetail,
+    {} as teamDetail,
+  ]);
   const [time, setTime] = useState<number>(0);
   const [parse, setParse] = useState<number>(0);
   const { state } = useLocation();
+  //for incomplete game data
+  const getGameData = async () => {
+    try {
+      const data = await axios.get(
+        `${process.env.REACT_APP_GG_API_ROOT}/riot/match/detail/${state.matchID}`,
+      );
+      setGameData(data.data);
+    } catch (e: any) {
+      console.log(e);
+    }
+  };
+  useEffect(() => {
+    getGameData();
+  }, []);
+
   const { responseMessage } = useSocket(state => {
     if (state === SocketStatus.onNewChatReceived) {
       setParse(data => data + 1);
@@ -47,18 +72,21 @@ export const GameAnalysis = () => {
   });
 
   useEffect(() => {
-    if (parse && state?.status === gameState.live) {
-      let data = JSON.parse(responseMessage);
-      setGameData(data);
+    if (state.statue === gameState.live) {
+      if (parse) {
+        let data = JSON.parse(responseMessage);
+        setLiveData(data);
+      }
     }
   }, [parse, responseMessage]);
 
   useEffect(() => {
-    if (parse && state?.status === gameState.live) setTime(gameData.timestamp);
-    console.log(gameData, state.status);
+    if (state.status === gameState.live) {
+      if (parse) setTime(liveData.timestamp);
+    }
+    console.log(liveData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [gameData]);
-
+  }, [liveData]);
   return (
     <GameAnalysisContainer>
       <GameInfo status={state.status} mode={state.mode} date={state.date} />
@@ -71,8 +99,11 @@ export const GameAnalysis = () => {
       </TimeInfo>
       <TimelineBarGraph />
       <TimelineGraph />
-      {state.status === gameState.live ? <GameSlider /> : null}
-      <TeamStats />
+      {state.status === gameState.end ? <GameSlider /> : null}
+      <TeamStats
+        redTeam={gameData[0].teamAvgData}
+        blueTeam={gameData[1].teamAvgData}
+      />
       <TeamInfo />
     </GameAnalysisContainer>
   );

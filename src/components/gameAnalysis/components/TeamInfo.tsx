@@ -130,16 +130,12 @@ const team = [
   { team: 'BLUE TEAM', summoners: summonerBlue },
 ];
 const TeamInfo = () => {
-  const [redteams, setRedteams] = useState<summonerProps[]>([...summonerRed]);
-  const [blueteams, setBlueteams] = useState<summonerProps[]>([
-    ...summonerBlue,
-  ]);
   const [teamInfo, setTeamInfo] = useState([...team]);
   return (
     <TeamInfoContainer>
       {teamInfo.map((data, index) => {
         return (
-          <TeamInfoWrapper>
+          <TeamInfoWrapper key={data.team}>
             <TeamInfoHeader>
               <TeamName team={index}>{data.team}</TeamName>
               <UserInfoColumnWrapper>

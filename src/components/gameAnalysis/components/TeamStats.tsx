@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import {
   TeamStatsContainer,
   TeamStatWrapper,
@@ -6,42 +7,54 @@ import {
   Stat as TeamKills,
   StatValue,
   Icon,
+  LoadAlert,
 } from '../styles/teamStats.s';
+import type { teamAvgData } from '../../types/matchDetails';
 import { pngType } from '../styles/teamStats.s';
-const TeamStats = () => {
-  const TeamStatData = [
-    {
-      team: 'Red',
-      gold: 50.9,
-      level: 17.7,
-      kill: 18,
-    },
-    {
-      team: 'Blue',
-      gold: 40.3,
-      level: 16.5,
-      kill: 14,
-    },
-  ];
+import { TeamsRow } from '../../landing/styles/livegame.s';
+interface propsType {
+  redTeam: teamAvgData;
+  blueTeam: teamAvgData;
+}
+const TeamStats = (props: propsType) => {
+  const [teamStatsData, useTeamStatsData] = useState([
+    { team: 'Red', avgStat: props.redTeam },
+    { team: 'Blue', avgStat: props.blueTeam },
+  ]);
+  const FetchData = () => {
+    useTeamStatsData([
+      { team: 'Red', avgStat: props.redTeam },
+      { team: 'Blue', avgStat: props.blueTeam },
+    ]);
+  };
+  useEffect(() => {
+    FetchData();
+  }, [props]);
+
   return (
     <TeamStatsContainer>
-      {TeamStatData.map(data => {
+      {teamStatsData.map(data => {
         return (
           <TeamStatWrapper key={data.team}>
+            {data.avgStat ? null : <LoadAlert>Loading..</LoadAlert>}
             <TeamGold team={data.team}>
               <Icon team={('gold' + data.team) as pngType} />
-              <StatValue>{data.gold}K</StatValue>
+              <StatValue>
+                {data.avgStat
+                  ? (data.avgStat.golds / 1000).toFixed(1) + 'k'
+                  : ''}
+              </StatValue>
             </TeamGold>
             <TeamLevel team={data.team}>
               <Icon
                 team={('level' + data.team) as pngType}
                 style={{ width: '25px' }}
               />
-              <StatValue>{data.level}</StatValue>
+              <StatValue>{data.avgStat ? data.avgStat.level : ''}</StatValue>
             </TeamLevel>
             <TeamKills team={data.team}>
               <Icon team={('kill' + data.team) as pngType} />
-              <StatValue>{data.kill}</StatValue>
+              <StatValue>{data.avgStat ? data.avgStat.kills : ''}</StatValue>
             </TeamKills>
           </TeamStatWrapper>
         );

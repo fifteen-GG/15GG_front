@@ -59,7 +59,7 @@ export const UserInfo = () => {
   const getMatchData = async () => {
     try {
       const match = await axios.get(
-        `${process.env.REACT_APP_GG_API_ROOT}/riot/match/${id}?page=${pageNum}`,
+        `${process.env.REACT_APP_GG_API_ROOT}/riot/user/match_list/${id}?page=${pageNum}`,
       );
       const fetchedGames: MatchInfoType[] = [...gamesData, ...match.data];
       setGamesData(fetchedGames);

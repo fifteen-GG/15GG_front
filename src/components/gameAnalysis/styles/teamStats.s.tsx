@@ -72,3 +72,8 @@ export const StatValue = styled.div`
   font-size: 12px;
   font-weight: bold;
 `;
+export const LoadAlert = styled.div`
+  position: absolute;
+  color: ${Palette.GG_WHITE_100};
+  font-size: 12px;
+`;
