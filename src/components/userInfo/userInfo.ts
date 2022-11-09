@@ -15,7 +15,7 @@ export const rankFormat = (rank: string, tier: string) => {
 };
 
 export const totalFormat = (data: SummonerInitialType) => {
-  let state: SummonerInfoType = {
+  let formattedData: SummonerInfoType = {
     ...data,
     soloRank: {
       name: 'Unranked',
@@ -62,41 +62,41 @@ export const totalFormat = (data: SummonerInitialType) => {
     ],
   };
   if (data.solo) {
-    state.soloRank = {
+    formattedData.soloRank = {
       ...data.solo,
       name:
         tierFormat(data.solo.tier) + rankFormat(data.solo.rank, data.solo.tier),
     };
   }
   if (data.kda_avg) {
-    state.kda_avg = data.kda_avg;
-    state.kills_avg = data.kills_avg;
-    state.deaths_avg = data.deaths_avg;
-    state.assists_avg = data.assists_avg;
+    formattedData.kda_avg = data.kda_avg;
+    formattedData.kills_avg = data.kills_avg;
+    formattedData.deaths_avg = data.deaths_avg;
+    formattedData.assists_avg = data.assists_avg;
   }
   if (data.flex) {
-    state.flexRank = {
+    formattedData.flexRank = {
       ...data.flex,
       name:
         tierFormat(data.flex.tier) + rankFormat(data.flex.rank, data.flex.tier),
     };
   }
   if (data.prefer_position) {
-    state.prefer_position = data.prefer_position;
-    // state.position_rate = Object.values(data.prefer_position);
+    formattedData.prefer_position = data.prefer_position;
+    // formattedData.position_rate = Object.values(data.prefer_position);
   }
   if (data.champions) {
-    state.champions.map((champion, index: number) => {
+    formattedData.champions.map((champion, index: number) => {
       if (data.champions[index]) {
-        state.champions[index].championName =
+        formattedData.champions[index].championName =
           process.env.REACT_APP_DDRAGON_API_ROOT +
           `/champion/${data.champions[index].championName}.png`;
-        state.champions[index].counts = data.champions[index].counts;
-        state.champions[index].win_rate =
+        formattedData.champions[index].counts = data.champions[index].counts;
+        formattedData.champions[index].win_rate =
           Math.round(
             (data.champions[index].wins / data.champions[index].counts) * 100,
           ) + '%';
-        state.champions[index].kda =
+        formattedData.champions[index].kda =
           Math.round(
             ((data.champions[index].kills + data.champions[index].assists) /
               data.champions[index].deaths) *
@@ -105,5 +105,5 @@ export const totalFormat = (data: SummonerInitialType) => {
       }
     });
   }
-  return state;
+  return formattedData;
 };
