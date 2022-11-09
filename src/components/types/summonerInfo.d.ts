@@ -1,4 +1,4 @@
-export interface SummonerInfoType {
+export interface SummonerInitialType {
   name: string;
   level: number;
   profileIconId: string;
@@ -20,7 +20,7 @@ export interface SummonerInfoType {
   champions: preferChampion;
 }
 
-export interface SummonerInfoCopy {
+export interface SummonerInfoType {
   name: string;
   level: number;
   profileIconId: string;
@@ -31,8 +31,14 @@ export interface SummonerInfoCopy {
   deaths_avg: number;
   assists_avg: number;
   // prefer_position: prefer_position;
-  prefer_position: string[];
-  position_rate: number[];
+  prefer_position: {
+    TOP?: number;
+    JG?: number;
+    MID?: number;
+    ADC?: number;
+    SUP?: number;
+    '-': number;
+  };
   champions: userChampion;
 }
 

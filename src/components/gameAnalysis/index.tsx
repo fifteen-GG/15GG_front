@@ -43,6 +43,9 @@ export const GameAnalysis = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [time, setTime] = useState<number>(0);
   const [parse, setParse] = useState<number>(0);
+  const params = new URLSearchParams(window.location.search);
+  const matchID = params.get('match%ID');
+  console.log(matchID);
   const { state } = useLocation();
   //for incomplete game data
   const getGameData = async () => {

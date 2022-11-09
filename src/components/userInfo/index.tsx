@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import type { MatchInfoType } from '../types/matchInfo';
-import type { SummonerInfoType, SummonerInfoCopy } from '../types/summonerInfo';
+import type { SummonerInfoType } from '../types/summonerInfo';
 import styled from 'styled-components';
 import axios from 'axios';
 //import components
@@ -30,10 +30,10 @@ const Loader = styled.div`
 
 export const UserInfo = () => {
   const [gamesData, setGamesData] = useState<MatchInfoType[]>([]);
-  const [summonerInfo, setSummonerInfo] = useState<SummonerInfoType>(
-    {} as SummonerInfoType,
-  );
-  const [copyInfo, setCopyInfo] = useState<SummonerInfoCopy>({
+  const [summonerInfo, setSummonerInfo] = useState<SummonerInfoType>({
+    prefer_position: {
+      '-': 0,
+    },
     champions: [
       {
         championName: '',
@@ -54,8 +54,8 @@ export const UserInfo = () => {
         kda: 0,
       },
     ],
-  } as SummonerInfoCopy); /*저번 회의때 얘기했던 부분이 여기 초기화를 해두고 champions를 앞에서부터 한개씩 갈아끼우는 느낌으로*/
-  console.log(copyInfo);
+  } as SummonerInfoType); /*저번 회의때 얘기했던 부분이 여기 초기화를 해두고 champions를 앞에서부터 한개씩 갈아끼우는 느낌으로*/
+  console.log(summonerInfo);
   const [pageNum, setPageNum] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [httpStatusCode, setHttpStatusCode] = useState<number>(200);
@@ -72,10 +72,8 @@ export const UserInfo = () => {
         `${process.env.REACT_APP_GG_API_ROOT}/riot/user/${id}`,
       );
       if (value.status === 200) {
-        setSummonerInfo(value.data);
-        setCopyInfo(totalFormat(value.data));
+        setSummonerInfo(totalFormat(value.data));
         console.log(value.data);
-
         // setCopyInfo(totalFormat(summonerInfo));
         // console.log(copyInfo);
       }
@@ -104,29 +102,29 @@ export const UserInfo = () => {
       ) : (
         <>
           <UserId
-            profileIcon={copyInfo.profileIconId}
-            userName={copyInfo.name}
-            level={copyInfo.level}
+            profileIcon={summonerInfo.profileIconId}
+            userName={summonerInfo.name}
+            level={summonerInfo.level}
           />
           <UserRank
-            userName={copyInfo.name}
-            soloRank={copyInfo.soloRank}
-            flexRank={copyInfo.flexRank}
+            userName={summonerInfo.name}
+            soloRank={summonerInfo.soloRank}
+            flexRank={summonerInfo.flexRank}
           />
           <UserStatInfo
-            userName={copyInfo.name}
-            win_rate={copyInfo.soloRank?.win_rate}
-            win={copyInfo.soloRank?.win}
-            losses={copyInfo.soloRank?.losses}
-            kda_avg={copyInfo.kda_avg}
-            kills_avg={copyInfo.kills_avg}
-            deaths_avg={copyInfo.deaths_avg}
-            assists_avg={copyInfo.assists_avg}
-            prefer_position={copyInfo.prefer_position}
-            position_rate={copyInfo.position_rate}
+            userName={summonerInfo.name}
+            win_rate={summonerInfo.soloRank?.win_rate}
+            win={summonerInfo.soloRank?.win}
+            losses={summonerInfo.soloRank?.losses}
+            kda_avg={summonerInfo.kda_avg}
+            kills_avg={summonerInfo.kills_avg}
+            deaths_avg={summonerInfo.deaths_avg}
+            assists_avg={summonerInfo.assists_avg}
+            prefer_position={summonerInfo.prefer_position}
+            // position_rate={summonerInfo.position_rate}
           />
-          <UserGraph userName={copyInfo.name} />
-          <PreferChampion champions={copyInfo.champions} />
+          <UserGraph userName={summonerInfo.name} />
+          <PreferChampion champions={summonerInfo.champions} />
           <InfiniteScroll
             next={getMatchData}
             dataLength={gamesData.length}

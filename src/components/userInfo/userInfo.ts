@@ -1,4 +1,4 @@
-import { SummonerInfoType, SummonerInfoCopy } from '../types/summonerInfo';
+import { SummonerInitialType, SummonerInfoType } from '../types/summonerInfo';
 
 export const tierFormat = (tier: string) => {
   return tier?.charAt(0) + tier?.slice(1).toLowerCase() + '';
@@ -14,11 +14,9 @@ export const rankFormat = (rank: string, tier: string) => {
   return Rank;
 };
 
-export const totalFormat = (data: SummonerInfoType) => {
-  let state: SummonerInfoCopy = {
-    name: data.name,
-    level: data.level,
-    profileIconId: data.profileIconId,
+export const totalFormat = (data: SummonerInitialType) => {
+  let formattedData: SummonerInfoType = {
+    ...data,
     soloRank: {
       name: 'Unranked',
       tier: '0',
@@ -39,9 +37,9 @@ export const totalFormat = (data: SummonerInfoType) => {
     kills_avg: 0,
     deaths_avg: 0,
     assists_avg: 0,
-    // prefer_position: prefer_position;
-    prefer_position: ['-'],
-    position_rate: [0],
+    prefer_position: {
+      '-': 0,
+    },
     champions: [
       {
         championName: '0',
@@ -63,63 +61,49 @@ export const totalFormat = (data: SummonerInfoType) => {
       },
     ],
   };
-  if (!data.solo) {
-  } else {
-    state.soloRank.losses = data.solo.losses;
-    state.soloRank.lp = data.solo.lp;
-    state.soloRank.win = data.solo.win;
-    state.soloRank.win_rate = data.solo.win_rate;
-    state.soloRank.tier = data.solo.tier;
-    state.soloRank.name =
-      tierFormat(data.solo.tier) + rankFormat(data.solo.rank, data.solo.tier);
+  if (data.solo) {
+    formattedData.soloRank = {
+      ...data.solo,
+      name:
+        tierFormat(data.solo.tier) + rankFormat(data.solo.rank, data.solo.tier),
+    };
   }
-  if (!data.kda_avg) {
-  } else {
-    state.soloRank.win_rate = data.solo.win_rate;
-    state.soloRank.win = data.solo.win;
-    state.soloRank.losses = data.solo.losses;
-    state.kda_avg = data.kda_avg;
-    state.kills_avg = data.kills_avg;
-    state.deaths_avg = data.deaths_avg;
-    state.assists_avg = data.assists_avg;
+  if (data.kda_avg) {
+    formattedData.kda_avg = data.kda_avg;
+    formattedData.kills_avg = data.kills_avg;
+    formattedData.deaths_avg = data.deaths_avg;
+    formattedData.assists_avg = data.assists_avg;
   }
-  if (!data.flex) {
-  } else {
-    state.flexRank.losses = data.flex.losses;
-    state.flexRank.lp = data.flex.lp;
-    state.flexRank.win = data.flex.win;
-    state.flexRank.win_rate = data.flex.win_rate;
-    state.flexRank.tier = data.flex.tier;
-    state.flexRank.name =
-      tierFormat(data.flex.tier) + rankFormat(data.flex.rank, data.flex.tier);
+  if (data.flex) {
+    formattedData.flexRank = {
+      ...data.flex,
+      name:
+        tierFormat(data.flex.tier) + rankFormat(data.flex.rank, data.flex.tier),
+    };
   }
-  if (!data.prefer_position) {
-  } else {
-    state.prefer_position = Object.keys(data.prefer_position);
-    state.position_rate = Object.values(data.prefer_position);
+  if (data.prefer_position) {
+    formattedData.prefer_position = data.prefer_position;
+    // formattedData.position_rate = Object.values(data.prefer_position);
   }
-  if (!data.champions) {
-    return state;
+  if (data.champions) {
+    formattedData.champions.map((champion, index: number) => {
+      if (data.champions[index]) {
+        formattedData.champions[index].championName =
+          process.env.REACT_APP_DDRAGON_API_ROOT +
+          `/champion/${data.champions[index].championName}.png`;
+        formattedData.champions[index].counts = data.champions[index].counts;
+        formattedData.champions[index].win_rate =
+          Math.round(
+            (data.champions[index].wins / data.champions[index].counts) * 100,
+          ) + '%';
+        formattedData.champions[index].kda =
+          Math.round(
+            ((data.champions[index].kills + data.champions[index].assists) /
+              data.champions[index].deaths) *
+              100,
+          ) / 100;
+      }
+    });
   }
-  state.champions.map((champion, index: number) => {
-    if (!data.champions[index]) {
-      return state;
-    } else {
-      state.champions[index].championName =
-        process.env.REACT_APP_DDRAGON_API_ROOT +
-        `/champion/${data.champions[index].championName}.png`;
-      state.champions[index].counts = data.champions[index].counts;
-      state.champions[index].win_rate =
-        Math.round(
-          (data.champions[index].wins / data.champions[index].counts) * 100,
-        ) + '%';
-      state.champions[index].kda =
-        Math.round(
-          ((data.champions[index].kills + data.champions[index].assists) /
-            data.champions[index].deaths) *
-            100,
-        ) / 100;
-    }
-  });
-  return state;
+  return formattedData;
 };

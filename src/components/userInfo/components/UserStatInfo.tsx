@@ -69,8 +69,14 @@ interface propsType {
   kills_avg: number;
   deaths_avg: number;
   assists_avg: number;
-  prefer_position: string[];
-  position_rate: number[];
+  prefer_position: {
+    TOP?: number;
+    JG?: number;
+    MID?: number;
+    ADC?: number;
+    SUP?: number;
+    '-': number;
+  };
 }
 export const UserStatInfo = (props: propsType) => {
   // const [userStat, setUserStat] = useState<userStat>(
@@ -126,8 +132,10 @@ export const UserStatInfo = (props: propsType) => {
       </UserInfoText>
       <UserInfoText>
         <UserInfoTitle>선호 포지션</UserInfoTitle>
-        <UserInfoContent>{props?.prefer_position}</UserInfoContent>
-        <UserInfoSubTitle>{props?.position_rate}%</UserInfoSubTitle>
+        <UserInfoContent>{Object.keys(props?.prefer_position)}</UserInfoContent>
+        <UserInfoSubTitle>
+          {Object.values(props?.prefer_position)}%
+        </UserInfoSubTitle>
       </UserInfoText>
     </UserStatInfoContainer>
   );
