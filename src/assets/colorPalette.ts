@@ -15,6 +15,8 @@ export const GG_GREEN_LIVE = '#61D125';
 export const GG_PLATINUM = '#00BBA3';
 export const GG_TURQ_KDA = '#3595A1';
 
+export const GG_EMPTY_ITEM_BOX = '#292929';
+
 //Landing
 export const GG_SEARCH_SHADOW = '#36363b40';
 //MatchCard

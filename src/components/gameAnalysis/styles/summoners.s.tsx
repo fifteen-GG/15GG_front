@@ -80,7 +80,7 @@ export const SummonerName = styled.div`
 `;
 export const SummonerTier = styled.div`
   display: flex;
-  background-color: '${Palette.GG_PLATINUM}';
+  background-color: ${Palette.GG_PLATINUM};
   height: 10px;
   width: 15px;
   color: ${Palette.GG_WHITE_100};

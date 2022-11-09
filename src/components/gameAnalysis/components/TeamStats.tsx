@@ -7,11 +7,9 @@ import {
   Stat as TeamKills,
   StatValue,
   Icon,
-  LoadAlert,
 } from '../styles/teamStats.s';
 import type { teamAvgData } from '../../types/matchDetails';
 import { pngType } from '../styles/teamStats.s';
-import { TeamsRow } from '../../landing/styles/livegame.s';
 interface propsType {
   redTeam: teamAvgData;
   blueTeam: teamAvgData;
@@ -36,7 +34,6 @@ const TeamStats = (props: propsType) => {
       {teamStatsData.map(data => {
         return (
           <TeamStatWrapper key={data.team}>
-            {data.avgStat ? null : <LoadAlert>Loading..</LoadAlert>}
             <TeamGold team={data.team}>
               <Icon team={('gold' + data.team) as pngType} />
               <StatValue>
