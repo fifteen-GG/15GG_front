@@ -146,7 +146,7 @@ export const ItemImg = styled.img`
   width: 15px;
   height: 15px;
   border-radius: 2px;
-  background: ${Palette.GG_BLACK_100};
+  background: ${Palette.GG_EMPTY_ITEM_BOX};
   onerror: none;
   margin-left: 2px;
   &.item0 {

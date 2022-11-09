@@ -18,19 +18,9 @@ import {
   ItemImg,
   ItemWrapper,
 } from '../styles/summoners.s';
-export interface summonerProps {
-  champion: string;
-  championSpell1: string;
-  championSpell2: string;
-  perks: number;
-  perkStyles: number;
-  items: string[];
-  kills: number;
-  deaths: number;
-  assists: number;
-}
+import type { summonerDetail } from '../../types/matchDetails';
 export interface propsType {
-  teamInfo: summonerProps;
+  summonerInfo: summonerDetail;
 }
 const Summoner = (props: propsType) => {
   return (
@@ -39,21 +29,21 @@ const Summoner = (props: propsType) => {
         <ChampionImg
           src={
             process.env.REACT_APP_DDRAGON_API_ROOT +
-            `/champion/${props.teamInfo.champion}.png`
+            `/champion/${props.summonerInfo.championName}.png`
           }
         />
-        <ChampionLevel>16</ChampionLevel>
+        <ChampionLevel>{props.summonerInfo.champLevel}</ChampionLevel>
         <SpellWrapper>
           <SpellImg
             src={
               process.env.REACT_APP_DDRAGON_API_ROOT +
-              `/spell/${props.teamInfo.championSpell1}.png`
+              `/spell/${props.summonerInfo.spells.spell1}.png`
             }
           />
           <SpellImg
             src={
               process.env.REACT_APP_DDRAGON_API_ROOT +
-              `/spell/${props.teamInfo.championSpell2}.png`
+              `/spell/${props.summonerInfo.spells.spell2}.png`
             }
           />
         </SpellWrapper>
@@ -61,32 +51,40 @@ const Summoner = (props: propsType) => {
           <PerkImg
             src={
               process.env.REACT_APP_OPGG_API_ROOT +
-              `/lol/perk/${props.teamInfo.perks}.png`
+              `/lol/perk/${props.summonerInfo.perks.perk}.png`
             }
           />
           <PerkImg
             src={
               process.env.REACT_APP_OPGG_API_ROOT +
-              `/lol/perkStyle/${props.teamInfo.perkStyles}.png`
+              `/lol/perkStyle/${props.summonerInfo.perks.perkStyle}.png`
             }
           />
         </PerksWrapper>
         <SummonerInfoWrapper>
           <SummonerInfo>
-            <SummonerName>정잭영</SummonerName>
-            <SummonerTier>P4</SummonerTier>
+            <SummonerName>{props.summonerInfo.summonerName}</SummonerName>
+            {props.summonerInfo.rank === '' ? null : (
+              <SummonerTier>{props.summonerInfo.rank}</SummonerTier>
+            )}
           </SummonerInfo>
           <KDAWrapper>
             <KDADetails>
-              {`${props.teamInfo.kills}  /  ${props.teamInfo.deaths}  /  ${props.teamInfo.assists} `}
+              {`${props.summonerInfo.kills}  /  ${props.summonerInfo.deaths}  /  ${props.summonerInfo.assists} `}
             </KDADetails>
-            <KDA>KDA 3.3</KDA>
+            <KDA>
+              KDA{' '}
+              {(
+                (props.summonerInfo.kills + props.summonerInfo.assists) /
+                props.summonerInfo.deaths
+              ).toFixed(1)}
+            </KDA>
           </KDAWrapper>
         </SummonerInfoWrapper>
       </SummonerInterface>
       <ItemInterface>
         <ItemWrapper>
-          {props.teamInfo.items.map((item, index) => {
+          {props.summonerInfo.items.map((item: number, index) => {
             return (
               <ItemImg
                 className={'item' + index}
@@ -96,7 +94,12 @@ const Summoner = (props: propsType) => {
             );
           })}
         </ItemWrapper>
-        40,480 · 20K
+        {props.summonerInfo.totalDamageDealtToChampions > 1000
+          ? `${(props.summonerInfo.totalDamageDealtToChampions / 1000)
+              .toString()
+              .replace('.', ',')}`
+          : props.summonerInfo.totalDamageDealtToChampions}{' '}
+        · {parseInt((props.summonerInfo.goldEarned / 1000).toString())}K
       </ItemInterface>
     </SummonerContainer>
   );
