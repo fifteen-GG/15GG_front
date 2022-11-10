@@ -52,7 +52,7 @@ export const GameAnalysis = () => {
     setIsLoading(true);
     try {
       const data = await axios.get(
-        `${process.env.REACT_APP_GG_API_ROOT}/riot/match/detail/${state.matchID}`,
+        `${process.env.REACT_APP_GG_API_ROOT}/riot/match/detail/${matchID}`,
       );
       if (data.status === 200) {
         setGameData(data.data);

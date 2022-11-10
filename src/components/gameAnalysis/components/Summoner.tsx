@@ -88,7 +88,9 @@ const Summoner = (props: propsType) => {
             return (
               <ItemImg
                 className={'item' + index}
-                src={`${process.env.REACT_APP_DDRAGON_API_ROOT}/item/${item}.png`}
+                src={
+                  process.env.REACT_APP_DDRAGON_API_ROOT + `/item/${item}.png`
+                }
                 key={index}
               />
             );
