@@ -23,8 +23,7 @@ import {
   UserInfoContent,
   UserInfoSubTitle,
 } from '../styles/userStatInfo.s';
-import { SummonerInfoType } from '../../types/summonerInfo';
-import { formatStatInfo } from '../userInfoFunc';
+
 ChartJS.register(
   ArcElement,
   RadialLinearScale,
@@ -60,8 +59,8 @@ const data = {
     },
   ],
 };
-// for props
-export interface userStat {
+
+interface propsType {
   userName: string;
   win_rate: number;
   win: number;
@@ -70,16 +69,19 @@ export interface userStat {
   kills_avg: number;
   deaths_avg: number;
   assists_avg: number;
-  prefer_position: string[];
-  position_rate: number[];
-}
-interface propsType {
-  summonerInfo: SummonerInfoType;
+  prefer_position: {
+    TOP?: number;
+    JG?: number;
+    MID?: number;
+    ADC?: number;
+    SUP?: number;
+    '-': number;
+  };
 }
 export const UserStatInfo = (props: propsType) => {
-  const [userStat, setUserStat] = useState<userStat>(
-    formatStatInfo(props.summonerInfo),
-  );
+  // const [userStat, setUserStat] = useState<userStat>(
+  //   formatStatInfo(props.summonerInfo),
+  // );
   const chartRef = useRef<ChartJS>(null);
   const [chartData, setChartData] = useState<ChartData<'doughnut'>>({
     datasets: [],
@@ -94,8 +96,8 @@ export const UserStatInfo = (props: propsType) => {
       ...data, //
       datasets: data.datasets.map(dataset => ({
         ...dataset,
-        label: userStat.userName,
-        data: [userStat?.win_rate, 100 - userStat?.win_rate],
+        label: props?.userName,
+        data: [props?.win_rate, 100 - props?.win_rate],
       })),
     };
     setChartData(chartData);
@@ -105,7 +107,7 @@ export const UserStatInfo = (props: propsType) => {
     <UserStatInfoContainer>
       <UserWinRateWrapper>
         <GraphImg>
-          <GraphText>{userStat?.win_rate}%</GraphText>
+          <GraphText>{props?.win_rate}%</GraphText>
           <Chart
             ref={chartRef}
             type="doughnut"
@@ -115,23 +117,25 @@ export const UserStatInfo = (props: propsType) => {
         </GraphImg>
         <UserInfoText>
           <UserInfoTitle>승률</UserInfoTitle>
-          <UserInfoContent>{userStat?.win_rate}%</UserInfoContent>
+          <UserInfoContent>{props?.win_rate}%</UserInfoContent>
           <UserInfoSubTitle>
-            {userStat?.win}승 {userStat?.losses}패
+            {props?.win}승 {props?.losses}패
           </UserInfoSubTitle>
         </UserInfoText>
       </UserWinRateWrapper>
       <UserInfoText>
         <UserInfoTitle>KDA</UserInfoTitle>
-        <UserInfoContent>{userStat?.kda_avg}</UserInfoContent>
+        <UserInfoContent>{props?.kda_avg}</UserInfoContent>
         <UserInfoSubTitle>
-          {userStat?.kills_avg}/{userStat?.deaths_avg}/{userStat.assists_avg}
+          {props?.kills_avg}/{props?.deaths_avg}/{props.assists_avg}
         </UserInfoSubTitle>
       </UserInfoText>
       <UserInfoText>
         <UserInfoTitle>선호 포지션</UserInfoTitle>
-        <UserInfoContent>{userStat?.prefer_position}</UserInfoContent>
-        <UserInfoSubTitle>{userStat?.position_rate}%</UserInfoSubTitle>
+        <UserInfoContent>{Object.keys(props?.prefer_position)}</UserInfoContent>
+        <UserInfoSubTitle>
+          {Object.values(props?.prefer_position)}%
+        </UserInfoSubTitle>
       </UserInfoText>
     </UserStatInfoContainer>
   );

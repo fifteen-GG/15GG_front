@@ -11,7 +11,7 @@ import {
 } from '../styles/datacode.s';
 
 export const Datacode = () => {
-  const [code, setCode] = useState<number[]>([0, 0, 0, 0, 0, 0]);
+  const [code, setCode] = useState<string[]>(['0', '0', '0', '0', '0', '0']);
   const [codeExpired, setCodeExpired] = useState<number>(0);
   const [refresh, setRefresh] = useState<number>(0);
   //useTimer library
@@ -72,7 +72,7 @@ export const Datacode = () => {
   return (
     <DataCodeContainer>
       <DataCodeWrapper>
-        {code.map((value: number, index: number) => {
+        {code.map((value: string, index: number) => {
           return <SingleDataCode key={index}>{value}</SingleDataCode>;
         })}
       </DataCodeWrapper>

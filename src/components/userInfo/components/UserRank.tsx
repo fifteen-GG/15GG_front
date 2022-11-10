@@ -1,4 +1,3 @@
-import { RankData } from '../../types/summonerInfo';
 import unrankedImg from '../../../assets/gg_tier_unranked_4x.png';
 import {
   UserRankContainer,
@@ -11,54 +10,38 @@ import {
   RankWinrate,
   RankImg,
 } from '../styles/userRank.s';
-import { SummonerInfoType } from '../../types/summonerInfo';
-import { formatRankInfo } from '../userInfoFunc';
-import { useState } from 'react';
-export interface userRank {
-  name: string;
-  lp: number;
-  win_rate: number;
-  win: number;
-  losses: number;
-}
+import { userRank } from '../../types/summonerInfo';
+// import { formatRankInfo } from '../userInfoFunc';
+// import { useState } from 'react';
+
 interface propsType {
-  summonerInfo: SummonerInfoType;
+  userName: string;
+  soloRank: userRank;
+  flexRank: userRank;
 }
-// export interface userRank {
-//   name: string;
-//   lp: number;
-//   win_rate: number;
-//   win: number;
-//   losses: number;
-// }
+
 const UserRank = (props: propsType) => {
-  const [userSoloRank, setSoloUserRank] = useState<userRank>(
-    formatRankInfo(props.summonerInfo, 'solo'),
-  );
-  const [userFlexRank, setFlexUserRank] = useState<userRank>(
-    formatRankInfo(props.summonerInfo, 'flex'),
-  );
   return (
     <UserRankContainer>
       <RankWrapper className="Solo">
         <RankText>
           <RankSubTitle>솔로랭크</RankSubTitle>
-          <RankName>{userSoloRank.name}</RankName>
+          <RankName>{props.soloRank?.name}</RankName>
           <RankContent>
-            <RankLp>{userSoloRank.lp}LP</RankLp>
+            <RankLp>{props.soloRank?.lp}LP</RankLp>
             <RankWinrate>
-              {userSoloRank.win_rate}% ({userSoloRank.win}승{' '}
-              {userSoloRank.losses}패)
+              {props.soloRank?.win_rate}% ({props.soloRank?.win}승{' '}
+              {props.soloRank?.losses}패)
             </RankWinrate>
           </RankContent>
         </RankText>
-        {!props.summonerInfo.solo ? (
+        {props.soloRank?.name === 'Unranked' ? (
           <RankImg src={unrankedImg} />
         ) : (
           <RankImg
             src={
               process.env.REACT_APP_OPGG_API_ROOT +
-              `/medals_new/${props.summonerInfo.solo?.tier.toLowerCase()}.png`
+              `/medals_new/${props.soloRank?.tier.toLowerCase()}.png`
             }
           />
         )}
@@ -66,22 +49,22 @@ const UserRank = (props: propsType) => {
       <RankWrapper className="Flex">
         <RankText>
           <RankSubTitle>자유랭크</RankSubTitle>
-          <RankName>{userFlexRank.name}</RankName>
+          <RankName>{props.flexRank?.name}</RankName>
           <RankContent>
-            <RankLp>{userSoloRank.lp}LP</RankLp>
+            <RankLp>{props.flexRank?.lp}LP</RankLp>
             <RankWinrate>
-              {userSoloRank.win_rate}% ({userSoloRank.win}승{' '}
-              {userSoloRank.losses}패)
+              {props.flexRank?.win_rate}% ({props.flexRank?.win}승{' '}
+              {props.flexRank?.losses}패)
             </RankWinrate>
           </RankContent>
         </RankText>
-        {!props.summonerInfo.flex ? (
+        {props.flexRank?.name === 'Unranked' ? (
           <RankImg src={unrankedImg} />
         ) : (
           <RankImg
             src={
               process.env.REACT_APP_OPGG_API_ROOT +
-              `/medals_new/${props.summonerInfo.flex?.tier.toLowerCase()}.png`
+              `/medals_new/${props.flexRank?.tier.toLowerCase()}.png`
             }
           />
         )}

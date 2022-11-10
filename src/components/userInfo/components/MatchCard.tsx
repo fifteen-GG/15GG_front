@@ -72,12 +72,10 @@ const MatchCard = (props: propsType) => {
   return (
     <MatchCardContainer
       onClick={() =>
-        navigate(`/live`, {
+        navigate(`/live?match%ID=${props.matchInfo.match_id}`, {
           state: {
             status: 'incomplete',
-            // props.matchInfo.status,
             mode: props.matchInfo.queue_mode,
-            matchID: props.matchInfo.match_id,
             date: props.matchInfo.created_at,
           },
         })
