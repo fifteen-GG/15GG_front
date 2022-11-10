@@ -3,7 +3,9 @@ import {
   UserIcon,
   UserInfoWrapper,
   UserName,
+  UserLevelWrapper,
   Level,
+  PageReLoad,
 } from '../styles/userId.s';
 interface propsType {
   profileIcon: string;
@@ -21,7 +23,18 @@ const UserId = (props: propsType) => {
       />
       <UserInfoWrapper>
         <UserName>{props.userName}</UserName>
-        <Level>{'LV ' + props.level}</Level>
+        <UserLevelWrapper>
+          <Level>
+            {'LV ' + props.level} &nbsp;{'·'}&nbsp;
+          </Level>
+          <PageReLoad
+            onClick={() =>
+              window.location.replace(`/user?ID=${props.userName}`)
+            }
+          >
+            갱신하기
+          </PageReLoad>
+        </UserLevelWrapper>
       </UserInfoWrapper>
     </UserIdContainer>
   );

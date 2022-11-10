@@ -23,9 +23,18 @@ export const UserName = styled.div`
   font-size: 28px;
   color: ${Palette.GG_WHITE_100};
 `;
-export const Level = styled.div`
+export const UserLevelWrapper = styled.div`
+  display: flex;
   font-weight: 500;
   font-size: 14px;
   margin: 0 0 11px 0;
   color: ${Palette.GG_GREY_70};
+`;
+export const Level = styled.div``;
+export const PageReLoad = styled.div`
+  text-decoration: underline;
+  cursor: pointer;
+  :hover {
+    color: ${Palette.GG_WHITE_100};
+  }
 `;
