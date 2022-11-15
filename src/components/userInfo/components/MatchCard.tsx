@@ -24,6 +24,7 @@ import {
   Ward,
   ItemWrapper,
   ItemImg,
+  ItemBox,
 } from '../styles/matchCard.s';
 enum queue_mode {
   solo = '5v5 Ranked Solo games',
@@ -42,11 +43,6 @@ interface propsType {
 }
 const MatchCard = (props: propsType) => {
   const navigate = useNavigate();
-  // const routegameAnalysis = () => {
-  //   navigate(`/live?match=${props.matchInfo.match_id}`, {
-  //     state: props.matchInfo.status,
-  //   });
-  // };
   const formatMatchInfo = (queMode: string) => {
     if (queMode === queue_mode.solo) {
       return '솔로랭크';
@@ -55,9 +51,9 @@ const MatchCard = (props: propsType) => {
     } else if (queMode === queue_mode.blind) {
       return '일반게임';
     } else if (queMode === queue_mode.aram) {
-      return '칼바람나락';
+      return '무작위 총력전';
     } else if (queMode === queue_mode.urf) {
-      return '우루프모드';
+      return 'U.R.F.';
     } else {
       return '사용자설정';
     }
@@ -151,8 +147,10 @@ const MatchCard = (props: propsType) => {
             </CSNWardWrapper>
           </MatchCardContent>
           <ItemWrapper>
-            {props.matchInfo.items.map((item: string, index: number) => {
-              return (
+            {props.matchInfo.items.map((item: number, index: number) => {
+              return item === 0 ? (
+                <ItemBox />
+              ) : (
                 <ItemImg
                   className={'item' + index}
                   src={

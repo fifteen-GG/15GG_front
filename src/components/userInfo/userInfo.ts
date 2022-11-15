@@ -14,7 +14,7 @@ export const rankFormat = (rank: string, tier: string) => {
   return Rank;
 };
 
-export const totalFormat = (data: SummonerInitialType) => {
+export const userInfoFormat = (data: SummonerInitialType) => {
   let formattedData: SummonerInfoType = {
     ...data,
     soloRank: {
