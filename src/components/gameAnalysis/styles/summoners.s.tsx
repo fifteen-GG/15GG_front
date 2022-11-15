@@ -81,14 +81,16 @@ export const SummonerName = styled.div`
 export const SummonerTier = styled.div`
   display: flex;
   background-color: ${(props: { rank: string }) =>
-    props.rank.slice(1) === 'P'
+    props.rank.slice(0, 1) === 'D'
+      ? Palette.GG_DIAMOND
+      : props.rank.slice(0, 1) === 'P'
       ? Palette.GG_PLATINUM
-      : props.rank.slice(1) === 'G'
-      ? Palette.GG_PURPLE
-      : props.rank.slice(1) === 'S'
-      ? Palette.GG_PURPLE
-      : props.rank.slice(1) === 'B'
-      ? Palette.GG_PURPLE
+      : props.rank.slice(0, 1) === 'G'
+      ? Palette.GG_GOLD
+      : props.rank.slice(0, 1) === 'S'
+      ? Palette.GG_SILVER
+      : props.rank.slice(0, 1) === 'B'
+      ? Palette.GG_BRONZE
       : Palette.GG_PURPLE};
   height: 10px;
   width: 15px;
@@ -148,6 +150,5 @@ export const ItemBox = styled.div`
   background: ${Palette.GG_BLACK_100};
   margin-right: 2px;
   border-radius: 2px;
-  border-
   order: 1;
 `;

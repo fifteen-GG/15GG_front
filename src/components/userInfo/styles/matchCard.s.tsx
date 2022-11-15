@@ -152,7 +152,7 @@ export const ItemImg = styled.img`
     order: 5;
   }
   &.item5 {
-    order: 6;
+    order: 5;
   }
   &.item6 {
     border-radius: 12px;

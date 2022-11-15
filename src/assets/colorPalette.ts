@@ -12,7 +12,6 @@ export const GG_BLACK_50_UNSELECTED = '#4C4C4C';
 
 export const GG_PURPLE = '#4D4AE2';
 export const GG_GREEN_LIVE = '#61D125';
-export const GG_PLATINUM = '#00BBA3';
 export const GG_TURQ_KDA = '#3595A1';
 
 export const GG_EMPTY_ITEM_BOX = '#292929';
@@ -27,6 +26,14 @@ export const GG_RADAR = '#373737';
 export const GG_RADARDATA = '#2f67a1';
 export const GG_RADARDATABGC = '#3B444E40';
 export const GG_RADARAVGBGC = '#37373740';
+
+//Rank
+export const GG_DIAMOND = '#2a64a5';
+export const GG_PLATINUM = '#00BBA3';
+export const GG_GOLD = '#df9f37';
+export const GG_SILVER = '#788491';
+export const GG_BRONZE = '#788491';
+export const GG_IRON = '#788491';
 
 //Doughnut
 export const GG_DOUGHNUT = '#5d7fde';
