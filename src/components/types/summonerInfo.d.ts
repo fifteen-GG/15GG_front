@@ -1,7 +1,9 @@
 export interface SummonerInitialType {
+  id: string;
+  puuid: string;
   name: string;
   level: number;
-  profileIconId: string;
+  profile_icon_id: string;
   solo: RankData;
   flex: RankData;
   kda_avg: number;
@@ -23,7 +25,7 @@ export interface SummonerInitialType {
 export interface SummonerInfoType {
   name: string;
   level: number;
-  profileIconId: string;
+  profile_icon_id: string;
   soloRank: userRank;
   flexRank: userRank;
   kda_avg: number;
@@ -43,7 +45,7 @@ export interface SummonerInfoType {
 }
 
 export interface playData {
-  championName: string;
+  champion_name: string;
   counts: number;
   kills: number;
   deaths: number;
@@ -54,8 +56,7 @@ export interface RankData {
   tier: string;
   rank: any;
   lp: number;
-  win_rate: number;
-  win: number;
+  wins: number;
   losses: number;
 }
 export interface userRank {
@@ -63,24 +64,24 @@ export interface userRank {
   tier: string;
   lp: number;
   win_rate: number;
-  win: number;
+  wins: number;
   losses: number;
 }
 export type userChampion = [
   {
-    championName: string;
+    champion_name: string;
     counts: number;
     win_rate: string | number;
     kda: string | number;
   },
   {
-    championName: string;
+    champion_name: string;
     counts: number;
     win_rate: string | number;
     kda: string | number;
   },
   {
-    championName: string;
+    champion_name: string;
     counts: number;
     win_rate: string | number;
     kda: string | number;
@@ -88,7 +89,7 @@ export type userChampion = [
 ];
 export type preferChampion = [
   {
-    championName: string;
+    champion_name: string;
     counts: number;
     kills: number;
     deaths: number;
@@ -96,7 +97,7 @@ export type preferChampion = [
     wins: number;
   },
   {
-    championName: string;
+    champion_name: string;
     counts: number;
     kills: number;
     deaths: number;
@@ -104,7 +105,7 @@ export type preferChampion = [
     wins: number;
   },
   {
-    championName: string;
+    champion_name: string;
     counts: number;
     kills: number;
     deaths: number;

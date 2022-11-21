@@ -84,7 +84,7 @@ const MatchCard = (props: propsType) => {
         <MatchMainInfo>
           <MatchResult>{props.matchInfo.win ? '승리' : '패배'}</MatchResult>
           <MatchDate>
-            {props.matchInfo.created_at.replaceAll('-', '/').slice(2)}
+            {props.matchInfo.created_at.replaceAll('-', '/').slice(2, 10)}
           </MatchDate>
           <MatchMode>{formatMatchInfo(props.matchInfo.queue_mode)}</MatchMode>
           <MatchDuration>
@@ -125,7 +125,7 @@ const MatchCard = (props: propsType) => {
               <Perk
                 src={
                   process.env.REACT_APP_OPGG_API_ROOT +
-                  `/lol/perkStyle/${props.matchInfo.perks.perkStyle}.png`
+                  `/lol/perkStyle/${props.matchInfo.perks.perk_style}.png`
                 }
                 style={{ borderRadius: '10px' }}
               />

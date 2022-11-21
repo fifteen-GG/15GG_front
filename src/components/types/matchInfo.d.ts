@@ -20,7 +20,7 @@ export interface MatchInfoType {
     spell2: string;
   };
   perks: {
-    perk: number;
-    perkStyle: number;
+    perk: string;
+    perk_style: string;
   };
 }

@@ -12,11 +12,18 @@ export const SummonerInterface = styled.div`
   height: 22px;
   margin-top: 7px;
 `;
+export const ChampionBox = styled.div`
+  height: 22px;
+  width: 22px;
+  position: absolute;
+  background-color: ${Palette.GG_BLACK_100};
+  border-radius: 2px;
+`;
 export const ChampionImg = styled.img`
   height: 22px;
   width: 22px;
   position: absolute;
-  background-color: ${Palette.GG_WHITE_100};
+  background-color: ${Palette.GG_BLACK_100};
   border-radius: 2px;
 `;
 export const ChampionLevel = styled.div`
@@ -34,32 +41,6 @@ export const ChampionLevel = styled.div`
   color: ${Palette.GG_WHITE_100};
   border-radius: 2px;
 `;
-export const SpellWrapper = styled.div`
-  display: flex;
-  height: 22px;
-  width: 10px;
-  margin-left: 24px;
-  flex-direction: column;
-  justify-content: space-between;
-  border-radius: 2px;
-`;
-
-export const PerksWrapper = styled.div`
-  display: flex;
-  height: 22px;
-  width: 10px;
-  margin-left: 2px;
-  margin-right: 3px;
-  flex-direction: column;
-  justify-content: space-between;
-  border-radius: 2px;
-`;
-
-export const ImgBox = styled.img`
-  height: 10px;
-  width: 10px;
-  border-radius: 2px;
-`;
 
 export const SummonerInfoWrapper = styled.div`
   display: flex;
@@ -70,6 +51,7 @@ export const SummonerInfoWrapper = styled.div`
 export const SummonerInfo = styled.div`
   display: flex;
   height: 11px;
+  margin-left: 24px;
   align-items: center;
 `;
 export const SummonerName = styled.div`
@@ -78,34 +60,10 @@ export const SummonerName = styled.div`
   font-weight: bold;
   margin-right: 2px;
 `;
-export const SummonerTier = styled.div`
-  display: flex;
-  background-color: ${(props: { rank: string }) =>
-    props.rank.slice(0, 1) === 'D'
-      ? Palette.GG_DIAMOND
-      : props.rank.slice(0, 1) === 'P'
-      ? Palette.GG_PLATINUM
-      : props.rank.slice(0, 1) === 'G'
-      ? Palette.GG_GOLD
-      : props.rank.slice(0, 1) === 'S'
-      ? Palette.GG_SILVER
-      : props.rank.slice(0, 1) === 'B'
-      ? Palette.GG_BRONZE
-      : props.rank.slice(0, 1) === 'I'
-      ? Palette.GG_SILVER
-      : Palette.GG_PURPLE};
-  height: 10px;
-  width: 15px;
-  color: ${Palette.GG_WHITE_100};
-  font-size: 6px;
-  border-radius: 2px;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-`;
 export const KDAWrapper = styled.div`
   display: flex;
   height: 10px;
+  margin-left: 24px;
 `;
 export const KDADetails = styled.div`
   display: flex;
@@ -128,29 +86,67 @@ export const ItemInterface = styled.div`
   width: 117px;
   height: 26px;
   margin-top: 6px;
-  align-items: flex-end;
+  align-items: flex-start;
+`;
+export const GoldWrapper = styled.div`
+  align-self: flex-end;
   font-size: 10px;
   font-weight: bold;
   color: ${Palette.GG_WHITE_100};
+  margin-left: auto;
 `;
+
 export const ItemWrapper = styled.div`
+  width: 117px;
+  height: 15px;
   display: flex;
+  &.item {
+    position: absolute;
+    align-items: flex-start
+    z-index: 2;
+  }
 `;
 export const ItemImg = styled.img`
+  z-index: 2;
   height: 15px;
   width: 15px;
+  margin-right: 2px;
+  border-radius: 2px;
+  &.item3340 {
+    position: absolute;
+    right: 0px;
+    border-radius: 7px;
+  }
+  &.item3364 {
+    position: absolute;
+    right: 0px;
+    border-radius: 7px;
+  }
+  &.item3363 {
+    position: absolute;
+    right: 0px;
+    border-radius: 7px;
+  }
+  &.item3513 {
+    position: absolute;
+    right: 0px;
+    border-radius: 7px;
+  }
+  &.item2052 {
+    position: absolute;
+    right: 0px;
+    border-radius: 7px;
+  }
+`;
+export const ItemBox = styled.div`
+  z-index: 1;
+  height: 15px;
+  width: 15px;
+  background: ${Palette.GG_BLACK_100};
   margin-right: 2px;
   border-radius: 2px;
   &.item6 {
     border-radius: 7px;
     order: 2;
   }
-`;
-export const ItemBox = styled.div`
-  height: 15px;
-  width: 15px;
-  background: ${Palette.GG_BLACK_100};
-  margin-right: 2px;
-  border-radius: 2px;
-  order: 1;
 `;

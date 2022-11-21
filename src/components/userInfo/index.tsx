@@ -36,19 +36,19 @@ export const UserInfo = () => {
     },
     champions: [
       {
-        championName: '',
+        champion_name: '',
         counts: 0,
         win_rate: 0,
         kda: 0,
       },
       {
-        championName: '',
+        champion_name: '',
         counts: 0,
         win_rate: 0,
         kda: 0,
       },
       {
-        championName: '',
+        champion_name: '',
         counts: 0,
         win_rate: 0,
         kda: 0,
@@ -62,9 +62,15 @@ export const UserInfo = () => {
   const params = new URLSearchParams(window.location.search);
   const id = params.get('ID');
   useEffect(() => {
-    getUserData();
-    getMatchData();
+    // getMatchData();
+    // getUserData();
+    init();
   }, []);
+  const init = async () => {
+    await getMatchData();
+    getUserData();
+  };
+
   const getUserData = async () => {
     setIsLoading(true);
     try {
@@ -100,7 +106,7 @@ export const UserInfo = () => {
       ) : (
         <>
           <UserId
-            profileIcon={summonerInfo.profileIconId}
+            profileIcon={summonerInfo.profile_icon_id}
             userName={summonerInfo.name}
             level={summonerInfo.level}
           />
@@ -112,7 +118,7 @@ export const UserInfo = () => {
           <UserStatInfo
             userName={summonerInfo.name}
             win_rate={summonerInfo.soloRank?.win_rate}
-            win={summonerInfo.soloRank?.win}
+            wins={summonerInfo.soloRank?.wins}
             losses={summonerInfo.soloRank?.losses}
             kda_avg={summonerInfo.kda_avg}
             kills_avg={summonerInfo.kills_avg}

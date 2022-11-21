@@ -27,22 +27,22 @@ ChartJS.register(
 );
 
 const labels = [
-  '0',
+  ' ',
+  ' ',
+  ' ',
   '1',
+  ' ',
+  ' ',
+  ' ',
+  ' ',
+  ' ',
+  ' ',
+  ' ',
   '2',
-  '3',
-  '4',
-  '5',
-  '6',
-  '7',
-  '8',
-  '9',
-  '10',
-  '11',
-  '12',
-  '13',
-  '14',
-  '15',
+  ' ',
+  ' ',
+  ' ',
+  ' ',
 ];
 
 const options = {
@@ -84,7 +84,7 @@ export const data = {
         above: `${Palette.GG_TIMELINE_RED}`,
         below: `${Palette.GG_TIMELINE_BLUE}`,
       },
-      data: [50, 40, 30, -10, 40, -50, 10, 20, 10, 50, 50, 50, 50, 40, 30, 20],
+      data: [0],
       // borderColor: createGradient(chart.ctx, chart.chartArea),
       borderColor: 'red',
       backgroundColor: `${Palette.GG_TIMELINE_BLUE}`,
@@ -132,23 +132,40 @@ const createGradient = (
 
   return gradient;
 };
-
-const TimelineGraph = () => {
+interface propsType {
+  winningRate: number[];
+  time: number;
+}
+const TimelineGraph = (props: propsType) => {
   const chartRef = useRef<ChartJS>(null);
   const [chartData, setChartData] = useState<ChartData<'line'>>({
     datasets: [],
   });
-
+  // const [winningRate, setWinningRate] = useState<number[]>([]);
+  // console.log(Math.round(50 - 100 * props.winRate));
+  const [cntLabel, setCntLabel] = useState<string[]>(labels);
+  const [timeCount, setTimeCount] = useState<number>(3);
+  const [count, setCount] = useState<number>(0);
   useEffect(() => {
+    console.log(props.winningRate);
+    setCount(data => data + 1);
+    console.log(Math.floor(props.time / 60));
+    if (count >= 15) {
+      if (Math.floor((props.time + 8) / 60) === timeCount) {
+        setCntLabel([...cntLabel, timeCount as unknown as string]);
+        setTimeCount(timeCount + 1);
+      } else setCntLabel([...cntLabel, '' as unknown as string]);
+    }
     const chart = chartRef.current;
-
     if (!chart) {
       return;
     }
     const chartData = {
       ...data,
+      labels: cntLabel,
       datasets: data.datasets.map(dataset => ({
         ...dataset,
+        data: props.winningRate,
         borderColor: createGradient(chart.ctx, chart.chartArea, 'line'),
         fill: {
           target: 'origin',
@@ -157,9 +174,9 @@ const TimelineGraph = () => {
         },
       })),
     };
-
+    console.log(count);
     setChartData(chartData);
-  }, []);
+  }, [props.winningRate, setCount]);
 
   return (
     <TimelineGraphContainer>

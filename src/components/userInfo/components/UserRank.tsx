@@ -30,7 +30,7 @@ const UserRank = (props: propsType) => {
           <RankContent>
             <RankLp>{props.soloRank?.lp}LP</RankLp>
             <RankWinrate>
-              {props.soloRank?.win_rate}% ({props.soloRank?.win}승{' '}
+              {props.soloRank?.win_rate}% ({props.soloRank?.wins}승{' '}
               {props.soloRank?.losses}패)
             </RankWinrate>
           </RankContent>
@@ -53,7 +53,7 @@ const UserRank = (props: propsType) => {
           <RankContent>
             <RankLp>{props.flexRank?.lp}LP</RankLp>
             <RankWinrate>
-              {props.flexRank?.win_rate}% ({props.flexRank?.win}승{' '}
+              {props.flexRank?.win_rate}% ({props.flexRank?.wins}승{' '}
               {props.flexRank?.losses}패)
             </RankWinrate>
           </RankContent>

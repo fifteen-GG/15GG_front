@@ -35,7 +35,7 @@ const PreferChampion = (props: propsType) => {
               props.champions?.map((champion, index: number) => {
                 return (
                   <ChampionInfoWrapper key={index}>
-                    <ChampionImg src={props.champions[index]?.championName} />
+                    <ChampionImg src={props.champions[index]?.champion_name} />
                     <ChampionInfoText>
                       <ChampionInfoTitle>
                         {props.champions[index]?.counts}
