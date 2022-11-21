@@ -22,7 +22,7 @@ export const userInfoFormat = (data: SummonerInitialType) => {
       tier: '0',
       lp: 0,
       win_rate: 0,
-      win: 0,
+      wins: 0,
       losses: 0,
     },
     flexRank: {
@@ -30,7 +30,7 @@ export const userInfoFormat = (data: SummonerInitialType) => {
       tier: '0',
       lp: 0,
       win_rate: 0,
-      win: 0,
+      wins: 0,
       losses: 0,
     },
     kda_avg: 0,
@@ -42,19 +42,19 @@ export const userInfoFormat = (data: SummonerInitialType) => {
     },
     champions: [
       {
-        championName: '0',
+        champion_name: '0',
         counts: 0,
         win_rate: '결과없음',
         kda: '0.00',
       },
       {
-        championName: '0',
+        champion_name: '0',
         counts: 0,
         win_rate: '결과없음',
         kda: '0.00',
       },
       {
-        championName: '0',
+        champion_name: '0',
         counts: 0,
         win_rate: '결과없음',
         kda: '0.00',
@@ -64,6 +64,9 @@ export const userInfoFormat = (data: SummonerInitialType) => {
   if (data.solo) {
     formattedData.soloRank = {
       ...data.solo,
+      win_rate: Math.round(
+        (data.solo.wins / (data.solo.losses + data.solo.wins)) * 100,
+      ),
       name:
         tierFormat(data.solo.tier) + rankFormat(data.solo.rank, data.solo.tier),
     };
@@ -77,6 +80,9 @@ export const userInfoFormat = (data: SummonerInitialType) => {
   if (data.flex) {
     formattedData.flexRank = {
       ...data.flex,
+      win_rate: Math.round(
+        (data.flex.wins / (data.flex.losses + data.flex.wins)) * 100,
+      ),
       name:
         tierFormat(data.flex.tier) + rankFormat(data.flex.rank, data.flex.tier),
     };
@@ -88,9 +94,9 @@ export const userInfoFormat = (data: SummonerInitialType) => {
   if (data.champions) {
     formattedData.champions.map((champion, index: number) => {
       if (data.champions[index]) {
-        formattedData.champions[index].championName =
+        formattedData.champions[index].champion_name =
           process.env.REACT_APP_DDRAGON_API_ROOT +
-          `/champion/${data.champions[index].championName}.png`;
+          `/champion/${data.champions[index].champion_name}.png`;
         formattedData.champions[index].counts = data.champions[index].counts;
         formattedData.champions[index].win_rate =
           Math.round(

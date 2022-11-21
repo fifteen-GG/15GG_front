@@ -32,7 +32,7 @@ export const GG_DIAMOND = '#2a64a5';
 export const GG_PLATINUM = '#00BBA3';
 export const GG_GOLD = '#df9f37';
 export const GG_SILVER = '#788491';
-export const GG_BRONZE = '#788491';
+export const GG_BRONZE = '#b48c50';
 export const GG_IRON = '#788491';
 
 //Doughnut

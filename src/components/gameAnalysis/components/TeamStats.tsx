@@ -19,6 +19,7 @@ const TeamStats = (props: propsType) => {
     { team: 'Red', avgStat: props.redTeam },
     { team: 'Blue', avgStat: props.blueTeam },
   ]);
+  console.log(teamStatsData);
   const FetchData = () => {
     useTeamStatsData([
       { team: 'Red', avgStat: props.redTeam },

@@ -18,6 +18,7 @@ import {
   WinningRate,
   GraphTitle,
 } from '../styles/timelineBarGraph.s';
+
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -64,28 +65,18 @@ export const options = {
   },
 };
 const labels = [''];
-export const data = {
+const data = {
   labels,
-  datasets: [
-    {
-      label: 'Dataset 1',
-      data: [50.0],
-      borderColor: `${Palette.GG_TIMELINE_BARGRAPH_RED}`,
-      backgroundColor: `${Palette.GG_TIMELINE_BARGRAPH_RED}`,
-      borderWidth: 0,
-    },
-    {
-      label: 'Dataset 2',
-      data: [100],
-      borderColor: `${Palette.GG_TIMELINE_BARGRAPH_BORDER_BLUE}`,
-      backgroundColor: `${Palette.GG_TIMELINE_BARGRAPH_BLUE}`,
-      borderWidth: 0,
-    },
-  ],
 };
-const TimelineBarGraph = () => {
+
+interface propsType {
+  winRate: number;
+}
+
+const TimelineBarGraph = (props: propsType) => {
   const chartRef = useRef<ChartJS>(null);
-  const [redWinningRate, setRedWinningRate] = useState<number>(50.0);
+  const [blueWinningRate, setBlueWinningRate] = useState<number>(0);
+  console.log(50 - 100 * props.winRate);
   const [chartData, setChartData] = useState<ChartData<'bar'>>({
     datasets: [],
   });
@@ -96,12 +87,30 @@ const TimelineBarGraph = () => {
     }
     const chartData = {
       ...data,
-      datasets: data.datasets.map(dataset => ({
-        ...dataset,
-      })),
+      // datasets: data.datasets.map(dataset => ({
+      //   ...dataset,
+      //   data: [100 - props?.winRate * 100,100],
+      // })),
+      datasets: [
+        {
+          label: 'Dataset 1',
+          data: [100 - props.winRate * 100],
+          borderColor: `${Palette.GG_TIMELINE_BARGRAPH_RED}`,
+          backgroundColor: `${Palette.GG_TIMELINE_BARGRAPH_RED}`,
+          borderWidth: 0,
+        },
+        {
+          label: 'Dataset 2',
+          data: [100],
+          borderColor: `${Palette.GG_TIMELINE_BARGRAPH_BORDER_BLUE}`,
+          backgroundColor: `${Palette.GG_TIMELINE_BARGRAPH_BLUE}`,
+          borderWidth: 0,
+        },
+      ],
     };
     setChartData(chartData);
-  }, []);
+    setBlueWinningRate(props.winRate);
+  }, [props.winRate]);
 
   return (
     <TimelineBarContainer>
@@ -115,9 +124,9 @@ const TimelineBarGraph = () => {
         />
       </GraphWrapper>
       <RateWrapper>
-        <WinningRate>{redWinningRate}%</WinningRate>
+        <WinningRate>{Math.round(100 - blueWinningRate * 100)}%</WinningRate>
         <GraphTitle>승률</GraphTitle>
-        <WinningRate>{100 - redWinningRate}%</WinningRate>
+        <WinningRate>{Math.round(blueWinningRate * 100)}%</WinningRate>
       </RateWrapper>
     </TimelineBarContainer>
   );

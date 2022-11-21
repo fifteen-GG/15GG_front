@@ -38,6 +38,7 @@ const TeamInfo = (props: propsType) => {
       { team: 'BLUE TEAM', participants: props.blueParticipants },
     ]);
   };
+  console.log(teamData);
   useEffect(() => {
     if (teamData[0].participants === undefined) {
       fetchPropsData();
@@ -59,7 +60,7 @@ const TeamInfo = (props: propsType) => {
               {data.participants?.map(summoner => {
                 return (
                   <Summoner
-                    key={summoner.summonerName}
+                    key={summoner.summoner_name}
                     summonerInfo={summoner}
                   />
                 );

@@ -63,7 +63,7 @@ const data = {
 interface propsType {
   userName: string;
   win_rate: number;
-  win: number;
+  wins: number;
   losses: number;
   kda_avg: number;
   kills_avg: number;
@@ -119,7 +119,7 @@ export const UserStatInfo = (props: propsType) => {
           <UserInfoTitle>승률</UserInfoTitle>
           <UserInfoContent>{props?.win_rate}%</UserInfoContent>
           <UserInfoSubTitle>
-            {props?.win}승 {props?.losses}패
+            {props?.wins}승 {props?.losses}패
           </UserInfoSubTitle>
         </UserInfoText>
       </UserWinRateWrapper>

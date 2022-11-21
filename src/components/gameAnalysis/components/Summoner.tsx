@@ -24,16 +24,20 @@ export interface propsType {
   summonerInfo: summonerDetail;
 }
 const Summoner = (props: propsType) => {
+  const formatSummonerName = (name: string) => {
+    if (name.length > 8) return name.slice(0, 8) + '...';
+    else return name;
+  };
   return (
     <SummonerContainer>
       <SummonerInterface>
         <ChampionImg
           src={
             process.env.REACT_APP_DDRAGON_API_ROOT +
-            `/champion/${props.summonerInfo.championName}.png`
+            `/champion/${props.summonerInfo.champion_name}.png`
           }
         />
-        <ChampionLevel>{props.summonerInfo.champLevel}</ChampionLevel>
+        <ChampionLevel>{props.summonerInfo.champ_level}</ChampionLevel>
         <SpellWrapper>
           <SpellImg
             src={
@@ -64,10 +68,12 @@ const Summoner = (props: propsType) => {
         </PerksWrapper>
         <SummonerInfoWrapper>
           <SummonerInfo>
-            <SummonerName>{props.summonerInfo.summonerName}</SummonerName>
+            <SummonerName>
+              {formatSummonerName(props.summonerInfo.summoner_name)}
+            </SummonerName>
             {props.summonerInfo.rank === '' ? null : (
               <SummonerTier rank={props.summonerInfo.rank}>
-                {props.summonerInfo.rank}
+                {props.summonerInfo.rank.slice(0, 1).toUpperCase()}
               </SummonerTier>
             )}
           </SummonerInfo>
@@ -107,8 +113,8 @@ const Summoner = (props: propsType) => {
                 .toLocaleString
             }`
           :  */}
-        {props.summonerInfo.totalDamageDealtToChampions.toLocaleString()} ·{' '}
-        {parseInt((props.summonerInfo.goldEarned / 1000).toString())}K
+        {props.summonerInfo.total_damage_dealt_to_champions.toLocaleString()} ·{' '}
+        {parseInt((props.summonerInfo.gold_earned / 1000).toString())}K
       </ItemInterface>
     </SummonerContainer>
   );

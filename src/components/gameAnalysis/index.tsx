@@ -1,6 +1,8 @@
 import GameInfo from './components/GameInfo';
 import TeamStats from './components/TeamStats';
+import TeamStatsLive from './components/TeamStatsLive';
 import TeamInfo from './components/TeamInfo';
+import TeamInfoLive from './components/TeamInfoLive';
 import TimelineGraph from './components/TimelineGraph';
 import TimelineBarGraph from './components/TimelineBarGraph';
 import GameSlider from './components/GameSlider';
@@ -12,7 +14,12 @@ import { useLocation } from 'react-router';
 import { useSocket, SocketStatus } from './useSocket';
 import { gameState } from '../types/enum';
 import axios from 'axios';
-import type { teamDetail } from '../types/matchDetails';
+import {
+  teamDetail,
+  SocketData,
+  socketDetail,
+  Participants,
+} from '../types/matchDetails';
 import LoadingPage from '../userInfo/components/LoadingPage';
 
 const GameAnalysisContainer = styled.div`
@@ -35,14 +42,249 @@ const TimeInfo = styled.div`
   margin-bottom: 12px;
 `;
 export const GameAnalysis = () => {
-  const [liveData, setLiveData] = useState(Object);
+  const [liveData, setLiveData] = useState<SocketData>({
+    timestamp: 0,
+    player_data: [
+      {
+        summonerName: '이름없음',
+        championName: '0',
+        rank: '0',
+        spells: {
+          spell1: 0,
+          spell2: 0,
+        },
+        perks: {
+          perk: 0,
+          perkStyl: 0,
+        },
+        isDead: false,
+        level: 0,
+        team: '',
+        champLevel: 0,
+        items: [],
+        kills: 0,
+        deaths: 0,
+        assists: 0,
+        gold: 0,
+      },
+      {
+        summonerName: '이름없음',
+        championName: '0',
+        rank: '0',
+        spells: {
+          spell1: 0,
+          spell2: 0,
+        },
+        perks: {
+          perk: 0,
+          perkStyl: 0,
+        },
+        isDead: false,
+        level: 0,
+        team: '',
+        champLevel: 0,
+        items: [],
+        kills: 0,
+        deaths: 0,
+        assists: 0,
+        gold: 0,
+      },
+      {
+        summonerName: '이름없음',
+        championName: '0',
+        rank: '0',
+        spells: {
+          spell1: 0,
+          spell2: 0,
+        },
+        perks: {
+          perk: 0,
+          perkStyl: 0,
+        },
+        isDead: false,
+        level: 0,
+        team: '',
+        champLevel: 0,
+        items: [],
+        kills: 0,
+        deaths: 0,
+        assists: 0,
+        gold: 0,
+      },
+      {
+        summonerName: '이름없음',
+        championName: '0',
+        rank: '0',
+        spells: {
+          spell1: 0,
+          spell2: 0,
+        },
+        perks: {
+          perk: 0,
+          perkStyl: 0,
+        },
+        isDead: false,
+        level: 0,
+        team: '',
+        champLevel: 0,
+        items: [],
+        kills: 0,
+        deaths: 0,
+        assists: 0,
+        gold: 0,
+      },
+      {
+        summonerName: '이름없음',
+        championName: '0',
+        rank: '0',
+        spells: {
+          spell1: 0,
+          spell2: 0,
+        },
+        perks: {
+          perk: 0,
+          perkStyl: 0,
+        },
+        isDead: false,
+        level: 0,
+        team: '',
+        champLevel: 0,
+        items: [],
+        kills: 0,
+        deaths: 0,
+        assists: 0,
+        gold: 0,
+      },
+      {
+        summonerName: '이름없음',
+        championName: '0',
+        rank: '0',
+        spells: {
+          spell1: 0,
+          spell2: 0,
+        },
+        perks: {
+          perk: 0,
+          perkStyl: 0,
+        },
+        isDead: false,
+        level: 0,
+        team: '',
+        champLevel: 0,
+        items: [],
+        kills: 0,
+        deaths: 0,
+        assists: 0,
+        gold: 0,
+      },
+      {
+        summonerName: '이름없음',
+        championName: '0',
+        rank: '0',
+        spells: {
+          spell1: 0,
+          spell2: 0,
+        },
+        perks: {
+          perk: 0,
+          perkStyl: 0,
+        },
+        isDead: false,
+        level: 0,
+        team: '',
+        champLevel: 0,
+        items: [],
+        kills: 0,
+        deaths: 0,
+        assists: 0,
+        gold: 0,
+      },
+      {
+        summonerName: '이름없음',
+        championName: '0',
+        rank: '0',
+        spells: {
+          spell1: 0,
+          spell2: 0,
+        },
+        perks: {
+          perk: 0,
+          perkStyl: 0,
+        },
+        isDead: false,
+        level: 0,
+        team: '',
+        champLevel: 0,
+        items: [],
+        kills: 0,
+        deaths: 0,
+        assists: 0,
+        gold: 0,
+      },
+      {
+        summonerName: '이름없음',
+        championName: '0',
+        rank: '0',
+        spells: {
+          spell1: 0,
+          spell2: 0,
+        },
+        perks: {
+          perk: 0,
+          perkStyl: 0,
+        },
+        isDead: false,
+        level: 0,
+        team: '',
+        champLevel: 0,
+        items: [],
+        kills: 0,
+        deaths: 0,
+        assists: 0,
+        gold: 0,
+      },
+      {
+        summonerName: '이름없음',
+        championName: '0',
+        rank: '0',
+        spells: {
+          spell1: 0,
+          spell2: 0,
+        },
+        perks: {
+          perk: 0,
+          perkStyl: 0,
+        },
+        isDead: false,
+        level: 0,
+        team: '',
+        champLevel: 0,
+        items: [],
+        kills: 0,
+        deaths: 0,
+        assists: 0,
+        gold: 0,
+      },
+    ],
+  } as unknown as SocketData);
+  // const [liveData, setLiveData] = useState<SocketData>();
+  // const [liveData, setLiveData] = useState<any>();
+  console.log(liveData);
+  console.log(liveData.player_data);
   const [gameData, setGameData] = useState([
     {} as teamDetail,
     {} as teamDetail,
   ]);
-  const [isLoading, setIsLoading] = useState(false);
+  console.log(gameData);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [time, setTime] = useState<number>(0);
+  console.log(time);
+  const [winRate, setWinRate] = useState<number>(0.5);
+  console.log(winRate);
+  const [winningRate, setWinningRate] = useState<number[]>([0]);
+  console.log(winningRate);
   const [parse, setParse] = useState<number>(0);
+  console.log(parse);
   const params = new URLSearchParams(window.location.search);
   const matchID = params.get('match%ID');
   console.log(matchID);
@@ -56,7 +298,6 @@ export const GameAnalysis = () => {
       );
       if (data.status === 200) {
         setGameData(data.data);
-        console.log(gameData);
       }
       if (data.data) setIsLoading(false);
     } catch (e: any) {
@@ -78,20 +319,25 @@ export const GameAnalysis = () => {
   });
 
   useEffect(() => {
-    if (state.statue === gameState.live) {
+    if (state.status === gameState.live) {
       if (parse) {
         let data = JSON.parse(responseMessage);
         setLiveData(data);
       }
     }
   }, [parse, responseMessage]);
-
+  // console.log(liveData);
   useEffect(() => {
     if (state.status === gameState.live) {
-      if (parse) setTime(liveData.timestamp);
+      if (parse) {
+        setTime(liveData.timestamp);
+        setWinRate(liveData.blue_team_win_rate);
+        setWinningRate([
+          ...winningRate,
+          Math.round(50 - 100 * liveData.blue_team_win_rate),
+        ]);
+      }
     }
-    console.log(liveData);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [liveData]);
   return (
     <GameAnalysisContainer>
@@ -107,17 +353,25 @@ export const GameAnalysis = () => {
               ? '0' + Math.trunc(time % 60)
               : Math.trunc(time % 60)}
           </TimeInfo>
-          <TimelineBarGraph />
-          <TimelineGraph />
+          <TimelineBarGraph winRate={winRate} />
+          <TimelineGraph winningRate={winningRate} time={time} />
           {state.status === gameState.end ? <GameSlider /> : null}
-          <TeamStats
-            redTeam={gameData[0].teamAvgData}
-            blueTeam={gameData[1].teamAvgData}
-          />
-          <TeamInfo
-            redParticipants={gameData[0].participants}
-            blueParticipants={gameData[1].participants}
-          />
+          {state.status === gameState.live ? (
+            <TeamStatsLive Participants={liveData.player_data} />
+          ) : (
+            <TeamStats
+              redTeam={gameData[0].teamAvgData}
+              blueTeam={gameData[1].teamAvgData}
+            />
+          )}
+          {state.status === gameState.live ? (
+            <TeamInfoLive Participants={liveData.player_data} />
+          ) : (
+            <TeamInfo
+              redParticipants={gameData[0].participants}
+              blueParticipants={gameData[1].participants}
+            />
+          )}
         </>
       )}
     </GameAnalysisContainer>
