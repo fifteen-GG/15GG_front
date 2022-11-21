@@ -13,7 +13,7 @@ import UserId from './components/UserId';
 import PreferChampion from './components/PreferChampion';
 import LoadingPage from './components/LoadingPage';
 import ErrorPage from './components/ErrorPage';
-import { totalFormat } from './userInfo';
+import { userInfoFormat } from './userInfo';
 
 const UserInfoContainer = styled.div`
   width: 100%;
@@ -72,10 +72,8 @@ export const UserInfo = () => {
         `${process.env.REACT_APP_GG_API_ROOT}/riot/user/${id}`,
       );
       if (value.status === 200) {
-        setSummonerInfo(totalFormat(value.data));
+        setSummonerInfo(userInfoFormat(value.data));
         console.log(value.data);
-        // setCopyInfo(totalFormat(summonerInfo));
-        // console.log(copyInfo);
       }
       if (value.data) setIsLoading(false);
     } catch (e: any) {

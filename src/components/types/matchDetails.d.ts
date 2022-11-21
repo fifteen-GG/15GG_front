@@ -11,7 +11,7 @@ export interface summonerDetail {
     perk: number;
     perkStyle: number;
   };
-  items: [number, number, number, number, number, number, number];
+  items: number[];
   goldEarned: number;
   kills: number;
   deaths: number;

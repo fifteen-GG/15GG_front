@@ -73,14 +73,7 @@ export const Profile = styled.img`
   border-radius: 10px;
   background: ${Palette.GG_BLACK_100};
 `;
-// export const SpellWrapper = styled.div`
-//   display: flex;
-//   height: 32px;
-//   width: 15px;
-//   margin-right: 2px;
-//   flex-direction: column;
-//   justify-content: space-between;
-// `;
+
 export const ImgWrapper = styled.div`
   display: flex;
   height: 32px;
@@ -95,12 +88,7 @@ export const ImgBox = styled.img`
   border-radius: 2px;
   background: ${Palette.GG_BLACK_100};
 `;
-// export const Perk = styled.img`
-//   width: 15px;
-//   height: 15px;
-//   border-radius: 10px;
-//   background: ${Palette.GG_BLACK_100};
-// `;
+
 export const KDAWrapper = styled.div`
   color: ${Palette.GG_WHITE_100};
   margin: 0px 22px 0px 2px;
@@ -146,7 +134,6 @@ export const ItemImg = styled.img`
   width: 15px;
   height: 15px;
   border-radius: 2px;
-  background: ${Palette.GG_EMPTY_ITEM_BOX};
   onerror: none;
   margin-left: 2px;
   &.item0 {
@@ -165,7 +152,7 @@ export const ItemImg = styled.img`
     order: 5;
   }
   &.item5 {
-    order: 6;
+    order: 5;
   }
   &.item6 {
     border-radius: 12px;
@@ -178,5 +165,19 @@ export const ItemImg = styled.img`
     &.item6 {
       order: 7;
     }
+  }
+`;
+export const ItemBox = styled.div`
+  width: 15px;
+  height: 15px;
+  border-radius: 2px;
+  background: ${Palette.GG_EMPTY_ITEM_BOX};
+  onerror: none;
+  margin-left: 2px;
+  order: 6;
+  @media screen and (min-width: 651px) {
+    width: 24px;
+    height: 24px;
+    border-radius: 5px;
   }
 `;

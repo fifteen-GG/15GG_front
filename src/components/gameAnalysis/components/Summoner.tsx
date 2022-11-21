@@ -15,6 +15,7 @@ import {
   KDADetails,
   KDA,
   ItemInterface,
+  ItemBox,
   ItemImg,
   ItemWrapper,
 } from '../styles/summoners.s';
@@ -65,7 +66,9 @@ const Summoner = (props: propsType) => {
           <SummonerInfo>
             <SummonerName>{props.summonerInfo.summonerName}</SummonerName>
             {props.summonerInfo.rank === '' ? null : (
-              <SummonerTier>{props.summonerInfo.rank}</SummonerTier>
+              <SummonerTier rank={props.summonerInfo.rank}>
+                {props.summonerInfo.rank}
+              </SummonerTier>
             )}
           </SummonerInfo>
           <KDAWrapper>
@@ -85,21 +88,27 @@ const Summoner = (props: propsType) => {
       <ItemInterface>
         <ItemWrapper>
           {props.summonerInfo.items.map((item: number, index) => {
-            return (
+            return item === 0 ? (
+              <ItemBox />
+            ) : (
               <ItemImg
                 className={'item' + index}
-                src={`${process.env.REACT_APP_DDRAGON_API_ROOT}/item/${item}.png`}
+                src={
+                  process.env.REACT_APP_DDRAGON_API_ROOT + `/item/${item}.png`
+                }
                 key={index}
               />
             );
           })}
         </ItemWrapper>
-        {props.summonerInfo.totalDamageDealtToChampions > 1000
-          ? `${(props.summonerInfo.totalDamageDealtToChampions / 1000)
-              .toString()
-              .replace('.', ',')}`
-          : props.summonerInfo.totalDamageDealtToChampions}{' '}
-        · {parseInt((props.summonerInfo.goldEarned / 1000).toString())}K
+        {/* props.summonerInfo.totalDamageDealtToChampions > 1000
+          ? `${
+              (props.summonerInfo.totalDamageDealtToChampions / 1000).toString()
+                .toLocaleString
+            }`
+          :  */}
+        {props.summonerInfo.totalDamageDealtToChampions.toLocaleString()} ·{' '}
+        {parseInt((props.summonerInfo.goldEarned / 1000).toString())}K
       </ItemInterface>
     </SummonerContainer>
   );

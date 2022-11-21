@@ -14,7 +14,7 @@ export interface MatchInfoType {
   cs: number;
   cs_per_min: number;
   vision_wards_bought_in_game: number;
-  items: string[];
+  items: number[];
   spells: {
     spell1: string;
     spell2: string;
