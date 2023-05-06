@@ -1,4 +1,6 @@
 # 15GG Frontend
+![A2 - 2x each](https://user-images.githubusercontent.com/8311335/236622459-2d8ed756-a6e6-412a-93e9-fda2e0620502.jpg)
+
 
 ## Git Commit Message 규칙
 
